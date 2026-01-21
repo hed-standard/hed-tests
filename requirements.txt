@@ -1,0 +1,5 @@
+# Minimal dependencies for HED test suite repository
+# This is a test data repository, not a validator implementation
+
+# JSON schema validation for test structure
+jsonschema>=4.23.0
