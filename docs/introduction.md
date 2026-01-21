@@ -1,4 +1,4 @@
-# Introduction to HEDTools
+# Introduction to the HED test suite
 
 ## What is HED?
 
@@ -8,153 +8,278 @@ HED (Hierarchical Event Descriptors) is a framework for systematically describin
 - **Standardized infrastructure** enabling automated analysis and interpretation
 - **Integration** with major neuroimaging standards (BIDS and NWB)
 
-For more information, visit the HED project [homepage](https://www.hedtags.org) and the [resources page](https://www.hedtags.org/hed-resources). The [table-remodeler](https://www.hedtags.org/table-remodeler) tools are now in a separate repository.
+For more information, visit the HED project [homepage](https://www.hedtags.org) and the [resources page](https://www.hedtags.org/hed-resources).
 
-## What is HEDTools?
+## What is the HED test suite?
 
-The **hedtools** Python package (`hed-python` repository) provides:
+The **HED Test Suite** (`hed-tests` repository) is the official collection of JSON test cases for validating HED validator implementations. It provides:
 
-- **Core validation** of HED annotations against schema specifications
-- **BIDS integration** for neuroimaging dataset processing
-- **Analysis tools** for event summarization, temporal processing, and tag analysis
-- **HED schema tools** for validating, comparing and converting HED schemas
-- **Command-line interface** for scripting and automation
-- **Jupyter notebooks** for interactive analysis workflows
+- **Comprehensive test coverage**: 136 test cases covering 33 error codes
+- **Multiple test types**: String, sidecar, event, and combo tests
+- **AI-friendly metadata**: Explanations, common causes, and correction strategies
+- **Cross-platform consistency**: Single source of truth for all validators
+- **Machine-readable specification**: Tests document expected validation behavior
+
+### Purpose
+
+The test suite serves three primary purposes:
+
+1. **Validator validation**: Ensure Python, JavaScript, and future implementations produce consistent results
+2. **Specification documentation**: Provide executable examples of HED validation rules
+3. **AI training**: Enable AI systems to understand HED validation through structured examples
 
 ### Related tools and resources
 
 - **[HED homepage](https://www.hedtags.org)**: Overview and links for HED
-- **[HED schemas](https://github.com/hed-standard/hed-schemas)**: Standardized vocabularies in XML/MEDIAWIKI/TSV/JSON formats
-- **[HED specification](https://www.hedtags.org/hed-specification/)**: Formal specification defining HED annotation rules
-- **[HED online tools](https://hedtools.org/hed)**: Web-based interface requiring no programming
-- **[HED examples](https://github.com/hed-standard/hed-examples)**: Example datasets annotated with HED
-- **[HED resources](https://www.hedtags.org/hed-resources)**: Comprehensive tutorials and documentation
-- **[HED MATLAB tools](https://www.hedtags.org/hed-matlab)**: MATLAB wrapper for Python tools
-- **[Table remodeler](https://www.hedtags.org/table-remodeler)**: table analysis and transformations -- formerly part of hedtools
+- **[HED Python validator](https://github.com/hed-standard/hed-python)**: Python implementation (primary consumer)
+- **[HED JavaScript validator](https://github.com/hed-standard/hed-javascript)**: JavaScript implementation (primary consumer)
+- **[HED schemas](https://github.com/hed-standard/hed-schemas)**: Standardized vocabularies referenced in tests
+- **[HED specification](https://www.hedtags.org/hed-specification/)**: Formal specification (source of truth for rules)
+- **[HED online tools](https://hedtools.org/hed)**: Web-based validation tools
+- **[HED examples](https://github.com/hed-standard/hed-examples)**: Example annotated datasets
 
-## Installation
+## Getting Started
 
-### From PyPI (recommended)
+### Clone the Repository
 
-Install the latest stable release:
+Get the test suite from GitHub:
 
 ```bash
-pip install hedtools
+git clone https://github.com/hed-standard/hed-tests.git
+cd hed-tests
 ```
 
-**Note**: The PyPI package includes the core hedtools library but **not the example Jupyter notebooks**. To access the notebooks, see the options below.
+### Repository Structure
 
-### For Jupyter notebook examples
+```
+hed-tests/
+├── json_test_data/              # All test data
+│   ├── validation_tests/        # 25 validation error test files
+│   ├── schema_tests/            # 17 schema error test files
+│   └── javascriptTests.json     # Consolidated test file
+├── src/
+│   ├── scripts/                 # Utility scripts
+│   └── schemas/                 # JSON schema for test validation
+├── docs/                        # Documentation (this site)
+└── tests/                       # Test utilities
 
-The example notebooks are only available in the GitHub repository. Choose one of these options:
+```
 
-**Option 1: Clone the full repository**
+### Browse the Tests
+
+Test files are organized by error code:
 
 ```bash
-git clone https://github.com/hed-standard/hed-python.git
-cd hed-python
+# Validation error tests
+ls json_test_data/validation_tests/
+# TAG_INVALID.json, UNITS_INVALID.json, etc.
+
+# Schema validation tests
+ls json_test_data/schema_tests/
+# SCHEMA_ATTRIBUTE_INVALID.json, etc.
+```
+
+### Validate Test Structure
+
+Ensure test files conform to the JSON schema:
+
+```powershell
+# Set up environment (Windows PowerShell)
+python -m venv .venv
+.venv\Scripts\activate.ps1
 pip install -r requirements.txt
-pip install jupyter notebook
-# Notebooks are in: examples/
+
+# Validate a single test file
+python src\scripts\validate_test_structure.py json_test_data\validation_tests\TAG_INVALID.json
+
+# Validate all tests
+python src\scripts\validate_test_structure.py json_test_data\validation_tests
+python src\scripts\validate_test_structure.py json_test_data\schema_tests
 ```
 
-**Option 2: Download just the examples directory**
+### Check Test Coverage
 
-```bash
-svn export https://github.com/hed-standard/hed-python/trunk/examples
-cd examples
-pip install hedtools jupyter notebook
+Analyze test coverage statistics:
+
+```powershell
+python src\scripts\check_coverage.py
+
+# Output:
+# HED Test Suite Coverage Report
+# =====================================
+# Total test files: 42
+# Total test cases: 136
+# Error codes covered: 33
+# ...
 ```
 
-See [examples/README.md](https://github.com/hed-standard/hed-python/tree/main/examples) for detailed notebook documentation.
+### Generate Test Index
 
-### From GitHub (latest development version)
+Create a searchable test index:
 
-```bash
-pip install git+https://github.com/hed-standard/hed-python/@main
+```powershell
+python src\scripts\generate_test_index.py
+
+# Creates: docs/test_index.md
 ```
 
-### For development
+## Test File Format
 
-Clone the repository and install in editable mode:
+Each test file contains structured JSON test cases:
 
-```bash
-git clone https://github.com/hed-standard/hed-python.git
-cd hed-python
-pip install -e .
+```json
+[
+    {
+        "error_code": "TAG_INVALID",
+        "name": "tag-invalid-basic",
+        "description": "Basic test for tags not in the schema",
+        "schema": "8.4.0",
+        "tests": {
+            "string_tests": {
+                "fails": ["Invalidtag", "Red, Invalidtag"],
+                "passes": ["Red", "Event"]
+            }
+        }
+    }
+]
 ```
 
-### Python requirements
+See [Test Format Specification](test_format.md) for complete documentation.
 
-- **Python 3.10 or later** is required
-- Core dependencies: pandas, numpy, defusedxml, openpyxl
-- Jupyter support: Install with `pip install jupyter notebook`
+## For Validator Developers
 
-## Getting help
+If you're building a HED validator:
 
-### Documentation resources
+1. **Clone this repository** or add as a submodule
+2. **Parse test JSON files** from `json_test_data/`
+3. **Execute tests** against your validation implementation
+4. **Report discrepancies** as issues
 
-- **[User guide](user_guide.md)**: Step-by-step instructions and examples
-- **[API reference](api/index.html)**: Detailed function and class documentation
-- **[HED specification](https://hed-specification.readthedocs.io/)**: Formal annotation rules
-- **[HED resources](https://www.hedtags.org/hed-resources)**: HED tutorials and guides
+See [Validator Integration Guide](validator_integration.md) for detailed integration instructions.
+
+## For Test Contributors
+
+Want to add new tests or improve existing ones?
+
+1. **Follow the format**: Use the JSON schema in `src/schemas/test_schema.json`
+2. **Include AI metadata**: Add explanations and correction examples
+3. **Validate your changes**: Run `validate_test_structure.py`
+4. **Submit a PR**: See [CONTRIBUTING.md](../CONTRIBUTING.md)
+
+## Test Statistics
+
+Current test suite coverage:
+
+- **42 test files**: 25 validation tests + 17 schema tests
+- **136 test cases**: Comprehensive error code coverage
+- **33 error codes**: All major validation errors
+- **100% AI metadata**: Every test includes explanations and corrections
+
+See [Test Coverage Report](test_coverage.md) for detailed statistics.
+
+## Error Code Categories
+
+Tests are organized into categories:
+
+### Syntax Errors
+- `CHARACTER_INVALID` - Invalid characters in tags
+- `COMMA_MISSING` - Missing required commas
+- `PARENTHESES_MISMATCH` - Unmatched parentheses
+- `TAG_EMPTY` - Empty tag elements
+
+### Semantic Errors
+- `TAG_INVALID` - Tags not in schema
+- `TAG_EXTENDED` - Invalid tag extensions
+- `VALUE_INVALID` - Invalid tag values
+- `UNITS_INVALID` - Invalid or missing units
+
+### Definition Errors
+- `DEFINITION_INVALID` - Malformed definitions
+- `DEF_INVALID` - Invalid definition usage
+- `DEF_EXPAND_INVALID` - Definition expansion errors
+
+### Sidecar Errors
+- `SIDECAR_INVALID` - Invalid sidecar structure
+- `SIDECAR_BRACES_INVALID` - Curly brace errors
+- `SIDECAR_KEY_MISSING` - Missing required keys
+
+### Schema Errors
+- `SCHEMA_ATTRIBUTE_INVALID` - Invalid schema attributes
+- `SCHEMA_DUPLICATE_NODE` - Duplicate schema nodes
+- `SCHEMA_HEADER_INVALID` - Invalid schema headers
+
+### Temporal Errors
+- `TEMPORAL_TAG_ERROR` - Temporal tag issues
+- `TEMPORAL_TAG_ERROR_DELAY` - Delay tag errors
+
+See [Test Index](test_index.md) for complete error code listing.
+
+## Getting Help
+
+### Documentation Resources
+
+- **[Test Format Specification](test_format.md)**: Complete JSON schema documentation
+- **[Validator Integration Guide](validator_integration.md)**: How to use tests in your validator
+- **[Test Coverage Report](test_coverage.md)**: Current coverage statistics
+- **[Test Index](test_index.md)**: Searchable test case index
+- **[Contributing Guide](../CONTRIBUTING.md)**: How to add or improve tests
 
 ### Support
 
-- **Issues and bugs**: Open an [**issue**](https://github.com/hed-standard/hed-python/issues) on GitHub
-- **Questions**: Use GitHub issues
-- **Online validation**: Try [HED online tools](https://hedtools.org/hed) for web-based access
+- **Issues and bugs**: Open an [issue](https://github.com/hed-standard/hed-tests/issues) on GitHub
+- **Questions**: Use [GitHub Discussions](https://github.com/hed-standard/hed-tests/discussions)
 - **Contact**: Email [hed.maintainers@gmail.com](mailto:hed.maintainers@gmail.com)
 
-## Quick start
+### HED Resources
 
-### Basic validation example
+- **[HED homepage](https://www.hedtags.org)**: Project overview
+- **[HED specification](https://www.hedtags.org/hed-specification)**: Formal validation rules
+- **[HED schemas](https://github.com/hed-standard/hed-schemas)**: Vocabulary definitions
+- **[HED Python validator](https://github.com/hed-standard/hed-python)**: Python implementation
+- **[HED JavaScript validator](https://github.com/hed-standard/hed-javascript)**: JavaScript implementation
 
-```python
-from hed import HedString, load_schema, get_printable_issue_string
+## Quick Example
 
-# Load the latest HED schema
-schema = load_schema('8.4.0')
+Here's a test case from `TAG_INVALID.json`:
 
-# Create and validate a HED string
-hed_string = HedString("Sensory-event, Visual-presentation, (Onset, (Red, Square))", schema)
-issues = hed_string.validate()
-
-if issues:
-    print(get_printable_issue_string(issues, "Validation issues found:"))
-else:
-    print("✓ HED string is valid!")
+```json
+{
+    "error_code": "TAG_INVALID",
+    "name": "tag-invalid-basic",
+    "description": "Basic test for tags not in the schema",
+    "schema": "8.4.0",
+    "explanation": "Tags must exist in the active HED schema. Each tag path must be found in the schema vocabulary.",
+    "common_causes": [
+        "Typo in tag name",
+        "Using a tag from a different schema version"
+    ],
+    "correction_strategy": "Verify the tag exists using the schema browser at hedtags.org",
+    "correction_examples": [
+        {
+            "wrong": "Invalidtag",
+            "correct": "Event",
+            "explanation": "Use a tag that exists in the schema"
+        }
+    ],
+    "tests": {
+        "string_tests": {
+            "fails": ["Invalidtag", "Red, Invalidtag"],
+            "passes": ["Red", "Event"]
+        }
+    }
+}
 ```
 
-### BIDS dataset validation
+**What this tests**:
+- **Failing cases**: `Invalidtag` and `Red, Invalidtag` should produce `TAG_INVALID` error
+- **Passing cases**: `Red` and `Event` should NOT produce this error
+- **AI context**: Explanations help AI understand why tags must be in schema
+- **Corrections**: Examples show how to fix the error
 
-```python
-from hed.tools import BidsDataset
+## Next Steps
 
-# Load and validate a BIDS dataset
-dataset = BidsDataset("path/to/bids/dataset")  # the description has schema version
-issues = dataset.validate()
+- **Browse tests**: Explore [test_index.md](test_index.md) to see all test cases
+- **Integrate tests**: Follow [validator_integration.md](validator_integration.md) to use in your validator
+- **Contribute**: Read [CONTRIBUTING.md](../CONTRIBUTING.md) to add new tests
+- **View coverage**: Check [test_coverage.md](test_coverage.md) for statistics
 
-if issues:
-    print(get_printable_issue_string(issues, "Validation issues found:"))
-else:
-    print("✓ Dataset HED annotations are valid!")
-```
-
-### Working with sidecars
-
-```python
-from hed import Sidecar, load_schema_version
-
-# Load and validate a BIDS JSON sidecar
-schema = load_schema_version("8.4.0")
-sidecar = Sidecar("task-rest_events.json")
-issues = sidecar.validate(schema)
-```
-
-## Next steps
-
-- Explore the [**User guide**](user_guide.md) for detailed workflows
-- Try the [**Jupyter notebooks**](https://github.com/hed-standard/hed-python/tree/main/examples) for interactive examples
-- Check the [**API reference**](api/index.html) for complete function documentation
-- Validate your data using the HED [**online tools**](https://hedtools.org/hed) or the HED [**browser-based tools**](https://www.hedtags.org/hed-javascript)
