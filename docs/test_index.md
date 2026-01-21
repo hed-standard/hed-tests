@@ -38,7 +38,6 @@ Complete index of 136 test cases in the HED test suite.
 - [VALUE_INVALID](#value-invalid) (4 tests)
 - [WIKI_DELIMITERS_INVALID](#wiki-delimiters-invalid) (1 tests)
 
-
 ## CHARACTER_INVALID
 
 **File**: `json_test_data/validation_tests/CHARACTER_INVALID.json`
@@ -47,10 +46,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: The HED string contains a UTF-8 character.
 
-**Schema**: 8.4.0
-**Category**: validation
+**Schema**: 8.4.0 **Category**: validation
 
 **Tests**:
+
 - `string_tests`: 2 fail, 2 pass
 - `sidecar_tests`: 1 fail, 1 pass
 - `event_tests`: 2 fail, 1 pass
@@ -60,10 +59,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: The curly brace notation is used outside a sidecar.
 
-**Schema**: 8.4.0
-**Category**: validation
+**Schema**: 8.4.0 **Category**: validation
 
 **Tests**:
+
 - `string_tests`: 1 fail, 1 pass
 - `sidecar_tests`: 0 fail, 1 pass
 - `event_tests`: 1 fail, 1 pass
@@ -72,10 +71,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: An invalid character was used in an 8.3.0 or greater style name value class.
 
-**Schema**: 8.4.0
-**Category**: validation
+**Schema**: 8.4.0 **Category**: validation
 
 **Tests**:
+
 - `string_tests`: 5 fail, 3 pass
 - `sidecar_tests`: 1 fail, 1 pass
 - `event_tests`: 3 fail, 1 pass
@@ -85,14 +84,13 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: An invalid character was as a value in a placeholder or as a tag extension.
 
-**Schema**: 8.2.0
-**Category**: validation
+**Schema**: 8.2.0 **Category**: validation
 
 **Tests**:
+
 - `string_tests`: 4 fail, 3 pass
 - `sidecar_tests`: 1 fail, 1 pass
 - `event_tests`: 3 fail, 1 pass
-
 
 ## COMMA_MISSING
 
@@ -102,10 +100,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: A tag and a tag group are not separated by commas: A(B,D).
 
-**Schema**: 8.4.0
-**Category**: syntax
+**Schema**: 8.4.0 **Category**: syntax
 
 **Tests**:
+
 - `string_tests`: 2 fail, 2 pass
 - `sidecar_tests`: 1 fail, 1 pass
 - `event_tests`: 1 fail, 1 pass
@@ -115,15 +113,14 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: Two tag groups are not separated by commas: (A, B)(C, D).
 
-**Schema**: 8.4.0
-**Category**: syntax
+**Schema**: 8.4.0 **Category**: syntax
 
 **Tests**:
+
 - `string_tests`: 2 fail, 2 pass
 - `sidecar_tests`: 1 fail, 1 pass
 - `event_tests`: 1 fail, 1 pass
 - `combo_tests`: 1 fail, 1 pass
-
 
 ## DEFINITION_INVALID
 
@@ -133,10 +130,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: A definition that includes a placeholder (`#`) does not have exactly two `#` characters.
 
-**Schema**: 8.4.0
-**Category**: placeholder
+**Schema**: 8.4.0 **Category**: placeholder
 
 **Tests**:
+
 - `sidecar_tests`: 1 fail, 1 pass
 - `combo_tests`: 1 fail, 1 pass
 
@@ -144,10 +141,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: A tag with a required or unique attribute appears in a definition.
 
-**Schema**: 8.4.0
-**Category**: content
+**Schema**: 8.4.0 **Category**: content
 
 **Tests**:
+
 - `sidecar_tests`: 1 fail, 1 pass
 - `combo_tests`: 1 fail, 1 pass
 
@@ -155,10 +152,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: A definition's enclosing tag group has an empty inner group (i.e., the definition's contents).
 
-**Schema**: 8.4.0
-**Category**: content
+**Schema**: 8.4.0 **Category**: content
 
 **Tests**:
+
 - `sidecar_tests`: 1 fail, 1 pass
 - `combo_tests`: 1 fail, 1 pass
 
@@ -166,10 +163,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: A definition's inner tag group contains `Definition`, `Def` or `Def-expand` tags.
 
-**Schema**: 8.4.0
-**Category**: structure
+**Schema**: 8.4.0 **Category**: structure
 
 **Tests**:
+
 - `sidecar_tests`: 1 fail, 0 pass
 - `event_tests`: 0 fail, 1 pass
 - `combo_tests`: 1 fail, 1 pass
@@ -178,10 +175,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: A definition's enclosing tag group contains more than a `Definition` tag and an inner group.
 
-**Schema**: 8.4.0
-**Category**: structure
+**Schema**: 8.4.0 **Category**: structure
 
 **Tests**:
+
 - `sidecar_tests`: 1 fail, 1 pass
 - `combo_tests`: 1 fail, 1 pass
 
@@ -189,10 +186,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: Multiple `Definition` tags with same name are encountered.
 
-**Schema**: 8.4.0
-**Category**: uniqueness
+**Schema**: 8.4.0 **Category**: uniqueness
 
 **Tests**:
+
 - `sidecar_tests`: 1 fail, 1 pass
 - `combo_tests`: 1 fail, 1 pass
 
@@ -200,10 +197,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: Definitions of the same name appear with and without a `#`.
 
-**Schema**: 8.4.0
-**Category**: consistency
+**Schema**: 8.4.0 **Category**: consistency
 
 **Tests**:
+
 - `sidecar_tests`: 1 fail, 1 pass
 - `combo_tests`: 1 fail, 1 pass
 
@@ -211,10 +208,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: A definition has placeholders (`#`) in incorrect positions.
 
-**Schema**: 8.4.0
-**Category**: placeholder
+**Schema**: 8.4.0 **Category**: placeholder
 
 **Tests**:
+
 - `sidecar_tests`: 1 fail, 1 pass
 - `combo_tests`: 1 fail, 1 pass
 
@@ -222,10 +219,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: A Definition tag does not appear in a tag group at the top level in an annotation.
 
-**Schema**: 8.4.0
-**Category**: structure
+**Schema**: 8.4.0 **Category**: structure
 
 **Tests**:
+
 - `string_tests`: 2 fail, 0 pass
 - `sidecar_tests`: 1 fail, 1 pass
 - `combo_tests`: 1 fail, 1 pass
@@ -234,15 +231,14 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: A definition appears in an unexpected place such as an events file or sidecar.
 
-**Schema**: 8.4.0
-**Category**: context
+**Schema**: 8.4.0 **Category**: context
 
 **Tests**:
+
 - `string_tests`: 1 fail, 1 pass
 - `sidecar_tests`: 1 fail, 1 pass
 - `event_tests`: 1 fail, 1 pass
 - `combo_tests`: 1 fail, 1 pass
-
 
 ## DEF_EXPAND_INVALID
 
@@ -252,10 +248,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: A Def-expand has extra tags or groups.
 
-**Schema**: 8.4.0
-**Category**: structure
+**Schema**: 8.4.0 **Category**: structure
 
 **Tests**:
+
 - `string_tests`: 2 fail, 1 pass
 - `sidecar_tests`: 1 fail, 1 pass
 - `event_tests`: 1 fail, 1 pass
@@ -265,10 +261,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: A `Def-expand` has an incorrect type of placeholder value.
 
-**Schema**: 8.4.0
-**Category**: value
+**Schema**: 8.4.0 **Category**: value
 
 **Tests**:
+
 - `string_tests`: 3 fail, 1 pass
 - `sidecar_tests`: 1 fail, 1 pass
 - `event_tests`: 1 fail, 1 pass
@@ -278,10 +274,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: A `Def-expand` is missing an expected placeholder value or has an unexpected placeholder value.
 
-**Schema**: 8.4.0
-**Category**: content
+**Schema**: 8.4.0 **Category**: content
 
 **Tests**:
+
 - `string_tests`: 2 fail, 1 pass
 - `sidecar_tests`: 1 fail, 1 pass
 - `event_tests`: 1 fail, 1 pass
@@ -291,10 +287,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: A `Def-expand` tag's name does not correspond to a definition.
 
-**Schema**: 8.4.0
-**Category**: semantic
+**Schema**: 8.4.0 **Category**: semantic
 
 **Tests**:
+
 - `string_tests`: 1 fail, 1 pass
 - `sidecar_tests`: 1 fail, 1 pass
 - `event_tests`: 1 fail, 1 pass
@@ -304,10 +300,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: The tags within a Def-expand do not match the corresponding definition.
 
-**Schema**: 8.4.0
-**Category**: content
+**Schema**: 8.4.0 **Category**: content
 
 **Tests**:
+
 - `string_tests`: 3 fail, 1 pass
 - `sidecar_tests`: 1 fail, 1 pass
 - `event_tests`: 1 fail, 1 pass
@@ -317,15 +313,14 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: A Def-expand is missing its inner group containing the definition.
 
-**Schema**: 8.4.0
-**Category**: structure
+**Schema**: 8.4.0 **Category**: structure
 
 **Tests**:
+
 - `string_tests`: 1 fail, 1 pass
 - `sidecar_tests`: 1 fail, 1 pass
 - `event_tests`: 1 fail, 1 pass
 - `combo_tests`: 1 fail, 1 pass
-
 
 ## DEF_INVALID
 
@@ -335,10 +330,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: A `Def` has a placeholder value of incorrect format or units for definition.
 
-**Schema**: 8.4.0
-**Category**: value
+**Schema**: 8.4.0 **Category**: value
 
 **Tests**:
+
 - `string_tests`: 4 fail, 1 pass
 - `sidecar_tests`: 1 fail, 1 pass
 - `event_tests`: 1 fail, 1 pass
@@ -348,10 +343,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: A `Def` tag is missing an expected placeholder value or has an unexpected placeholder value.
 
-**Schema**: 8.4.0
-**Category**: placeholder
+**Schema**: 8.4.0 **Category**: placeholder
 
 **Tests**:
+
 - `string_tests`: 2 fail, 1 pass
 - `sidecar_tests`: 1 fail, 1 pass
 - `event_tests`: 1 fail, 1 pass
@@ -361,15 +356,14 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: A `Def` tag's name does not correspond to a definition.
 
-**Schema**: 8.4.0
-**Category**: semantic
+**Schema**: 8.4.0 **Category**: semantic
 
 **Tests**:
+
 - `string_tests`: 3 fail, 1 pass
 - `sidecar_tests`: 1 fail, 1 pass
 - `event_tests`: 1 fail, 1 pass
 - `combo_tests`: 1 fail, 1 pass
-
 
 ## ELEMENT_DEPRECATED
 
@@ -379,15 +373,14 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: A tag is deprecated
 
-**Schema**: 8.2.0
-**Category**: semantic
+**Schema**: 8.2.0 **Category**: semantic
 
 **Tests**:
+
 - `string_tests`: 2 fail, 1 pass
 - `sidecar_tests`: 1 fail, 1 pass
 - `event_tests`: 1 fail, 1 pass
 - `combo_tests`: 1 fail, 1 pass
-
 
 ## PARENTHESES_MISMATCH
 
@@ -397,10 +390,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: The open and closed parentheses are not correctly nested in the HED string.
 
-**Schema**: 8.4.0
-**Category**: syntax
+**Schema**: 8.4.0 **Category**: syntax
 
 **Tests**:
+
 - `string_tests`: 2 fail, 2 pass
 - `sidecar_tests`: 1 fail, 1 pass
 - `event_tests`: 1 fail, 1 pass
@@ -410,15 +403,14 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: A HED string does not have the same number of open and closed parentheses.
 
-**Schema**: 8.4.0
-**Category**: syntax
+**Schema**: 8.4.0 **Category**: syntax
 
 **Tests**:
+
 - `string_tests`: 3 fail, 1 pass
 - `sidecar_tests`: 1 fail, 1 pass
 - `event_tests`: 1 fail, 1 pass
 - `combo_tests`: 1 fail, 1 pass
-
 
 ## PLACEHOLDER_INVALID
 
@@ -428,10 +420,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: A JSON sidecar has a placeholder (`#`) in the HED dictionary for a categorical column.
 
-**Schema**: 8.4.0
-**Category**: context
+**Schema**: 8.4.0 **Category**: context
 
 **Tests**:
+
 - `sidecar_tests`: 1 fail, 1 pass
 - `combo_tests`: 1 fail, 1 pass
 
@@ -439,10 +431,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: A placeholder (`#`) is used in JSON sidecar or definition, but its parent in the schema does not have a placeholder child.
 
-**Schema**: 8.4.0
-**Category**: schema
+**Schema**: 8.4.0 **Category**: schema
 
 **Tests**:
+
 - `sidecar_tests`: 1 fail, 1 pass
 - `combo_tests`: 1 fail, 1 pass
 
@@ -450,10 +442,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: A JSON sidecar does not have exactly one placeholder (`#`) in each HED string representing a value column.
 
-**Schema**: 8.4.0
-**Category**: count
+**Schema**: 8.4.0 **Category**: count
 
 **Tests**:
+
 - `sidecar_tests`: 1 fail, 1 pass
 - `combo_tests`: 1 fail, 1 pass
 
@@ -461,15 +453,14 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: A `#` appears in a place that it should not (such as in the `HED` column of an event file outside a definition).
 
-**Schema**: 8.4.0
-**Category**: structure
+**Schema**: 8.4.0 **Category**: structure
 
 **Tests**:
+
 - `string_tests`: 2 fail, 1 pass
 - `sidecar_tests`: 1 fail, 0 pass
 - `event_tests`: 1 fail, 1 pass
 - `combo_tests`: 1 fail, 1 pass
-
 
 ## SCHEMA_ATTRIBUTE_INVALID
 
@@ -479,12 +470,11 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: A schema attribute issue, saying there is an unknown one.
 
-**Schema**: any
-**Category**: schema_development
+**Schema**: any **Category**: schema_development
 
 **Tests**:
-- `schema_tests`: 3 fail, 1 pass
 
+- `schema_tests`: 3 fail, 1 pass
 
 ## SCHEMA_ATTRIBUTE_VALUE_INVALID
 
@@ -494,122 +484,121 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: A schema unit has an invalid conversion factor
 
-**Schema**: any
-**Category**: schema_development
+**Schema**: any **Category**: schema_development
 
 **Tests**:
+
 - `schema_tests`: 4 fail, 1 pass
 
 ### attribute-default-unit-invalid ⚠️ Warning 🤖 AI 📝 Examples
 
 **Description**: A schema unit class has an invalid default value
 
-**Schema**: any
-**Category**: schema_development
+**Schema**: any **Category**: schema_development
 
 **Tests**:
+
 - `schema_tests`: 1 fail, 1 pass
 
 ### attribute-invalid-allowed-character ⚠️ Warning 🤖 AI 📝 Examples
 
 **Description**: A schema unit has an invalid conversion factor
 
-**Schema**: any
-**Category**: schema_development
+**Schema**: any **Category**: schema_development
 
 **Tests**:
+
 - `schema_tests`: 1 fail, 2 pass
 
 ### attribute-invalid-hed-id-changed ⚠️ Warning 🤖 AI 📝 Examples
 
 **Description**: A schema value class issue, saying there is an unknown one.
 
-**Schema**: any
-**Category**: schema_development
+**Schema**: any **Category**: schema_development
 
 **Tests**:
+
 - `schema_tests`: 1 fail, 1 pass
 
 ### attribute-invalid-hed-id-invalid ⚠️ Warning 🤖 AI 📝 Examples
 
 **Description**: A schema value class issue, saying there is an unknown one.
 
-**Schema**: any
-**Category**: schema_development
+**Schema**: any **Category**: schema_development
 
 **Tests**:
+
 - `schema_tests`: 1 fail, 1 pass
 
 ### attribute-invalid-hed-id-out-range ⚠️ Warning 🤖 AI 📝 Examples
 
 **Description**: A schema value class issue, saying there is an unknown one.
 
-**Schema**: any
-**Category**: schema_development
+**Schema**: any **Category**: schema_development
 
 **Tests**:
+
 - `schema_tests`: 1 fail, 1 pass
 
 ### attribute-invalid-in-library ⚠️ Warning 🤖 AI 📝 Examples
 
 **Description**: A schema unit has an invalid in library attribute(most other library errors are SCHEMA_LIBRARY_INVALID
 
-**Schema**: any
-**Category**: schema_development
+**Schema**: any **Category**: schema_development
 
 **Tests**:
+
 - `schema_tests`: 1 fail, 1 pass
 
 ### attribute-invalid-unit-class ⚠️ Warning 🤖 AI 📝 Examples
 
 **Description**: A schema unit class issue, saying there is an unknown one.
 
-**Schema**: any
-**Category**: schema_development
+**Schema**: any **Category**: schema_development
 
 **Tests**:
+
 - `schema_tests`: 1 fail, 1 pass
 
 ### attribute-invalid-value-class ⚠️ Warning 🤖 AI 📝 Examples
 
 **Description**: A schema value class issue, saying there is an unknown one.
 
-**Schema**: any
-**Category**: schema_development
+**Schema**: any **Category**: schema_development
 
 **Tests**:
+
 - `schema_tests`: 1 fail, 1 pass
 
 ### attribute-on-nonplaceholder-invalid ⚠️ Warning 🤖 AI 📝 Examples
 
 **Description**: A non placeholder tag has takes value, unit class, or value class
 
-**Schema**: any
-**Category**: schema_development
+**Schema**: any **Category**: schema_development
 
 **Tests**:
+
 - `schema_tests`: 3 fail, 1 pass
 
 ### attribute-relatedTag-invalid ⚠️ Warning 🤖 AI 📝 Examples
 
 **Description**: A related tag points to an unknown tag
 
-**Schema**: any
-**Category**: schema_development
+**Schema**: any **Category**: schema_development
 
 **Tests**:
+
 - `schema_tests`: 2 fail, 2 pass
 
 ### attribute-suggestedTag-invalid ⚠️ Warning 🤖 AI 📝 Examples
 
 **Description**: A suggested tag points to an unknown tag
 
-**Schema**: any
-**Category**: schema_development
+**Schema**: any **Category**: schema_development
 
 **Tests**:
-- `schema_tests`: 2 fail, 2 pass
 
+- `schema_tests`: 2 fail, 2 pass
 
 ## SCHEMA_CHARACTER_INVALID
 
@@ -622,6 +611,7 @@ Complete index of 136 test cases in the HED test suite.
 **Schema**: any
 
 **Tests**:
+
 - `schema_tests`: 1 fail, 2 pass
 
 ### schema-character-invalid-description ⚠️ Warning
@@ -631,6 +621,7 @@ Complete index of 136 test cases in the HED test suite.
 **Schema**: any
 
 **Tests**:
+
 - `schema_tests`: 2 fail, 1 pass
 
 ### schema-character-invalid-other-term ⚠️ Warning
@@ -640,16 +631,17 @@ Complete index of 136 test cases in the HED test suite.
 **Schema**: any
 
 **Tests**:
+
 - `schema_tests`: 6 fail, 1 pass
 
 ### schema-character-invalid-prologue ⚠️ Warning 🤖 AI 📝 Examples
 
 **Description**: Invalid character in prologue or epilogue.
 
-**Schema**: any
-**Category**: schema_development
+**Schema**: any **Category**: schema_development
 
 **Tests**:
+
 - `schema_tests`: 2 fail, 1 pass
 
 ### schema-character-invalid-tag ⚠️ Warning
@@ -659,6 +651,7 @@ Complete index of 136 test cases in the HED test suite.
 **Schema**: any
 
 **Tests**:
+
 - `schema_tests`: 2 fail, 1 pass
 
 ### schema-character-invalid-utf8-other-term ⚠️ Warning
@@ -668,8 +661,8 @@ Complete index of 136 test cases in the HED test suite.
 **Schema**: any
 
 **Tests**:
-- `schema_tests`: 1 fail, 2 pass
 
+- `schema_tests`: 1 fail, 2 pass
 
 ## SCHEMA_DEPRECATION_ERROR
 
@@ -679,10 +672,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: A schema attribute issue, saying there is an unhandled deprecated attribute.
 
-**Schema**: any
-**Category**: schema_development
+**Schema**: any **Category**: schema_development
 
 **Tests**:
+
 - `schema_tests`: 2 fail, 1 pass
 
 ### schema-deprecated-default-unit ⚠️ Warning
@@ -692,6 +685,7 @@ Complete index of 136 test cases in the HED test suite.
 **Schema**: any
 
 **Tests**:
+
 - `schema_tests`: 1 fail, 2 pass
 
 ### schema-deprecated-deprecated-attribute ⚠️ Warning
@@ -701,6 +695,7 @@ Complete index of 136 test cases in the HED test suite.
 **Schema**: any
 
 **Tests**:
+
 - `schema_tests`: 5 fail, 5 pass
 
 ### schema-deprecated-deprecated-property ⚠️ Warning
@@ -710,6 +705,7 @@ Complete index of 136 test cases in the HED test suite.
 **Schema**: any
 
 **Tests**:
+
 - `schema_tests`: 1 fail, 1 pass
 
 ### schema-deprecated-invalid-child ⚠️ Warning
@@ -719,6 +715,7 @@ Complete index of 136 test cases in the HED test suite.
 **Schema**: any
 
 **Tests**:
+
 - `schema_tests`: 2 fail, 1 pass
 
 ### schema-deprecated-invalid-suggested-related-tag ⚠️ Warning
@@ -728,6 +725,7 @@ Complete index of 136 test cases in the HED test suite.
 **Schema**: any
 
 **Tests**:
+
 - `schema_tests`: 2 fail, 4 pass
 
 ### schema-deprecated-unit-class ⚠️ Warning
@@ -737,6 +735,7 @@ Complete index of 136 test cases in the HED test suite.
 **Schema**: any
 
 **Tests**:
+
 - `schema_tests`: 1 fail, 1 pass
 
 ### schema-deprecated-value-class ⚠️ Warning
@@ -746,8 +745,8 @@ Complete index of 136 test cases in the HED test suite.
 **Schema**: any
 
 **Tests**:
-- `schema_tests`: 1 fail, 1 pass
 
+- `schema_tests`: 1 fail, 1 pass
 
 ## SCHEMA_DUPLICATE_NODE
 
@@ -757,10 +756,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: A schema attribute issue, saying there is a duplicate node.
 
-**Schema**: any
-**Category**: schema_development
+**Schema**: any **Category**: schema_development
 
 **Tests**:
+
 - `schema_tests`: 6 fail, 1 pass
 
 ### attribute-duplicate-node-unit ⚠️ Warning
@@ -770,8 +769,8 @@ Complete index of 136 test cases in the HED test suite.
 **Schema**: any
 
 **Tests**:
-- `schema_tests`: 1 fail, 1 pass
 
+- `schema_tests`: 1 fail, 1 pass
 
 ## SCHEMA_HEADER_INVALID
 
@@ -781,10 +780,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: A schema attribute issue, saying there is an unknown one.
 
-**Schema**: any
-**Category**: schema_development
+**Schema**: any **Category**: schema_development
 
 **Tests**:
+
 - `schema_tests`: 1 fail, 1 pass
 
 ### schema-header-unknown-attribute ⚠️ Warning
@@ -794,8 +793,8 @@ Complete index of 136 test cases in the HED test suite.
 **Schema**: any
 
 **Tests**:
-- `schema_tests`: 1 fail, 1 pass
 
+- `schema_tests`: 1 fail, 1 pass
 
 ## SCHEMA_LIBRARY_INVALID
 
@@ -805,10 +804,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: A schema library issue, indicating the name is invalid.
 
-**Schema**: any
-**Category**: schema_development
+**Schema**: any **Category**: schema_development
 
 **Tests**:
+
 - `schema_tests`: 3 fail, 1 pass
 
 ### library-invalid-bad_with-standard ⚠️ Warning
@@ -818,6 +817,7 @@ Complete index of 136 test cases in the HED test suite.
 **Schema**: any
 
 **Tests**:
+
 - `schema_tests`: 2 fail, 1 pass
 
 ### library-invalid-bad_with-standard-version ⚠️ Warning
@@ -827,6 +827,7 @@ Complete index of 136 test cases in the HED test suite.
 **Schema**: any
 
 **Tests**:
+
 - `schema_tests`: 2 fail, 1 pass
 
 ### library-invalid-rooted-in-duplicate-other ⚠️ Warning
@@ -836,6 +837,7 @@ Complete index of 136 test cases in the HED test suite.
 **Schema**: any
 
 **Tests**:
+
 - `schema_tests`: 1 fail, 1 pass
 
 ### library-invalid-rooted-in-library-present ⚠️ Warning
@@ -845,6 +847,7 @@ Complete index of 136 test cases in the HED test suite.
 **Schema**: any
 
 **Tests**:
+
 - `schema_tests`: 1 fail, 1 pass
 
 ### library-invalid-rooted-not-in-base ⚠️ Warning
@@ -854,6 +857,7 @@ Complete index of 136 test cases in the HED test suite.
 **Schema**: any
 
 **Tests**:
+
 - `schema_tests`: 2 fail, 1 pass
 
 ### library-invalid-rooted-not-top-level ⚠️ Warning
@@ -863,6 +867,7 @@ Complete index of 136 test cases in the HED test suite.
 **Schema**: any
 
 **Tests**:
+
 - `schema_tests`: 1 fail, 1 pass
 
 ### library-invalid-rooted-present ⚠️ Warning
@@ -872,8 +877,8 @@ Complete index of 136 test cases in the HED test suite.
 **Schema**: any
 
 **Tests**:
-- `schema_tests`: 2 fail, 1 pass
 
+- `schema_tests`: 2 fail, 1 pass
 
 ## SCHEMA_LOAD_FAILED
 
@@ -883,10 +888,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: Schemas in a merge group must be associated with the same standard schema.
 
-**Schema**: 8.1.0, testlib_2.0.0
-**Category**: schema_development
+**Schema**: 8.1.0, testlib_2.0.0 **Category**: schema_development
 
 **Tests**:
+
 - `string_tests`: 2 fail, 0 pass
 
 ### extra-standard-schemas-in-same-merge-group
@@ -896,17 +901,18 @@ Complete index of 136 test cases in the HED test suite.
 **Schema**: 8.2.0, testlib_2.0.0, testlib_3.0.0, sc:8.1.0
 
 **Tests**:
+
 - `string_tests`: 0 fail, 2 pass
 
-### incompatible-merge-schemas 
+### incompatible-merge-schemas
 
-**Description**: Schemas in a merge group must be associated with the same standard schema].
+**Description**: Schemas in a merge group must be associated with the same standard schema\].
 
 **Schema**: score_2.0.0, lang_1.1.0
 
 **Tests**:
-- `string_tests`: 2 fail, 0 pass
 
+- `string_tests`: 2 fail, 0 pass
 
 ## SCHEMA_SECTION_MISSING
 
@@ -916,12 +922,11 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: A schema attribute issue, saying there is an unknown one.
 
-**Schema**: any
-**Category**: schema_development
+**Schema**: any **Category**: schema_development
 
 **Tests**:
-- `schema_tests`: 9 fail, 1 pass
 
+- `schema_tests`: 9 fail, 1 pass
 
 ## SIDECAR_BRACES_INVALID
 
@@ -931,10 +936,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: The curly braces are in a value rather than as a separate tag substitute.
 
-**Schema**: 8.4.0
-**Category**: syntax
+**Schema**: 8.4.0 **Category**: syntax
 
 **Tests**:
+
 - `sidecar_tests`: 2 fail, 1 pass
 - `combo_tests`: 1 fail, 1 pass
 
@@ -942,10 +947,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: The item in curly braces has a HED annotation that contains curly braces.
 
-**Schema**: 8.4.0
-**Category**: reference
+**Schema**: 8.4.0 **Category**: reference
 
 **Tests**:
+
 - `sidecar_tests`: 2 fail, 2 pass
 - `combo_tests`: 0 fail, 1 pass
 
@@ -953,10 +958,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: The item in curly braces is not the word HED or a column name with HED annotations in the sidecar.
 
-**Schema**: 8.4.0
-**Category**: structure
+**Schema**: 8.4.0 **Category**: structure
 
 **Tests**:
+
 - `sidecar_tests`: 2 fail, 2 pass
 - `combo_tests`: 0 fail, 1 pass
 
@@ -964,23 +969,22 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: A curly brace reference must only appear where a tag could.
 
-**Schema**: 8.4.0
-**Category**: syntax
+**Schema**: 8.4.0 **Category**: syntax
 
 **Tests**:
+
 - `sidecar_tests`: 1 fail, 1 pass
 
 ### sidecar-braces-self-reference 🤖 AI 📝 Examples
 
 **Description**: The item in curly braces has a HED annotation that contains itself.
 
-**Schema**: 8.4.0
-**Category**: reference
+**Schema**: 8.4.0 **Category**: reference
 
 **Tests**:
+
 - `sidecar_tests`: 1 fail, 3 pass
 - `combo_tests`: 1 fail, 2 pass
-
 
 ## SIDECAR_INVALID
 
@@ -990,10 +994,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: The HED key is not a second-level dictionary key.
 
-**Schema**: 8.4.0
-**Category**: structure
+**Schema**: 8.4.0 **Category**: structure
 
 **Tests**:
+
 - `sidecar_tests`: 2 fail, 1 pass
 - `combo_tests`: 2 fail, 1 pass
 
@@ -1001,13 +1005,12 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: An annotation entry is provided for `n/a`.
 
-**Schema**: 8.4.0
-**Category**: structure
+**Schema**: 8.4.0 **Category**: structure
 
 **Tests**:
+
 - `sidecar_tests`: 1 fail, 1 pass
 - `combo_tests`: 1 fail, 1 pass
-
 
 ## SIDECAR_KEY_MISSING
 
@@ -1017,23 +1020,22 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: A value in a categorical column does not have an expected entry in a sidecar.
 
-**Schema**: 8.4.0
-**Category**: validation
+**Schema**: 8.4.0 **Category**: validation
 
 **Tests**:
+
 - `combo_tests`: 1 fail, 1 pass
 
 ### sidecar-refers-to-missing-tsv-hed-column ⚠️ Warning 🤖 AI 📝 Examples
 
-**Description**: (Warning) A sidecar uses a {HED} column which does not appear in the corresponding tsv file.
+**Description**: (Warning) A sidecar uses a \{HED} column which does not appear in the corresponding tsv file.
 
-**Schema**: 8.4.0
-**Category**: reference
+**Schema**: 8.4.0 **Category**: reference
 
 **Tests**:
+
 - `sidecar_tests`: 0 fail, 1 pass
 - `combo_tests`: 1 fail, 1 pass
-
 
 ## TAG_EMPTY
 
@@ -1043,10 +1045,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: A HED string begins or ends with a comma (ignoring white space).
 
-**Schema**: 8.4.0
-**Category**: syntax
+**Schema**: 8.4.0 **Category**: syntax
 
 **Tests**:
+
 - `string_tests`: 3 fail, 1 pass
 - `sidecar_tests`: 1 fail, 1 pass
 - `event_tests`: 1 fail, 1 pass
@@ -1056,10 +1058,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: A tag group is empty (i.e., empty parentheses are not allowed).
 
-**Schema**: 8.4.0
-**Category**: syntax
+**Schema**: 8.4.0 **Category**: syntax
 
 **Tests**:
+
 - `string_tests`: 2 fail, 2 pass
 - `sidecar_tests`: 1 fail, 1 pass
 - `event_tests`: 1 fail, 1 pass
@@ -1069,15 +1071,14 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: A HED string has extra commas or parentheses separated by only white space.
 
-**Schema**: 8.4.0
-**Category**: syntax
+**Schema**: 8.4.0 **Category**: syntax
 
 **Tests**:
+
 - `string_tests`: 5 fail, 1 pass
 - `sidecar_tests`: 1 fail, 1 pass
 - `event_tests`: 1 fail, 1 pass
 - `combo_tests`: 1 fail, 1 pass
-
 
 ## TAG_EXPRESSION_REPEATED
 
@@ -1087,10 +1088,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: A tag is repeated in the same tag group or level.
 
-**Schema**: 8.4.0
-**Category**: semantic
+**Schema**: 8.4.0 **Category**: semantic
 
 **Tests**:
+
 - `string_tests`: 3 fail, 2 pass
 - `sidecar_tests`: 1 fail, 1 pass
 - `event_tests`: 1 fail, 1 pass
@@ -1100,10 +1101,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: Tags are repeated because two rows have the same onset value.
 
-**Schema**: 8.4.0
-**Category**: duplication
+**Schema**: 8.4.0 **Category**: duplication
 
 **Tests**:
+
 - `event_tests`: 1 fail, 1 pass
 - `combo_tests`: 1 fail, 1 pass
 
@@ -1111,13 +1112,12 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: Tags are repeated because two rows have the same onset value.
 
-**Schema**: 8.4.0
-**Category**: temporal_logic
+**Schema**: 8.4.0 **Category**: temporal_logic
 
 **Tests**:
+
 - `event_tests`: 1 fail, 1 pass
 - `combo_tests`: 1 fail, 1 pass
-
 
 ## TAG_EXTENDED
 
@@ -1127,15 +1127,14 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: A tag represents an extension from the schema.
 
-**Schema**: 8.4.0
-**Category**: semantic
+**Schema**: 8.4.0 **Category**: semantic
 
 **Tests**:
+
 - `string_tests`: 7 fail, 1 pass
 - `sidecar_tests`: 1 fail, 1 pass
 - `event_tests`: 1 fail, 1 pass
 - `combo_tests`: 1 fail, 1 pass
-
 
 ## TAG_EXTENSION_INVALID
 
@@ -1145,10 +1144,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: A tag extension term does not comply with rules for schema nodes.
 
-**Schema**: 8.4.0
-**Category**: semantic
+**Schema**: 8.4.0 **Category**: semantic
 
 **Tests**:
+
 - `string_tests`: 2 fail, 3 pass
 - `sidecar_tests`: 1 fail, 1 pass
 - `event_tests`: 1 fail, 1 pass
@@ -1158,15 +1157,14 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: A tag extension term is already in the schema.
 
-**Schema**: 8.4.0
-**Category**: semantic
+**Schema**: 8.4.0 **Category**: semantic
 
 **Tests**:
+
 - `string_tests`: 2 fail, 2 pass
 - `sidecar_tests`: 1 fail, 1 pass
 - `event_tests`: 1 fail, 1 pass
 - `combo_tests`: 1 fail, 1 pass
-
 
 ## TAG_GROUP_ERROR
 
@@ -1176,10 +1174,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: Multiple tags with the topLevelTagGroup attribute appear in the same top-level tag group. (Delay and Duration are allowed to be in the same topLevelTagGroup).
 
-**Schema**: 8.4.0
-**Category**: cardinality
+**Schema**: 8.4.0 **Category**: cardinality
 
 **Tests**:
+
 - `string_tests`: 4 fail, 2 pass
 - `sidecar_tests`: 2 fail, 1 pass
 - `event_tests`: 1 fail, 1 pass
@@ -1189,10 +1187,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: A tag with the topLevelTagGroup does not appear at a HED tag group at the top level in an assembled HED annotation.
 
-**Schema**: 8.4.0
-**Category**: structure
+**Schema**: 8.4.0 **Category**: structure
 
 **Tests**:
+
 - `sidecar_tests`: 2 fail, 1 pass
 - `event_tests`: 1 fail, 1 pass
 - `combo_tests`: 1 fail, 1 pass
@@ -1201,10 +1199,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: A tag has tagGroup or topLevelTagGroup attribute, but is not enclosed in parentheses.
 
-**Schema**: 8.4.0
-**Category**: structure
+**Schema**: 8.4.0 **Category**: structure
 
 **Tests**:
+
 - `string_tests`: 5 fail, 4 pass
 - `sidecar_tests`: 1 fail, 1 pass
 - `event_tests`: 1 fail, 1 pass
@@ -1214,13 +1212,12 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: A tag with the topLevelTagGroup does not appear at a HED tag group at the top level in an assembled HED annotation.
 
-**Schema**: 8.4.0
-**Category**: structure
+**Schema**: 8.4.0 **Category**: structure
 
 **Tests**:
+
 - `event_tests`: 1 fail, 1 pass
 - `combo_tests`: 1 fail, 1 pass
-
 
 ## TAG_INVALID
 
@@ -1230,10 +1227,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: A HED tag has extra internal whitespace, including directly before or after slashes.
 
-**Schema**: 8.4.0
-**Category**: syntax
+**Schema**: 8.4.0 **Category**: syntax
 
 **Tests**:
+
 - `string_tests`: 4 fail, 1 pass
 - `sidecar_tests`: 1 fail, 1 pass
 - `event_tests`: 1 fail, 1 pass
@@ -1243,10 +1240,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: A HED tag has leading, trailing or consecutive slashes.
 
-**Schema**: 8.4.0
-**Category**: syntax
+**Schema**: 8.4.0 **Category**: syntax
 
 **Tests**:
+
 - `string_tests`: 8 fail, 2 pass
 - `sidecar_tests`: 1 fail, 1 pass
 - `event_tests`: 1 fail, 1 pass
@@ -1256,15 +1253,14 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: The tag is not valid in the schema it is associated with.
 
-**Schema**: 8.4.0
-**Category**: semantic
+**Schema**: 8.4.0 **Category**: semantic
 
 **Tests**:
+
 - `string_tests`: 3 fail, 1 pass
 - `sidecar_tests`: 1 fail, 1 pass
 - `event_tests`: 1 fail, 1 pass
 - `combo_tests`: 1 fail, 1 pass
-
 
 ## TAG_NAMESPACE_PREFIX_INVALID
 
@@ -1274,10 +1270,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: A tag prefix has invalid characters.
 
-**Schema**: 8.3.0, sc:score_1.0.0
-**Category**: syntax
+**Schema**: 8.3.0, sc:score_1.0.0 **Category**: syntax
 
 **Tests**:
+
 - `string_tests`: 2 fail, 2 pass
 - `sidecar_tests`: 1 fail, 1 pass
 - `event_tests`: 1 fail, 1 pass
@@ -1287,10 +1283,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: A tag prefix has invalid characters.
 
-**Schema**: ts:8.3.0
-**Category**: validation
+**Schema**: ts:8.3.0 **Category**: validation
 
 **Tests**:
+
 - `string_tests`: 1 fail, 1 pass
 - `sidecar_tests`: 1 fail, 1 pass
 - `event_tests`: 1 fail, 1 pass
@@ -1303,11 +1299,11 @@ Complete index of 136 test cases in the HED test suite.
 **Schema**: 8.3.0, sc:score_1.0.0
 
 **Tests**:
+
 - `string_tests`: 2 fail, 1 pass
 - `sidecar_tests`: 1 fail, 1 pass
 - `event_tests`: 1 fail, 1 pass
 - `combo_tests`: 1 fail, 1 pass
-
 
 ## TAG_NOT_UNIQUE
 
@@ -1317,15 +1313,14 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: A tag with unique attribute appears more than once in an event-level HED string.
 
-**Schema**: 8.4.0
-**Category**: semantic
+**Schema**: 8.4.0 **Category**: semantic
 
 **Tests**:
+
 - `string_tests`: 1 fail, 1 pass
 - `sidecar_tests`: 1 fail, 1 pass
 - `event_tests`: 1 fail, 1 pass
 - `combo_tests`: 1 fail, 1 pass
-
 
 ## TAG_REQUIRES_CHILD
 
@@ -1335,15 +1330,14 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: A tag has the requireChild schema attribute but does not have a child.
 
-**Schema**: 8.4.0
-**Category**: structure
+**Schema**: 8.4.0 **Category**: structure
 
 **Tests**:
+
 - `string_tests`: 2 fail, 2 pass
 - `sidecar_tests`: 1 fail, 1 pass
 - `event_tests`: 1 fail, 1 pass
 - `combo_tests`: 1 fail, 1 pass
-
 
 ## TEMPORAL_TAG_ERROR
 
@@ -1353,40 +1347,40 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: n/a is in the onset column.
 
-**Schema**: 8.4.0
-**Category**: data_format
+**Schema**: 8.4.0 **Category**: data_format
 
 **Tests**:
+
 - `combo_tests`: 2 fail, 2 pass
 
 ### temporal-tag-error-duplicated-onset-or-offset 🤖 AI 📝 Examples
 
 **Description**: An Onset or an Offset with a given Def or Def-expand anchor appears in the same event marker with another Onset or Offset that uses the same anchor.
 
-**Schema**: 8.4.0
-**Category**: temporal_logic
+**Schema**: 8.4.0 **Category**: temporal_logic
 
 **Tests**:
+
 - `combo_tests`: 3 fail, 1 pass
 
 ### temporal-tag-error-duplicated-onset-or-offset-delay 🤖 AI 📝 Examples
 
 **Description**: An Onset or an Offset with a given Def or Def-expand anchor appears in the same event marker with another Onset or Offset that uses the same anchor.
 
-**Schema**: 8.3.0
-**Category**: temporal_logic
+**Schema**: 8.3.0 **Category**: temporal_logic
 
 **Tests**:
+
 - `combo_tests`: 3 fail, 1 pass
 
 ### temporal-tag-error-duration-group 🤖 AI 📝 Examples
 
 **Description**: A Duration or Delay has extra tags or groups.
 
-**Schema**: 8.4.0
-**Category**: structure
+**Schema**: 8.4.0 **Category**: structure
 
 **Tests**:
+
 - `string_tests`: 3 fail, 3 pass
 - `event_tests`: 1 fail, 1 pass
 - `combo_tests`: 0 fail, 1 pass
@@ -1395,10 +1389,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: An Onset tag group with has tags besides the anchor Def or Def-expand that are not in a tag group.
 
-**Schema**: 8.4.0
-**Category**: structure
+**Schema**: 8.4.0 **Category**: structure
 
 **Tests**:
+
 - `string_tests`: 1 fail, 1 pass
 - `sidecar_tests`: 1 fail, 1 pass
 - `event_tests`: 1 fail, 1 pass
@@ -1408,10 +1402,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: An Onset tag group with has tags besides the anchor Def or Def-expand that are not in a tag group.
 
-**Schema**: 8.3.0
-**Category**: temporal
+**Schema**: 8.3.0 **Category**: temporal
 
 **Tests**:
+
 - `string_tests`: 1 fail, 1 pass
 - `sidecar_tests`: 1 fail, 1 pass
 - `event_tests`: 1 fail, 1 pass
@@ -1421,10 +1415,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: An Inset group has tags or groups in addition to its defining Def or Def-expand.
 
-**Schema**: 8.4.0
-**Category**: temporal
+**Schema**: 8.4.0 **Category**: temporal
 
 **Tests**:
+
 - `event_tests`: 1 fail, 1 pass
 - `combo_tests`: 1 fail, 1 pass
 
@@ -1432,10 +1426,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: An Inset group has tags or groups in addition to its defining Def or Def-expand.
 
-**Schema**: 8.3.0
-**Category**: temporal
+**Schema**: 8.3.0 **Category**: temporal
 
 **Tests**:
+
 - `event_tests`: 1 fail, 1 pass
 - `combo_tests`: 1 fail, 1 pass
 
@@ -1443,10 +1437,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: An Inset tag is not grouped with a Def or Def-expand of an ongoing Onset.
 
-**Schema**: 8.4.0
-**Category**: temporal_logic
+**Schema**: 8.4.0 **Category**: temporal_logic
 
 **Tests**:
+
 - `event_tests`: 1 fail, 1 pass
 - `combo_tests`: 1 fail, 1 pass
 
@@ -1454,10 +1448,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: An Inset tag is not grouped with a Def or Def-expand of an ongoing Onset.
 
-**Schema**: 8.3.0
-**Category**: temporal_logic
+**Schema**: 8.3.0 **Category**: temporal_logic
 
 **Tests**:
+
 - `event_tests`: 1 fail, 1 pass
 - `combo_tests`: 1 fail, 1 pass
 
@@ -1465,10 +1459,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: An Offset tag associated with a given definition appears after a previous Offset tag without the appearance of an intervening Onset of the same name.
 
-**Schema**: 8.3.0
-**Category**: temporal_logic
+**Schema**: 8.3.0 **Category**: temporal_logic
 
 **Tests**:
+
 - `event_tests`: 1 fail, 1 pass
 - `combo_tests`: 1 fail, 1 pass
 
@@ -1476,10 +1470,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: An Onset or Offset tag appears in a nested tag group (not a top-level tag group).
 
-**Schema**: 8.4.0
-**Category**: structure
+**Schema**: 8.4.0 **Category**: structure
 
 **Tests**:
+
 - `string_tests`: 1 fail, 1 pass
 - `sidecar_tests`: 1 fail, 1 pass
 - `event_tests`: 1 fail, 1 pass
@@ -1489,10 +1483,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: A delay appears in a group not in the top level.
 
-**Schema**: 8.4.0
-**Category**: structure
+**Schema**: 8.4.0 **Category**: structure
 
 **Tests**:
+
 - `string_tests`: 1 fail, 1 pass
 - `sidecar_tests`: 1 fail, 1 pass
 - `event_tests`: 1 fail, 1 pass
@@ -1502,10 +1496,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: An Onset or Offset tag does not appear in a tag group.
 
-**Schema**: 8.4.0
-**Category**: structure
+**Schema**: 8.4.0 **Category**: structure
 
 **Tests**:
+
 - `string_tests`: 2 fail, 1 pass
 - `sidecar_tests`: 0 fail, 1 pass
 - `event_tests`: 1 fail, 1 pass
@@ -1515,10 +1509,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: A Delay is not in the tag group.
 
-**Schema**: 8.4.0
-**Category**: structure
+**Schema**: 8.4.0 **Category**: structure
 
 **Tests**:
+
 - `string_tests`: 3 fail, 1 pass
 - `sidecar_tests`: 1 fail, 1 pass
 - `event_tests`: 2 fail, 1 pass
@@ -1528,10 +1522,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: An Offset appears with one or more tags or additional tag groups.
 
-**Schema**: 8.4.0
-**Category**: structure
+**Schema**: 8.4.0 **Category**: structure
 
 **Tests**:
+
 - `sidecar_tests`: 1 fail, 1 pass
 - `event_tests`: 1 fail, 1 pass
 - `combo_tests`: 1 fail, 1 pass
@@ -1540,10 +1534,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: An Offset appears with one or more tags or additional tag groups.
 
-**Schema**: 8.4.0
-**Category**: temporal
+**Schema**: 8.4.0 **Category**: temporal
 
 **Tests**:
+
 - `sidecar_tests`: 2 fail, 1 pass
 - `event_tests`: 1 fail, 1 pass
 - `combo_tests`: 2 fail, 1 pass
@@ -1552,10 +1546,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: An Offset tag associated with a given definition appears after a previous Offset tag without the appearance of an intervening Onset of the same name.
 
-**Schema**: 8.4.0
-**Category**: temporal_logic
+**Schema**: 8.4.0 **Category**: temporal_logic
 
 **Tests**:
+
 - `event_tests`: 1 fail, 1 pass
 - `combo_tests`: 1 fail, 1 pass
 
@@ -1563,10 +1557,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: An Onset group has more than one additional tag group.
 
-**Schema**: 8.4.0
-**Category**: structure
+**Schema**: 8.4.0 **Category**: structure
 
 **Tests**:
+
 - `string_tests`: 2 fail, 2 pass
 - `sidecar_tests`: 1 fail, 1 pass
 - `event_tests`: 1 fail, 1 pass
@@ -1576,10 +1570,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: An Onset group has more than one additional tag group.
 
-**Schema**: 8.4.0
-**Category**: temporal
+**Schema**: 8.4.0 **Category**: temporal
 
 **Tests**:
+
 - `string_tests`: 2 fail, 2 pass
 - `sidecar_tests`: 2 fail, 1 pass
 - `event_tests`: 2 fail, 1 pass
@@ -1589,10 +1583,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: A temporal tag appears appears in a tsv with no onset column
 
-**Schema**: 8.4.0
-**Category**: context
+**Schema**: 8.4.0 **Category**: context
 
 **Tests**:
+
 - `event_tests`: 1 fail, 1 pass
 - `combo_tests`: 2 fail, 1 pass
 
@@ -1600,10 +1594,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: An Inset, Offset, or Onset tag appears in a tsv with no onset column
 
-**Schema**: 8.3.0
-**Category**: context
+**Schema**: 8.3.0 **Category**: context
 
 **Tests**:
+
 - `event_tests`: 1 fail, 1 pass
 - `combo_tests`: 2 fail, 1 pass
 
@@ -1611,10 +1605,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: An Onset or Offset tag is not grouped with exactly one Def-expand tag group or a Def tag.
 
-**Schema**: 8.4.0
-**Category**: content
+**Schema**: 8.4.0 **Category**: content
 
 **Tests**:
+
 - `string_tests`: 1 fail, 2 pass
 - `sidecar_tests`: 1 fail, 1 pass
 - `event_tests`: 1 fail, 1 pass
@@ -1624,15 +1618,14 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: An Onset or Offset tag is not grouped with exactly one Def-expand tag group or a Def tag.
 
-**Schema**: 8.4.0
-**Category**: temporal
+**Schema**: 8.4.0 **Category**: temporal
 
 **Tests**:
+
 - `string_tests`: 1 fail, 2 pass
 - `sidecar_tests`: 1 fail, 1 pass
 - `event_tests`: 1 fail, 1 pass
 - `combo_tests`: 1 fail, 1 pass
-
 
 ## UNITS_INVALID
 
@@ -1642,10 +1635,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: A tag has a value with units that are invalid or not of the correct unit class for the tag.
 
-**Schema**: 8.4.0
-**Category**: validation
+**Schema**: 8.4.0 **Category**: validation
 
 **Tests**:
+
 - `string_tests`: 2 fail, 1 pass
 - `sidecar_tests`: 1 fail, 1 pass
 - `event_tests`: 1 fail, 1 pass
@@ -1655,15 +1648,14 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: A unit modifier is applied to units that are not SI units.
 
-**Schema**: 8.4.0
-**Category**: validation
+**Schema**: 8.4.0 **Category**: validation
 
 **Tests**:
+
 - `string_tests`: 2 fail, 1 pass
 - `sidecar_tests`: 1 fail, 1 pass
 - `event_tests`: 1 fail, 1 pass
 - `combo_tests`: 1 fail, 1 pass
-
 
 ## VALUE_INVALID
 
@@ -1673,10 +1665,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: An invalid character was used in an 8.3.0 or greater style numeric value class.
 
-**Schema**: 8.4.0
-**Category**: validation
+**Schema**: 8.4.0 **Category**: validation
 
 **Tests**:
+
 - `string_tests`: 8 fail, 10 pass
 - `sidecar_tests`: 1 fail, 1 pass
 
@@ -1684,10 +1676,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: The value substituted for a placeholder (`#`) is not valid.
 
-**Schema**: 8.3.0
-**Category**: validation
+**Schema**: 8.3.0 **Category**: validation
 
 **Tests**:
+
 - `sidecar_tests`: 1 fail, 1 pass
 - `combo_tests`: 1 fail, 1 pass
 
@@ -1695,10 +1687,10 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: The units are not separated from the value by a single blank.
 
-**Schema**: 8.4.0
-**Category**: validation
+**Schema**: 8.4.0 **Category**: validation
 
 **Tests**:
+
 - `string_tests`: 1 fail, 1 pass
 - `sidecar_tests`: 1 fail, 1 pass
 - `event_tests`: 1 fail, 1 pass
@@ -1708,15 +1700,14 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: A tag placeholder value is incompatible with the specified value class.
 
-**Schema**: 8.4.0
-**Category**: validation
+**Schema**: 8.4.0 **Category**: validation
 
 **Tests**:
+
 - `string_tests`: 1 fail, 1 pass
 - `sidecar_tests`: 1 fail, 1 pass
 - `event_tests`: 1 fail, 1 pass
 - `combo_tests`: 1 fail, 1 pass
-
 
 ## WIKI_DELIMITERS_INVALID
 
@@ -1726,8 +1717,8 @@ Complete index of 136 test cases in the HED test suite.
 
 **Description**: A schema unit has an invalid conversion factor due to bad formatting
 
-**Schema**: any
-**Category**: schema_development
+**Schema**: any **Category**: schema_development
 
 **Tests**:
+
 - `schema_tests`: 1 fail, 0 pass

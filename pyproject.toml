@@ -124,7 +124,7 @@ max-complexity = 10
 
 [tool.ruff.lint.isort]
 known-first-party = ["hed"]
-tests", "src
+
 [tool.black]
 line-length = 127
 target-version = ["py310", "py311", "py312", "py313"]

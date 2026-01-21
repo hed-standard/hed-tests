@@ -182,33 +182,39 @@ See [Test Coverage Report](test_coverage.md) for detailed statistics.
 Tests are organized into categories:
 
 ### Syntax Errors
+
 - `CHARACTER_INVALID` - Invalid characters in tags
 - `COMMA_MISSING` - Missing required commas
 - `PARENTHESES_MISMATCH` - Unmatched parentheses
 - `TAG_EMPTY` - Empty tag elements
 
 ### Semantic Errors
+
 - `TAG_INVALID` - Tags not in schema
 - `TAG_EXTENDED` - Invalid tag extensions
 - `VALUE_INVALID` - Invalid tag values
 - `UNITS_INVALID` - Invalid or missing units
 
 ### Definition Errors
+
 - `DEFINITION_INVALID` - Malformed definitions
 - `DEF_INVALID` - Invalid definition usage
 - `DEF_EXPAND_INVALID` - Definition expansion errors
 
 ### Sidecar Errors
+
 - `SIDECAR_INVALID` - Invalid sidecar structure
 - `SIDECAR_BRACES_INVALID` - Curly brace errors
 - `SIDECAR_KEY_MISSING` - Missing required keys
 
 ### Schema Errors
+
 - `SCHEMA_ATTRIBUTE_INVALID` - Invalid schema attributes
 - `SCHEMA_DUPLICATE_NODE` - Duplicate schema nodes
 - `SCHEMA_HEADER_INVALID` - Invalid schema headers
 
 ### Temporal Errors
+
 - `TEMPORAL_TAG_ERROR` - Temporal tag issues
 - `TEMPORAL_TAG_ERROR_DELAY` - Delay tag errors
 
@@ -271,6 +277,7 @@ Here's a test case from `TAG_INVALID.json`:
 ```
 
 **What this tests**:
+
 - **Failing cases**: `Invalidtag` and `Red, Invalidtag` should produce `TAG_INVALID` error
 - **Passing cases**: `Red` and `Event` should NOT produce this error
 - **AI context**: Explanations help AI understand why tags must be in schema
@@ -282,4 +289,3 @@ Here's a test case from `TAG_INVALID.json`:
 - **Integrate tests**: Follow [validator_integration.md](validator_integration.md) to use in your validator
 - **Contribute**: Read [CONTRIBUTING.md](../CONTRIBUTING.md) to add new tests
 - **View coverage**: Check [test_coverage.md](test_coverage.md) for statistics
-

@@ -13,7 +13,6 @@ Usage:
 import argparse
 import json
 from pathlib import Path
-from typing import Dict, List
 
 
 class TestIndexGenerator:
@@ -42,7 +41,7 @@ class TestIndexGenerator:
             self._process_directory(schema_dir, "schema")
 
         # Sort by error code then by name
-        self.index_data.sort(key=lambda x: (x['error_code'], x['name']))
+        self.index_data.sort(key=lambda x: (x["error_code"], x["name"]))
 
     def _process_directory(self, directory: Path, category: str):
         """
@@ -54,7 +53,7 @@ class TestIndexGenerator:
         """
         for test_file in sorted(directory.glob("*.json")):
             try:
-                with open(test_file, 'r', encoding='utf-8') as f:
+                with open(test_file, "r", encoding="utf-8") as f:
                     test_data = json.load(f)
 
                 if not isinstance(test_data, list):
@@ -76,27 +75,27 @@ class TestIndexGenerator:
             category (str): Test category
         """
         # Extract test counts
-        tests = test_case.get('tests', {})
+        tests = test_case.get("tests", {})
         test_counts = {}
         for test_type, test_data in tests.items():
-            fail_count = len(test_data.get('fails', []))
-            pass_count = len(test_data.get('passes', []))
+            fail_count = len(test_data.get("fails", []))
+            pass_count = len(test_data.get("passes", []))
             if fail_count > 0 or pass_count > 0:
-                test_counts[test_type] = {'fail': fail_count, 'pass': pass_count}
+                test_counts[test_type] = {"fail": fail_count, "pass": pass_count}
 
         # Build index entry
         entry = {
-            'error_code': test_case.get('error_code', 'UNKNOWN'),
-            'name': test_case.get('name', 'unnamed'),
-            'description': test_case.get('description', ''),
-            'warning': test_case.get('warning', False),
-            'schema': test_case.get('schema', ''),
-            'category': category,
-            'file': test_file.name,
-            'test_counts': test_counts,
-            'error_category': test_case.get('error_category', ''),
-            'has_ai_metadata': all(k in test_case for k in ['common_causes', 'explanation', 'correction_strategy']),
-            'has_correction_examples': 'correction_examples' in test_case,
+            "error_code": test_case.get("error_code", "UNKNOWN"),
+            "name": test_case.get("name", "unnamed"),
+            "description": test_case.get("description", ""),
+            "warning": test_case.get("warning", False),
+            "schema": test_case.get("schema", ""),
+            "category": category,
+            "file": test_file.name,
+            "test_counts": test_counts,
+            "error_category": test_case.get("error_category", ""),
+            "has_ai_metadata": all(k in test_case for k in ["common_causes", "explanation", "correction_strategy"]),
+            "has_correction_examples": "correction_examples" in test_case,
         }
 
         self.index_data.append(entry)
@@ -118,9 +117,9 @@ class TestIndexGenerator:
         ]
 
         # Create navigation links by error code
-        error_codes = sorted(set(entry['error_code'] for entry in self.index_data))
+        error_codes = sorted({entry["error_code"] for entry in self.index_data})
         for error_code in error_codes:
-            count = sum(1 for e in self.index_data if e['error_code'] == error_code)
+            count = sum(1 for e in self.index_data if e["error_code"] == error_code)
             lines.append(f"- [{error_code}](#{error_code.lower().replace('_', '-')}) ({count} tests)")
 
         lines.append("")
@@ -128,33 +127,37 @@ class TestIndexGenerator:
         # Generate detailed entries by error code
         current_error_code = None
         for entry in self.index_data:
-            error_code = entry['error_code']
+            error_code = entry["error_code"]
 
             # New error code section
             if error_code != current_error_code:
                 current_error_code = error_code
-                lines.extend([
-                    "",
-                    f"## {error_code}",
-                    "",
-                    f"**File**: `json_test_data/{entry['category']}_tests/{entry['file']}`",
-                    "",
-                ])
+                lines.extend(
+                    [
+                        "",
+                        f"## {error_code}",
+                        "",
+                        f"**File**: `json_test_data/{entry['category']}_tests/{entry['file']}`",
+                        "",
+                    ]
+                )
 
             # Test case entry
-            warning_badge = " ⚠️ Warning" if entry['warning'] else ""
-            ai_badge = " 🤖 AI" if entry['has_ai_metadata'] else ""
-            examples_badge = " 📝 Examples" if entry['has_correction_examples'] else ""
+            warning_badge = " ⚠️ Warning" if entry["warning"] else ""
+            ai_badge = " 🤖 AI" if entry["has_ai_metadata"] else ""
+            examples_badge = " 📝 Examples" if entry["has_correction_examples"] else ""
 
-            lines.extend([
-                f"### {entry['name']}{warning_badge}{ai_badge}{examples_badge}",
-                "",
-                f"**Description**: {entry['description']}",
-                "",
-            ])
+            lines.extend(
+                [
+                    f"### {entry['name']}{warning_badge}{ai_badge}{examples_badge}",
+                    "",
+                    f"**Description**: {entry['description']}",
+                    "",
+                ]
+            )
 
             # Schema version
-            schema = entry['schema']
+            schema = entry["schema"]
             if isinstance(schema, list):
                 schema_str = ", ".join(schema)
             else:
@@ -162,21 +165,21 @@ class TestIndexGenerator:
             lines.append(f"**Schema**: {schema_str}")
 
             # Error category
-            if entry['error_category']:
+            if entry["error_category"]:
                 lines.append(f"**Category**: {entry['error_category']}")
 
             # Test counts
-            if entry['test_counts']:
+            if entry["test_counts"]:
                 lines.append("")
                 lines.append("**Tests**:")
-                for test_type, counts in entry['test_counts'].items():
+                for test_type, counts in entry["test_counts"].items():
                     lines.append(f"- `{test_type}`: {counts['fail']} fail, {counts['pass']} pass")
 
             lines.append("")
 
         # Write to file
         output_file.parent.mkdir(parents=True, exist_ok=True)
-        with open(output_file, 'w', encoding='utf-8') as f:
+        with open(output_file, "w", encoding="utf-8") as f:
             f.write("\n".join(lines))
 
         print(f"✅ Markdown index written to: {output_file}")
@@ -189,7 +192,7 @@ class TestIndexGenerator:
             output_file (Path): Path to output file
         """
         output_file.parent.mkdir(parents=True, exist_ok=True)
-        with open(output_file, 'w', encoding='utf-8') as f:
+        with open(output_file, "w", encoding="utf-8") as f:
             json.dump(self.index_data, f, indent=2)
 
         print(f"✅ JSON index written to: {output_file}")
@@ -197,21 +200,11 @@ class TestIndexGenerator:
 
 def main():
     """Main function."""
-    parser = argparse.ArgumentParser(
-        description="Generate HED test suite index"
-    )
+    parser = argparse.ArgumentParser(description="Generate HED test suite index")
     parser.add_argument(
-        "--output",
-        type=str,
-        default="docs/test_index.md",
-        help="Output file path (default: docs/test_index.md)"
+        "--output", type=str, default="docs/test_index.md", help="Output file path (default: docs/test_index.md)"
     )
-    parser.add_argument(
-        "--format",
-        choices=["markdown", "json"],
-        default="markdown",
-        help="Output format (default: markdown)"
-    )
+    parser.add_argument("--format", choices=["markdown", "json"], default="markdown", help="Output format (default: markdown)")
 
     args = parser.parse_args()
 
