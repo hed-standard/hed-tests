@@ -134,22 +134,22 @@ def print_results(results: Dict[str, Tuple[bool, List[str]]], verbose: bool = Fa
 
     # Show failures
     if failed > 0:
-        print(f"\n❌ FAILED: {failed} file(s)\n")
+        print(f"\n[FAIL] FAILED: {failed} file(s)\n")
         for filename, (is_valid, errors) in results.items():
             if not is_valid:
-                print(f"❌ {filename}")
+                print(f"[FAIL] {filename}")
                 for error in errors:
                     print(f"   {error}")
                 print()
     else:
-        print("\n✅ All files passed validation!")
+        print("\n[PASS] All files passed validation!")
 
     # Show passes
     if verbose and passed > 0:
-        print(f"\n✅ PASSED: {passed} file(s)\n")
+        print(f"\n[PASS] PASSED: {passed} file(s)\n")
         for filename, (is_valid, _) in results.items():
             if is_valid:
-                print(f"✅ {filename}")
+                print(f"[PASS] {filename}")
 
     # Summary
     print("\n" + "=" * 70)
@@ -196,10 +196,10 @@ def main():
         is_valid, errors = validator.validate_file(test_file)
 
         if is_valid:
-            print(f"✅ {test_file} is valid")
+            print(f"[PASS] {test_file} is valid")
             return 0
         else:
-            print(f"❌ {test_file} is invalid:")
+            print(f"[FAIL] {test_file} is invalid:")
             for error in errors:
                 print(f"   {error}")
             return 1

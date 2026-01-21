@@ -49,6 +49,7 @@ Before contributing, review:
 ### 1. Adding new test cases
 
 Add tests for:
+
 - **Uncovered error codes**: Check [docs/test_coverage.md](docs/test_coverage.md)
 - **Edge cases**: Unusual scenarios not yet tested
 - **Common mistakes**: Real-world errors developers encounter
@@ -57,6 +58,7 @@ Add tests for:
 ### 2. Improving existing tests
 
 Enhance tests by:
+
 - Adding AI-friendly metadata (`explanation`, `common_causes`, `correction_examples`)
 - Including additional test types (sidecar, event, combo tests)
 - Expanding failing/passing cases
@@ -65,6 +67,7 @@ Enhance tests by:
 ### 3. Documentation
 
 Improve documentation:
+
 - Clarify test format specifications
 - Add integration examples
 - Document new error codes
@@ -73,6 +76,7 @@ Improve documentation:
 ### 4. Tooling
 
 Enhance test infrastructure:
+
 - Improve validation scripts
 - Add coverage analysis features
 - Create test generation utilities
@@ -229,6 +233,7 @@ Whenever possible, include multiple test types:
 **Always include** these fields for AI training:
 
 #### explanation
+
 Detailed explanation of why this error occurs:
 
 ```json
@@ -236,6 +241,7 @@ Detailed explanation of why this error occurs:
 ```
 
 #### common_causes
+
 List of typical reasons developers encounter this error:
 
 ```json
@@ -247,6 +253,7 @@ List of typical reasons developers encounter this error:
 ```
 
 #### correction_strategy
+
 General approach to fixing the error:
 
 ```json
@@ -254,6 +261,7 @@ General approach to fixing the error:
 ```
 
 #### correction_examples
+
 Concrete before/after examples:
 
 ```json
@@ -310,10 +318,12 @@ python src\scripts\check_coverage.py
 ### Naming conventions
 
 **File names**: `ERROR_CODE.json`
+
 - Uppercase with underscores
 - Example: `TAG_INVALID.json`
 
 **Test names**: `error-code-specific-scenario`
+
 - Lowercase with hyphens
 - Descriptive but concise
 - Example: `tag-invalid-in-sidecar`
@@ -347,6 +357,7 @@ Before submitting a PR, ensure:
 If possible, test your cases against existing validators:
 
 **Python (hed-python)**:
+
 ```python
 from hed import HedString, load_schema
 
@@ -357,6 +368,7 @@ issues = hed_string.validate()
 ```
 
 **JavaScript (hed-javascript)**:
+
 ```javascript
 const { validateHedString } = require('hed-javascript');
 const issues = validateHedString('Your test string', schema);
@@ -503,6 +515,7 @@ Once approved, maintainers will merge your PR.
 ```
 
 **Problems**:
+
 - Non-descriptive name ("test1")
 - Vague description ("test")
 - No AI metadata
