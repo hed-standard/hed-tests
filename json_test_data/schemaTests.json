@@ -1,0 +1,3635 @@
+[
+    {
+        "error_code": "SCHEMA_ATTRIBUTE_INVALID",
+        "name": "attribute-invalid-unknown",
+        "warning": true,
+        "description": "A schema attribute issue, saying there is an unknown one.",
+        "schema": "",
+        "error_category": "schema_development",
+        "common_causes": [
+            "Using undefined schema attributes",
+            "Applying attributes to wrong element types",
+            "Typos in attribute names",
+            "Using attributes from different schema versions",
+            "Incorrect attribute property assignments"
+        ],
+        "explanation": "Schema attributes must be defined in the schema attributes section before use, and must be applied to the correct element types (tags, units, value classes, etc.). Each attribute has specific properties that determine where it can be used.",
+        "correction_strategy": "Define missing attributes or fix attribute usage",
+        "correction_examples": [
+            {
+                "wrong": "'''Tag-with-unknown''' {unknownAttribute}",
+                "correct": "'''Tag-with-unknown''' {extensionAllowed}",
+                "explanation": "Replaced undefined attribute with valid schema attribute"
+            },
+            {
+                "wrong": "* mod1 {unitAttribute}[Wrong attribute type]",
+                "correct": "* mod1 {unitModifierProperty}",
+                "explanation": "Used correct property type for unit modifier"
+            }
+        ],
+        "correction_patterns": [
+            "Define all schema attributes in the Schema attributes section",
+            "Ensure attribute properties match element types",
+            "Use correct property types: nodeClassProperty, unitProperty, etc.",
+            "Check attribute names for typos",
+            "Verify attribute compatibility with schema version"
+        ],
+        "fix_instructions": [
+            "1. Check if the attribute is defined in Schema attributes section",
+            "2. Verify the attribute property type matches the element",
+            "3. Correct spelling of attribute names",
+            "4. Add missing attribute definitions if needed",
+            "5. Ensure proper property assignment"
+        ],
+        "validation_hints": [
+            "Review schema attributes section for all used attributes",
+            "Check property types match element usage",
+            "Verify attribute names are spelled correctly",
+            "Ensure attributes exist in current schema version"
+        ],
+        "specification_reference": "A.1.4. Schema attributes",
+        "related_errors": [
+            "SCHEMA_ATTRIBUTE_VALUE_INVALID",
+            "SCHEMA_SECTION_MISSING"
+        ],
+        "definitions": [],
+        "tests": {
+            "schema_tests": {
+                "fails": [
+                    [
+                        "HED version=\"1.0.0\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''Tag-with-unknown''' {unknownAttribute}",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ],
+                    [
+                        "HED version=\"1.0.0\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''Tag-with-unknown''' {unitAttribute}",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes''' <nowiki>{unitProperty}</nowiki>",
+                        "* unitAttribute <nowiki>{unitProperty}</nowiki>",
+                        "'''Properties''' <nowiki></nowiki>",
+                        "* unitProperty <nowiki></nowiki>",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ],
+                    [
+                        "HED version=\"1.0.0\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''Tag'''",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers''' <nowiki></nowiki>",
+                        "* mod1 <nowiki>{unitAttribute}[Wrong attribute type]</nowiki>",
+                        "'''Value classes'''",
+                        "'''Schema attributes''' <nowiki>{unitProperty}</nowiki>",
+                        "* unitAttribute <nowiki>{unitProperty}</nowiki>",
+                        "'''Properties''' <nowiki></nowiki>",
+                        "* unitProperty <nowiki></nowiki>",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ],
+                "passes": [
+                    [
+                        "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''Tag-with-unknown''' {suggestedTag=Event}",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ]
+            }
+        }
+    },
+    {
+        "error_code": "SCHEMA_ATTRIBUTE_VALUE_INVALID",
+        "name": "attribute-invalid-allowed-character",
+        "warning": true,
+        "description": "A schema unit has an invalid conversion factor",
+        "schema": "",
+        "error_category": "schema_development",
+        "common_causes": [
+            "Using invalid characters in allowedCharacter attribute values",
+            "Incorrect character specification format",
+            "Including forbidden characters in allowed character sets",
+            "Malformed character range specifications",
+            "Using deprecated character specification syntax"
+        ],
+        "explanation": "The allowedCharacter attribute defines valid characters for specific schema elements. Invalid character specifications can cause parsing errors and validation failures.",
+        "correction_strategy": "Use valid character specifications according to HED schema format",
+        "correction_examples": [
+            {
+                "wrong": "allowedCharacter=\"[invalid]\"",
+                "correct": "allowedCharacter=\"letters,digits\"",
+                "explanation": "Replaced invalid character specification with valid format"
+            }
+        ],
+        "correction_patterns": [
+            "Use standard character class names (letters, digits, etc.)",
+            "Avoid invalid character specifications",
+            "Follow HED character specification format"
+        ],
+        "fix_instructions": [
+            "1. Identify invalid allowedCharacter specifications",
+            "2. Replace with valid character class names",
+            "3. Verify character specification syntax",
+            "4. Test schema validation with corrected attributes"
+        ],
+        "validation_hints": [
+            "Check character specification format",
+            "Verify against HED allowed character classes",
+            "Test schema loading after character corrections"
+        ],
+        "specification_reference": "3.1.2.3. Schema attributes and character specifications",
+        "related_errors": [
+            "SCHEMA_ATTRIBUTE_INVALID",
+            "CHARACTER_INVALID"
+        ],
+        "definitions": [],
+        "tests": {
+            "schema_tests": {
+                "fails": [
+                    [
+                        "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "!# end schema",
+                        "'''Unit classes''' ",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "* testValueClass {allowedCharacter=?d}",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ],
+                "passes": [
+                    [
+                        "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "!# end schema",
+                        "'''Unit classes''' ",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "* testValueClass {allowedCharacter=?, allowedCharacter=letters}",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ],
+                    [
+                        "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "!# end schema",
+                        "'''Unit classes''' ",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "* testValueClass {allowedCharacter=letters}",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ]
+            }
+        }
+    },
+    {
+        "error_code": "SCHEMA_ATTRIBUTE_VALUE_INVALID",
+        "name": "attribute-conversion-factor-invalid",
+        "warning": true,
+        "description": "A schema unit has an invalid conversion factor",
+        "schema": "",
+        "error_category": "schema_development",
+        "common_causes": [
+            "Invalid numeric format in conversionFactor attribute",
+            "Non-numeric values in conversion factor specifications",
+            "Missing or zero conversion factors where required",
+            "Incorrect scientific notation in conversion factors",
+            "Using text instead of numeric values for conversions"
+        ],
+        "explanation": "Conversion factors must be valid numeric values that specify how to convert between different units. Invalid conversion factors prevent proper unit validation and conversion.",
+        "correction_strategy": "Use valid numeric values for conversion factors",
+        "correction_examples": [
+            {
+                "wrong": "conversionFactor=\"invalid\"",
+                "correct": "conversionFactor=\"1000\"",
+                "explanation": "Replaced invalid text with proper numeric conversion factor"
+            },
+            {
+                "wrong": "conversionFactor=\"1.0e+abc\"",
+                "correct": "conversionFactor=\"1.0e+3\"",
+                "explanation": "Fixed invalid scientific notation format"
+            }
+        ],
+        "correction_patterns": [
+            "Use valid numeric values (integers or decimals)",
+            "Ensure proper scientific notation format",
+            "Remove non-numeric characters from conversion factors",
+            "Verify conversion factors are positive and non-zero"
+        ],
+        "fix_instructions": [
+            "1. Identify invalid conversion factor values",
+            "2. Replace with proper numeric formats",
+            "3. Verify conversion factors are logical for the units",
+            "4. Test unit conversion functionality"
+        ],
+        "validation_hints": [
+            "Check numeric format of conversion factors",
+            "Verify conversion factors are positive numbers",
+            "Test unit conversion calculations",
+            "Ensure scientific notation is properly formatted"
+        ],
+        "specification_reference": "3.1.2.4. Unit classes and conversion factors",
+        "related_errors": [
+            "SCHEMA_ATTRIBUTE_INVALID",
+            "SCHEMA_ATTRIBUTE_VALUE_INVALID",
+            "UNITS_INVALID"
+        ],
+        "definitions": [],
+        "tests": {
+            "schema_tests": {
+                "fails": [
+                    [
+                        "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "!# end schema",
+                        "'''Unit classes''' ",
+                        "* testUnitClass ",
+                        "** testUnit1{SIUnit, conversionFactor=-1.0}",
+                        "** testUnit2",
+                        "** testUnit3",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ],
+                    [
+                        "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "!# end schema",
+                        "'''Unit classes''' ",
+                        "* testUnitClass ",
+                        "** testUnit1{SIUnit, conversionFactor=word}",
+                        "** testUnit2",
+                        "** testUnit3",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ],
+                    [
+                        "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "!# end schema",
+                        "'''Unit classes''' ",
+                        "* testUnitClass ",
+                        "** testUnit1{SIUnit, conversionFactor=None}",
+                        "** testUnit2",
+                        "** testUnit3",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ],
+                    [
+                        "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "!# end schema",
+                        "'''Unit classes''' ",
+                        "* testUnitClass ",
+                        "** testUnit1{SIUnit, conversionFactor}",
+                        "** testUnit2",
+                        "** testUnit3",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ],
+                "passes": [
+                    [
+                        "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "!# end schema",
+                        "'''Unit classes''' ",
+                        "* testUnitClass {defaultUnits=testUnit1}",
+                        "** testUnit1",
+                        "** testUnit2",
+                        "** testUnit3",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ]
+            }
+        }
+    },
+    {
+        "error_code": "WIKI_DELIMITERS_INVALID",
+        "name": "attribute-conversion-format",
+        "warning": true,
+        "description": "A schema unit has an invalid conversion factor due to bad formatting",
+        "schema": "",
+        "error_category": "schema_development",
+        "common_causes": [
+            "Missing conversionFactor value after attribute name",
+            "Incomplete conversionFactor specification",
+            "Malformed attribute syntax in schema definition",
+            "Missing equals sign or value in conversionFactor attribute"
+        ],
+        "explanation": "Conversion factor attributes must include both the attribute name and a valid numeric value. Missing values or incomplete syntax cause schema parsing failures.",
+        "correction_strategy": "Complete the conversionFactor attribute with proper value",
+        "correction_examples": [
+            {
+                "wrong": "conversionFactor}",
+                "correct": "conversionFactor=1000}",
+                "explanation": "Added missing value to conversionFactor attribute"
+            },
+            {
+                "wrong": "conversionFactor",
+                "correct": "conversionFactor=1.0",
+                "explanation": "Added equals sign and value to complete attribute"
+            }
+        ],
+        "correction_patterns": [
+            "Ensure conversionFactor includes =value",
+            "Use proper attribute=value syntax",
+            "Complete incomplete attribute specifications",
+            "Check for missing closing braces"
+        ],
+        "fix_instructions": [
+            "1. Identify incomplete conversionFactor attributes",
+            "2. Add missing equals sign and numeric value",
+            "3. Verify proper attribute syntax",
+            "4. Test schema parsing after completion"
+        ],
+        "validation_hints": [
+            "Check for complete attribute=value pairs",
+            "Verify proper brace closure",
+            "Ensure numeric values are provided"
+        ],
+        "specification_reference": "3.1.2.4. Unit class conversion factor syntax",
+        "related_errors": [
+            "SCHEMA_ATTRIBUTE_INVALID",
+            "SCHEMA_ATTRIBUTE_VALUE_INVALID",
+            "SCHEMA_LOAD_FAILED"
+        ],
+        "definitions": [],
+        "tests": {
+            "schema_tests": {
+                "fails": [
+                    [
+                        "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "!# end schema",
+                        "'''Unit classes''' ",
+                        "* testUnitClass ",
+                        "** testUnit1{SIUnit, conversionFactor=}",
+                        "** testUnit2",
+                        "** testUnit3",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ],
+                "passes": []
+            }
+        }
+    },
+    {
+        "error_code": "SCHEMA_ATTRIBUTE_VALUE_INVALID",
+        "name": "attribute-default-unit-invalid",
+        "warning": true,
+        "description": "A schema unit class has an invalid default value",
+        "schema": "",
+        "error_category": "schema_development",
+        "common_causes": [
+            "Specifying default units that don't exist in the unit class",
+            "Referencing undefined or misspelled unit names",
+            "Using default units incompatible with the unit class",
+            "Missing unit class definition for default unit",
+            "Invalid unit name format in default unit specification"
+        ],
+        "explanation": "Default units must reference valid units defined within the associated unit class. Invalid default unit references cause validation errors and prevent proper unit handling.",
+        "correction_strategy": "Use valid unit names that exist in the corresponding unit class",
+        "correction_examples": [
+            {
+                "wrong": "defaultUnits=\"invalidUnit\"",
+                "correct": "defaultUnits=\"m\"",
+                "explanation": "Replaced invalid unit with valid meter unit"
+            }
+        ],
+        "correction_patterns": [
+            "Verify unit exists in the associated unit class",
+            "Use correct unit symbols or names",
+            "Check unit class definitions for available units"
+        ],
+        "fix_instructions": [
+            "1. Check the unit class for available units",
+            "2. Verify default unit name spelling and format",
+            "3. Ensure unit exists in the specified unit class",
+            "4. Update default unit to valid unit reference"
+        ],
+        "validation_hints": [
+            "Cross-reference with unit class definitions",
+            "Check unit name spelling and case sensitivity",
+            "Verify unit symbols match schema specification"
+        ],
+        "specification_reference": "3.1.2.5. Unit classes and default units",
+        "related_errors": [
+            "SCHEMA_ATTRIBUTE_INVALID",
+            "UNITS_INVALID"
+        ],
+        "definitions": [],
+        "tests": {
+            "schema_tests": {
+                "fails": [
+                    [
+                        "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "!# end schema",
+                        "'''Unit classes''' [Unit classes and the units for the nodes.]",
+                        "* testUnitClass {defaultUnits=testUnit0}",
+                        "** testUnit1",
+                        "** testUnit2",
+                        "** testUnit3",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ],
+                "passes": [
+                    [
+                        "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "!# end schema",
+                        "'''Unit classes''' [Unit classes and the units for the nodes.]",
+                        "* testUnitClass {defaultUnits=testUnit1}",
+                        "** testUnit1",
+                        "** testUnit2",
+                        "** testUnit3",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ]
+            }
+        }
+    },
+    {
+        "error_code": "SCHEMA_ATTRIBUTE_VALUE_INVALID",
+        "name": "attribute-invalid-hed-id-changed",
+        "warning": true,
+        "description": "A schema value class issue, saying there is an unknown one.",
+        "schema": "",
+        "error_category": "schema_development",
+        "common_causes": [
+            "Using non-unique HED IDs that conflict with existing IDs",
+            "Invalid HED ID format (non-numeric or incorrect structure)",
+            "Missing HED IDs where required",
+            "Changing HED IDs that should remain stable",
+            "Duplicate HED IDs across different schema elements"
+        ],
+        "explanation": "HED IDs must be unique numeric identifiers that follow specific format requirements and remain stable across schema versions. Invalid or changed HED IDs cause schema validation failures.",
+        "correction_strategy": "Use stable, properly formatted HED IDs according to specification",
+        "correction_examples": [
+            {
+                "wrong": "hedId=\"invalid\"",
+                "correct": "hedId=\"HED_0012345\"",
+                "explanation": "Replaced invalid ID with proper HED ID format"
+            }
+        ],
+        "correction_patterns": [
+            "Maintain HED ID stability across versions",
+            "Use proper HED ID format",
+            "Ensure HED IDs are unique"
+        ],
+        "fix_instructions": [
+            "1. Check HED ID format compliance",
+            "2. Verify HED ID stability requirements",
+            "3. Replace invalid HED IDs with proper format",
+            "4. Ensure uniqueness across schema"
+        ],
+        "validation_hints": [
+            "Check HED ID format matches specification",
+            "Verify HED ID stability across versions",
+            "Ensure no duplicate HED IDs exist"
+        ],
+        "specification_reference": "3.1.2.6. HED IDs and stability requirements",
+        "related_errors": [
+            "SCHEMA_ATTRIBUTE_INVALID",
+            "SCHEMA_DUPLICATE_NODE"
+        ],
+        "definitions": [],
+        "tests": {
+            "schema_tests": {
+                "fails": [
+                    [
+                        "HED version=\"8.4.0\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''Event'''{hedId=HED_0015001}",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "* hedId {elementDomain}",
+                        "'''Properties'''",
+                        "* elementDomain",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ],
+                "passes": [
+                    [
+                        "HED version=\"8.4.0\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''Event'''{hedId=HED_0012001}",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "* hedId {elementDomain}",
+                        "'''Properties'''",
+                        "* elementDomain",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ]
+            }
+        }
+    },
+    {
+        "error_code": "SCHEMA_ATTRIBUTE_VALUE_INVALID",
+        "name": "attribute-invalid-hed-id-out-range",
+        "warning": true,
+        "description": "A schema value class issue, saying there is an unknown one.",
+        "schema": "",
+        "error_category": "schema_development",
+        "common_causes": [
+            "Using HED IDs outside the allocated ranges",
+            "Creating HED IDs in reserved number ranges",
+            "Using experimental or unofficial HED ID ranges",
+            "Assigning HED IDs without proper allocation"
+        ],
+        "explanation": "HED IDs must be within specific allocated ranges to ensure compatibility and prevent conflicts. Using out-of-range IDs causes schema validation failures.",
+        "correction_strategy": "Use HED IDs within the allocated range for your schema",
+        "correction_examples": [
+            {
+                "wrong": "hedId=HED_0055000",
+                "correct": "hedId=HED_0015001",
+                "explanation": "Changed out-of-range ID to allocated range"
+            }
+        ],
+        "correction_patterns": [
+            "Check HED ID range allocations",
+            "Use proper HED ID ranges for schema type",
+            "Avoid reserved or experimental ranges"
+        ],
+        "fix_instructions": [
+            "1. Check HED ID range allocation guidelines",
+            "2. Identify proper range for your schema",
+            "3. Replace out-of-range HED IDs",
+            "4. Verify all HED IDs are within allocated ranges"
+        ],
+        "validation_hints": [
+            "Check HED ID range documentation",
+            "Verify HED ID is within allocated bounds",
+            "Ensure proper schema-specific ranges"
+        ],
+        "specification_reference": "3.1.2.6. HED ID ranges and allocation",
+        "related_errors": [
+            "SCHEMA_ATTRIBUTE_INVALID",
+            "SCHEMA_ATTRIBUTE_VALUE_INVALID"
+        ],
+        "definitions": [],
+        "tests": {
+            "schema_tests": {
+                "fails": [
+                    [
+                        "HED version=\"8.4.0\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''NewTagWithNewID'''{hedId=HED_0055000}",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "* hedId {elementDomain}",
+                        "'''Properties'''",
+                        "* elementDomain",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ],
+                "passes": [
+                    [
+                        "HED version=\"8.4.0\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''NewTagWithNewID'''{hedId=HED_0015001}",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "* hedId {elementDomain}",
+                        "'''Properties'''",
+                        "* elementDomain",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ]
+            }
+        }
+    },
+    {
+        "error_code": "SCHEMA_ATTRIBUTE_VALUE_INVALID",
+        "name": "attribute-invalid-hed-id-invalid",
+        "warning": true,
+        "description": "A schema value class issue, saying there is an unknown one.",
+        "schema": "",
+        "error_category": "schema_development",
+        "common_causes": [
+            "Using non-numeric characters in HED ID values",
+            "Invalid HED ID format (not following HED_NNNNNNN pattern)",
+            "Using placeholder or invalid characters like 'XXXXXXX'",
+            "Malformed HED ID syntax"
+        ],
+        "explanation": "HED IDs must follow the exact format 'HED_' followed by a 7-digit number. Invalid characters or formats cause schema parsing failures.",
+        "correction_strategy": "Use proper HED ID format with numeric values only",
+        "correction_examples": [
+            {
+                "wrong": "hedId=HED_XXXXXXX",
+                "correct": "hedId=HED_0015001",
+                "explanation": "Replaced invalid characters with proper numeric ID"
+            },
+            {
+                "wrong": "hedId=HED_ABC1234",
+                "correct": "hedId=HED_0015002",
+                "explanation": "Replaced alphabetic characters with numbers"
+            }
+        ],
+        "correction_patterns": [
+            "Use HED_NNNNNNN format exactly",
+            "Replace invalid characters with numbers",
+            "Ensure 7-digit numeric portion"
+        ],
+        "fix_instructions": [
+            "1. Identify HED IDs with invalid format",
+            "2. Replace with proper HED_NNNNNNN format",
+            "3. Use allocated numeric ranges",
+            "4. Verify format compliance"
+        ],
+        "validation_hints": [
+            "Check for HED_NNNNNNN format",
+            "Verify only numeric characters after HED_",
+            "Ensure exactly 7 digits"
+        ],
+        "specification_reference": "3.1.2.6. HED ID format requirements",
+        "related_errors": [
+            "SCHEMA_ATTRIBUTE_INVALID",
+            "SCHEMA_ATTRIBUTE_VALUE_INVALID"
+        ],
+        "definitions": [],
+        "tests": {
+            "schema_tests": {
+                "fails": [
+                    [
+                        "HED version=\"8.4.0\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''NewTagWithNewID'''{hedId=HED_XXXXXXX}",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "* hedId {elementDomain}",
+                        "'''Properties'''",
+                        "* elementDomain",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ],
+                "passes": [
+                    [
+                        "HED version=\"8.4.0\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''NewTagWithNewID'''{hedId=HED_0015001}",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "* hedId {elementDomain}",
+                        "'''Properties'''",
+                        "* elementDomain",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ]
+            }
+        }
+    },
+    {
+        "error_code": "SCHEMA_ATTRIBUTE_VALUE_INVALID",
+        "name": "attribute-invalid-in-library",
+        "warning": true,
+        "description": "A schema unit has an invalid in library attribute(most other library errors are SCHEMA_LIBRARY_INVALID",
+        "schema": "",
+        "error_category": "schema_development",
+        "common_causes": [
+            "Using inLibrary attribute in non-library schema contexts",
+            "Invalid library name specification in inLibrary attribute",
+            "Referencing non-existent library schemas",
+            "Incorrect inLibrary attribute syntax or format",
+            "Missing library schema dependencies for inLibrary references"
+        ],
+        "explanation": "The inLibrary attribute specifies which library schema contains an element. Invalid inLibrary specifications cause schema loading failures and prevent proper library schema integration.",
+        "correction_strategy": "Use valid library names and proper inLibrary attribute syntax",
+        "correction_examples": [
+            {
+                "wrong": "inLibrary=\"nonexistent\"",
+                "correct": "inLibrary=\"score\"",
+                "explanation": "Referenced valid existing library schema"
+            }
+        ],
+        "correction_patterns": [
+            "Reference only existing library schemas",
+            "Use correct case-sensitive library names",
+            "Verify library schema availability"
+        ],
+        "fix_instructions": [
+            "1. Verify referenced library schema exists",
+            "2. Check library name spelling and case",
+            "3. Ensure library schema is available for loading",
+            "4. Remove inLibrary attributes where inappropriate"
+        ],
+        "validation_hints": [
+            "Check available library schema names",
+            "Verify library schema loading prerequisites",
+            "Ensure case-sensitive name matching"
+        ],
+        "specification_reference": "3.1.3. Library schemas and inLibrary attributes",
+        "related_errors": [
+            "SCHEMA_LIBRARY_INVALID",
+            "SCHEMA_LOAD_FAILED"
+        ],
+        "definitions": [],
+        "tests": {
+            "schema_tests": {
+                "fails": [
+                    [
+                        "HED version=\"1.0.0\" library=\"right\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''Tag''' {inLibrary=wrong}",
+                        "!# end schema",
+                        "'''Unit classes''' ",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "* inLibrary {elementProperty}",
+                        "'''Properties'''",
+                        "* elementProperty",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ],
+                "passes": [
+                    [
+                        "HED version=\"1.0.0\" library=\"right\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''Tag''' {inLibrary=right}",
+                        "!# end schema",
+                        "'''Unit classes''' ",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "* inLibrary {elementProperty}",
+                        "'''Properties'''",
+                        "* elementProperty",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ]
+            }
+        }
+    },
+    {
+        "error_code": "SCHEMA_ATTRIBUTE_VALUE_INVALID",
+        "name": "attribute-on-nonplaceholder-invalid",
+        "warning": true,
+        "description": "A non placeholder tag has takes value, unit class, or value class",
+        "schema": "",
+        "error_category": "schema_development",
+        "common_causes": [
+            "Adding valueClass or unitClass attributes to non-placeholder tags",
+            "Misunderstanding placeholder vs. non-placeholder tag attributes",
+            "Copy-paste errors from placeholder tag definitions",
+            "Incorrect schema attribute assignments",
+            "Using takesValue attribute on inappropriate tags"
+        ],
+        "explanation": "Only placeholder tags (#) should have valueClass, unitClass, or takesValue attributes. Non-placeholder tags with these attributes violate schema structure rules.",
+        "correction_strategy": "Remove value/unit class attributes from non-placeholder tags",
+        "correction_examples": [
+            {
+                "wrong": "* RegularTag {valueClass=numericClass}",
+                "correct": "* RegularTag",
+                "explanation": "Removed valueClass from non-placeholder tag"
+            },
+            {
+                "wrong": "* Tag {takesValue=true}",
+                "correct": "* Tag",
+                "explanation": "Removed takesValue from non-placeholder tag"
+            }
+        ],
+        "correction_patterns": [
+            "Remove valueClass attributes from non-placeholder tags",
+            "Remove unitClass attributes from non-placeholder tags",
+            "Remove takesValue attributes from non-placeholder tags",
+            "Keep class attributes only on placeholder tags"
+        ],
+        "fix_instructions": [
+            "1. Identify non-placeholder tags with class or value attributes",
+            "2. Remove valueClass, unitClass, or takesValue attributes",
+            "3. Verify only placeholder tags have these attributes",
+            "4. Check schema validation after cleanup"
+        ],
+        "validation_hints": [
+            "Check that only # tags have valueClass/unitClass/takesValue",
+            "Verify schema structure follows placeholder rules",
+            "Ensure attribute usage matches tag type"
+        ],
+        "specification_reference": "3.1.2.7. Placeholder tags and class attributes",
+        "related_errors": [
+            "SCHEMA_ATTRIBUTE_INVALID",
+            "PLACEHOLDER_INVALID"
+        ],
+        "definitions": [],
+        "tests": {
+            "schema_tests": {
+                "fails": [
+                    [
+                        "HED version=\"1.0.0\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''BaseTag''' {takesValue}",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ],
+                    [
+                        "HED version=\"1.0.0\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''BaseTag''' {valueClass=numericClass}",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ],
+                    [
+                        "HED version=\"1.0.0\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''BaseTag''' {unitClass=timeUnits}",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ],
+                "passes": [
+                    [
+                        "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''BaseTag''' {relatedTag=Event}",
+                        "* # {takesValue, unitClass=timeUnits, valueClass=numericClass}",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ]
+            }
+        }
+    },
+    {
+        "error_code": "SCHEMA_ATTRIBUTE_VALUE_INVALID",
+        "name": "attribute-relatedTag-invalid",
+        "warning": true,
+        "description": "A related tag points to an unknown tag",
+        "schema": "",
+        "error_category": "schema_development",
+        "common_causes": [
+            "Referencing non-existent tags in relatedTag attributes",
+            "Incorrect tag path specifications in relatedTag",
+            "Circular relatedTag references",
+            "Misspelled tag names in relatedTag attributes",
+            "Using deprecated tags in relatedTag references"
+        ],
+        "explanation": "RelatedTag attributes must reference valid, existing tags in the schema. Invalid references cause schema validation failures and break tag relationship mappings.",
+        "correction_strategy": "Use valid tag references in relatedTag attributes",
+        "correction_examples": [
+            {
+                "wrong": "relatedTag=\"NonExistent/Tag\"",
+                "correct": "relatedTag=\"Event/Sensory-event\"",
+                "explanation": "Replaced non-existent tag with valid schema tag"
+            }
+        ],
+        "correction_patterns": [
+            "Verify tag exists in current schema",
+            "Use complete tag paths for relatedTag references",
+            "Check tag spelling and case sensitivity",
+            "Avoid circular tag references"
+        ],
+        "fix_instructions": [
+            "1. Verify referenced tags exist in schema",
+            "2. Check tag path spelling and format",
+            "3. Remove or update invalid tag references",
+            "4. Test tag relationship functionality"
+        ],
+        "validation_hints": [
+            "Cross-reference with available schema tags",
+            "Verify complete tag paths",
+            "Check for circular references"
+        ],
+        "specification_reference": "3.1.2.8. Tag relationships and relatedTag attributes",
+        "related_errors": [
+            "SCHEMA_ATTRIBUTE_INVALID",
+            "TAG_INVALID"
+        ],
+        "definitions": [],
+        "tests": {
+            "schema_tests": {
+                "fails": [
+                    [
+                        "HED version=\"1.0.0\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''Tag-with-unknown''' {relatedTag=invalid}",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ],
+                    [
+                        "HED version=\"1.0.0\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''Tag-with-unknown''' {relatedTag=Event, relatedTag=invalid}",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ],
+                "passes": [
+                    [
+                        "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''Tag-with-unknown''' {relatedTag=Event}",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ],
+                    [
+                        "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''Tag-with-unknown''' {relatedTag=Event}",
+                        "* ExtendedTag {relatedTag=Tag-with-unknown, relatedTag=Event}",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ]
+            }
+        }
+    },
+    {
+        "error_code": "SCHEMA_ATTRIBUTE_VALUE_INVALID",
+        "name": "attribute-suggestedTag-invalid",
+        "warning": true,
+        "description": "A suggested tag points to an unknown tag",
+        "schema": "",
+        "error_category": "schema_development",
+        "common_causes": [
+            "Referencing non-existent tags in suggestedTag attributes",
+            "Incorrect tag path specifications in suggestedTag",
+            "Misspelled tag names in suggestedTag attributes",
+            "Using deprecated tags in suggestedTag references",
+            "Self-referencing suggestedTag attributes"
+        ],
+        "explanation": "SuggestedTag attributes must reference valid, existing tags in the schema. Invalid references cause schema validation failures and break tag suggestion functionality.",
+        "correction_strategy": "Use valid tag references in suggestedTag attributes",
+        "correction_examples": [
+            {
+                "wrong": "suggestedTag=\"InvalidTag\"",
+                "correct": "suggestedTag=\"Event\"",
+                "explanation": "Replaced invalid tag with valid schema tag"
+            }
+        ],
+        "correction_patterns": [
+            "Verify tag exists in current schema",
+            "Use complete tag paths for suggestedTag references",
+            "Check tag spelling and case sensitivity",
+            "Avoid self-references in suggestedTag"
+        ],
+        "fix_instructions": [
+            "1. Verify referenced tags exist in schema",
+            "2. Check tag path spelling and format",
+            "3. Remove or update invalid tag references",
+            "4. Test tag suggestion functionality"
+        ],
+        "validation_hints": [
+            "Cross-reference with available schema tags",
+            "Verify complete tag paths",
+            "Check that suggestedTag doesn't reference itself"
+        ],
+        "specification_reference": "3.1.2.9. Tag suggestions and suggestedTag attributes",
+        "related_errors": [
+            "SCHEMA_ATTRIBUTE_INVALID",
+            "TAG_INVALID"
+        ],
+        "definitions": [],
+        "tests": {
+            "schema_tests": {
+                "fails": [
+                    [
+                        "HED version=\"1.0.0\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''Tag-with-unknown''' {suggestedTag=invalid}",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ],
+                    [
+                        "HED version=\"1.0.0\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''Tag-with-unknown''' {suggestedTag=Event, suggestedTag=invalid}",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ],
+                "passes": [
+                    [
+                        "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''Tag-with-unknown''' {suggestedTag=Event}",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ],
+                    [
+                        "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''Tag-with-unknown''' {suggestedTag=Event}",
+                        "* ExtendedTag {suggestedTag=Tag-with-unknown, suggestedTag=Event}",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ]
+            }
+        }
+    },
+    {
+        "error_code": "SCHEMA_ATTRIBUTE_VALUE_INVALID",
+        "name": "attribute-invalid-unit-class",
+        "warning": true,
+        "description": "A schema unit class issue, saying there is an unknown one.",
+        "schema": "",
+        "error_category": "schema_development",
+        "common_causes": [
+            "Referencing non-existent unit classes in unitClass attributes",
+            "Misspelled unit class names",
+            "Using deprecated or removed unit classes",
+            "Incorrect unit class name format",
+            "Missing unit class definitions in schema"
+        ],
+        "explanation": "UnitClass attributes must reference valid unit classes defined in the schema. Invalid unit class references cause validation failures and prevent proper unit validation.",
+        "correction_strategy": "Use valid unit class names that exist in the schema",
+        "correction_examples": [
+            {
+                "wrong": "unitClass=\"unknownUnitClass\"",
+                "correct": "unitClass=\"accelerationUnits\"",
+                "explanation": "Replaced unknown unit class with valid one"
+            }
+        ],
+        "correction_patterns": [
+            "Verify unit class exists in schema",
+            "Check unit class name spelling and case",
+            "Use defined unit class names only",
+            "Remove references to non-existent unit classes"
+        ],
+        "fix_instructions": [
+            "1. Check available unit classes in schema",
+            "2. Verify unit class name spelling",
+            "3. Replace invalid unit class references",
+            "4. Test unit validation functionality"
+        ],
+        "validation_hints": [
+            "Cross-reference with schema unit class definitions",
+            "Check unit class name case sensitivity",
+            "Verify unit class exists before referencing"
+        ],
+        "specification_reference": "3.1.2.10. Unit classes and unitClass attributes",
+        "related_errors": [
+            "SCHEMA_ATTRIBUTE_INVALID",
+            "UNITS_INVALID"
+        ],
+        "definitions": [],
+        "tests": {
+            "schema_tests": {
+                "fails": [
+                    [
+                        "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''Tag-with-unknown'''",
+                        "* # {unitClass=unknown}",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ],
+                "passes": [
+                    [
+                        "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''Tag-with-unknown'''",
+                        "* # {unitClass=timeUnits}",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ]
+            }
+        }
+    },
+    {
+        "error_code": "SCHEMA_ATTRIBUTE_VALUE_INVALID",
+        "name": "attribute-invalid-value-class",
+        "warning": true,
+        "description": "A schema value class issue, saying there is an unknown one.",
+        "schema": "",
+        "error_category": "schema_development",
+        "common_causes": [
+            "Referencing non-existent value classes in valueClass attributes",
+            "Misspelled value class names",
+            "Using deprecated or removed value classes",
+            "Incorrect value class name format",
+            "Missing value class definitions in schema"
+        ],
+        "explanation": "ValueClass attributes must reference valid value classes defined in the schema. Invalid value class references cause validation failures and prevent proper value validation.",
+        "correction_strategy": "Use valid value class names that exist in the schema",
+        "correction_examples": [
+            {
+                "wrong": "valueClass=\"unknownValueClass\"",
+                "correct": "valueClass=\"numericClass\"",
+                "explanation": "Replaced unknown value class with valid one"
+            }
+        ],
+        "correction_patterns": [
+            "Verify value class exists in schema",
+            "Check value class name spelling and case",
+            "Use defined value class names only",
+            "Remove references to non-existent value classes"
+        ],
+        "fix_instructions": [
+            "1. Check available value classes in schema",
+            "2. Verify value class name spelling",
+            "3. Replace invalid value class references",
+            "4. Test value validation functionality"
+        ],
+        "validation_hints": [
+            "Cross-reference with schema value class definitions",
+            "Check value class name case sensitivity",
+            "Verify value class exists before referencing"
+        ],
+        "specification_reference": "3.1.2.11. Value classes and valueClass attributes",
+        "related_errors": [
+            "SCHEMA_ATTRIBUTE_INVALID",
+            "VALUE_INVALID"
+        ],
+        "definitions": [],
+        "tests": {
+            "schema_tests": {
+                "fails": [
+                    [
+                        "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''Tag-with-unknown'''",
+                        "* # {valueClass=unknown}",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ],
+                "passes": [
+                    [
+                        "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''Tag-with-unknown'''",
+                        "* # {valueClass=numericClass}",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ]
+            }
+        }
+    },
+    {
+        "error_code": "SCHEMA_CHARACTER_INVALID",
+        "name": "schema-character-invalid-prologue",
+        "warning": true,
+        "description": "Invalid character in prologue or epilogue.",
+        "schema": "",
+        "error_category": "schema_development",
+        "common_causes": [
+            "Including tab characters or other control characters in schema text",
+            "Using non-printable characters in prologue or epilogue sections",
+            "Copy-paste errors that introduce invisible characters",
+            "Encoding issues when saving schema files",
+            "Invalid characters in schema tag names or descriptions"
+        ],
+        "explanation": "Schema files must use only valid characters as defined in the HED specification. Control characters and non-printable characters can cause parsing errors and schema validation failures.",
+        "correction_strategy": "Remove or replace invalid characters with valid alternatives",
+        "correction_examples": [
+            {
+                "wrong": "'''Prologue'''\n\t",
+                "correct": "'''Prologue'''",
+                "explanation": "Removed tab character from prologue section"
+            },
+            {
+                "wrong": "Tag-name\u0000",
+                "correct": "Tag-name",
+                "explanation": "Removed null character from tag name"
+            }
+        ],
+        "correction_patterns": [
+            "Remove tab characters and control characters",
+            "Replace non-printable characters with spaces or remove them",
+            "Ensure proper text encoding (UTF-8)",
+            "Check for invisible characters in copy-paste operations"
+        ],
+        "fix_instructions": [
+            "1. Scan schema file for control characters and non-printable characters",
+            "2. Remove or replace invalid characters",
+            "3. Verify text encoding is UTF-8",
+            "4. Check prologue and epilogue sections specifically",
+            "5. Validate schema parses correctly after character cleanup"
+        ],
+        "validation_hints": [
+            "Use text editor that shows invisible characters",
+            "Check file encoding and ensure UTF-8",
+            "Look for parsing errors in prologue/epilogue sections",
+            "Verify no control characters remain in schema text"
+        ],
+        "specification_reference": "2.2. Character sets and schema formatting",
+        "related_errors": [
+            "SCHEMA_LOAD_FAILED",
+            "CHARACTER_INVALID"
+        ],
+        "definitions": [],
+        "tests": {
+            "schema_tests": {
+                "fails": [
+                    [
+                        "HED version=\"8.3.0\"",
+                        "'''Prologue'''",
+                        "\t",
+                        "!# start schema",
+                        "'''BaseTag'''",
+                        "* Extension",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ],
+                    [
+                        "HED version=\"8.3.0\"",
+                        "'''Prologue'''",
+                        "InvalidCharAfterThis\b",
+                        "!# start schema",
+                        "'''BaseTag'''",
+                        "* Extension",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ],
+                "passes": [
+                    [
+                        "HED version=\"8.3.0\"",
+                        "'''Prologue'''",
+                        "This is a valid prologue.",
+                        "!# start schema",
+                        "'''BaseTag'''",
+                        "* Extension",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "This is a valid prologue.\n",
+                        "!# end hed"
+                    ]
+                ]
+            }
+        }
+    },
+    {
+        "error_code": "SCHEMA_CHARACTER_INVALID",
+        "name": "schema-character-invalid-tag",
+        "warning": true,
+        "description": "Invalid character in a tag term.",
+        "schema": "",
+        "definitions": [],
+        "tests": {
+            "schema_tests": {
+                "fails": [
+                    [
+                        "HED version=\"8.3.0\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''BaseTag$'''",
+                        "* Extension",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ],
+                    [
+                        "HED version=\"8.3.0\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''BaseTag('''",
+                        "* Extension",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ],
+                "passes": [
+                    [
+                        "HED version=\"8.3.0\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''BaseTag'''",
+                        "* Extension",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ]
+            }
+        }
+    },
+    {
+        "error_code": "SCHEMA_CHARACTER_INVALID",
+        "name": "schema-character-invalid-other-term",
+        "warning": true,
+        "description": "Invalid character in a tag term.",
+        "schema": "",
+        "definitions": [],
+        "tests": {
+            "schema_tests": {
+                "fails": [
+                    [
+                        "HED version=\"8.3.0\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''BaseTag'''",
+                        "* Extension",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "* unitClassNew$",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ],
+                    [
+                        "HED version=\"8.3.0\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''BaseTag'''",
+                        "* Extension",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "* unitClassNew",
+                        "** unitInvalid$",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ],
+                    [
+                        "HED version=\"8.3.0\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''BaseTag'''",
+                        "* Extension",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "* newModifier$",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ],
+                    [
+                        "HED version=\"8.3.0\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''BaseTag'''",
+                        "* Extension",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "* invalidValue$Class",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ],
+                    [
+                        "HED version=\"8.3.0\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''BaseTag'''",
+                        "* Extension",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "* newAttribute$new",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ],
+                    [
+                        "HED version=\"8.3.0\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''BaseTag'''",
+                        "* Extension",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "* newProperty\tmore",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ],
+                "passes": [
+                    [
+                        "HED version=\"8.3.0\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''BaseTag'''",
+                        "* Extension",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ]
+            }
+        }
+    },
+    {
+        "error_code": "SCHEMA_CHARACTER_INVALID",
+        "name": "schema-character-invalid-utf8-other-term",
+        "warning": true,
+        "description": "UTF8 characters (valid) in term.",
+        "schema": "",
+        "definitions": [],
+        "tests": {
+            "schema_tests": {
+                "fails": [
+                    [
+                        "HED version=\"8.3.0\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''BaseTag'''",
+                        "* Extension&",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ],
+                "passes": [
+                    [
+                        "HED version=\"8.3.0\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''BaseTag\u00c4'''",
+                        "* Extension\u00c4",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ],
+                    [
+                        "HED version=\"8.3.0\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''\u00c4BaseTag'''",
+                        "* \u00c4Extension",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ]
+            }
+        }
+    },
+    {
+        "error_code": "SCHEMA_CHARACTER_INVALID",
+        "name": "schema-character-allowed-character-unit",
+        "warning": true,
+        "description": "Allowed character properly works on units.",
+        "schema": "",
+        "definitions": [],
+        "tests": {
+            "schema_tests": {
+                "fails": [
+                    [
+                        "HED version=\"8.3.0\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''BaseTag'''",
+                        "* Extension",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "* unitClassNew",
+                        "** $",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ],
+                "passes": [
+                    [
+                        "HED version=\"8.3.0\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''BaseTag'''",
+                        "* Extension",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "* unitClassNew",
+                        "** $ {allowedCharacter=dollar}",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "* allowedCharacter {unitDomain}",
+                        "'''Properties'''",
+                        "* unitDomain",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ],
+                    [
+                        "HED version=\"8.3.0\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''BaseTag'''",
+                        "* Extension",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "* unitClassNew {defaultUnit=$}",
+                        "** $ {allowedCharacter=dollar}",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "* allowedCharacter {unitDomain}",
+                        "* defaultUnit {unitClassDomain}",
+                        "'''Properties'''",
+                        "* unitDomain",
+                        "* unitClassDomain",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ]
+            }
+        }
+    },
+    {
+        "error_code": "SCHEMA_CHARACTER_INVALID",
+        "name": "schema-character-invalid-description",
+        "warning": true,
+        "description": "Description does not contain banned characters.",
+        "schema": "",
+        "definitions": [],
+        "tests": {
+            "schema_tests": {
+                "fails": [
+                    [
+                        "HED version=\"8.3.0\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''BaseTag'''",
+                        "* Extension",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "* unitClassNew [Description goes here with invalid \t character]",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ],
+                    [
+                        "HED version=\"8.3.0\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''BaseTag''' [Description goes here with invalid { character }]",
+                        "* Extension",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "* unitClassNew ",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ],
+                "passes": [
+                    [
+                        "HED version=\"8.3.0\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''BaseTag'''",
+                        "* Extension",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "* unitClassNew [Description goes here with valid characters]",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ]
+            }
+        }
+    },
+    {
+        "error_code": "SCHEMA_DEPRECATION_ERROR",
+        "name": "schema-deprecated-attribute-invalid",
+        "warning": true,
+        "description": "A schema attribute issue, saying there is an unhandled deprecated attribute.",
+        "schema": "",
+        "error_category": "schema_development",
+        "common_causes": [
+            "Using deprecated attributes that are no longer supported",
+            "Incorrect deprecation attribute syntax or values",
+            "Missing or malformed deprecatedFrom attribute",
+            "Invalid version specification in deprecation",
+            "Attempting to deprecate non-existent elements"
+        ],
+        "explanation": "Schema deprecation attributes must follow specific format and reference valid schema versions. Incorrect deprecation handling can cause schema validation failures.",
+        "correction_strategy": "Fix deprecation attribute syntax and ensure proper version references",
+        "correction_examples": [
+            {
+                "wrong": "* Tag {deprecated}",
+                "correct": "* Tag {deprecatedFrom=\"8.2.0\"}",
+                "explanation": "Added proper deprecation version specification"
+            },
+            {
+                "wrong": "* Tag {deprecatedFrom=\"invalid\"}",
+                "correct": "* Tag {deprecatedFrom=\"8.1.0\"}",
+                "explanation": "Used valid version format for deprecation"
+            }
+        ],
+        "correction_patterns": [
+            "Use proper deprecatedFrom attribute with valid version",
+            "Remove invalid deprecation attributes",
+            "Ensure deprecation version exists in schema history",
+            "Follow semantic versioning for deprecation references"
+        ],
+        "fix_instructions": [
+            "1. Identify invalid deprecation attributes",
+            "2. Check deprecation version format and validity",
+            "3. Update or remove incorrect deprecation attributes",
+            "4. Verify deprecation references point to valid versions",
+            "5. Test schema validation after deprecation fixes"
+        ],
+        "validation_hints": [
+            "Check deprecation attribute syntax",
+            "Verify version references are valid",
+            "Ensure deprecation follows schema evolution rules",
+            "Test with different schema version combinations"
+        ],
+        "specification_reference": "3.1.4. Schema versioning and deprecation",
+        "related_errors": [
+            "SCHEMA_ATTRIBUTE_INVALID",
+            "SCHEMA_VERSION_INVALID"
+        ],
+        "definitions": [],
+        "tests": {
+            "schema_tests": {
+                "fails": [
+                    [
+                        "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''BaseTag'''",
+                        "* Extension {deprecatedFrom=0.5.0}",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ],
+                    [
+                        "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''BaseTag'''",
+                        "* Extension {deprecatedFrom=1.0.0}",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ],
+                "passes": [
+                    [
+                        "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''BaseTag'''",
+                        "* Extension {deprecatedFrom=1.0.0}",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ]
+            }
+        }
+    },
+    {
+        "error_code": "SCHEMA_DEPRECATION_ERROR",
+        "name": "schema-deprecated-invalid-child",
+        "warning": true,
+        "description": "A schema deprecation issue, saying there is an invalid child of a deprecated node",
+        "schema": "",
+        "definitions": [],
+        "tests": {
+            "schema_tests": {
+                "fails": [
+                    [
+                        "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''BaseTag''' {deprecatedFrom=1.0.0}",
+                        "* Extension",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ],
+                    [
+                        "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''BaseTag'''",
+                        "* Extension",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "* testUnitClass {deprecatedFrom=1.0.0}",
+                        "** testUnit",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ],
+                "passes": [
+                    [
+                        "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''BaseTag''' {deprecatedFrom=1.0.0}",
+                        "* Extension {deprecatedFrom=1.0.0}",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ]
+            }
+        }
+    },
+    {
+        "error_code": "SCHEMA_DEPRECATION_ERROR",
+        "name": "schema-deprecated-default-unit",
+        "warning": true,
+        "description": "A schema deprecation issue, deprecated default units",
+        "schema": "",
+        "definitions": [],
+        "tests": {
+            "schema_tests": {
+                "fails": [
+                    [
+                        "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''BaseTag'''",
+                        "* Extension",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "* testUnitClass {defaultUnits=testUnit}",
+                        "** testUnit {deprecatedFrom=1.0.0}",
+                        "** testUnit2",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ],
+                "passes": [
+                    [
+                        "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''BaseTag'''",
+                        "* Extension",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "* testUnitClass {defaultUnits=testUnit2}",
+                        "** testUnit {deprecatedFrom=1.0.0}",
+                        "** testUnit2",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ],
+                    [
+                        "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''BaseTag'''",
+                        "* Extension",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "* testUnitClass {defaultUnits=testUnit, deprecatedFrom=1.0.0}",
+                        "** testUnit {deprecatedFrom=1.0.0}",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ]
+            }
+        }
+    },
+    {
+        "error_code": "SCHEMA_DEPRECATION_ERROR",
+        "name": "schema-deprecated-unit-class",
+        "warning": true,
+        "description": "A schema deprecation issue, deprecated value or unit class",
+        "schema": "",
+        "definitions": [],
+        "tests": {
+            "schema_tests": {
+                "fails": [
+                    [
+                        "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''BaseTag'''",
+                        "* Extension",
+                        "** #{takesValue, unitClass=testUnitClass}",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "* testUnitClass{deprecatedFrom=1.0.0}",
+                        "** testUnit{deprecatedFrom=1.0.0}",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ],
+                "passes": [
+                    [
+                        "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''BaseTag'''",
+                        "* Extension",
+                        "** #{takesValue, unitClass=testUnitClass, deprecatedFrom=1.0.0}",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "* testUnitClass{deprecatedFrom=1.0.0}",
+                        "** testUnit{deprecatedFrom=1.0.0}",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ]
+            }
+        }
+    },
+    {
+        "error_code": "SCHEMA_DEPRECATION_ERROR",
+        "name": "schema-deprecated-value-class",
+        "warning": true,
+        "description": "A schema deprecation issue, deprecated value or unit class",
+        "schema": "",
+        "definitions": [],
+        "tests": {
+            "schema_tests": {
+                "fails": [
+                    [
+                        "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''BaseTag'''",
+                        "* Extension",
+                        "** #{takesValue, valueClass=testValueClass}",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "* testValueClass{deprecatedFrom=1.0.0}",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ],
+                "passes": [
+                    [
+                        "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''BaseTag'''",
+                        "* Extension",
+                        "** #{takesValue, valueClass=testValueClass, deprecatedFrom=1.0.0}",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "* testValueClass{deprecatedFrom=1.0.0}",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ]
+            }
+        }
+    },
+    {
+        "error_code": "SCHEMA_DEPRECATION_ERROR",
+        "name": "schema-deprecated-invalid-suggested-related-tag",
+        "warning": true,
+        "description": "A schema deprecation issue, saying a related or suggested tag points to a deprecated tag",
+        "schema": "",
+        "definitions": [],
+        "tests": {
+            "schema_tests": {
+                "fails": [
+                    [
+                        "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''BaseTag'''",
+                        "* Tag1 {deprecatedFrom=1.0.0}",
+                        "* Tag2",
+                        "* Tag3{suggestedTag=Tag1}",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ],
+                    [
+                        "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''BaseTag'''",
+                        "* Tag1 {deprecatedFrom=1.0.0}",
+                        "* Tag2",
+                        "* Tag3{relatedTag=Tag1}",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ],
+                "passes": [
+                    [
+                        "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''BaseTag'''",
+                        "* Tag1 {deprecatedFrom=1.0.0}",
+                        "* Tag2",
+                        "* Tag3{suggestedTag=Tag2}",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ],
+                    [
+                        "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''BaseTag'''",
+                        "* Tag1 {deprecatedFrom=1.0.0}",
+                        "* Tag2",
+                        "* Tag3{relatedTag=Tag2}",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ],
+                    [
+                        "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''BaseTag'''",
+                        "* Tag1 {deprecatedFrom=1.0.0}",
+                        "* Tag2",
+                        "* Tag3{suggestedTag=Tag1, deprecatedFrom=1.0.0}",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ],
+                    [
+                        "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''BaseTag'''",
+                        "* Tag1 {deprecatedFrom=1.0.0}",
+                        "* Tag2",
+                        "* Tag3{relatedTag=Tag1, deprecatedFrom=1.0.0}",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ]
+            }
+        }
+    },
+    {
+        "error_code": "SCHEMA_DEPRECATION_ERROR",
+        "name": "schema-deprecated-deprecated-attribute",
+        "warning": true,
+        "description": "A schema deprecation issue, an attribute of an element is deprecated",
+        "schema": "",
+        "definitions": [],
+        "tests": {
+            "schema_tests": {
+                "fails": [
+                    [
+                        "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''BaseTag'''",
+                        "* Extension{deprecatedAttribute}",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "* deprecatedAttribute {deprecatedFrom=1.0.0, elementProperty}",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ],
+                    [
+                        "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''BaseTag'''",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "* deprecatedUnitClass{deprecatedAttribute}",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "* deprecatedAttribute {deprecatedFrom=1.0.0, elementProperty}",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ],
+                    [
+                        "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''BaseTag'''",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "* deprecatedUnitClass",
+                        "** deprecatedUnit{deprecatedAttribute}",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "* deprecatedAttribute {deprecatedFrom=1.0.0, elementProperty}",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ],
+                    [
+                        "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''BaseTag'''",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "* deprecatedUnitModifier {deprecatedAttribute}",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "* deprecatedAttribute {deprecatedFrom=1.0.0, elementProperty}",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ],
+                    [
+                        "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''BaseTag'''",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "* deprecatedValueClass {deprecatedAttribute}",
+                        "'''Schema attributes'''",
+                        "* deprecatedAttribute {deprecatedFrom=1.0.0, elementProperty}",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ],
+                "passes": [
+                    [
+                        "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''BaseTag'''",
+                        "* Extension{deprecatedAttribute, deprecatedFrom=1.0.0}",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "* deprecatedAttribute {deprecatedFrom=1.0.0, elementProperty}",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ],
+                    [
+                        "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''BaseTag'''",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "* deprecatedUnitClass{deprecatedAttribute, deprecatedFrom=1.0.0}",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "* deprecatedAttribute {deprecatedFrom=1.0.0, elementProperty}",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ],
+                    [
+                        "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''BaseTag'''",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "* deprecatedUnitClass",
+                        "** deprecatedUnit{deprecatedAttribute, deprecatedFrom=1.0.0}",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "* deprecatedAttribute {deprecatedFrom=1.0.0, elementProperty}",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ],
+                    [
+                        "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''BaseTag'''",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "* deprecatedUnitModifier {deprecatedAttribute, deprecatedFrom=1.0.0}",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "* deprecatedAttribute {deprecatedFrom=1.0.0, elementProperty}",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ],
+                    [
+                        "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''BaseTag'''",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "* deprecatedValueClass {deprecatedAttribute, deprecatedFrom=1.0.0}",
+                        "'''Schema attributes'''",
+                        "* deprecatedAttribute {deprecatedFrom=1.0.0, elementProperty}",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ]
+            }
+        }
+    },
+    {
+        "error_code": "SCHEMA_DEPRECATION_ERROR",
+        "name": "schema-deprecated-deprecated-property",
+        "warning": true,
+        "description": "A schema deprecation issue, a property of an attribute is is deprecated",
+        "schema": "",
+        "definitions": [],
+        "tests": {
+            "schema_tests": {
+                "fails": [
+                    [
+                        "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''BaseTag'''",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "* deprecatedAttribute {deprecatedProperty}",
+                        "'''Properties'''",
+                        "* deprecatedProperty {deprecatedFrom=1.0.0}",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ],
+                "passes": [
+                    [
+                        "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''BaseTag'''",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "* deprecatedAttribute {deprecatedProperty, deprecatedFrom=1.0.0}",
+                        "'''Properties'''",
+                        "* deprecatedProperty {deprecatedFrom=1.0.0}",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ]
+            }
+        }
+    },
+    {
+        "error_code": "SCHEMA_DUPLICATE_NODE",
+        "name": "attribute-duplicate-node",
+        "warning": true,
+        "description": "A schema attribute issue, saying there is a duplicate node.",
+        "schema": "",
+        "error_category": "schema_development",
+        "common_causes": [
+            "Defining the same tag or attribute multiple times in schema",
+            "Copy-paste errors leading to duplicate entries",
+            "Conflicting tag definitions in merged schemas",
+            "Case-insensitive duplicate tag names",
+            "Duplicate attribute definitions within same tag"
+        ],
+        "explanation": "Schema nodes (tags, attributes, etc.) must be unique within their scope. Duplicate nodes create ambiguity and can cause validation errors or unexpected behavior.",
+        "correction_strategy": "Remove duplicate entries and ensure unique node definitions",
+        "correction_examples": [
+            {
+                "wrong": "* Tag1\n* Tag1",
+                "correct": "* Tag1",
+                "explanation": "Removed duplicate tag definition"
+            },
+            {
+                "wrong": "* Tag {attribute1, attribute1}",
+                "correct": "* Tag {attribute1}",
+                "explanation": "Removed duplicate attribute from tag definition"
+            }
+        ],
+        "correction_patterns": [
+            "Remove exact duplicate entries",
+            "Merge conflicting definitions if appropriate",
+            "Check for case-insensitive duplicates",
+            "Verify uniqueness within tag hierarchies"
+        ],
+        "fix_instructions": [
+            "1. Identify duplicate node definitions in schema",
+            "2. Determine which definition to keep",
+            "3. Remove or merge duplicate entries",
+            "4. Check for case-insensitive conflicts",
+            "5. Validate schema structure after cleanup"
+        ],
+        "validation_hints": [
+            "Search for exact name matches in schema",
+            "Check case-insensitive duplicates",
+            "Verify tag hierarchy uniqueness",
+            "Test schema loading after duplicate removal"
+        ],
+        "specification_reference": "3.1.2. Schema structure and uniqueness",
+        "related_errors": [
+            "SCHEMA_LOAD_FAILED",
+            "SCHEMA_ATTRIBUTE_INVALID"
+        ],
+        "definitions": [],
+        "tests": {
+            "schema_tests": {
+                "fails": [
+                    [
+                        "HED version=\"1.0.0\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''Tag'''",
+                        "* Tag",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers''' <nowiki></nowiki>",
+                        "* mod1 <nowiki></nowiki>",
+                        "'''Value classes'''",
+                        "'''Schema attributes''' <nowiki></nowiki>",
+                        "* unitAttribute <nowiki></nowiki>",
+                        "'''Properties''' <nowiki></nowiki>",
+                        "* unitProperty <nowiki></nowiki>",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ],
+                    [
+                        "HED version=\"1.0.0\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''Tag'''",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers''' <nowiki></nowiki>",
+                        "* mod1 <nowiki></nowiki>",
+                        "* mod1 <nowiki></nowiki>",
+                        "'''Value classes'''",
+                        "'''Schema attributes''' <nowiki></nowiki>",
+                        "* unitAttribute <nowiki></nowiki>",
+                        "'''Properties''' <nowiki></nowiki>",
+                        "* unitProperty <nowiki></nowiki>",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ],
+                    [
+                        "HED version=\"1.0.0\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''Tag'''",
+                        "!# end schema",
+                        "'''Unit classes''' <nowiki></nowiki>",
+                        "* unitClass1 <nowiki></nowiki>",
+                        "** unit1 <nowiki></nowiki>",
+                        "** unit1 <nowiki></nowiki>",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes''' <nowiki></nowiki>",
+                        "* unitAttribute <nowiki></nowiki>",
+                        "'''Properties''' <nowiki></nowiki>",
+                        "* unitProperty <nowiki></nowiki>",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ],
+                    [
+                        "HED version=\"1.0.0\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''Tag'''",
+                        "!# end schema",
+                        "'''Unit classes''' <nowiki></nowiki>",
+                        "* unitClass1 <nowiki></nowiki>",
+                        "** unit1 <nowiki></nowiki>",
+                        "* unitClass2 <nowiki></nowiki>",
+                        "** unit1 <nowiki></nowiki>",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes''' <nowiki></nowiki>",
+                        "* unitAttribute <nowiki></nowiki>",
+                        "'''Properties''' <nowiki></nowiki>",
+                        "* unitProperty <nowiki></nowiki>",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ],
+                    [
+                        "HED version=\"1.0.0\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''Tag'''",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes''' <nowiki></nowiki>",
+                        "* unitAttribute <nowiki></nowiki>",
+                        "* unitAttribute <nowiki></nowiki>",
+                        "'''Properties''' <nowiki></nowiki>",
+                        "* unitProperty <nowiki></nowiki>",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ],
+                    [
+                        "HED version=\"1.0.0\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''Tag'''",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes''' <nowiki></nowiki>",
+                        "* unitAttribute <nowiki></nowiki>",
+                        "'''Properties''' <nowiki></nowiki>",
+                        "* unitProperty <nowiki></nowiki>",
+                        "* unitProperty <nowiki></nowiki>",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ],
+                "passes": [
+                    [
+                        "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''Tag-with-unknown''' {suggestedTag=Event}",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ]
+            }
+        }
+    },
+    {
+        "error_code": "SCHEMA_DUPLICATE_NODE",
+        "name": "attribute-duplicate-node-unit",
+        "warning": true,
+        "description": "A schema attribute issue, saying there is an unknown one.",
+        "schema": "",
+        "definitions": [],
+        "tests": {
+            "schema_tests": {
+                "fails": [
+                    [
+                        "HED version=\"1.0.0\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''Tag'''",
+                        "!# end schema",
+                        "'''Unit classes''' <nowiki></nowiki>",
+                        "* unitClass1 <nowiki></nowiki>",
+                        "** volt {SIUnit} <nowiki></nowiki>",
+                        "** Volt {SIUnit} <nowiki></nowiki>",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes''' <nowiki></nowiki>",
+                        "* unitSymbol {unitProperty}<nowiki></nowiki>",
+                        "* SIUnit {unitProperty}<nowiki></nowiki>",
+                        "'''Properties''' <nowiki></nowiki>",
+                        "* unitProperty <nowiki></nowiki>",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ],
+                "passes": [
+                    [
+                        "HED version=\"1.0.0\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''Tag'''",
+                        "!# end schema",
+                        "'''Unit classes''' <nowiki></nowiki>",
+                        "* unitClass1 <nowiki></nowiki>",
+                        "** v {unitSymbol} <nowiki></nowiki>",
+                        "** V {unitSymbol} <nowiki></nowiki>",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes''' <nowiki></nowiki>",
+                        "* unitSymbol {unitProperty}<nowiki></nowiki>",
+                        "* SIUnit {unitProperty}<nowiki></nowiki>",
+                        "'''Properties''' <nowiki></nowiki>",
+                        "* unitProperty <nowiki></nowiki>",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ]
+            }
+        }
+    },
+    {
+        "error_code": "SCHEMA_HEADER_INVALID",
+        "name": "schema-header-malformed-attribute",
+        "warning": true,
+        "description": "A schema attribute issue, saying there is an unknown one.",
+        "schema": "",
+        "error_category": "schema_development",
+        "common_causes": [
+            "Using unknown or invalid attributes in schema header",
+            "Misspelling required header attributes",
+            "Missing required header attributes for library schemas",
+            "Invalid version format specification",
+            "Incorrect library schema attribute combinations"
+        ],
+        "explanation": "Schema headers must contain only valid attributes as defined in the HED specification. Unknown attributes indicate potential schema structure problems or specification violations.",
+        "correction_strategy": "Remove unknown attributes and ensure proper header format",
+        "correction_examples": [
+            {
+                "wrong": "HED version=\"1.0.0\" unknownAttribute=other",
+                "correct": "HED version=\"1.0.0\"",
+                "explanation": "Removed unknown attribute from header"
+            },
+            {
+                "wrong": "HED version=\"1.0.0\" library=\"test\" missingStandard=\"8.2.0\"",
+                "correct": "HED version=\"1.0.0\" library=\"test\" withStandard=\"8.2.0\"",
+                "explanation": "Fixed attribute name from 'missingStandard' to 'withStandard'"
+            }
+        ],
+        "correction_patterns": [
+            "Remove unrecognized header attributes",
+            "Use semantic versioning format",
+            "Check library schema attribute requirements",
+            "Verify header syntax matches format specification",
+            "Ensure version compatibility"
+        ],
+        "fix_instructions": [
+            "1. Identify unknown or invalid attributes in header",
+            "2. Remove unrecognized attributes",
+            "3. Verify required attributes are present",
+            "4. Check attribute value formats",
+            "5. Ensure library schema requirements are met"
+        ],
+        "validation_hints": [
+            "Check against valid HED header attribute list",
+            "Verify attribute spelling and case sensitivity",
+            "Ensure library schemas include required attributes",
+            "Validate version format compliance"
+        ],
+        "specification_reference": "3.1.2.1. The header",
+        "related_errors": [
+            "SCHEMA_VERSION_INVALID",
+            "SCHEMA_LIBRARY_INVALID"
+        ],
+        "definitions": [],
+        "tests": {
+            "schema_tests": {
+                "fails": [
+                    [
+                        "HED version=\"1.0.0\" unknownAttribute=other",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''Tag'''",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ],
+                "passes": [
+                    [
+                        "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''Tag-with-unknown''' {suggestedTag=Event}",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ]
+            }
+        }
+    },
+    {
+        "error_code": "SCHEMA_HEADER_INVALID",
+        "name": "schema-header-unknown-attribute",
+        "warning": true,
+        "description": "A schema attribute issue, saying there is an unknown one.",
+        "schema": "",
+        "definitions": [],
+        "tests": {
+            "schema_tests": {
+                "fails": [
+                    [
+                        "HED version=\"1.0.0\" unknownAttribute=\"other\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''Tag'''",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ],
+                "passes": [
+                    [
+                        "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''Tag-with-unknown''' {suggestedTag=Event}",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ]
+            }
+        }
+    },
+    {
+        "error_code": "SCHEMA_LIBRARY_INVALID",
+        "name": "library-invalid-bad-name",
+        "warning": true,
+        "description": "A schema library issue, indicating the name is invalid.",
+        "schema": "",
+        "error_category": "schema_development",
+        "common_causes": [
+            "Library name contains invalid characters (non-alphabetic)",
+            "Library name not in lowercase",
+            "Missing withStandard attribute when library attribute present",
+            "Invalid withStandard version specification",
+            "Incorrect rooted attribute usage",
+            "Mismatched library schema structure"
+        ],
+        "explanation": "Library schemas have specific naming and structural requirements. Library names must be alphabetic and lowercase, must specify compatible standard schema versions, and follow strict rules for rooted elements and attribute usage.",
+        "correction_strategy": "Fix library naming and structural requirements",
+        "correction_examples": [
+            {
+                "wrong": "library=\"score_invalidchar\"",
+                "correct": "library=\"score\"",
+                "explanation": "Removed invalid characters from library name"
+            },
+            {
+                "wrong": "library=\"SCORE\"",
+                "correct": "library=\"score\"",
+                "explanation": "Converted to lowercase as required"
+            },
+            {
+                "wrong": "library=\"score\"",
+                "correct": "library=\"score\" withStandard=\"8.2.0\"",
+                "explanation": "Added required withStandard attribute"
+            }
+        ],
+        "correction_patterns": [
+            "Use only lowercase alphabetic characters in library names",
+            "Include withStandard attribute with library attribute",
+            "Ensure rooted attribute only in unmerged libraries",
+            "Match rooted elements to standard schema",
+            "Remove inLibrary from unmerged schemas"
+        ],
+        "fix_instructions": [
+            "1. Check library name follows naming rules (lowercase, alphabetic)",
+            "2. Ensure withStandard attribute present with valid version",
+            "3. Verify rooted attribute usage matches requirements",
+            "4. Check library structure matches partnered standard",
+            "5. Remove inappropriate attributes for library type"
+        ],
+        "validation_hints": [
+            "Verify library name is lowercase and alphabetic only",
+            "Check withStandard version exists and is compatible",
+            "Ensure rooted elements match standard schema",
+            "Validate library-specific attribute usage"
+        ],
+        "specification_reference": "7. Library schemas",
+        "related_errors": [
+            "SCHEMA_HEADER_INVALID",
+            "SCHEMA_ATTRIBUTE_INVALID"
+        ],
+        "definitions": [],
+        "tests": {
+            "schema_tests": {
+                "fails": [
+                    [
+                        "HED version=\"1.0.0\" library=\"score_invalidchar\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ],
+                    [
+                        "HED version=\"1.0.0\" library=\"score1\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ],
+                    [
+                        "HED version=\"1.0.0\" library=\"Score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ],
+                "passes": [
+                    [
+                        "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ]
+            }
+        }
+    },
+    {
+        "error_code": "SCHEMA_LIBRARY_INVALID",
+        "name": "library-invalid-bad_with-standard",
+        "warning": true,
+        "description": "A schema library issue, the with-standard attribute is present without the library attribute.",
+        "schema": "",
+        "definitions": [],
+        "tests": {
+            "schema_tests": {
+                "fails": [
+                    [
+                        "HED version=\"1.0.0\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ],
+                    [
+                        "HED version=\"1.0.0\" withStandard=\"8.2.0\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ],
+                "passes": [
+                    [
+                        "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ]
+            }
+        }
+    },
+    {
+        "error_code": "SCHEMA_LIBRARY_INVALID",
+        "name": "library-invalid-bad_with-standard-version",
+        "warning": true,
+        "description": "A schema library issue, indicating it references a version of the standard that can't be found.",
+        "schema": "",
+        "definitions": [],
+        "tests": {
+            "schema_tests": {
+                "fails": [
+                    [
+                        "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.9.9\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ],
+                    [
+                        "HED version=\"1.0.0\" library=\"score\" withStandard=\"7.9.9\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ],
+                "passes": [
+                    [
+                        "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ]
+            }
+        }
+    },
+    {
+        "error_code": "SCHEMA_LIBRARY_INVALID",
+        "name": "library-invalid-rooted-present",
+        "warning": true,
+        "description": "A schema library issue, indicating the rooted property appears in a file it shouldn't.",
+        "schema": "",
+        "definitions": [],
+        "tests": {
+            "schema_tests": {
+                "fails": [
+                    [
+                        "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.2.0\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''Event''' {rooted=Event}",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ],
+                    [
+                        "HED version=\"1.0.0\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''Event''' {rooted=Property}",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "* rooted <nowiki>{nodeProperty} </nowiki>",
+                        "'''Properties'''",
+                        "* nodeProperty",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ],
+                "passes": [
+                    [
+                        "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''NewThing''' {rooted=Event}",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ]
+            }
+        }
+    },
+    {
+        "error_code": "SCHEMA_LIBRARY_INVALID",
+        "name": "library-invalid-rooted-not-top-level",
+        "warning": true,
+        "description": "A schema library issue, indicating a node is being rooted that is not a top level node.",
+        "schema": "",
+        "definitions": [],
+        "tests": {
+            "schema_tests": {
+                "fails": [
+                    [
+                        "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''NewNode'''",
+                        "* NewExtension {rooted=Event}",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ],
+                "passes": [
+                    [
+                        "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''NewNode''' {rooted=Event}",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ]
+            }
+        }
+    },
+    {
+        "error_code": "SCHEMA_LIBRARY_INVALID",
+        "name": "library-invalid-rooted-not-in-base",
+        "warning": true,
+        "description": "A schema library issue, rooted tag does not exist.",
+        "schema": "",
+        "definitions": [],
+        "tests": {
+            "schema_tests": {
+                "fails": [
+                    [
+                        "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''DummyTag'''",
+                        "'''NewTag'''{rooted=DummyTag}",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ],
+                    [
+                        "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''DummyTag'''{rooted=NotRealTag}",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ],
+                "passes": [
+                    [
+                        "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''NewTag''' {rooted=Event}",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ]
+            }
+        }
+    },
+    {
+        "error_code": "SCHEMA_LIBRARY_INVALID",
+        "name": "library-invalid-rooted-in-library-present",
+        "warning": true,
+        "description": "A schema library issue, indicating the InLibrary attribute appears when it shouldn't.",
+        "schema": "",
+        "definitions": [],
+        "tests": {
+            "schema_tests": {
+                "fails": [
+                    [
+                        "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''NewTag''' {rooted=Event}",
+                        "* ExtendedEvent {inLibrary=score}",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ],
+                "passes": [
+                    [
+                        "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''NewTag''' {rooted=Event}",
+                        "* ExtendedEvent",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ]
+            }
+        }
+    },
+    {
+        "error_code": "SCHEMA_LIBRARY_INVALID",
+        "name": "library-invalid-rooted-in-duplicate-other",
+        "warning": true,
+        "description": "A schema library issue, indicating the InLibrary attribute appears when it shouldn't.",
+        "schema": "",
+        "definitions": [],
+        "tests": {
+            "schema_tests": {
+                "fails": [
+                    [
+                        "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''NewTag''' {rooted=Event}",
+                        "* ExtendedEvent",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "* weightUnits",
+                        "** g <nowiki>{SIUnit, unitSymbol, conversionFactor=1.0}</nowiki>",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ],
+                "passes": [
+                    [
+                        "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''NewTag''' {rooted=Event}",
+                        "* ExtendedEvent",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "* weightUnits",
+                        "** testNewUnit <nowiki>{conversionFactor=10.0}</nowiki>",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ]
+            }
+        }
+    },
+    {
+        "error_code": "SCHEMA_SECTION_MISSING",
+        "name": "schema-section-missing",
+        "warning": true,
+        "description": "A schema attribute issue, saying there is an unknown one.",
+        "schema": "",
+        "error_category": "schema_development",
+        "common_causes": [
+            "Missing required schema sections",
+            "Sections not in correct order",
+            "Incorrect section markers or delimiters",
+            "Incomplete schema template usage",
+            "Copy-paste errors in schema creation"
+        ],
+        "explanation": "HED schemas must contain all required sections in the correct order: Prologue, Schema, Unit classes, Unit modifiers, Value classes, Schema attributes, Properties, and Epilogue. Missing or misplaced sections prevent proper schema validation.",
+        "correction_strategy": "Add missing sections in correct order with proper delimiters",
+        "correction_examples": [
+            {
+                "wrong": "Missing '''Unit classes''' section",
+                "correct": "Add '''Unit classes''' after schema section",
+                "explanation": "Added required section with proper MediaWiki formatting"
+            },
+            {
+                "wrong": "Sections in wrong order",
+                "correct": "Reorder to: Prologue, Schema, Unit classes, Unit modifiers, Value classes, Schema attributes, Properties, Epilogue",
+                "explanation": "Arranged sections in required sequence"
+            }
+        ],
+        "correction_patterns": [
+            "Include all required sections even if empty",
+            "Use proper section delimiters (''' for MediaWiki)",
+            "Follow exact section ordering requirements",
+            "Check section names match required format",
+            "Ensure proper start/end schema markers"
+        ],
+        "fix_instructions": [
+            "1. Check for all required sections",
+            "2. Verify sections are in correct order",
+            "3. Add missing sections with proper delimiters",
+            "4. Ensure section names match requirements exactly",
+            "5. Validate schema structure completeness"
+        ],
+        "validation_hints": [
+            "Empty sections are allowed but must be present",
+            "Section order is strictly enforced",
+            "Use exact section names and formatting",
+            "Check both start and end markers"
+        ],
+        "specification_reference": "3.1.2. Schema layout overview",
+        "related_errors": [
+            "SCHEMA_HEADER_INVALID",
+            "WIKI_SEPARATOR_INVALID"
+        ],
+        "definitions": [],
+        "tests": {
+            "schema_tests": {
+                "fails": [
+                    [
+                        "HED version=\"1.0.0\"",
+                        "!# start schema",
+                        "'''Tag'''",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ],
+                    [
+                        "HED version=\"1.0.0\"",
+                        "'''Prologue'''",
+                        "'''Tag'''",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ],
+                    [
+                        "HED version=\"1.0.0\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''Tag'''",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ],
+                    [
+                        "HED version=\"1.0.0\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''Tag'''",
+                        "!# end schema",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ],
+                    [
+                        "HED version=\"1.0.0\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''Tag'''",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ],
+                    [
+                        "HED version=\"1.0.0\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''Tag'''",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ],
+                    [
+                        "HED version=\"1.0.0\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''Tag'''",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ],
+                    [
+                        "HED version=\"1.0.0\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''Tag'''",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ],
+                    [
+                        "HED version=\"1.0.0\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''Tag'''",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''"
+                    ]
+                ],
+                "passes": [
+                    [
+                        "HED version=\"1.0.0\" library=\"testlib\" withStandard=\"8.2.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''Tag''' {suggestedTag=Tag}",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ]
+            }
+        }
+    }
+]

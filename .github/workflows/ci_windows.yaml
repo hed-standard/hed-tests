@@ -1,0 +1,53 @@
+name: CI Windows
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+permissions:
+  contents: read
+
+jobs:
+  test-suite-validation-windows:
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.12"]
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v6
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - uses: actions/cache@v5
+        with:
+          path: ~\AppData\Local\pip\Cache
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Validate test structure (validation tests)
+        run: |
+          python src/scripts/validate_test_structure.py json_test_data/validation_tests
+
+      - name: Validate test structure (schema tests)
+        run: |
+          python src/scripts/validate_test_structure.py json_test_data/schema_tests
+
+      - name: Check test coverage
+        run: |
+          python src/scripts/check_coverage.py
+
+      - name: Run test utilities
+        run: |
+          python -m unittest discover tests

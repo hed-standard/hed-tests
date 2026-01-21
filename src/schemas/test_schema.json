@@ -1,0 +1,315 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/hed-standard/hed-tests/schemas/test_schema.json",
+  "title": "HED Test Case Schema",
+  "description": "JSON Schema defining the structure of HED validation test cases",
+  "type": "array",
+  "minItems": 1,
+  "items": {
+    "type": "object",
+    "required": [
+      "error_code",
+      "name",
+      "description",
+      "schema",
+      "tests"
+    ],
+    "properties": {
+      "error_code": {
+        "type": "string",
+        "description": "The primary HED error code this test validates",
+        "pattern": "^[A-Z_]+$",
+        "examples": ["TAG_INVALID", "UNITS_INVALID", "SCHEMA_ATTRIBUTE_INVALID"]
+      },
+      "alt_codes": {
+        "type": "array",
+        "description": "Alternative error codes that may be reported for this test",
+        "items": {
+          "type": "string",
+          "pattern": "^[A-Z_]+$"
+        },
+        "default": []
+      },
+      "name": {
+        "type": "string",
+        "description": "Unique identifier for this test case (kebab-case preferred, but flexible)",
+        "pattern": "^[a-zA-Z0-9_#]+([- ][a-zA-Z0-9_#]+)*\\s*$",
+        "examples": ["tag-invalid-in-schema", "comma-missing-tag-groups"]
+      },
+      "description": {
+        "type": "string",
+        "description": "Human-readable description of what this test validates",
+        "minLength": 10
+      },
+      "warning": {
+        "type": "boolean",
+        "description": "Whether this test should generate a warning (true) or error (false)",
+        "default": false
+      },
+      "schema": {
+        "oneOf": [
+          {
+            "type": "string",
+            "description": "Single HED schema version for this test",
+            "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$|^$",
+            "examples": ["8.4.0", "8.3.0"]
+          },
+          {
+            "type": "array",
+            "description": "Multiple schema versions or library schemas",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "examples": [["8.4.0", "testlib_2.0.0"], ["sc:score_1.0.0"]]
+          }
+        ]
+      },
+      "error_category": {
+        "type": "string",
+        "description": "Categorization of the error type",
+        "enum": [
+          "syntax",
+          "semantic",
+          "structure",
+          "validation",
+          "context",
+          "reference",
+          "duplication",
+          "temporal",
+          "temporal_logic",
+          "cardinality",
+          "content",
+          "data_format",
+          "count",
+          "schema_development",
+          "value",
+          "placeholder",
+          "consistency",
+          "uniqueness",
+          "schema"
+        ]
+      },
+      "common_causes": {
+        "type": "array",
+        "description": "List of common reasons this error occurs (AI-friendly)",
+        "items": {
+          "type": "string",
+          "minLength": 5
+        },
+        "minItems": 1
+      },
+      "explanation": {
+        "type": "string",
+        "description": "Detailed explanation of why this error occurs (AI-friendly)",
+        "minLength": 20
+      },
+      "correction_strategy": {
+        "type": "string",
+        "description": "General strategy for fixing this error",
+        "minLength": 10
+      },
+      "correction_examples": {
+        "type": "array",
+        "description": "Examples showing wrong vs correct code (AI-friendly)",
+        "items": {
+          "type": "object",
+          "required": ["wrong", "correct", "explanation"],
+          "properties": {
+            "wrong": {
+              "type": "string",
+              "description": "Example of incorrect HED string"
+            },
+            "correct": {
+              "type": "string",
+              "description": "Corrected version of the HED string"
+            },
+            "explanation": {
+              "type": "string",
+              "description": "Why the correction works"
+            }
+          }
+        }
+      },
+      "correction_patterns": {
+        "type": "array",
+        "description": "Step-by-step patterns for fixing the error",
+        "items": {
+          "type": "string"
+        }
+      },
+      "fix_instructions": {
+        "type": "array",
+        "description": "Numbered instructions for fixing the error",
+        "items": {
+          "type": "string"
+        }
+      },
+      "validation_hints": {
+        "type": "array",
+        "description": "Hints for validating the fix",
+        "items": {
+          "type": "string"
+        }
+      },
+      "specification_reference": {
+        "type": "string",
+        "description": "Reference to HED specification section"
+      },
+      "related_errors": {
+        "type": "array",
+        "description": "Related error codes",
+        "items": {
+          "type": "string",
+          "pattern": "^[A-Z_]+$"
+        }
+      },
+      "definitions": {
+        "type": "array",
+        "description": "HED definitions to load before running tests",
+        "items": {
+          "type": "string"
+        },
+        "default": []
+      },
+      "tests": {
+        "type": "object",
+        "description": "Test cases organized by type",
+        "minProperties": 1,
+        "properties": {
+          "string_tests": {
+            "type": "object",
+            "description": "Tests using raw HED strings",
+            "properties": {
+              "fails": {
+                "type": "array",
+                "description": "HED strings that should fail validation",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "passes": {
+                "type": "array",
+                "description": "HED strings that should pass validation",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "sidecar_tests": {
+            "type": "object",
+            "description": "Tests using JSON sidecar files",
+            "properties": {
+              "fails": {
+                "type": "array",
+                "description": "Sidecar JSON that should fail validation",
+                "items": {
+                  "type": "object"
+                }
+              },
+              "passes": {
+                "type": "array",
+                "description": "Sidecar JSON that should pass validation",
+                "items": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "event_tests": {
+            "type": "object",
+            "description": "Tests using tabular event data",
+            "properties": {
+              "fails": {
+                "type": "array",
+                "description": "Event data that should fail validation",
+                "items": {
+                  "type": "array",
+                  "minItems": 2,
+                  "items": [
+                    {
+                      "type": "array",
+                      "description": "Column headers",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  ]
+                }
+              },
+              "passes": {
+                "type": "array",
+                "description": "Event data that should pass validation",
+                "items": {
+                  "type": "array",
+                  "minItems": 2
+                }
+              }
+            }
+          },
+          "combo_tests": {
+            "type": "object",
+            "description": "Tests using combined sidecar + event data",
+            "properties": {
+              "fails": {
+                "type": "array",
+                "description": "Combined data that should fail validation",
+                "items": {
+                  "type": "object",
+                  "required": ["sidecar"],
+                  "properties": {
+                    "sidecar": {
+                      "type": "object",
+                      "description": "JSON sidecar"
+                    },
+                    "events": {
+                      "type": "array",
+                      "description": "Event data rows"
+                    }
+                  }
+                }
+              },
+              "passes": {
+                "type": "array",
+                "description": "Combined data that should pass validation",
+                "items": {
+                  "type": "object",
+                  "required": ["sidecar"],
+                  "properties": {
+                    "sidecar": {
+                      "type": "object"
+                    },
+                    "events": {
+                      "type": "array"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "schema_tests": {
+            "type": "object",
+            "description": "Tests for schema validation (schema_tests directory)",
+            "properties": {
+              "fails": {
+                "type": "array",
+                "description": "Schema content that should fail validation",
+                "items": {
+                  "type": "array"
+                }
+              },
+              "passes": {
+                "type": "array",
+                "description": "Schema content that should pass validation",
+                "items": {
+                  "type": "array"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
