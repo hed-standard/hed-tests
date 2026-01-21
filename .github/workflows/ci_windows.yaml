@@ -6,19 +6,18 @@ on:
   pull_request:
     branches: ["main"]
 
+permissions:
+  contents: read
+
 jobs:
-  build:
+  test-suite-validation-windows:
+    runs-on: windows-latest
     strategy:
       matrix:
-        platform: [windows-latest]
-        python-version: ["3.10", "3.11", "3.12"]
-
-    runs-on: ${{ matrix.platform }}
+        python-version: ["3.10", "3.12"]
 
     steps:
       - uses: actions/checkout@v6
-        with:
-          submodules: false
 
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v6
@@ -27,17 +26,28 @@ jobs:
 
       - uses: actions/cache@v5
         with:
-          path: ${{ env.pythonLocation }}
-          key: ${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ hashFiles('docs/requirements.txt') }}
+          path: ~\AppData\Local\pip\Cache
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-          pip install -e .[test]
 
-      - name: Test with unittest
-        env:
-          HED_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Validate test structure (validation tests)
+        run: |
+          python src/scripts/validate_test_structure.py json_test_data/validation_tests
+
+      - name: Validate test structure (schema tests)
+        run: |
+          python src/scripts/validate_test_structure.py json_test_data/schema_tests
+
+      - name: Check test coverage
+        run: |
+          python src/scripts/check_coverage.py
+
+      - name: Run test utilities
         run: |
           python -m unittest discover tests
