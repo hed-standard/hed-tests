@@ -155,7 +155,7 @@ class CoverageAnalyzer:
         print("=" * 70)
 
         # Summary statistics
-        print("\n📊 Summary Statistics")
+        print("\n[SUMMARY] Summary Statistics")
         print(f"  Total error codes covered: {summary['total_error_codes']}")
         print(f"  Total test cases: {summary['total_test_cases']}")
         print(
@@ -164,19 +164,19 @@ class CoverageAnalyzer:
         )
 
         # Test type coverage
-        print("\n📋 Test Type Coverage")
+        print("\n[TYPES] Test Type Coverage")
         for test_type, count in sorted(summary["test_type_coverage"].items()):
             print(f"  {test_type}: {count} error codes")
 
         # Detailed coverage by error code
-        print("\n🔍 Coverage by Error Code")
+        print("\n[DETAILS] Coverage by Error Code")
         print(f"{'Error Code':<35} {'Cases':<8} {'Types':<25} {'AI':<5}")
         print("-" * 70)
 
         for error_code in sorted(self.coverage_data.keys()):
             data = self.coverage_data[error_code]
             test_types_str = ", ".join(sorted(data["test_types"]))[:20]
-            ai_marker = "✓" if data["has_ai_metadata"] else "✗"
+            ai_marker = "+" if data["has_ai_metadata"] else "-"
 
             print(f"{error_code:<35} {data['test_cases']:<8} {test_types_str:<25} {ai_marker:<5}")
 
@@ -249,7 +249,7 @@ class CoverageAnalyzer:
         with open(output_file, "w", encoding="utf-8") as f:
             f.write("\n".join(lines))
 
-        print(f"\n✅ Markdown report written to: {output_file}")
+        print(f"\n[SUCCESS] Markdown report written to: {output_file}")
 
 
 def main():
