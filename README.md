@@ -1,8 +1,6 @@
 # HED Test Suite
 
-[![CI](https://github.com/hed-standard/hed-tests/actions/workflows/ci.yaml/badge.svg)](https://github.com/hed-standard/hed-tests/actions/workflows/ci.yaml)
-[![Documentation Status](https://readthedocs.org/projects/hed-tests/badge/?version=latest)](https://hed-tests.readthedocs.io/en/latest/?badge=latest)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![CI](https://github.com/hed-standard/hed-tests/actions/workflows/ci.yaml/badge.svg)](https://github.com/hed-standard/hed-tests/actions/workflows/ci.yaml) [![Documentation Status](https://readthedocs.org/projects/hed-tests/badge/?version=latest)](https://hed-tests.readthedocs.io/en/latest/?badge=latest) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 **Official JSON test suite for HED (Hierarchical Event Descriptors) validation**
 
@@ -134,12 +132,14 @@ tests.forEach(testCase => {
 Tests are organized by error code:
 
 ### Syntax Errors
+
 - `CHARACTER_INVALID`: Invalid UTF-8 characters
 - `COMMA_MISSING`: Missing required commas
 - `PARENTHESES_MISMATCH`: Unmatched parentheses
 - `TAG_EMPTY`: Empty tags
 
 ### Semantic Errors
+
 - `TAG_INVALID`: Tag not in schema
 - `TAG_EXTENDED`: Extension validation
 - `TAG_EXTENSION_INVALID`: Invalid extensions
@@ -147,27 +147,32 @@ Tests are organized by error code:
 - `UNITS_INVALID`: Invalid units
 
 ### Definition Errors
+
 - `DEFINITION_INVALID`: Invalid definitions
 - `DEF_INVALID`: Invalid Def usage
 - `DEF_EXPAND_INVALID`: Invalid Def-expand
 
 ### Sidecar Errors
+
 - `SIDECAR_INVALID`: Sidecar structure issues
 - `SIDECAR_BRACES_INVALID`: Invalid brace syntax
 - `SIDECAR_KEY_MISSING`: Missing required keys
 
 ### Schema Errors
+
 - `SCHEMA_ATTRIBUTE_INVALID`: Invalid schema attributes
 - `SCHEMA_DUPLICATE_NODE`: Duplicate schema nodes
 - `SCHEMA_HEADER_INVALID`: Invalid schema headers
 
 ### Temporal Errors
+
 - `TEMPORAL_TAG_ERROR`: Temporal tag issues
 - `TEMPORAL_TAG_ERROR_DELAY`: Temporal delay issues
 
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on:
+
 - Adding new test cases
 - Test file format requirements
 - JSON validation
@@ -211,6 +216,7 @@ python -m unittest tests.test_summarize_testdata -v
 ## Test Statistics
 
 **Current coverage** (as of January 2026):
+
 - **Validation tests**: 25 error codes
 - **Schema tests**: 11 error codes
 - **Total test cases**: 500+ individual tests
@@ -219,6 +225,7 @@ python -m unittest tests.test_summarize_testdata -v
 ## Versioning
 
 This repository follows semantic versioning:
+
 - **Major**: Breaking changes to test format
 - **Minor**: New test cases or error codes
 - **Patch**: Bug fixes in existing tests

@@ -448,6 +448,7 @@ If your validator produces different results:
 4. **File an issue**: Report discrepancies at https://github.com/hed-standard/hed-tests/issues
 
 Include:
+
 - Test case name and error code
 - Expected vs actual behavior
 - Your validator implementation (Python, JavaScript, etc.)

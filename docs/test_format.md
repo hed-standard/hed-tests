@@ -7,6 +7,7 @@ Each JSON test file in the HED Test Suite follows a standardized structure to en
 ## File Structure
 
 Test files are located in:
+
 - `json_test_data/validation_tests/` - Tests for validation error codes
 - `json_test_data/schema_tests/` - Tests for schema validation errors
 
@@ -50,6 +51,7 @@ Each file contains an array of test case objects.
 ## Required Fields
 
 ### error_code
+
 **Type**: `string`
 
 The HED error code being tested. Must match the filename (e.g., `TAG_INVALID.json`).
@@ -57,6 +59,7 @@ The HED error code being tested. Must match the filename (e.g., `TAG_INVALID.jso
 **Example**: `"TAG_INVALID"`
 
 ### name
+
 **Type**: `string`
 
 A unique, descriptive identifier for the test case. Use lowercase with hyphens.
@@ -64,6 +67,7 @@ A unique, descriptive identifier for the test case. Use lowercase with hyphens.
 **Example**: `"tag-invalid-in-schema"`
 
 ### description
+
 **Type**: `string`
 
 Human-readable description of what the test case validates.
@@ -71,6 +75,7 @@ Human-readable description of what the test case validates.
 **Example**: `"Test that tags not in schema are detected as invalid"`
 
 ### schema
+
 **Type**: `string`
 
 HED schema version for this test case.
@@ -78,6 +83,7 @@ HED schema version for this test case.
 **Example**: `"8.4.0"`
 
 ### tests
+
 **Type**: `object`
 
 Container for all test data. Must include at least one test type.
@@ -85,6 +91,7 @@ Container for all test data. Must include at least one test type.
 ## Optional Fields
 
 ### alt_codes
+
 **Type**: `array[string]`
 
 Alternative error codes that might be reported for this condition. Useful when multiple validators use different codes for the same error.
@@ -92,14 +99,17 @@ Alternative error codes that might be reported for this condition. Useful when m
 **Example**: `["PLACEHOLDER_INVALID"]`
 
 ### warning
+
 **Type**: `boolean` (default: `false`)
 
 Whether this test should produce a warning instead of an error.
 
 ### error_category
+
 **Type**: `string`
 
 Semantic category of the error. One of:
+
 - `"syntax"` - Basic syntax errors (parentheses, commas, etc.)
 - `"semantic"` - Tag meaning errors (invalid tags, wrong values)
 - `"value"` - Value-specific errors (units, placeholders)
@@ -108,11 +118,13 @@ Semantic category of the error. One of:
 - `"schema"` - Schema structure errors
 
 ### common_causes
+
 **Type**: `array[string]`
 
 List of common reasons this error occurs. Used by AI systems to understand typical mistakes.
 
 **Example**:
+
 ```json
 [
     "Typo in tag name",
@@ -122,6 +134,7 @@ List of common reasons this error occurs. Used by AI systems to understand typic
 ```
 
 ### explanation
+
 **Type**: `string`
 
 Detailed explanation of the error for AI systems and developers.
@@ -129,6 +142,7 @@ Detailed explanation of the error for AI systems and developers.
 **Example**: `"Tags must exist in the active HED schema. Extensions are allowed but the base tag must be valid."`
 
 ### correction_strategy
+
 **Type**: `string`
 
 General approach to fixing this error.
@@ -136,11 +150,13 @@ General approach to fixing this error.
 **Example**: `"Check the tag against the schema browser at hedtags.org. Use the correct tag path or a valid extension."`
 
 ### correction_examples
+
 **Type**: `array[object]`
 
 Concrete examples showing wrong → correct transformations.
 
 **Structure**:
+
 ```json
 [
     {
@@ -152,11 +168,13 @@ Concrete examples showing wrong → correct transformations.
 ```
 
 ### definitions
+
 **Type**: `array[string]`
 
 HED definition strings required for the test case. These are evaluated before the test strings.
 
 **Example**:
+
 ```json
 [
     "(Definition/Acc/#, (Acceleration/# m-per-s^2, Red))"
@@ -170,6 +188,7 @@ HED definition strings required for the test case. These are evaluated before th
 Tests for raw HED strings.
 
 **Structure**:
+
 ```json
 {
     "fails": [
@@ -191,6 +210,7 @@ Tests for raw HED strings.
 Tests for BIDS JSON sidecar files.
 
 **Structure**:
+
 ```json
 {
     "fails": [
@@ -225,6 +245,7 @@ Each item is an object with a `sidecar` property containing a BIDS sidecar JSON 
 Tests for tabular event data with HED annotations.
 
 **Structure**:
+
 ```json
 {
     "fails": [
@@ -243,6 +264,7 @@ Tests for tabular event data with HED annotations.
 ```
 
 Each test is a 2D array:
+
 - First row: Column headers (must include at least one HED column)
 - Subsequent rows: Event data
 
@@ -251,6 +273,7 @@ Each test is a 2D array:
 Combined sidecar + event tests (realistic BIDS scenarios).
 
 **Structure**:
+
 ```json
 {
     "fails": [
@@ -292,6 +315,7 @@ Combines a sidecar definition with event data that uses categorical values from 
 ### AI Metadata
 
 For AI training and code generation, include:
+
 - `explanation`: Why this error occurs
 - `common_causes`: Typical mistakes
 - `correction_strategy`: How to fix

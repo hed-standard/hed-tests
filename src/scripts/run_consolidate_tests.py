@@ -1,7 +1,7 @@
 """
 Consolidate individual HED test files into unified test files for validator consumption.
 
-This script combines separate test files from json_test_data/validation_tests/ 
+This script combines separate test files from json_test_data/validation_tests/
 and json_test_data/schema_tests/ into consolidated files used by validators.
 
 Usage:
@@ -9,7 +9,6 @@ Usage:
 """
 
 import json
-import os
 from pathlib import Path
 
 
@@ -31,17 +30,14 @@ def combine_tests(test_dir, output_path, exclude_prefixes=None):
     test_files = sorted(test_dir.glob("*.json"))
 
     # Filter out excluded files
-    filtered_files = [
-        f for f in test_files
-        if not any(f.name.startswith(prefix) for prefix in exclude_prefixes)
-    ]
+    filtered_files = [f for f in test_files if not any(f.name.startswith(prefix) for prefix in exclude_prefixes)]
 
     print(f"Processing {len(filtered_files)} test files from {test_dir.name}/")
 
     # Read and concatenate the JSON data
     for test_file in filtered_files:
         print(f"  - {test_file.name}")
-        with open(test_file, 'r', encoding='utf-8') as file:
+        with open(test_file, "r", encoding="utf-8") as file:
             data = json.load(file)
             # Each file contains a list of test cases
             if isinstance(data, list):
@@ -51,7 +47,7 @@ def combine_tests(test_dir, output_path, exclude_prefixes=None):
 
     # Write the combined data to output file
     output_path.parent.mkdir(parents=True, exist_ok=True)
-    with open(output_path, 'w', encoding='utf-8') as output_file:
+    with open(output_path, "w", encoding="utf-8") as output_file:
         json.dump(combined_data, output_file, indent=4)
 
     print(f"Wrote {len(combined_data)} test cases to {output_path.name}")
@@ -88,33 +84,25 @@ def main():
 
     # Combine validation tests
     print("\n1. Consolidating validation tests...")
-    validation_count = combine_tests(
-        validation_tests_dir,
-        json_test_data_dir / "validationTests.json",
-        exclude_prefixes
-    )
+    validation_count = combine_tests(validation_tests_dir, json_test_data_dir / "validationTests.json", exclude_prefixes)
 
     # Combine schema tests
     print("\n2. Consolidating schema tests...")
-    schema_count = combine_tests(
-        schema_tests_dir,
-        json_test_data_dir / "schemaTests.json",
-        exclude_prefixes
-    )
+    schema_count = combine_tests(schema_tests_dir, json_test_data_dir / "schemaTests.json", exclude_prefixes)
 
     # Create JavaScript consolidated file (validation tests only, excluding schema tests)
     print("\n3. Creating JavaScript consolidated file...")
     # For JavaScript, we typically don't include schema-level validation
     # So we just copy the validation tests file
     javascript_output = json_test_data_dir / "javascriptTests.json"
-    
+
     # Load validation tests and write to JavaScript file
-    with open(json_test_data_dir / "validationTests.json", 'r', encoding='utf-8') as f:
+    with open(json_test_data_dir / "validationTests.json", "r", encoding="utf-8") as f:
         validation_data = json.load(f)
-    
-    with open(javascript_output, 'w', encoding='utf-8') as f:
+
+    with open(javascript_output, "w", encoding="utf-8") as f:
         json.dump(validation_data, f, indent=4)
-    
+
     print(f"Wrote {len(validation_data)} test cases to {javascript_output.name}")
 
     print("\n" + "=" * 60)
@@ -125,9 +113,9 @@ def main():
     print(f"JavaScript tests: {len(validation_data)}")
     print()
     print("Output files:")
-    print(f"  - validationTests.json (all validation tests)")
-    print(f"  - schemaTests.json (all schema tests)")
-    print(f"  - javascriptTests.json (validation tests for JavaScript)")
+    print("  - validationTests.json (all validation tests)")
+    print("  - schemaTests.json (all schema tests)")
+    print("  - javascriptTests.json (validation tests for JavaScript)")
 
     return 0
 

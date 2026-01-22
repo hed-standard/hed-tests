@@ -10,6 +10,7 @@ conform to the official test structure schema. It checks:
 
 Usage:
     python src/scripts/validate_test_structure.py
+    python src/scripts/validate_test_structure.py json_test_data/validation_tests
     python src/scripts/validate_test_structure.py --file <path>
     python src/scripts/validate_test_structure.py --verbose
 """
@@ -21,7 +22,6 @@ from pathlib import Path
 from typing import Dict, List, Tuple
 
 try:
-    import jsonschema
     from jsonschema import Draft7Validator
 except ImportError:
     print("ERROR: jsonschema package not installed")
@@ -48,7 +48,7 @@ class TestValidator:
         if not self.schema_path.exists():
             raise FileNotFoundError(f"Schema not found: {self.schema_path}")
 
-        with open(self.schema_path, 'r', encoding='utf-8') as f:
+        with open(self.schema_path, "r", encoding="utf-8") as f:
             return json.load(f)
 
     def validate_file(self, test_file: Path) -> Tuple[bool, List[str]]:
@@ -69,7 +69,7 @@ class TestValidator:
 
         # Load and parse JSON
         try:
-            with open(test_file, 'r', encoding='utf-8') as f:
+            with open(test_file, "r", encoding="utf-8") as f:
                 data = json.load(f)
         except json.JSONDecodeError as e:
             return False, [f"JSON syntax error: {e}"]
@@ -134,22 +134,22 @@ def print_results(results: Dict[str, Tuple[bool, List[str]]], verbose: bool = Fa
 
     # Show failures
     if failed > 0:
-        print(f"\n❌ FAILED: {failed} file(s)\n")
+        print(f"\n[FAIL] FAILED: {failed} file(s)\n")
         for filename, (is_valid, errors) in results.items():
             if not is_valid:
-                print(f"❌ {filename}")
+                print(f"[FAIL] {filename}")
                 for error in errors:
                     print(f"   {error}")
                 print()
     else:
-        print("\n✅ All files passed validation!")
+        print("\n[PASS] All files passed validation!")
 
     # Show passes
     if verbose and passed > 0:
-        print(f"\n✅ PASSED: {passed} file(s)\n")
+        print(f"\n[PASS] PASSED: {passed} file(s)\n")
         for filename, (is_valid, _) in results.items():
             if is_valid:
-                print(f"✅ {filename}")
+                print(f"[PASS] {filename}")
 
     # Summary
     print("\n" + "=" * 70)
@@ -159,25 +159,13 @@ def print_results(results: Dict[str, Tuple[bool, List[str]]], verbose: bool = Fa
 
 def main():
     """Main function."""
-    parser = argparse.ArgumentParser(
-        description="Validate HED test files against JSON schema"
-    )
+    parser = argparse.ArgumentParser(description="Validate HED test files against JSON schema")
     parser.add_argument(
-        "--file",
-        type=str,
-        help="Validate a specific file (default: validate all)"
+        "directory", type=str, nargs="?", help="Directory to validate (default: validate all test directories)"
     )
-    parser.add_argument(
-        "--verbose",
-        "-v",
-        action="store_true",
-        help="Show details for passing files"
-    )
-    parser.add_argument(
-        "--schema",
-        type=str,
-        help="Path to schema file (default: src/schemas/test_schema.json)"
-    )
+    parser.add_argument("--file", type=str, help="Validate a specific file")
+    parser.add_argument("--verbose", "-v", action="store_true", help="Show details for passing files")
+    parser.add_argument("--schema", type=str, help="Path to schema file (default: src/schemas/test_schema.json)")
 
     args = parser.parse_args()
 
@@ -208,13 +196,28 @@ def main():
         is_valid, errors = validator.validate_file(test_file)
 
         if is_valid:
-            print(f"✅ {test_file} is valid")
+            print(f"[PASS] {test_file} is valid")
             return 0
         else:
-            print(f"❌ {test_file} is invalid:")
+            print(f"[FAIL] {test_file} is invalid:")
             for error in errors:
                 print(f"   {error}")
             return 1
+    elif args.directory:
+        # Validate specified directory
+        target_dir = Path(args.directory)
+        if not target_dir.exists():
+            print(f"ERROR: Directory not found: {target_dir}")
+            return 1
+
+        results = validator.validate_directory(target_dir)
+
+        # Print results
+        print_results(results, verbose=args.verbose)
+
+        # Exit with error if any failures
+        failed_count = sum(1 for is_valid, _ in results.values() if not is_valid)
+        return 1 if failed_count > 0 else 0
     else:
         # Validate all files
         results = {}
