@@ -6,7 +6,7 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = "HED Test Suite"
+project = "HED test suite"
 copyright = "2026, HED Standard"
 author = "HED Standard"
 

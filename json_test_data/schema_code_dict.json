@@ -1,0 +1,61 @@
+{
+    "SCHEMA_ATTRIBUTE_INVALID": [
+        "attribute-invalid-unknown"
+    ],
+    "SCHEMA_ATTRIBUTE_VALUE_INVALID": [
+        "attribute-invalid-allowed-character",
+        "attribute-conversion-factor-invalid",
+        "attribute-default-unit-invalid",
+        "attribute-invalid-hed-id-changed",
+        "attribute-invalid-hed-id-out-range",
+        "attribute-invalid-hed-id-invalid",
+        "attribute-invalid-in-library",
+        "attribute-on-nonplaceholder-invalid",
+        "attribute-relatedTag-invalid",
+        "attribute-suggestedTag-invalid",
+        "attribute-invalid-unit-class",
+        "attribute-invalid-value-class"
+    ],
+    "WIKI_DELIMITERS_INVALID": [
+        "attribute-conversion-format"
+    ],
+    "SCHEMA_CHARACTER_INVALID": [
+        "schema-character-invalid-prologue",
+        "schema-character-invalid-tag",
+        "schema-character-invalid-other-term",
+        "schema-character-invalid-utf8-other-term",
+        "schema-character-allowed-character-unit",
+        "schema-character-invalid-description"
+    ],
+    "SCHEMA_DEPRECATION_ERROR": [
+        "schema-deprecated-attribute-invalid",
+        "schema-deprecated-invalid-child",
+        "schema-deprecated-default-unit",
+        "schema-deprecated-unit-class",
+        "schema-deprecated-value-class",
+        "schema-deprecated-invalid-suggested-related-tag",
+        "schema-deprecated-deprecated-attribute",
+        "schema-deprecated-deprecated-property"
+    ],
+    "SCHEMA_DUPLICATE_NODE": [
+        "attribute-duplicate-node",
+        "attribute-duplicate-node-unit"
+    ],
+    "SCHEMA_HEADER_INVALID": [
+        "schema-header-malformed-attribute",
+        "schema-header-unknown-attribute"
+    ],
+    "SCHEMA_LIBRARY_INVALID": [
+        "library-invalid-bad-name",
+        "library-invalid-bad_with-standard",
+        "library-invalid-bad_with-standard-version",
+        "library-invalid-rooted-present",
+        "library-invalid-rooted-not-top-level",
+        "library-invalid-rooted-not-in-base",
+        "library-invalid-rooted-in-library-present",
+        "library-invalid-rooted-in-duplicate-other"
+    ],
+    "SCHEMA_SECTION_MISSING": [
+        "schema-section-missing"
+    ]
+}

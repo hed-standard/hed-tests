@@ -1,0 +1,125 @@
+{
+    "attribute-invalid-unknown": [
+        "SCHEMA_ATTRIBUTE_INVALID"
+    ],
+    "attribute-invalid-allowed-character": [
+        "SCHEMA_ATTRIBUTE_VALUE_INVALID"
+    ],
+    "attribute-conversion-factor-invalid": [
+        "SCHEMA_ATTRIBUTE_VALUE_INVALID"
+    ],
+    "attribute-conversion-format": [
+        "WIKI_DELIMITERS_INVALID"
+    ],
+    "attribute-default-unit-invalid": [
+        "SCHEMA_ATTRIBUTE_VALUE_INVALID"
+    ],
+    "attribute-invalid-hed-id-changed": [
+        "SCHEMA_ATTRIBUTE_VALUE_INVALID"
+    ],
+    "attribute-invalid-hed-id-out-range": [
+        "SCHEMA_ATTRIBUTE_VALUE_INVALID"
+    ],
+    "attribute-invalid-hed-id-invalid": [
+        "SCHEMA_ATTRIBUTE_VALUE_INVALID"
+    ],
+    "attribute-invalid-in-library": [
+        "SCHEMA_ATTRIBUTE_VALUE_INVALID"
+    ],
+    "attribute-on-nonplaceholder-invalid": [
+        "SCHEMA_ATTRIBUTE_VALUE_INVALID"
+    ],
+    "attribute-relatedTag-invalid": [
+        "SCHEMA_ATTRIBUTE_VALUE_INVALID"
+    ],
+    "attribute-suggestedTag-invalid": [
+        "SCHEMA_ATTRIBUTE_VALUE_INVALID"
+    ],
+    "attribute-invalid-unit-class": [
+        "SCHEMA_ATTRIBUTE_VALUE_INVALID"
+    ],
+    "attribute-invalid-value-class": [
+        "SCHEMA_ATTRIBUTE_VALUE_INVALID"
+    ],
+    "schema-character-invalid-prologue": [
+        "SCHEMA_CHARACTER_INVALID"
+    ],
+    "schema-character-invalid-tag": [
+        "SCHEMA_CHARACTER_INVALID"
+    ],
+    "schema-character-invalid-other-term": [
+        "SCHEMA_CHARACTER_INVALID"
+    ],
+    "schema-character-invalid-utf8-other-term": [
+        "SCHEMA_CHARACTER_INVALID"
+    ],
+    "schema-character-allowed-character-unit": [
+        "SCHEMA_CHARACTER_INVALID"
+    ],
+    "schema-character-invalid-description": [
+        "SCHEMA_CHARACTER_INVALID"
+    ],
+    "schema-deprecated-attribute-invalid": [
+        "SCHEMA_DEPRECATION_ERROR"
+    ],
+    "schema-deprecated-invalid-child": [
+        "SCHEMA_DEPRECATION_ERROR"
+    ],
+    "schema-deprecated-default-unit": [
+        "SCHEMA_DEPRECATION_ERROR"
+    ],
+    "schema-deprecated-unit-class": [
+        "SCHEMA_DEPRECATION_ERROR"
+    ],
+    "schema-deprecated-value-class": [
+        "SCHEMA_DEPRECATION_ERROR"
+    ],
+    "schema-deprecated-invalid-suggested-related-tag": [
+        "SCHEMA_DEPRECATION_ERROR"
+    ],
+    "schema-deprecated-deprecated-attribute": [
+        "SCHEMA_DEPRECATION_ERROR"
+    ],
+    "schema-deprecated-deprecated-property": [
+        "SCHEMA_DEPRECATION_ERROR"
+    ],
+    "attribute-duplicate-node": [
+        "SCHEMA_DUPLICATE_NODE"
+    ],
+    "attribute-duplicate-node-unit": [
+        "SCHEMA_DUPLICATE_NODE"
+    ],
+    "schema-header-malformed-attribute": [
+        "SCHEMA_HEADER_INVALID"
+    ],
+    "schema-header-unknown-attribute": [
+        "SCHEMA_HEADER_INVALID"
+    ],
+    "library-invalid-bad-name": [
+        "SCHEMA_LIBRARY_INVALID"
+    ],
+    "library-invalid-bad_with-standard": [
+        "SCHEMA_LIBRARY_INVALID"
+    ],
+    "library-invalid-bad_with-standard-version": [
+        "SCHEMA_LIBRARY_INVALID"
+    ],
+    "library-invalid-rooted-present": [
+        "SCHEMA_LIBRARY_INVALID"
+    ],
+    "library-invalid-rooted-not-top-level": [
+        "SCHEMA_LIBRARY_INVALID"
+    ],
+    "library-invalid-rooted-not-in-base": [
+        "SCHEMA_LIBRARY_INVALID"
+    ],
+    "library-invalid-rooted-in-library-present": [
+        "SCHEMA_LIBRARY_INVALID"
+    ],
+    "library-invalid-rooted-in-duplicate-other": [
+        "SCHEMA_LIBRARY_INVALID"
+    ],
+    "schema-section-missing": [
+        "SCHEMA_SECTION_MISSING"
+    ]
+}
