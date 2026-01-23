@@ -107,9 +107,14 @@ class TestValidator:
 
         for json_file in sorted(json_files):
             # Skip consolidated files and dictionaries
-            if json_file.name in ["validation_tests.json", "schema_tests.json", 
-                                 "validation_code_dict.json", "validation_testname_dict.json",
-                                 "schema_code_dict.json", "schema_testname_dict.json"]:
+            if json_file.name in [
+                "validation_tests.json",
+                "schema_tests.json",
+                "validation_code_dict.json",
+                "validation_testname_dict.json",
+                "schema_code_dict.json",
+                "schema_testname_dict.json",
+            ]:
                 continue
 
             is_valid, errors = self.validate_file(json_file)
