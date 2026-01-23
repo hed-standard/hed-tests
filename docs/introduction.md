@@ -95,7 +95,7 @@ python src/scripts/validate_test_structure.py json_test_data/validation_tests/TA
 
 # Validate all tests
 
-python src/scripts/validate_test_structure.py json_test_data/validation_tests
+python src/scripts/validate_test_structure.py json_test_data/validation_tests 
 
 python src/scripts/validate_test_structure.py json_test_data/schema_tests
 

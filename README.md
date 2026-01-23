@@ -80,9 +80,9 @@ Each test file contains structured JSON with the following format:
 ### Test Types
 
 1. **string_tests**: Raw HED strings
-1. **sidecar_tests**: JSON sidecar files (BIDS metadata)
-1. **event_tests**: Tabular event data with HED columns
-1. **combo_tests**: Combined sidecar + event data (realistic scenarios)
+2. **sidecar_tests**: JSON sidecar files (BIDS metadata)
+3. **event_tests**: Tabular event data with HED columns
+4. **combo_tests**: Combined sidecar + event data (realistic scenarios)
 
 ## Usage for Validator Developers
 
