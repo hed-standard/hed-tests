@@ -27,7 +27,7 @@ Thank you for your interest in contributing to the HED Test Suite! This document
    ```powershell
    # Windows PowerShell
    python -m venv .venv
-   .venv\Scripts\activate.ps1
+   .venv/Scripts/activate.ps1
    pip install -r requirements.txt
    ```
 4. **Create a feature branch**:
@@ -284,14 +284,14 @@ Concrete before/after examples:
 Before committing, validate the test structure:
 
 ```powershell
-.venv\Scripts\activate.ps1
-python src\scripts\validate_test_structure.py json_test_data\validation_tests\YOUR_FILE.json
+.venv/Scripts/activate.ps1
+python src/scripts/validate_test_structure.py json_test_data/validation_tests/YOUR_FILE.json
 ```
 
 If validation passes, check coverage:
 
 ```powershell
-python src\scripts\check_coverage.py
+python src/scripts/check_coverage.py
 ```
 
 ## Test file format
@@ -335,8 +335,8 @@ python src\scripts\check_coverage.py
 All tests must pass JSON schema validation:
 
 ```powershell
-python src\scripts\validate_test_structure.py json_test_data\validation_tests\
-python src\scripts\validate_test_structure.py json_test_data\schema_tests\
+python src/scripts/validate_test_structure.py json_test_data/validation_tests/
+python src/scripts/validate_test_structure.py json_test_data/schema_tests/
 ```
 
 ### Quality checklist
@@ -456,7 +456,7 @@ Once approved, maintainers will merge your PR.
 
 1. **Update coverage docs**: Run `check_coverage.py` after changes
 2. **Regenerate index**: Run `generate_test_index.py` if adding tests
-3. **Check consolidation**: Run `run_consolidate_tests.py` for JavaScript file
+3. **Check consolidation**: Run `consolidate_tests.py` to update consolidated files and dictionaries
 4. **Keep schemas current**: Test against latest HED schema versions
 
 ## Examples

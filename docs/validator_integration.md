@@ -62,10 +62,25 @@ json_test_data/
 
 ### Consolidated files
 
-For convenience, consolidated test files are also provided:
+For convenience, consolidated test files and lookup dictionaries are provided:
 
-- `json_test_data/javascriptTests.json` - All tests in one file
-- Can be generated using `src/scripts/run_consolidate_tests.py`
+**Test files:**
+
+- `json_test_data/validation_tests.json` - All validation tests in one file
+- `json_test_data/schema_tests.json` - All schema tests in one file
+
+**Lookup dictionaries:**
+
+- `json_test_data/validation_code_dict.json` - Maps error codes to test names
+- `json_test_data/validation_testname_dict.json` - Maps test names to error codes
+- `json_test_data/schema_code_dict.json` - Maps error codes to test names (schema tests)
+- `json_test_data/schema_testname_dict.json` - Maps test names to error codes (schema tests)
+
+Generate these files using:
+
+```bash
+python src/scripts/consolidate_tests.py
+```
 
 ## JSON format
 
@@ -478,8 +493,8 @@ from pathlib import Path
 
 class TestValidationSuite(unittest.TestCase):
     def test_validation_suite(self):
-        test_dir = Path("hed-tests/json_test_data")
-        for test_file in test_dir.rglob("*.json"):
+        test_dir = Path("hed-tests/json_test_data/validation_tests")
+        for test_file in test_dir.glob("*.json"):
             with self.subTest(test_file=test_file.name):
                 with open(test_file) as f:
                     test_cases = json.load(f)
@@ -492,13 +507,34 @@ The JavaScript validator uses the consolidated file:
 
 ```javascript
 // tests/validation.test.js
-const testData = require('./hed-tests/json_test_data/javascriptTests.json');
+const testData = require('./hed-tests/json_test_data/validation_tests.json');
 
 describe('HED Validation Suite', () => {
     testData.forEach(testCase => {
         // ... run tests
     });
 });
+```
+
+### Using lookup dictionaries
+
+Efficiently find tests for specific error codes:
+
+```python
+import json
+
+# Find all tests that validate TAG_INVALID
+with open('hed-tests/json_test_data/validation_code_dict.json') as f:
+    code_dict = json.load(f)
+
+tag_tests = code_dict.get('TAG_INVALID', [])
+print(f"TAG_INVALID is validated by {len(tag_tests)} tests")
+
+# Load only those tests
+with open('hed-tests/json_test_data/validation_tests.json') as f:
+    all_tests = json.load(f)
+
+filtered_tests = [t for t in all_tests if t['name'] in tag_tests]
 ```
 
 ## Questions?

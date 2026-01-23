@@ -906,7 +906,7 @@ Complete index of 136 test cases in the HED test suite.
 
 ### incompatible-merge-schemas
 
-**Description**: Schemas in a merge group must be associated with the same standard schema\].
+**Description**: Schemas in a merge group must be associated with the same standard schema.
 
 **Schema**: score_2.0.0, lang_1.1.0
 
@@ -1028,7 +1028,7 @@ Complete index of 136 test cases in the HED test suite.
 
 ### sidecar-refers-to-missing-tsv-hed-column ⚠️ Warning 🤖 AI 📝 Examples
 
-**Description**: (Warning) A sidecar uses a \{HED} column which does not appear in the corresponding tsv file.
+**Description**: (Warning) A sidecar uses a `{HED}` column which does not appear in the corresponding tsv file.
 
 **Schema**: 8.4.0 **Category**: reference
 

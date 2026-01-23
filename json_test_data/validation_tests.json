@@ -5455,7 +5455,7 @@
         "error_code": "PLACEHOLDER_INVALID",
         "alt_codes": [
             "TAG_EXTENSION_INVALID",
-            "VALID_INVALID"
+            "VALUE_INVALID"
         ],
         "name": "placeholder-invalid-json-#-misplaced",
         "description": "A placeholder (`#`) is used in JSON sidecar or definition, but its parent in the schema does not have a placeholder child.",
@@ -5696,7 +5696,7 @@
     },
     {
         "error_code": "SCHEMA_LOAD_FAILED",
-        "name": "incompatible-merge-schemas ",
+        "name": "incompatible-merge-schemas",
         "description": "Schemas in a merge group must be associated with the same standard schema].",
         "schema": [
             "score_2.0.0",
@@ -10354,7 +10354,7 @@
     {
         "error_code": "TAG_INVALID",
         "alt_codes": [],
-        "name": "tag-has-extra-white space",
+        "name": "tag-has-extra-whitespace",
         "description": "A HED tag has extra internal whitespace, including directly before or after slashes.",
         "warning": false,
         "schema": "8.4.0",

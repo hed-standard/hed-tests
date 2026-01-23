@@ -1,0 +1,363 @@
+{
+    "character-invalid-non-printing-appears": [
+        "CHARACTER_INVALID",
+        "TAG_INVALID",
+        "UNITS_INVALID",
+        "VALUE_INVALID"
+    ],
+    "curly-braces-not-in-sidecar": [
+        "CHARACTER_INVALID",
+        "TAG_INVALID",
+        "UNITS_INVALID",
+        "VALUE_INVALID"
+    ],
+    "invalid-character-name-value-class": [
+        "CHARACTER_INVALID",
+        "TAG_INVALID",
+        "VALUE_INVALID"
+    ],
+    "invalid-character-name-value-class-early-schema": [
+        "CHARACTER_INVALID",
+        "TAG_INVALID",
+        "VALUE_INVALID"
+    ],
+    "comma-missing-tag-groups": [
+        "COMMA_MISSING"
+    ],
+    "comma-missing-tag-and-group": [
+        "COMMA_MISSING"
+    ],
+    "def-expand-invalid-name-not-definition": [
+        "DEF_EXPAND_INVALID"
+    ],
+    "def-expand-invalid-missing-placeholder": [
+        "DEF_EXPAND_INVALID",
+        "VALUE_INVALID"
+    ],
+    "def-expand-invalid-bad-placeholder-value-or-units": [
+        "DEF_EXPAND_INVALID",
+        "VALUE_INVALID",
+        "UNITS_INVALID"
+    ],
+    "def-expand-invalid-tags-not-in-definition": [
+        "DEF_EXPAND_INVALID"
+    ],
+    "def-expand-missing-inner-group": [
+        "DEF_EXPAND_INVALID"
+    ],
+    "def-expand-has-extras": [
+        "DEF_EXPAND_INVALID",
+        "DEFINITION_INVALID"
+    ],
+    "def-invalid-name": [
+        "DEF_INVALID"
+    ],
+    "def-invalid-missing-placeholder": [
+        "DEF_INVALID"
+    ],
+    "def-invalid-bad-placeholder-value": [
+        "DEF_INVALID",
+        "VALUE_INVALID",
+        "UNITS_INVALID"
+    ],
+    "definition-invalid-tag-group": [
+        "DEFINITION_INVALID",
+        "TAG_GROUP_ERROR",
+        "TAG_INVALID"
+    ],
+    "definition-invalid-empty-inner-group": [
+        "DEFINITION_INVALID",
+        "TAG_EMPTY"
+    ],
+    "definition-invalid-multiple-definition-tags": [
+        "DEFINITION_INVALID",
+        "TAG_GROUP_ERROR"
+    ],
+    "definition-invalid-inner-group-defs": [
+        "DEFINITION_INVALID",
+        "TAG_GROUP_ERROR"
+    ],
+    "definition-invalid-bad-number-of-placeholders": [
+        "DEFINITION_INVALID"
+    ],
+    "definition-invalid-placeholder-incorrect-of-positions": [
+        "DEFINITION_INVALID",
+        "TAG_INVALID",
+        "PLACEHOLDER_INVALID"
+    ],
+    "definition-invalid-placeholder-conflict": [
+        "DEFINITION_INVALID",
+        "TAG_INVALID",
+        "PLACEHOLDER_INVALID"
+    ],
+    "definition-invalid-multiple-definitions": [
+        "DEFINITION_INVALID"
+    ],
+    "definition-invalid-content-has-top-level-tag": [
+        "DEFINITION_INVALID",
+        "TAG_GROUP_ERROR"
+    ],
+    "definition-not-allowed-here": [
+        "DEFINITION_INVALID",
+        "TAG_INVALID"
+    ],
+    "tag-deprecated": [
+        "ELEMENT_DEPRECATED"
+    ],
+    "parentheses-mismatch-unmatched-parentheses": [
+        "PARENTHESES_MISMATCH"
+    ],
+    "parentheses-mismatch-incorrect-nesting": [
+        "PARENTHESES_MISMATCH"
+    ],
+    "placeholder-invalid-misplaced": [
+        "PLACEHOLDER_INVALID",
+        "VALUE_INVALID"
+    ],
+    "placeholder-invalid-#-in-categorical-column": [
+        "PLACEHOLDER_INVALID"
+    ],
+    "placeholder-invalid-json-value-column": [
+        "PLACEHOLDER_INVALID"
+    ],
+    "placeholder-invalid-json-#-misplaced": [
+        "PLACEHOLDER_INVALID",
+        "TAG_EXTENSION_INVALID",
+        "VALUE_INVALID"
+    ],
+    "different-standard-schemas-in-same-merge-group": [
+        "SCHEMA_LOAD_FAILED"
+    ],
+    "extra-standard-schemas-in-same-merge-group": [
+        "SCHEMA_LOAD_FAILED"
+    ],
+    "incompatible-merge-schemas": [
+        "SCHEMA_LOAD_FAILED"
+    ],
+    "tag-with-namespace-has-no-schema": [
+        "TAG_NAMESPACE_PREFIX_INVALID"
+    ],
+    "sidecar-braces-contents-invalid": [
+        "SIDECAR_BRACES_INVALID",
+        "CHARACTER_INVALID",
+        "SIDECAR_INVALID"
+    ],
+    "sidecar-braces-invalid-spot": [
+        "SIDECAR_BRACES_INVALID",
+        "VALUE_INVALID",
+        "CHARACTER_INVALID",
+        "UNITS_INVALID",
+        "DEF_INVALID"
+    ],
+    "sidecar-braces-circular-reference": [
+        "SIDECAR_BRACES_INVALID"
+    ],
+    "sidecar-braces-self-reference": [
+        "SIDECAR_BRACES_INVALID"
+    ],
+    "sidecar-braces-appear-as-value-rather-than-tag": [
+        "SIDECAR_BRACES_INVALID",
+        "CHARACTER_INVALID",
+        "VALUE_INVALID",
+        "UNITS_INVALID"
+    ],
+    "sidecar-invalid-key-at-wrong-level": [
+        "SIDECAR_INVALID"
+    ],
+    "sidecar-invalid-na-annotated": [
+        "SIDECAR_INVALID"
+    ],
+    "sidecar-key-missing": [
+        "SIDECAR_KEY_MISSING"
+    ],
+    "sidecar-refers-to-missing-tsv-hed-column": [
+        "SIDECAR_KEY_MISSING"
+    ],
+    "tag-empty-extra-commas-or-parentheses": [
+        "TAG_EMPTY"
+    ],
+    "tag-empty-begin-end-comma": [
+        "TAG_EMPTY"
+    ],
+    "tag-empty-empty-parentheses": [
+        "TAG_EMPTY"
+    ],
+    "tag-expression-repeated-same-level": [
+        "TAG_EXPRESSION_REPEATED"
+    ],
+    "tags-duplicated-across-multiple-rows": [
+        "TAG_EXPRESSION_REPEATED"
+    ],
+    "tags-with-duplicated-onsets-across-multiple-rows": [
+        "TAG_EXPRESSION_REPEATED"
+    ],
+    "tag-extended-extension": [
+        "TAG_EXTENDED"
+    ],
+    "tag-extension-invalid-duplicate": [
+        "TAG_EXTENSION_INVALID"
+    ],
+    "tag-extension-invalid-bad-node-name": [
+        "TAG_EXTENSION_INVALID",
+        "CHARACTER_INVALID",
+        "PLACEHOLDER_INVALID"
+    ],
+    "tag-group-error-missing": [
+        "TAG_GROUP_ERROR",
+        "TEMPORAL_TAG_ERROR",
+        "TAG_INVALID",
+        "DEFINITION_INVALID"
+    ],
+    "tag-group-error-not-top-level": [
+        "TAG_GROUP_ERROR",
+        "TEMPORAL_TAG_ERROR"
+    ],
+    "tag-group-error-deferred-in-splice": [
+        "TAG_GROUP_ERROR",
+        "TEMPORAL_TAG_ERROR"
+    ],
+    "multiple-top-level-tags-in-same-group": [
+        "TAG_GROUP_ERROR",
+        "TEMPORAL_TAG_ERROR"
+    ],
+    "tag-invalid-in-schema": [
+        "TAG_INVALID",
+        "PLACEHOLDER_INVALID"
+    ],
+    "tag-has-extra-whitespace": [
+        "TAG_INVALID"
+    ],
+    "tag-has-leading-trailing-or-consecutive-slashes": [
+        "TAG_INVALID"
+    ],
+    "tag-namespace_prefix-invalid-characters": [
+        "TAG_NAMESPACE_PREFIX_INVALID"
+    ],
+    "tag-namespace_prefix-with-colon-values": [
+        "TAG_NAMESPACE_PREFIX_INVALID"
+    ],
+    "tag-not-unique": [
+        "TAG_NOT_UNIQUE"
+    ],
+    "tag-requires-child-missing": [
+        "TAG_REQUIRES_CHILD"
+    ],
+    "temporal-tag-error-not-tag-group": [
+        "TEMPORAL_TAG_ERROR",
+        "TAG_GROUP_ERROR"
+    ],
+    "temporal-tag-error-nested-group": [
+        "TEMPORAL_TAG_ERROR",
+        "TAG_GROUP_ERROR"
+    ],
+    "temporal-tag-error-wrong-number-of-defs": [
+        "TEMPORAL_TAG_ERROR",
+        "TAG_GROUP_ERROR"
+    ],
+    "temporal-tag-error-onset-has-more-groups": [
+        "TEMPORAL_TAG_ERROR",
+        "TAG_GROUP_ERROR"
+    ],
+    "temporal-tag-error-offset-has-groups": [
+        "TEMPORAL_TAG_ERROR",
+        "TAG_GROUP_ERROR"
+    ],
+    "temporal-tag-error-offset-with-no-onset": [
+        "TEMPORAL_TAG_ERROR"
+    ],
+    "temporal-tag-error-extra tags": [
+        "TEMPORAL_TAG_ERROR",
+        "TAG_GROUP_ERROR"
+    ],
+    "temporal-tag-error-duplicated-onset-or-offset": [
+        "TEMPORAL_TAG_ERROR"
+    ],
+    "temporal-tag-error-inset-outside-its-event": [
+        "TEMPORAL_TAG_ERROR"
+    ],
+    "temporal-tag-error-inset-group-has-extras": [
+        "TEMPORAL_TAG_ERROR",
+        "TAG_GROUP_ERROR"
+    ],
+    "temporal-tag-error-duration-group": [
+        "TEMPORAL_TAG_ERROR",
+        "TAG_GROUP_ERROR"
+    ],
+    "temporal-tag-error-tag-appears-where-not-allowed": [
+        "TEMPORAL_TAG_ERROR",
+        "TAG_GROUP_ERROR"
+    ],
+    "na-in-onset column": [
+        "TEMPORAL_TAG_ERROR",
+        "TAG_GROUP_ERROR"
+    ],
+    "temporal-tag-error-not-tag-group-delay": [
+        "TEMPORAL_TAG_ERROR",
+        "TAG_GROUP_ERROR"
+    ],
+    "temporal-tag-error-nested-group-delay": [
+        "TEMPORAL_TAG_ERROR",
+        "TAG_GROUP_ERROR"
+    ],
+    "temporal-tag-error-wrong-number-of-defs-delay": [
+        "TEMPORAL_TAG_ERROR",
+        "TAG_GROUP_ERROR"
+    ],
+    "temporal-tag-error-onset-has-more-groups-delay": [
+        "TEMPORAL_TAG_ERROR",
+        "TAG_GROUP_ERROR"
+    ],
+    "temporal-tag-error-offset-has-groups-delay": [
+        "TEMPORAL_TAG_ERROR",
+        "TAG_GROUP_ERROR"
+    ],
+    "temporal-tag-error-mismatch-delay": [
+        "TEMPORAL_TAG_ERROR",
+        "TAG_GROUP_ERROR"
+    ],
+    "temporal-tag-error-extra tags-delay": [
+        "TEMPORAL_TAG_ERROR",
+        "TAG_GROUP_ERROR"
+    ],
+    "temporal-tag-error-duplicated-onset-or-offset-delay": [
+        "TEMPORAL_TAG_ERROR",
+        "TAG_GROUP_ERROR"
+    ],
+    "temporal-tag-error-inset-outside-its-event-delay": [
+        "TEMPORAL_TAG_ERROR",
+        "TAG_GROUP_ERROR"
+    ],
+    "temporal-tag-error-inset-group-has-extras-delay": [
+        "TEMPORAL_TAG_ERROR",
+        "TAG_GROUP_ERROR"
+    ],
+    "temporal-tag-error-tag-appears-where-not-allowed-delay": [
+        "TEMPORAL_TAG_ERROR",
+        "TAG_GROUP_ERROR"
+    ],
+    "units-invalid-for-unit-class": [
+        "UNITS_INVALID"
+    ],
+    "units-invalid-si-units": [
+        "UNITS_INVALID"
+    ],
+    "value-invalid-#-substitution": [
+        "VALUE_INVALID",
+        "CHARACTER_INVALID",
+        "TAG_INVALID"
+    ],
+    "value-invalid-incompatible-value-class": [
+        "VALUE_INVALID",
+        "CHARACTER_INVALID"
+    ],
+    "value-invalid-blank-missing-before-units": [
+        "VALUE_INVALID",
+        "CHARACTER_INVALID",
+        "TAG_INVALID",
+        "UNITS_INVALID"
+    ],
+    "invalid-character-numeric-class": [
+        "VALUE_INVALID",
+        "UNITS_INVALID"
+    ]
+}

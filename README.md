@@ -27,9 +27,14 @@ hed-tests/
 │   │   └── ...                  # One file per error code
 │   ├── schema_tests/           # Schema validation tests
 │   │   └── SCHEMA_*.json
-│   └── javascriptTests.json    # Consolidated tests for JavaScript
+│   ├── validation_tests.json    # Consolidated validation tests
+│   ├── schema_tests.json        # Consolidated schema tests
+│   ├── validation_code_dict.json    # Error code → test name mappings (validation)
+│   ├── validation_testname_dict.json # Test name → error codes (validation)
+│   ├── schema_code_dict.json        # Error code → test name mappings (schema)
+│   └── schema_testname_dict.json    # Test name → error codes (schema)
 ├── src/scripts/                # Utility scripts
-│   └── run_consolidate_tests.py
+│   └── consolidate_tests.py
 ├── tests/                      # Test analysis utilities
 └── docs/                       # Documentation
 ```
@@ -108,12 +113,13 @@ for test_case in tests:
 
 ### JavaScript Validator Example
 
-Use the consolidated `javascriptTests.json` file:
+Use the consolidated `validation_tests.json` and `schema_tests.json` files:
 
 ```javascript
-const tests = require('./json_test_data/javascriptTests.json');
+const validationTests = require('./json_test_data/validation_tests.json');
+const schemaTests = require('./json_test_data/schema_tests.json');
 
-tests.forEach(testCase => {
+validationTests.forEach(testCase => {
     testCase.tests.string_tests.fails.forEach(hedString => {
         const errors = validator.validate(hedString, testCase.schema);
         expect(errors.length).toBeGreaterThan(0);
@@ -187,7 +193,7 @@ cd hed-tests
 
 # Create virtual environment (Windows PowerShell)
 python -m venv .venv
-.venv\Scripts\activate.ps1
+.venv/Scripts/activate.ps1
 
 # Install dependencies
 pip install -r requirements-dev.txt
@@ -197,10 +203,10 @@ pip install -r requirements-dev.txt
 
 ```powershell
 # Activate environment first
-.venv\Scripts\activate.ps1
+.venv/Scripts/activate.ps1
 
-# Consolidate tests for JavaScript
-python src\scripts\run_consolidate_tests.py
+# Consolidate tests and generate dictionaries
+python src/scripts/consolidate_tests.py
 
 # Analyze test coverage
 python -m unittest tests.test_summarize_testdata -v
