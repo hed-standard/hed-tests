@@ -18,19 +18,19 @@ Thank you for your interest in contributing to the HED Test Suite! This document
 ### Prerequisites
 
 1. **Fork the repository** on GitHub
-2. **Clone your fork** locally:
+1. **Clone your fork** locally:
    ```bash
    git clone https://github.com/YOUR-USERNAME/hed-tests.git
    cd hed-tests
    ```
-3. **Set up the environment**:
+1. **Set up the environment**:
    ```powershell
    # Windows PowerShell
    python -m venv .venv
-   .venv\Scripts\activate.ps1
+   .venv/Scripts/activate.ps1
    pip install -r requirements.txt
    ```
-4. **Create a feature branch**:
+1. **Create a feature branch**:
    ```bash
    git checkout -b feature/add-new-tests
    ```
@@ -284,14 +284,14 @@ Concrete before/after examples:
 Before committing, validate the test structure:
 
 ```powershell
-.venv\Scripts\activate.ps1
-python src\scripts\validate_test_structure.py json_test_data\validation_tests\YOUR_FILE.json
+.venv/Scripts/activate.ps1
+python src/scripts/validate_test_structure.py json_test_data/validation_tests/YOUR_FILE.json
 ```
 
 If validation passes, check coverage:
 
 ```powershell
-python src\scripts\check_coverage.py
+python src/scripts/check_coverage.py
 ```
 
 ## Test file format
@@ -335,8 +335,8 @@ python src\scripts\check_coverage.py
 All tests must pass JSON schema validation:
 
 ```powershell
-python src\scripts\validate_test_structure.py json_test_data\validation_tests\
-python src\scripts\validate_test_structure.py json_test_data\schema_tests\
+python src/scripts/validate_test_structure.py json_test_data/validation_tests/
+python src/scripts/validate_test_structure.py json_test_data/schema_tests/
 ```
 
 ### Quality checklist
@@ -428,8 +428,8 @@ Closes #123
 Maintainers will review and may request changes. Address feedback by:
 
 1. Making requested changes
-2. Committing updates
-3. Pushing to your branch (PR updates automatically)
+1. Committing updates
+1. Pushing to your branch (PR updates automatically)
 
 ### 5. Merge
 
@@ -440,24 +440,24 @@ Once approved, maintainers will merge your PR.
 ### Writing tests
 
 1. **Start simple**: Begin with string_tests, add complexity later
-2. **Test edge cases**: Include unusual but valid scenarios
-3. **Be comprehensive**: Test both obvious and subtle cases
-4. **Use real examples**: Base tests on actual developer mistakes
-5. **Think about AI**: Write explanations that help machines learn
+1. **Test edge cases**: Include unusual but valid scenarios
+1. **Be comprehensive**: Test both obvious and subtle cases
+1. **Use real examples**: Base tests on actual developer mistakes
+1. **Think about AI**: Write explanations that help machines learn
 
 ### Organization
 
 1. **One error per file**: Keep files focused on single error codes
-2. **Logical naming**: Use descriptive, consistent names
-3. **Group related tests**: Put similar scenarios in the same file
-4. **Document special cases**: Add comments if test is unusual
+1. **Logical naming**: Use descriptive, consistent names
+1. **Group related tests**: Put similar scenarios in the same file
+1. **Document special cases**: Add comments if test is unusual
 
 ### Maintenance
 
 1. **Update coverage docs**: Run `check_coverage.py` after changes
-2. **Regenerate index**: Run `generate_test_index.py` if adding tests
-3. **Check consolidation**: Run `run_consolidate_tests.py` for JavaScript file
-4. **Keep schemas current**: Test against latest HED schema versions
+1. **Regenerate index**: Run `generate_test_index.py` if adding tests
+1. **Check consolidation**: Run `consolidate_tests.py` to update consolidated files and dictionaries
+1. **Keep schemas current**: Test against latest HED schema versions
 
 ## Examples
 
@@ -528,9 +528,9 @@ Once approved, maintainers will merge your PR.
 ### Before asking
 
 1. Read [docs/test_format.md](docs/test_format.md)
-2. Check [docs/test_index.md](docs/test_index.md) for similar tests
-3. Review existing test files for examples
-4. Run validation scripts to identify issues
+1. Check [docs/test_index.md](docs/test_index.md) for similar tests
+1. Review existing test files for examples
+1. Run validation scripts to identify issues
 
 ### Getting help
 

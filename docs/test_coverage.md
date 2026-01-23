@@ -1,6 +1,6 @@
 # HED Test Coverage Report
 
-**Generated**: H:\\Repos\\hed-tests
+**Generated**: coverage.md
 
 ## Summary Statistics
 

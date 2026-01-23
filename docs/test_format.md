@@ -378,8 +378,8 @@ Here's a complete example from `TAG_INVALID.json`:
 All test files are validated against `src/schemas/test_schema.json` using the validation script:
 
 ```powershell
-.venv\Scripts\activate.ps1
-python src\scripts\validate_test_structure.py json_test_data\validation_tests\TAG_INVALID.json
+.venv/Scripts/activate.ps1
+python src/scripts/validate_test_structure.py json_test_data/validation_tests/TAG_INVALID.json
 ```
 
 ## Best Practices

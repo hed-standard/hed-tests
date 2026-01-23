@@ -54,7 +54,7 @@ jobs:
 
       - name: Run consolidation script
         run: |
-          python src/scripts/run_consolidate_tests.py
+          python src/scripts/consolidate_tests.py
 
       - name: Run test utilities
         run: |

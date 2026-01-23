@@ -91,11 +91,13 @@ Ensure test files conform to the JSON schema:
 
 # Validate a single test file
 
-python src\\scripts\\validate_test_structure.py json_test_data\\validation_tests\\TAG_INVALID.json
+python src/scripts/validate_test_structure.py json_test_data/validation_tests/TAG_INVALID.json
 
 # Validate all tests
 
-python src\\scripts\\validate_test_structure.py json_test_data\\validation_tests python src\\scripts\\validate_test_structure.py json_test_data\\schema_tests
+python src/scripts/validate_test_structure.py json_test_data/validation_tests
+
+python src/scripts/validate_test_structure.py json_test_data/schema_tests
 
 ````
 
@@ -104,7 +106,7 @@ python src\\scripts\\validate_test_structure.py json_test_data\\validation_tests
 Generate consolidated test files and lookup dictionaries:
 
 ```powershell
-python src\scripts\consolidate_tests.py
+python src/scripts/consolidate_tests.py
 
 # Creates:
 #   - validation_tests.json (all validation tests)
@@ -122,7 +124,7 @@ The consolidation process creates both combined test files and lookup dictionari
 Analyze test coverage statistics:
 
 ```powershell
-python src\scripts\check_coverage.py
+python src/scripts/check_coverage.py
 
 # Output:
 # HED Test Suite Coverage Report
@@ -138,7 +140,7 @@ python src\scripts\check_coverage.py
 Create a searchable test index:
 
 ```powershell
-python src\scripts\generate_test_index.py
+python src/scripts/generate_test_index.py
 
 # Creates: docs/test_index.md
 ```
