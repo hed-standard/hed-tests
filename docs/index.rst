@@ -17,8 +17,8 @@ HED Test Suite
 
 Welcome to the HED Test Suite documentation! This repository provides the **official JSON test cases**
 for validating HED (Hierarchical Event Descriptors) validator implementations across all platforms.
-These version-controlled tests ensure consistent validation behavior across all HED validatorimplementations.
-The ests are designed to:
+These version-controlled tests ensure consistent validation behavior across all HED validator
+implementations. he tests are designed to:
 
 * **Validate validators**: Ensure Python, JavaScript, and future implementations produce consistent results
 * **Specify behavior**: Provide machine-readable examples of HED validation rules  
