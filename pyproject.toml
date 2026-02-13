@@ -57,12 +57,13 @@ docs = [
     "furo>=2024.1.29",
     "sphinx-copybutton>=0.5.2",
     "myst-parser>=3.0.0",
+    "sphinx-autodoc-typehints>=1.24.0",
     "linkify-it-py>=2.0.3",
 ]
 
 [tool.codespell]
-skip = '*.git,*.pdf,*.svg,venv*,*.tsv,*.yaml,*.yml,*.json,*.rdf,*.jsonld,*.xml,*.mediawiki,*.omn,*.toml'
-ignore-words-list = 'te,parms,assertIn'
+skip = '.git,*.pdf,*.svg,deprecated,venv*,*.tsv,*.yaml,*.yml,*.json,*.rdf,*.jsonld,*.xml,*.mediawiki,*.omn,*.toml'
+ignore-words-list = 'covert,hed,recuse,disjointness,parms,te,assertIn'
 
 [tool.ruff]
 # Target Python 3.10+

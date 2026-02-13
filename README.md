@@ -196,7 +196,7 @@ python -m venv .venv
 .venv/Scripts/activate.ps1
 
 # Install dependencies
-pip install -r requirements-dev.txt
+pip install -e ".[dev,docs]"
 ```
 
 ### Running Scripts

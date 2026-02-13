@@ -28,7 +28,7 @@ Thank you for your interest in contributing to the HED Test Suite! This document
    # Windows PowerShell
    python -m venv .venv
    .venv/Scripts/activate.ps1
-   pip install -r requirements.txt
+   pip install -e ".[dev,docs]"
    ```
 4. **Create a feature branch**:
    ```bash

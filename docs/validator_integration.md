@@ -446,7 +446,7 @@ jobs:
       
       - name: Install dependencies
         run: |
-          pip install -r requirements.txt
+          pip install -e .
       
       - name: Run HED test suite
         run: |
