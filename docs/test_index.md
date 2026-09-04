@@ -1,6 +1,6 @@
 # HED test suite index
 
-Complete index of 186 test cases in the HED test suite.
+Complete index of 189 test cases in the HED test suite.
 
 ## Quick navigation
 
@@ -35,7 +35,7 @@ Complete index of 186 test cases in the HED test suite.
 - [TAG_NOT_UNIQUE](#tag-not-unique) (1 test)
 - [TAG_REQUIRES_CHILD](#tag-requires-child) (1 test)
 - [TEMPORAL_TAG_ERROR](#temporal-tag-error) (24 tests)
-- [UNITS_INVALID](#units-invalid) (2 tests)
+- [UNITS_INVALID](#units-invalid) (5 tests)
 - [VALUE_INVALID](#value-invalid) (4 tests)
 - [WIKI_DELIMITERS_INVALID](#wiki-delimiters-invalid) (1 test)
 
@@ -2136,6 +2136,32 @@ Complete index of 186 test cases in the HED test suite.
 
 **File**: `json_test_data/validation_test_data/UNITS_INVALID.json`
 
+### units-invalid-case (correction guidance) (examples)
+
+**Description**: Units are case-sensitive: a unit name, unit symbol, or SI modifier written in a case other than the one listed in the schema is invalid.
+
+**Schema**: 8.4.0 **Category**: validation
+
+**Tests**:
+
+- `string_tests`: 5 fail, 5 pass
+- `sidecar_tests`: 1 fail, 1 pass
+- `event_tests`: 1 fail, 1 pass
+- `combo_tests`: 1 fail, 1 pass
+
+### units-invalid-compound-units (correction guidance) (examples)
+
+**Description**: A compound unit such as m-per-s takes an SI modifier on each of its components; a modifier applied to the whole string, or a misspelled or wrongly cased component, is invalid.
+
+**Schema**: 8.4.0 **Category**: validation
+
+**Tests**:
+
+- `string_tests`: 3 fail, 4 pass
+- `sidecar_tests`: 1 fail, 1 pass
+- `event_tests`: 1 fail, 1 pass
+- `combo_tests`: 1 fail, 1 pass
+
 ### units-invalid-for-unit-class (correction guidance) (examples)
 
 **Description**: A tag has a value with units that are invalid or not of the correct unit class for the tag.
@@ -2158,6 +2184,19 @@ Complete index of 186 test cases in the HED test suite.
 **Tests**:
 
 - `string_tests`: 2 fail, 1 pass
+- `sidecar_tests`: 1 fail, 1 pass
+- `event_tests`: 1 fail, 1 pass
+- `combo_tests`: 1 fail, 1 pass
+
+### units-invalid-symbol-plural (correction guidance) (examples)
+
+**Description**: A unit symbol cannot be pluralized, and a unit name accepts only its standard English plural.
+
+**Schema**: 8.4.0 **Category**: validation
+
+**Tests**:
+
+- `string_tests`: 3 fail, 4 pass
 - `sidecar_tests`: 1 fail, 1 pass
 - `event_tests`: 1 fail, 1 pass
 - `combo_tests`: 1 fail, 1 pass

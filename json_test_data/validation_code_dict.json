@@ -37,6 +37,9 @@
         "sidecar-braces-appear-as-value-rather-than-tag",
         "units-invalid-for-unit-class",
         "units-invalid-si-units",
+        "units-invalid-case",
+        "units-invalid-symbol-plural",
+        "units-invalid-compound-units",
         "value-invalid-blank-missing-before-units",
         "invalid-character-numeric-class"
     ],

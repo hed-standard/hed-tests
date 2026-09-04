@@ -456,6 +456,15 @@
     "units-invalid-si-units": [
         "UNITS_INVALID"
     ],
+    "units-invalid-case": [
+        "UNITS_INVALID"
+    ],
+    "units-invalid-symbol-plural": [
+        "UNITS_INVALID"
+    ],
+    "units-invalid-compound-units": [
+        "UNITS_INVALID"
+    ],
     "value-invalid-#-substitution": [
         "VALUE_INVALID",
         "CHARACTER_INVALID",
