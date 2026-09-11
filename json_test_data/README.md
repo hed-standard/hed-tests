@@ -28,6 +28,6 @@ After editing anything in `validation_test_data/` or `schema_test_data/`, run:
 python src/scripts/consolidate_tests.py
 ```
 
-and commit the regenerated files together with your edit. CI runs the consolidation script but does not fail when the committed copies are stale, so a forgotten regeneration silently leaves validators consuming outdated tests.
+and commit the regenerated files together with your edit. Both the pre-commit hook and CI run `python src/scripts/regenerate.py --check`, which fails when a committed generated file is stale, so a forgotten regeneration is caught before validators consume outdated tests.
 
 The full test format specification and maintenance workflow are in the [user guide](https://www.hedtags.org/hed-tests).

@@ -47,7 +47,10 @@
       "Test schema loading after duplicate removal"
     ],
     "specification_reference": "3.1.2. Schema structure and uniqueness",
-    "related_errors": ["SCHEMA_LOAD_FAILED", "SCHEMA_ATTRIBUTE_INVALID"],
+    "related_errors": [
+      "SCHEMA_LOAD_FAILED",
+      "SCHEMA_ATTRIBUTE_INVALID"
+    ],
     "definitions": [],
     "tests": {
       "schema_tests": {
@@ -181,7 +184,7 @@
       }
     }
   },
-    {
+  {
     "error_code": "SCHEMA_DUPLICATE_NODE",
     "name": "attribute-duplicate-node-unit",
     "warning": false,
@@ -230,6 +233,116 @@
             "* SIUnit {unitProperty}<nowiki></nowiki>",
             "'''Properties''' <nowiki></nowiki>",
             "* unitProperty <nowiki></nowiki>",
+            "'''Epilogue'''",
+            "!# end hed"
+          ]
+        ]
+      }
+    }
+  },
+  {
+    "error_code": "SCHEMA_DUPLICATE_NODE",
+    "name": "attribute-duplicate-node-derived-in-two-classes",
+    "warning": false,
+    "description": "A unit string is derived by two unit classes (SI modifier applied to a unit of each) and listed by neither, so it would be ambiguous on a placeholder that accepts any unit.",
+    "schema": "",
+    "error_category": "schema_development",
+    "common_causes": [
+      "Two SI unit symbols in different classes whose modified forms coincide (da + Q and d + aQ both give daQ)"
+    ],
+    "explanation": "Specification 4.0.0 lets a placeholder accept a unit from any unit class (unitClass=anyUnits), so every unit string must resolve to one class. A string listed in one class and derived in another is fine: the listed unit wins. A string that two classes derive and neither lists has no winner and is a SCHEMA_DUPLICATE_NODE error. Two classes listing the same unit is already a duplicate node.",
+    "correction_strategy": "Rename or drop one of the units so that no modified form coincides, or list the shared form in one class",
+    "correction_examples": [
+      {
+        "wrong": "qUnits lists Q and aqUnits lists aQ with modifiers d and da: daQ is da+Q and d+aQ",
+        "correct": "Remove the da modifier, or list daQ in one class",
+        "explanation": "A string may be derived by at most one class unless some class lists it"
+      }
+    ],
+    "correction_patterns": [
+      "One class per derivable string",
+      "Listed wins over derived"
+    ],
+    "fix_instructions": [
+      "1. Expand every SI unit of every class with every applicable modifier",
+      "2. Find strings produced by two classes that no class lists",
+      "3. Change one of the units or modifiers involved"
+    ],
+    "validation_hints": [
+      "Build the set of derived forms per class; a form in two classes and not listed anywhere is the error",
+      "A form listed in one class and derived in another is allowed"
+    ],
+    "specification_reference": "3.1.4.4. Unit classes and units",
+    "related_errors": [
+      "SCHEMA_ATTRIBUTE_INVALID",
+      "UNITS_INVALID"
+    ],
+    "definitions": [],
+    "tests": {
+      "schema_tests": {
+        "fails": [
+          [
+            "HED version=\"1.0.0\"",
+            "'''Prologue'''",
+            "!# start schema",
+            "'''Tag'''",
+            "!# end schema",
+            "'''Unit classes'''",
+            "* qUnits {defaultUnits=Q}",
+            "** Q {SIUnit, unitSymbol, conversionFactor=1.0}",
+            "* aqUnits {defaultUnits=aQ}",
+            "** aQ {SIUnit, unitSymbol, conversionFactor=1.0}",
+            "'''Unit modifiers'''",
+            "* d {SIUnitSymbolModifier}",
+            "* da {SIUnitSymbolModifier}",
+            "* a {SIUnitSymbolModifier}",
+            "'''Value classes'''",
+            "'''Schema attributes'''",
+            "* takesValue {tagProperty}",
+            "* unitClass {tagProperty}",
+            "* SIUnit {unitProperty}",
+            "* unitSymbol {unitProperty}",
+            "* conversionFactor {unitProperty}",
+            "* defaultUnits {unitClassProperty}",
+            "* SIUnitSymbolModifier {unitModifierProperty}",
+            "'''Properties'''",
+            "* tagProperty",
+            "* unitProperty",
+            "* unitClassProperty",
+            "* unitModifierProperty",
+            "'''Epilogue'''",
+            "!# end hed"
+          ]
+        ],
+        "passes": [
+          [
+            "HED version=\"1.0.0\"",
+            "'''Prologue'''",
+            "!# start schema",
+            "'''Tag'''",
+            "!# end schema",
+            "'''Unit classes'''",
+            "* qUnits {defaultUnits=Q}",
+            "** Q {SIUnit, unitSymbol, conversionFactor=1.0}",
+            "* aqUnits {defaultUnits=aQ}",
+            "** aQ {SIUnit, unitSymbol, conversionFactor=1.0}",
+            "'''Unit modifiers'''",
+            "* d {SIUnitSymbolModifier}",
+            "* a {SIUnitSymbolModifier}",
+            "'''Value classes'''",
+            "'''Schema attributes'''",
+            "* takesValue {tagProperty}",
+            "* unitClass {tagProperty}",
+            "* SIUnit {unitProperty}",
+            "* unitSymbol {unitProperty}",
+            "* conversionFactor {unitProperty}",
+            "* defaultUnits {unitClassProperty}",
+            "* SIUnitSymbolModifier {unitModifierProperty}",
+            "'''Properties'''",
+            "* tagProperty",
+            "* unitProperty",
+            "* unitClassProperty",
+            "* unitModifierProperty",
             "'''Epilogue'''",
             "!# end hed"
           ]

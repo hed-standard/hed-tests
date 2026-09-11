@@ -1,6 +1,6 @@
 # HED test suite index
 
-Complete index of 191 test cases in the HED test suite.
+Complete index of 196 test cases in the HED test suite.
 
 ## Quick navigation
 
@@ -12,11 +12,11 @@ Complete index of 191 test cases in the HED test suite.
 - [ELEMENT_DEPRECATED](#element-deprecated) (1 test)
 - [PARENTHESES_MISMATCH](#parentheses-mismatch) (2 tests)
 - [PLACEHOLDER_INVALID](#placeholder-invalid) (4 tests)
-- [SCHEMA_ATTRIBUTE_INVALID](#schema-attribute-invalid) (1 test)
-- [SCHEMA_ATTRIBUTE_VALUE_INVALID](#schema-attribute-value-invalid) (12 tests)
+- [SCHEMA_ATTRIBUTE_INVALID](#schema-attribute-invalid) (2 tests)
+- [SCHEMA_ATTRIBUTE_VALUE_INVALID](#schema-attribute-value-invalid) (14 tests)
 - [SCHEMA_CHARACTER_INVALID](#schema-character-invalid) (6 tests)
 - [SCHEMA_DEPRECATION_ERROR](#schema-deprecation-error) (8 tests)
-- [SCHEMA_DUPLICATE_NODE](#schema-duplicate-node) (2 tests)
+- [SCHEMA_DUPLICATE_NODE](#schema-duplicate-node) (3 tests)
 - [SCHEMA_HEADER_INVALID](#schema-header-invalid) (3 tests)
 - [SCHEMA_LIBRARY_INVALID](#schema-library-invalid) (18 tests)
 - [SCHEMA_LOAD_FAILED](#schema-load-failed) (41 tests)
@@ -35,7 +35,7 @@ Complete index of 191 test cases in the HED test suite.
 - [TAG_NOT_UNIQUE](#tag-not-unique) (1 test)
 - [TAG_REQUIRES_CHILD](#tag-requires-child) (1 test)
 - [TEMPORAL_TAG_ERROR](#temporal-tag-error) (26 tests)
-- [UNITS_INVALID](#units-invalid) (5 tests)
+- [UNITS_INVALID](#units-invalid) (6 tests)
 - [VALUE_INVALID](#value-invalid) (4 tests)
 - [WIKI_DELIMITERS_INVALID](#wiki-delimiters-invalid) (1 test)
 
@@ -467,6 +467,16 @@ Complete index of 191 test cases in the HED test suite.
 
 **File**: `json_test_data/schema_test_data/SCHEMA_ATTRIBUTE_INVALID.json`
 
+### attribute-invalid-any-units-not-empty (correction guidance) (examples)
+
+**Description**: The pseudo unit class anyUnits lists a unit or has defaultUnits.
+
+**Schema**: any **Category**: schema_development
+
+**Tests**:
+
+- `schema_tests`: 2 fail, 1 pass
+
 ### attribute-invalid-unknown (correction guidance) (examples)
 
 **Description**: A schema attribute issue, saying there is an unknown one.
@@ -551,6 +561,16 @@ Complete index of 191 test cases in the HED test suite.
 
 - `schema_tests`: 1 fail, 1 pass
 
+### attribute-invalid-multiple-unit-classes (correction guidance) (examples)
+
+**Description**: A placeholder (#) lists more than one unit class in its unitClass attribute.
+
+**Schema**: any **Category**: schema_development
+
+**Tests**:
+
+- `schema_tests`: 1 fail, 1 pass
+
 ### attribute-invalid-unit-class (correction guidance) (examples)
 
 **Description**: A schema unit class issue, saying there is an unknown one.
@@ -560,6 +580,16 @@ Complete index of 191 test cases in the HED test suite.
 **Tests**:
 
 - `schema_tests`: 1 fail, 1 pass
+
+### attribute-invalid-unit-class-without-numeric-value-class (correction guidance) (examples)
+
+**Description**: A placeholder (#) has a unitClass attribute but its valueClass is not numericClass, or it has no valueClass.
+
+**Schema**: any **Category**: schema_development
+
+**Tests**:
+
+- `schema_tests`: 2 fail, 1 pass
 
 ### attribute-invalid-value-class (correction guidance) (examples)
 
@@ -762,6 +792,16 @@ Complete index of 191 test cases in the HED test suite.
 **Tests**:
 
 - `schema_tests`: 6 fail, 1 pass
+
+### attribute-duplicate-node-derived-in-two-classes (correction guidance) (examples)
+
+**Description**: A unit string is derived by two unit classes (SI modifier applied to a unit of each) and listed by neither, so it would be ambiguous on a placeholder that accepts any unit.
+
+**Schema**: any **Category**: schema_development
+
+**Tests**:
+
+- `schema_tests`: 1 fail, 1 pass
 
 ### attribute-duplicate-node-unit
 
@@ -2157,6 +2197,18 @@ Complete index of 191 test cases in the HED test suite.
 ## UNITS_INVALID
 
 **File**: `json_test_data/validation_test_data/UNITS_INVALID.json`
+
+### units-invalid-any-units (correction guidance) (examples)
+
+**Description**: A placeholder with unitClass=anyUnits (Quantity in HED 8.5.0) accepts a value with or without a unit; when a unit is given it must be a valid unit of some unit class of the schema.
+
+**Schema**: 8.5.0 **Category**: validation
+
+**Tests**:
+
+- `string_tests`: 4 fail, 7 pass
+- `sidecar_tests`: 1 fail, 1 pass
+- `event_tests`: 1 fail, 1 pass
 
 ### units-invalid-case (correction guidance) (examples)
 

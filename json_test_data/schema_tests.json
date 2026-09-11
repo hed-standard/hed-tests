@@ -124,6 +124,139 @@
         }
     },
     {
+        "error_code": "SCHEMA_ATTRIBUTE_INVALID",
+        "name": "attribute-invalid-any-units-not-empty",
+        "warning": false,
+        "description": "The pseudo unit class anyUnits lists a unit or has defaultUnits.",
+        "schema": "",
+        "error_category": "schema_development",
+        "common_causes": [
+            "Adding units under anyUnits as if it were an ordinary unit class",
+            "Giving anyUnits a defaultUnits attribute"
+        ],
+        "explanation": "anyUnits (specification 4.0.0, section 3.1.4.4) is a pseudo unit class: a placeholder with unitClass=anyUnits accepts a value with or without a unit, and any unit of any unit class of the schema. The class itself must list no units and must have no defaultUnits: a value without a unit on such a placeholder is valid but has no default unit and no conversion.",
+        "correction_strategy": "Keep anyUnits empty; put real units in their own unit classes",
+        "correction_examples": [
+            {
+                "wrong": "* anyUnits\n** foo {conversionFactor=1.0}",
+                "correct": "* anyUnits",
+                "explanation": "anyUnits lists no units"
+            },
+            {
+                "wrong": "* anyUnits {defaultUnits=s}",
+                "correct": "* anyUnits",
+                "explanation": "anyUnits has no default"
+            }
+        ],
+        "correction_patterns": [
+            "anyUnits is empty",
+            "No defaultUnits on anyUnits"
+        ],
+        "fix_instructions": [
+            "1. Remove any unit lines under anyUnits",
+            "2. Remove any defaultUnits attribute from anyUnits"
+        ],
+        "validation_hints": [
+            "Applies to any schema that defines a unit class named anyUnits"
+        ],
+        "specification_reference": "3.1.4.4. Unit classes and units",
+        "related_errors": [
+            "SCHEMA_ATTRIBUTE_VALUE_INVALID",
+            "SCHEMA_DUPLICATE_NODE"
+        ],
+        "definitions": [],
+        "tests": {
+            "schema_tests": {
+                "fails": [
+                    [
+                        "HED version=\"1.0.0\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''Quantity'''",
+                        "* # {takesValue, unitClass=anyUnits}",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "* anyUnits",
+                        "** foo {conversionFactor=1.0}",
+                        "* timeUnits {defaultUnits=s}",
+                        "** s {SIUnit, unitSymbol, conversionFactor=1.0}",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "* takesValue {tagProperty}",
+                        "* unitClass {tagProperty}",
+                        "* SIUnit {unitProperty}",
+                        "* unitSymbol {unitProperty}",
+                        "* conversionFactor {unitProperty}",
+                        "* defaultUnits {unitClassProperty}",
+                        "'''Properties'''",
+                        "* tagProperty",
+                        "* unitProperty",
+                        "* unitClassProperty",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ],
+                    [
+                        "HED version=\"1.0.0\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''Quantity'''",
+                        "* # {takesValue, unitClass=anyUnits}",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "* anyUnits {defaultUnits=s}",
+                        "* timeUnits {defaultUnits=s}",
+                        "** s {SIUnit, unitSymbol, conversionFactor=1.0}",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "* takesValue {tagProperty}",
+                        "* unitClass {tagProperty}",
+                        "* SIUnit {unitProperty}",
+                        "* unitSymbol {unitProperty}",
+                        "* conversionFactor {unitProperty}",
+                        "* defaultUnits {unitClassProperty}",
+                        "'''Properties'''",
+                        "* tagProperty",
+                        "* unitProperty",
+                        "* unitClassProperty",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ],
+                "passes": [
+                    [
+                        "HED version=\"1.0.0\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''Quantity'''",
+                        "* # {takesValue, unitClass=anyUnits}",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "* anyUnits",
+                        "* timeUnits {defaultUnits=s}",
+                        "** s {SIUnit, unitSymbol, conversionFactor=1.0}",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "* takesValue {tagProperty}",
+                        "* unitClass {tagProperty}",
+                        "* SIUnit {unitProperty}",
+                        "* unitSymbol {unitProperty}",
+                        "* conversionFactor {unitProperty}",
+                        "* defaultUnits {unitClassProperty}",
+                        "'''Properties'''",
+                        "* tagProperty",
+                        "* unitProperty",
+                        "* unitClassProperty",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ]
+            }
+        }
+    },
+    {
         "error_code": "SCHEMA_ATTRIBUTE_VALUE_INVALID",
         "name": "attribute-invalid-allowed-character",
         "warning": false,
@@ -1310,6 +1443,182 @@
                         "!# start schema",
                         "'''Tag-with-unknown'''",
                         "* # {unitClass=timeUnits}",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ]
+            }
+        }
+    },
+    {
+        "error_code": "SCHEMA_ATTRIBUTE_VALUE_INVALID",
+        "name": "attribute-invalid-multiple-unit-classes",
+        "warning": false,
+        "description": "A placeholder (#) lists more than one unit class in its unitClass attribute.",
+        "schema": "",
+        "error_category": "schema_development",
+        "common_causes": [
+            "Listing two unit classes on one placeholder to accept two kinds of units",
+            "Copying a unitClass attribute that was meant for a different placeholder"
+        ],
+        "explanation": "A # placeholder has at most one unit class (specification 4.0.0, section 3.1.4.4). Every unit in a class converts to that class's default unit, so one placeholder corresponds to one physical dimension, and a unit string is always checked against exactly one class.",
+        "correction_strategy": "Keep one unit class per placeholder; use separate tags for values measured in different dimensions",
+        "correction_examples": [
+            {
+                "wrong": "unitClass=timeUnits, unitClass=physicalLengthUnits",
+                "correct": "unitClass=physicalLengthUnits",
+                "explanation": "Only one unit class may be listed"
+            }
+        ],
+        "correction_patterns": [
+            "One unit class per placeholder",
+            "Split a two-dimension quantity into two tags"
+        ],
+        "fix_instructions": [
+            "1. Find every # placeholder that carries the unitClass attribute more than once",
+            "2. Decide which single unit class the placeholder should take",
+            "3. Move the other dimension to its own tag if it is still needed"
+        ],
+        "validation_hints": [
+            "In MediaWiki a repeated attribute is written unitClass=a, unitClass=b; loaders join the values with a comma, and more than one value is an error",
+            "The check applies to every schema version; no released schema has such a placeholder"
+        ],
+        "specification_reference": "3.1.4.4. Unit classes and units",
+        "related_errors": [
+            "SCHEMA_ATTRIBUTE_INVALID",
+            "UNITS_INVALID"
+        ],
+        "definitions": [],
+        "tests": {
+            "schema_tests": {
+                "fails": [
+                    [
+                        "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.4.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''Tag-with-units'''",
+                        "* # {unitClass=timeUnits, unitClass=physicalLengthUnits}",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ],
+                "passes": [
+                    [
+                        "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.4.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''Tag-with-units'''",
+                        "* # {unitClass=physicalLengthUnits}",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ]
+            }
+        }
+    },
+    {
+        "error_code": "SCHEMA_ATTRIBUTE_VALUE_INVALID",
+        "name": "attribute-invalid-unit-class-without-numeric-value-class",
+        "warning": false,
+        "description": "A placeholder (#) has a unitClass attribute but its valueClass is not numericClass, or it has no valueClass.",
+        "schema": "",
+        "error_category": "schema_development",
+        "common_causes": [
+            "Giving a text-valued placeholder a unit class so that units can follow the text",
+            "Forgetting the valueClass attribute on a placeholder that takes a unit class"
+        ],
+        "explanation": "A value with units is a number that is converted to the default units of its unit class, so a # placeholder with a unit class must have valueClass=numericClass (specification 4.0.0, section 3.1.4.4). The rule applies to standard schemas 8.5.0 and later and to libraries partnered with them; 8.3.0 and earlier have Sampling-rate/# with a unit class and no value class.",
+        "correction_strategy": "Add valueClass=numericClass to the placeholder, or remove the unit class if the value is not a number",
+        "correction_examples": [
+            {
+                "wrong": "unitClass=timeUnits, valueClass=textClass",
+                "correct": "unitClass=timeUnits, valueClass=numericClass",
+                "explanation": "A unit class needs a numeric value"
+            },
+            {
+                "wrong": "unitClass=timeUnits",
+                "correct": "unitClass=timeUnits, valueClass=numericClass",
+                "explanation": "The value class must be stated"
+            }
+        ],
+        "correction_patterns": [
+            "unitClass implies valueClass=numericClass",
+            "Text values do not take unit classes"
+        ],
+        "fix_instructions": [
+            "1. Find every # placeholder with a unitClass attribute",
+            "2. Check that its valueClass attribute is exactly numericClass",
+            "3. Add or correct the valueClass, or drop the unitClass for non-numeric values"
+        ],
+        "validation_hints": [
+            "Check only schemas whose standard version (own or withStandard) is 8.5.0 or later; unpartnered libraries are not checked",
+            "A missing valueClass counts as a violation"
+        ],
+        "specification_reference": "3.1.4.4. Unit classes and units",
+        "related_errors": [
+            "SCHEMA_ATTRIBUTE_INVALID",
+            "VALUE_INVALID"
+        ],
+        "definitions": [],
+        "tests": {
+            "schema_tests": {
+                "fails": [
+                    [
+                        "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.5.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''Tag-with-units'''",
+                        "* # {unitClass=timeUnits, valueClass=textClass}",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ],
+                    [
+                        "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.5.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''Tag-with-units'''",
+                        "* # {unitClass=timeUnits}",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "'''Properties'''",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ],
+                "passes": [
+                    [
+                        "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.5.0\" unmerged=\"True\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''Tag-with-units'''",
+                        "* # {unitClass=timeUnits, valueClass=numericClass}",
                         "!# end schema",
                         "'''Unit classes'''",
                         "'''Unit modifiers'''",
@@ -2825,6 +3134,116 @@
                         "* SIUnit {unitProperty}<nowiki></nowiki>",
                         "'''Properties''' <nowiki></nowiki>",
                         "* unitProperty <nowiki></nowiki>",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ]
+            }
+        }
+    },
+    {
+        "error_code": "SCHEMA_DUPLICATE_NODE",
+        "name": "attribute-duplicate-node-derived-in-two-classes",
+        "warning": false,
+        "description": "A unit string is derived by two unit classes (SI modifier applied to a unit of each) and listed by neither, so it would be ambiguous on a placeholder that accepts any unit.",
+        "schema": "",
+        "error_category": "schema_development",
+        "common_causes": [
+            "Two SI unit symbols in different classes whose modified forms coincide (da + Q and d + aQ both give daQ)"
+        ],
+        "explanation": "Specification 4.0.0 lets a placeholder accept a unit from any unit class (unitClass=anyUnits), so every unit string must resolve to one class. A string listed in one class and derived in another is fine: the listed unit wins. A string that two classes derive and neither lists has no winner and is a SCHEMA_DUPLICATE_NODE error. Two classes listing the same unit is already a duplicate node.",
+        "correction_strategy": "Rename or drop one of the units so that no modified form coincides, or list the shared form in one class",
+        "correction_examples": [
+            {
+                "wrong": "qUnits lists Q and aqUnits lists aQ with modifiers d and da: daQ is da+Q and d+aQ",
+                "correct": "Remove the da modifier, or list daQ in one class",
+                "explanation": "A string may be derived by at most one class unless some class lists it"
+            }
+        ],
+        "correction_patterns": [
+            "One class per derivable string",
+            "Listed wins over derived"
+        ],
+        "fix_instructions": [
+            "1. Expand every SI unit of every class with every applicable modifier",
+            "2. Find strings produced by two classes that no class lists",
+            "3. Change one of the units or modifiers involved"
+        ],
+        "validation_hints": [
+            "Build the set of derived forms per class; a form in two classes and not listed anywhere is the error",
+            "A form listed in one class and derived in another is allowed"
+        ],
+        "specification_reference": "3.1.4.4. Unit classes and units",
+        "related_errors": [
+            "SCHEMA_ATTRIBUTE_INVALID",
+            "UNITS_INVALID"
+        ],
+        "definitions": [],
+        "tests": {
+            "schema_tests": {
+                "fails": [
+                    [
+                        "HED version=\"1.0.0\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''Tag'''",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "* qUnits {defaultUnits=Q}",
+                        "** Q {SIUnit, unitSymbol, conversionFactor=1.0}",
+                        "* aqUnits {defaultUnits=aQ}",
+                        "** aQ {SIUnit, unitSymbol, conversionFactor=1.0}",
+                        "'''Unit modifiers'''",
+                        "* d {SIUnitSymbolModifier}",
+                        "* da {SIUnitSymbolModifier}",
+                        "* a {SIUnitSymbolModifier}",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "* takesValue {tagProperty}",
+                        "* unitClass {tagProperty}",
+                        "* SIUnit {unitProperty}",
+                        "* unitSymbol {unitProperty}",
+                        "* conversionFactor {unitProperty}",
+                        "* defaultUnits {unitClassProperty}",
+                        "* SIUnitSymbolModifier {unitModifierProperty}",
+                        "'''Properties'''",
+                        "* tagProperty",
+                        "* unitProperty",
+                        "* unitClassProperty",
+                        "* unitModifierProperty",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ],
+                "passes": [
+                    [
+                        "HED version=\"1.0.0\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''Tag'''",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "* qUnits {defaultUnits=Q}",
+                        "** Q {SIUnit, unitSymbol, conversionFactor=1.0}",
+                        "* aqUnits {defaultUnits=aQ}",
+                        "** aQ {SIUnit, unitSymbol, conversionFactor=1.0}",
+                        "'''Unit modifiers'''",
+                        "* d {SIUnitSymbolModifier}",
+                        "* a {SIUnitSymbolModifier}",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "* takesValue {tagProperty}",
+                        "* unitClass {tagProperty}",
+                        "* SIUnit {unitProperty}",
+                        "* unitSymbol {unitProperty}",
+                        "* conversionFactor {unitProperty}",
+                        "* defaultUnits {unitClassProperty}",
+                        "* SIUnitSymbolModifier {unitModifierProperty}",
+                        "'''Properties'''",
+                        "* tagProperty",
+                        "* unitProperty",
+                        "* unitClassProperty",
+                        "* unitModifierProperty",
                         "'''Epilogue'''",
                         "!# end hed"
                     ]

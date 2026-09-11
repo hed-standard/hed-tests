@@ -6021,6 +6021,24 @@
                      </node>
                   </node>
                   <node>
+                     <name>Quantity</name>
+                     <description>A numeric value with a unit from any unit class of the schema. Use it for an amount whose kind is conveyed by its unit or by an accompanying tag, for example (Parameter-label/ISI, Quantity/500 ms).</description>
+                     <node>
+                        <name>#</name>
+                        <attribute>
+                           <name>takesValue</name>
+                        </attribute>
+                        <attribute>
+                           <name>valueClass</name>
+                           <value>numericClass</value>
+                        </attribute>
+                        <attribute>
+                           <name>unitClass</name>
+                           <value>anyUnits</value>
+                        </attribute>
+                     </node>
+                  </node>
+                  <node>
                      <name>Ratio</name>
                      <description>A quotient of quantities of the same kind for different components within the same system.</description>
                      <attribute>
@@ -11593,6 +11611,10 @@
                <value>HED_0011603</value>
             </attribute>
          </unit>
+      </unitClassDefinition>
+      <unitClassDefinition>
+         <name>anyUnits</name>
+         <description>Pseudo unit class with no units of its own. A placeholder with unitClass=anyUnits accepts a unit from any unit class of the schema; the value converts to the default unit of the class that unit belongs to.</description>
       </unitClassDefinition>
       <unitClassDefinition>
          <name>areaUnits</name>

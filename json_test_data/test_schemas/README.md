@@ -82,8 +82,9 @@ loading is fully hermetic; their source commits are recorded in
 ## Regeneration
 
 The `.mediawiki` sources are the editable source of truth. After editing
-one, regenerate and commit the XML (as with `consolidate_tests.py`, CI reruns
-the script but staleness of committed copies is on the committer):
+one, regenerate and commit the XML together with the edit; the pre-commit hook
+and CI run `regenerate.py --check`, which fails when a committed generated
+file is stale:
 
 ```bash
 python src/scripts/convert_test_schemas.py
@@ -94,8 +95,37 @@ To update the vendored standard snapshots from a local hed-schemas checkout
 
 ```bash
 python src/scripts/convert_test_schemas.py --refresh --hed-schemas <path-to-hed-schemas>
+python src/scripts/regenerate.py
 ```
+
+What `--refresh` does, and what to check before running it:
+
+- `--hed-schemas` is the path of a local clone of hed-standard/hed-schemas.
+  Nothing is fetched from the network.
+- For each entry in `VENDORED_STANDARDS` at the top of the script (today
+  `standard_schema/prerelease/HED8.5.0.xml` and
+  `standard_schema/hedxml/HED8.4.0.xml`) it copies the **XML** file from that
+  clone over `hedxml/<file>`. It does not read the mediawiki, so hed-schemas
+  must have regenerated its XML from the mediawiki first.
+- It records, in `manifest.json`, the last commit in that clone that touched
+  the source path (`git log -1 -- <source_path>`). Run it with the clone on
+  hed-schemas `main` after the change has merged; a refresh from an unmerged
+  branch records a commit that is not on `main`.
+- It then rebuilds every merged library XML in `hedxml/` against the new
+  partner, which is why many `HED_<library>_<version>.xml` files change.
+- `regenerate.py` afterwards keeps the consolidated JSON and the docs in step,
+  so the pre-commit `regenerate.py --check` passes.
 
 The script also verifies that no library tag name exists in that library's
 standard schema partner (spec SCHEMA_LIBRARY_INVALID reason i), so edits
 cannot introduce a partner collision silently.
+
+## Consequences for validators
+
+A validator pins this repository (hed-python as the `spec_tests/hed-tests`
+submodule; hed-javascript by commit). A test case that needs something only a
+newer snapshot has (for example `units-invalid-any-units` needs the `Quantity`
+tag and the `anyUnits` unit class of the 8.5.0 prerelease) fails on a validator
+whose pin predates the refresh. The validator either bumps its pin or skips the
+case by name until it does; hed-python keeps such skips, with the reason, in
+`spec_tests/test_errors.py`.

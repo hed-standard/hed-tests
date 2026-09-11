@@ -53,7 +53,7 @@ See [json_test_data/README.md](json_test_data/README.md) for what each JSON file
 
 ## Maintenance scripts
 
-Four scripts in `src/scripts/` maintain the test suite. All run from the repository root; CI runs all four on every push.
+Six scripts in `src/scripts/` maintain the test suite. All run from the repository root with the project's virtual environment active; `regenerate.py` drives the other generators and is what the pre-commit hook and CI run.
 
 ### validate_test_structure.py
 
@@ -118,6 +118,14 @@ python src/scripts/generate_test_index.py --format json --output test_index.json
 
 `docs/test_index.md` is generated - edit tests, not the index.
 
+### convert_test_schemas.py
+
+Builds the test-only schema libraries under `json_test_data/test_schemas/` from their hand-edited `.mediawiki` sources, writes the merged, load-ready XML that runners resolve version strings against, and maintains `manifest.json`. With `--refresh --hed-schemas <path-to-hed-schemas>` it first re-copies the vendored standard schema snapshots (the 8.5.0 prerelease and 8.4.0) from a local hed-schemas clone. Details, including what to check before a refresh, are in [json_test_data/test_schemas/README.md](json_test_data/test_schemas/README.md).
+
+### regenerate.py
+
+Runs, in order, `convert_test_schemas.py`, `consolidate_tests.py`, `generate_test_index.py`, `check_coverage.py`, and then mdformat on the markdown they write. `regenerate.py --check` does the same and then fails if any file the generators write (the merged and unmerged test-schema XML, `manifest.json`, the consolidated JSON and dictionaries, `docs/test_index.md`, `docs/test_coverage.md`) differs from the git index; the pre-commit hook and CI both use that mode, so a stale generated file cannot be committed unnoticed.
+
 ### Typical maintenance workflow
 
 1. Edit or add a test file in `json_test_data/validation_test_data/` or `json_test_data/schema_test_data/` (one error code per file).
@@ -126,7 +134,41 @@ python src/scripts/generate_test_index.py --format json --output test_index.json
 4. Check the result: `python -m unittest discover tests`.
 5. Commit the edited file **and** the regenerated files together.
 
-A pre-commit hook enforces step 3. Install it once per clone with `pre-commit install` (after `pip install -e ".[dev]"`); it regenerates the derived files, blocks the commit if any of them differs from what is staged, and runs the structure validators, the unit tests, ruff, and the markdown format check. CI runs the same `regenerate.py --check`, so a stale generated file fails the build even without the hook.
+A pre-commit hook enforces step 3. Install it once per clone with `pre-commit install` (after `pip install -e ".[dev]"`); it regenerates the derived files, blocks the commit if any of them differs from what is staged, and runs the structure validators, the unit tests, ruff, and the markdown format check. CI runs the same `regenerate.py --check`, so a stale generated file fails the build even without the hook. The hooks call `python` from the PATH, so commit with the virtual environment active.
+
+## Maintaining and updating the tests
+
+This section is the checklist for changing the suite. The user guide describes the file format in full; this is what to do, in order.
+
+### Adding or changing a test case
+
+1. Every error code has one source file: `json_test_data/validation_test_data/<CODE>.json` for annotation validation, `json_test_data/schema_test_data/<CODE>[_<VARIANT>].json` for schema validation. Add a case to the file for its error code; create the file only for a new error code, and add the code to the specification's Appendix B first.
+2. A case is one JSON object with a unique `name` (lower-case, hyphenated, starting with the error code's theme, for example `units-invalid-compound-units`), the `error_code`, a `description`, the correction guidance fields, and `tests`. Copy an existing case in the same file as the template so the required fields are present.
+3. Validation cases name a released or vendored schema in `schema` (`"8.4.0"`, `"8.5.0"`, or a list such as `["8.5.0", "sc:testconflict_2.0.0"]`) and give `string_tests`, `sidecar_tests`, `event_tests`, and `combo_tests`, each with `fails` and `passes`. Every `fails` entry must produce the file's error code; every `passes` entry must produce no error.
+4. Schema cases give `schema_tests` with `fails` and `passes`, each entry an inline schema as a list of MediaWiki lines. Use an unmerged library partnered with a vendored standard (`withStandard="8.4.0"` or `"8.5.0"`) when the case needs the standard vocabulary, or a standalone `HED version="1.0.0"` schema that declares its own attributes when it must not. In MediaWiki a repeated attribute is written by repeating it, `unitClass=a, unitClass=b`, not `unitClass=a,b`.
+5. A case that needs a schema feature not yet in the vendored snapshots (a new tag or unit class in the 8.5.0 prerelease) waits for a snapshot refresh (below); until then, validators skip it by name.
+6. Run the workflow above: validate, `regenerate.py`, unit tests, commit source and generated files together.
+
+### Changing a test schema library
+
+The libraries under `json_test_data/test_schemas/<library>/hedwiki/` are the source of truth. Edit the `.mediawiki`, run `python src/scripts/convert_test_schemas.py` (or `regenerate.py`, which includes it), and commit the regenerated XML and `manifest.json`. These libraries are test fixtures and are never published to the HED schema repositories.
+
+### Refreshing the vendored standard schemas
+
+When the 8.5.0 prerelease changes in hed-schemas (or 8.5.0 is released), after the change is on hed-schemas `main` and its XML has been regenerated there:
+
+```bash
+python src/scripts/convert_test_schemas.py --refresh --hed-schemas <path-to-hed-schemas>
+python src/scripts/regenerate.py
+```
+
+This re-copies the vendored XML from the local hed-schemas clone, records the source commit in `manifest.json`, and rebuilds every merged library XML against the new partner. When 8.5.0 is released, change its entry in `VENDORED_STANDARDS` (in `convert_test_schemas.py`) to `standard_schema/hedxml/HED8.5.0.xml` with `released: True` before refreshing. See [json_test_data/test_schemas/README.md](json_test_data/test_schemas/README.md) for the details and cautions.
+
+### After a change merges
+
+- hed-python pins this repository as the git submodule `spec_tests/hed-tests` and runs every case in `spec_tests/test_errors.py`; it bumps the pin once its own implementation passes the new cases, and lists any case it cannot yet pass in that file's `skip_tests` with the reason.
+- hed-javascript pins a commit of this repository; do not expect it to pass new cases until its issue for the rule is closed.
+- A new rule therefore lands in this order: specification text, test case here, validator implementation, pin bump. Record which validators have caught up in the pull request description.
 
 ## Related repositories
 

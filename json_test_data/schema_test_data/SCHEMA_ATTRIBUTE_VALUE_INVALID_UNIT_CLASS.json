@@ -40,7 +40,10 @@
       "Verify unit class exists before referencing"
     ],
     "specification_reference": "3.1.2.10. Unit classes and unitClass attributes",
-    "related_errors": ["SCHEMA_ATTRIBUTE_INVALID", "UNITS_INVALID"],
+    "related_errors": [
+      "SCHEMA_ATTRIBUTE_INVALID",
+      "UNITS_INVALID"
+    ],
     "definitions": [],
     "tests": {
       "schema_tests": {
@@ -68,6 +71,182 @@
             "!# start schema",
             "'''Tag-with-unknown'''",
             "* # {unitClass=timeUnits}",
+            "!# end schema",
+            "'''Unit classes'''",
+            "'''Unit modifiers'''",
+            "'''Value classes'''",
+            "'''Schema attributes'''",
+            "'''Properties'''",
+            "'''Epilogue'''",
+            "!# end hed"
+          ]
+        ]
+      }
+    }
+  },
+  {
+    "error_code": "SCHEMA_ATTRIBUTE_VALUE_INVALID",
+    "name": "attribute-invalid-multiple-unit-classes",
+    "warning": false,
+    "description": "A placeholder (#) lists more than one unit class in its unitClass attribute.",
+    "schema": "",
+    "error_category": "schema_development",
+    "common_causes": [
+      "Listing two unit classes on one placeholder to accept two kinds of units",
+      "Copying a unitClass attribute that was meant for a different placeholder"
+    ],
+    "explanation": "A # placeholder has at most one unit class (specification 4.0.0, section 3.1.4.4). Every unit in a class converts to that class's default unit, so one placeholder corresponds to one physical dimension, and a unit string is always checked against exactly one class.",
+    "correction_strategy": "Keep one unit class per placeholder; use separate tags for values measured in different dimensions",
+    "correction_examples": [
+      {
+        "wrong": "unitClass=timeUnits, unitClass=physicalLengthUnits",
+        "correct": "unitClass=physicalLengthUnits",
+        "explanation": "Only one unit class may be listed"
+      }
+    ],
+    "correction_patterns": [
+      "One unit class per placeholder",
+      "Split a two-dimension quantity into two tags"
+    ],
+    "fix_instructions": [
+      "1. Find every # placeholder that carries the unitClass attribute more than once",
+      "2. Decide which single unit class the placeholder should take",
+      "3. Move the other dimension to its own tag if it is still needed"
+    ],
+    "validation_hints": [
+      "In MediaWiki a repeated attribute is written unitClass=a, unitClass=b; loaders join the values with a comma, and more than one value is an error",
+      "The check applies to every schema version; no released schema has such a placeholder"
+    ],
+    "specification_reference": "3.1.4.4. Unit classes and units",
+    "related_errors": [
+      "SCHEMA_ATTRIBUTE_INVALID",
+      "UNITS_INVALID"
+    ],
+    "definitions": [],
+    "tests": {
+      "schema_tests": {
+        "fails": [
+          [
+            "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.4.0\" unmerged=\"True\"",
+            "'''Prologue'''",
+            "!# start schema",
+            "'''Tag-with-units'''",
+            "* # {unitClass=timeUnits, unitClass=physicalLengthUnits}",
+            "!# end schema",
+            "'''Unit classes'''",
+            "'''Unit modifiers'''",
+            "'''Value classes'''",
+            "'''Schema attributes'''",
+            "'''Properties'''",
+            "'''Epilogue'''",
+            "!# end hed"
+          ]
+        ],
+        "passes": [
+          [
+            "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.4.0\" unmerged=\"True\"",
+            "'''Prologue'''",
+            "!# start schema",
+            "'''Tag-with-units'''",
+            "* # {unitClass=physicalLengthUnits}",
+            "!# end schema",
+            "'''Unit classes'''",
+            "'''Unit modifiers'''",
+            "'''Value classes'''",
+            "'''Schema attributes'''",
+            "'''Properties'''",
+            "'''Epilogue'''",
+            "!# end hed"
+          ]
+        ]
+      }
+    }
+  },
+  {
+    "error_code": "SCHEMA_ATTRIBUTE_VALUE_INVALID",
+    "name": "attribute-invalid-unit-class-without-numeric-value-class",
+    "warning": false,
+    "description": "A placeholder (#) has a unitClass attribute but its valueClass is not numericClass, or it has no valueClass.",
+    "schema": "",
+    "error_category": "schema_development",
+    "common_causes": [
+      "Giving a text-valued placeholder a unit class so that units can follow the text",
+      "Forgetting the valueClass attribute on a placeholder that takes a unit class"
+    ],
+    "explanation": "A value with units is a number that is converted to the default units of its unit class, so a # placeholder with a unit class must have valueClass=numericClass (specification 4.0.0, section 3.1.4.4). The rule applies to standard schemas 8.5.0 and later and to libraries partnered with them; 8.3.0 and earlier have Sampling-rate/# with a unit class and no value class.",
+    "correction_strategy": "Add valueClass=numericClass to the placeholder, or remove the unit class if the value is not a number",
+    "correction_examples": [
+      {
+        "wrong": "unitClass=timeUnits, valueClass=textClass",
+        "correct": "unitClass=timeUnits, valueClass=numericClass",
+        "explanation": "A unit class needs a numeric value"
+      },
+      {
+        "wrong": "unitClass=timeUnits",
+        "correct": "unitClass=timeUnits, valueClass=numericClass",
+        "explanation": "The value class must be stated"
+      }
+    ],
+    "correction_patterns": [
+      "unitClass implies valueClass=numericClass",
+      "Text values do not take unit classes"
+    ],
+    "fix_instructions": [
+      "1. Find every # placeholder with a unitClass attribute",
+      "2. Check that its valueClass attribute is exactly numericClass",
+      "3. Add or correct the valueClass, or drop the unitClass for non-numeric values"
+    ],
+    "validation_hints": [
+      "Check only schemas whose standard version (own or withStandard) is 8.5.0 or later; unpartnered libraries are not checked",
+      "A missing valueClass counts as a violation"
+    ],
+    "specification_reference": "3.1.4.4. Unit classes and units",
+    "related_errors": [
+      "SCHEMA_ATTRIBUTE_INVALID",
+      "VALUE_INVALID"
+    ],
+    "definitions": [],
+    "tests": {
+      "schema_tests": {
+        "fails": [
+          [
+            "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.5.0\" unmerged=\"True\"",
+            "'''Prologue'''",
+            "!# start schema",
+            "'''Tag-with-units'''",
+            "* # {unitClass=timeUnits, valueClass=textClass}",
+            "!# end schema",
+            "'''Unit classes'''",
+            "'''Unit modifiers'''",
+            "'''Value classes'''",
+            "'''Schema attributes'''",
+            "'''Properties'''",
+            "'''Epilogue'''",
+            "!# end hed"
+          ],
+          [
+            "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.5.0\" unmerged=\"True\"",
+            "'''Prologue'''",
+            "!# start schema",
+            "'''Tag-with-units'''",
+            "* # {unitClass=timeUnits}",
+            "!# end schema",
+            "'''Unit classes'''",
+            "'''Unit modifiers'''",
+            "'''Value classes'''",
+            "'''Schema attributes'''",
+            "'''Properties'''",
+            "'''Epilogue'''",
+            "!# end hed"
+          ]
+        ],
+        "passes": [
+          [
+            "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.5.0\" unmerged=\"True\"",
+            "'''Prologue'''",
+            "!# start schema",
+            "'''Tag-with-units'''",
+            "* # {unitClass=timeUnits, valueClass=numericClass}",
             "!# end schema",
             "'''Unit classes'''",
             "'''Unit modifiers'''",

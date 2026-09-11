@@ -40,6 +40,7 @@
         "units-invalid-case",
         "units-invalid-symbol-plural",
         "units-invalid-compound-units",
+        "units-invalid-any-units",
         "value-invalid-blank-missing-before-units",
         "invalid-character-numeric-class"
     ],

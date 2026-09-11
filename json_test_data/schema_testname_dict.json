@@ -2,6 +2,9 @@
     "attribute-invalid-unknown": [
         "SCHEMA_ATTRIBUTE_INVALID"
     ],
+    "attribute-invalid-any-units-not-empty": [
+        "SCHEMA_ATTRIBUTE_INVALID"
+    ],
     "attribute-invalid-allowed-character": [
         "SCHEMA_ATTRIBUTE_VALUE_INVALID"
     ],
@@ -38,6 +41,12 @@
         "SCHEMA_ATTRIBUTE_INVALID"
     ],
     "attribute-invalid-unit-class": [
+        "SCHEMA_ATTRIBUTE_VALUE_INVALID"
+    ],
+    "attribute-invalid-multiple-unit-classes": [
+        "SCHEMA_ATTRIBUTE_VALUE_INVALID"
+    ],
+    "attribute-invalid-unit-class-without-numeric-value-class": [
         "SCHEMA_ATTRIBUTE_VALUE_INVALID"
     ],
     "attribute-invalid-value-class": [
@@ -89,6 +98,9 @@
         "SCHEMA_DUPLICATE_NODE"
     ],
     "attribute-duplicate-node-unit": [
+        "SCHEMA_DUPLICATE_NODE"
+    ],
+    "attribute-duplicate-node-derived-in-two-classes": [
         "SCHEMA_DUPLICATE_NODE"
     ],
     "schema-header-malformed-attribute": [

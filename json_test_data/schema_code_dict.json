@@ -1,6 +1,7 @@
 {
     "SCHEMA_ATTRIBUTE_INVALID": [
         "attribute-invalid-unknown",
+        "attribute-invalid-any-units-not-empty",
         "attribute-relatedTag-invalid",
         "attribute-suggestedTag-invalid"
     ],
@@ -16,6 +17,8 @@
         "attribute-relatedTag-invalid",
         "attribute-suggestedTag-invalid",
         "attribute-invalid-unit-class",
+        "attribute-invalid-multiple-unit-classes",
+        "attribute-invalid-unit-class-without-numeric-value-class",
         "attribute-invalid-value-class"
     ],
     "WIKI_DELIMITERS_INVALID": [
@@ -41,7 +44,8 @@
     ],
     "SCHEMA_DUPLICATE_NODE": [
         "attribute-duplicate-node",
-        "attribute-duplicate-node-unit"
+        "attribute-duplicate-node-unit",
+        "attribute-duplicate-node-derived-in-two-classes"
     ],
     "SCHEMA_HEADER_INVALID": [
         "schema-header-malformed-attribute",

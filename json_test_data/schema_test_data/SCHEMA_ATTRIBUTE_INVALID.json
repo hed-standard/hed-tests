@@ -122,5 +122,138 @@
                 ]
             }
         }
+    },
+    {
+        "error_code": "SCHEMA_ATTRIBUTE_INVALID",
+        "name": "attribute-invalid-any-units-not-empty",
+        "warning": false,
+        "description": "The pseudo unit class anyUnits lists a unit or has defaultUnits.",
+        "schema": "",
+        "error_category": "schema_development",
+        "common_causes": [
+            "Adding units under anyUnits as if it were an ordinary unit class",
+            "Giving anyUnits a defaultUnits attribute"
+        ],
+        "explanation": "anyUnits (specification 4.0.0, section 3.1.4.4) is a pseudo unit class: a placeholder with unitClass=anyUnits accepts a value with or without a unit, and any unit of any unit class of the schema. The class itself must list no units and must have no defaultUnits: a value without a unit on such a placeholder is valid but has no default unit and no conversion.",
+        "correction_strategy": "Keep anyUnits empty; put real units in their own unit classes",
+        "correction_examples": [
+            {
+                "wrong": "* anyUnits\n** foo {conversionFactor=1.0}",
+                "correct": "* anyUnits",
+                "explanation": "anyUnits lists no units"
+            },
+            {
+                "wrong": "* anyUnits {defaultUnits=s}",
+                "correct": "* anyUnits",
+                "explanation": "anyUnits has no default"
+            }
+        ],
+        "correction_patterns": [
+            "anyUnits is empty",
+            "No defaultUnits on anyUnits"
+        ],
+        "fix_instructions": [
+            "1. Remove any unit lines under anyUnits",
+            "2. Remove any defaultUnits attribute from anyUnits"
+        ],
+        "validation_hints": [
+            "Applies to any schema that defines a unit class named anyUnits"
+        ],
+        "specification_reference": "3.1.4.4. Unit classes and units",
+        "related_errors": [
+            "SCHEMA_ATTRIBUTE_VALUE_INVALID",
+            "SCHEMA_DUPLICATE_NODE"
+        ],
+        "definitions": [],
+        "tests": {
+            "schema_tests": {
+                "fails": [
+                    [
+                        "HED version=\"1.0.0\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''Quantity'''",
+                        "* # {takesValue, unitClass=anyUnits}",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "* anyUnits",
+                        "** foo {conversionFactor=1.0}",
+                        "* timeUnits {defaultUnits=s}",
+                        "** s {SIUnit, unitSymbol, conversionFactor=1.0}",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "* takesValue {tagProperty}",
+                        "* unitClass {tagProperty}",
+                        "* SIUnit {unitProperty}",
+                        "* unitSymbol {unitProperty}",
+                        "* conversionFactor {unitProperty}",
+                        "* defaultUnits {unitClassProperty}",
+                        "'''Properties'''",
+                        "* tagProperty",
+                        "* unitProperty",
+                        "* unitClassProperty",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ],
+                    [
+                        "HED version=\"1.0.0\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''Quantity'''",
+                        "* # {takesValue, unitClass=anyUnits}",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "* anyUnits {defaultUnits=s}",
+                        "* timeUnits {defaultUnits=s}",
+                        "** s {SIUnit, unitSymbol, conversionFactor=1.0}",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "* takesValue {tagProperty}",
+                        "* unitClass {tagProperty}",
+                        "* SIUnit {unitProperty}",
+                        "* unitSymbol {unitProperty}",
+                        "* conversionFactor {unitProperty}",
+                        "* defaultUnits {unitClassProperty}",
+                        "'''Properties'''",
+                        "* tagProperty",
+                        "* unitProperty",
+                        "* unitClassProperty",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ],
+                "passes": [
+                    [
+                        "HED version=\"1.0.0\"",
+                        "'''Prologue'''",
+                        "!# start schema",
+                        "'''Quantity'''",
+                        "* # {takesValue, unitClass=anyUnits}",
+                        "!# end schema",
+                        "'''Unit classes'''",
+                        "* anyUnits",
+                        "* timeUnits {defaultUnits=s}",
+                        "** s {SIUnit, unitSymbol, conversionFactor=1.0}",
+                        "'''Unit modifiers'''",
+                        "'''Value classes'''",
+                        "'''Schema attributes'''",
+                        "* takesValue {tagProperty}",
+                        "* unitClass {tagProperty}",
+                        "* SIUnit {unitProperty}",
+                        "* unitSymbol {unitProperty}",
+                        "* conversionFactor {unitProperty}",
+                        "* defaultUnits {unitClassProperty}",
+                        "'''Properties'''",
+                        "* tagProperty",
+                        "* unitProperty",
+                        "* unitClassProperty",
+                        "'''Epilogue'''",
+                        "!# end hed"
+                    ]
+                ]
+            }
+        }
     }
 ]

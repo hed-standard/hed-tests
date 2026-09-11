@@ -4,7 +4,7 @@ Regenerate every derived file in the repository and optionally check staleness.
 Runs, in order, the four generators and then mdformat on the markdown they
 write, so the committed copies are always the formatted output:
 
-1. convert_test_schemas.py  -> json_test_data/test_schemas/hedxml/*.xml, manifest.json
+1. convert_test_schemas.py  -> json_test_data/test_schemas/hedxml/*.xml, */hedxml_unmerged/*.xml, manifest.json
 2. consolidate_tests.py     -> json_test_data/*.json (consolidated tests, dictionaries)
 3. generate_test_index.py   -> docs/test_index.md
 4. check_coverage.py        -> docs/test_coverage.md
@@ -31,6 +31,10 @@ SCRIPTS_DIR = Path("src") / "scripts"
 # Paths (relative to the repository root) that the generators write.
 DERIVED_PATHS = [
     "json_test_data/test_schemas/hedxml",
+    "json_test_data/test_schemas/testaux/hedxml_unmerged",
+    "json_test_data/test_schemas/testclash/hedxml_unmerged",
+    "json_test_data/test_schemas/testconflict/hedxml_unmerged",
+    "json_test_data/test_schemas/testminimal/hedxml_unmerged",
     "json_test_data/test_schemas/manifest.json",
     "json_test_data/validation_tests.json",
     "json_test_data/validation_code_dict.json",

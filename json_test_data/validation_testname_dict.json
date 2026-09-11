@@ -471,6 +471,9 @@
     "units-invalid-compound-units": [
         "UNITS_INVALID"
     ],
+    "units-invalid-any-units": [
+        "UNITS_INVALID"
+    ],
     "value-invalid-#-substitution": [
         "VALUE_INVALID",
         "CHARACTER_INVALID",
