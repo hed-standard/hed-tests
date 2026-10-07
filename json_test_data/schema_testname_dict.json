@@ -91,10 +91,10 @@
     "schema-deprecated-invalid-suggested-related-tag": [
         "SCHEMA_DEPRECATION_ERROR"
     ],
-    "schema-deprecated-deprecated-attribute": [
+    "schema-deprecated-attribute-used-by-element": [
         "SCHEMA_DEPRECATION_ERROR"
     ],
-    "schema-deprecated-deprecated-property": [
+    "schema-deprecated-property-used-by-attribute": [
         "SCHEMA_DEPRECATION_ERROR"
     ],
     "attribute-duplicate-node": [

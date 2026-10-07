@@ -796,6 +796,16 @@ Complete index of 205 test cases in the HED test suite.
 
 - `schema_tests`: 2 fail, 1 pass
 
+### schema-deprecated-attribute-used-by-element
+
+**Description**: A schema deprecation issue: an element uses a deprecated schema attribute
+
+**Schema**: any
+
+**Tests**:
+
+- `schema_tests`: 5 fail, 5 pass
+
 ### schema-deprecated-default-unit
 
 **Description**: A schema deprecation issue, deprecated default units
@@ -805,26 +815,6 @@ Complete index of 205 test cases in the HED test suite.
 **Tests**:
 
 - `schema_tests`: 1 fail, 2 pass
-
-### schema-deprecated-deprecated-attribute
-
-**Description**: A schema deprecation issue, an attribute of an element is deprecated
-
-**Schema**: any
-
-**Tests**:
-
-- `schema_tests`: 5 fail, 5 pass
-
-### schema-deprecated-deprecated-property
-
-**Description**: A schema deprecation issue, a property of an attribute is is deprecated
-
-**Schema**: any
-
-**Tests**:
-
-- `schema_tests`: 1 fail, 1 pass
 
 ### schema-deprecated-invalid-child
 
@@ -845,6 +835,16 @@ Complete index of 205 test cases in the HED test suite.
 **Tests**:
 
 - `schema_tests`: 2 fail, 4 pass
+
+### schema-deprecated-property-used-by-attribute
+
+**Description**: A schema deprecation issue: a schema attribute uses a deprecated property
+
+**Schema**: any
+
+**Tests**:
+
+- `schema_tests`: 1 fail, 1 pass
 
 ### schema-deprecated-unit-class
 

@@ -3383,9 +3383,9 @@
     },
     {
         "error_code": "SCHEMA_DEPRECATION_ERROR",
-        "name": "schema-deprecated-deprecated-attribute",
+        "name": "schema-deprecated-attribute-used-by-element",
         "warning": false,
-        "description": "A schema deprecation issue, an attribute of an element is deprecated",
+        "description": "A schema deprecation issue: an element uses a deprecated schema attribute",
         "schema": "",
         "definitions": [],
         "tests": {
@@ -3561,16 +3561,16 @@
     },
     {
         "error_code": "SCHEMA_DEPRECATION_ERROR",
-        "name": "schema-deprecated-deprecated-property",
+        "name": "schema-deprecated-property-used-by-attribute",
         "warning": false,
-        "description": "A schema deprecation issue, a property of an attribute is is deprecated",
+        "description": "A schema deprecation issue: a schema attribute uses a deprecated property",
         "schema": "",
         "definitions": [],
         "tests": {
             "schema_tests": {
                 "fails": [
                     [
-                        "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.4.0\" unmerged=\"True\"",
+                        "HED version=\"1.1.0\" library=\"score\"",
                         "'''Prologue'''",
                         "!# start schema",
                         "'''BaseTag'''",
@@ -3580,15 +3580,18 @@
                         "'''Value classes'''",
                         "'''Schema attributes'''",
                         "* deprecatedAttribute {deprecatedProperty}",
+                        "* deprecatedFrom {elementProperty, stringRange}",
                         "'''Properties'''",
                         "* deprecatedProperty {deprecatedFrom=1.0.0}",
+                        "* elementProperty",
+                        "* stringRange",
                         "'''Epilogue'''",
                         "!# end hed"
                     ]
                 ],
                 "passes": [
                     [
-                        "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.4.0\" unmerged=\"True\"",
+                        "HED version=\"1.1.0\" library=\"score\"",
                         "'''Prologue'''",
                         "!# start schema",
                         "'''BaseTag'''",
@@ -3598,8 +3601,11 @@
                         "'''Value classes'''",
                         "'''Schema attributes'''",
                         "* deprecatedAttribute {deprecatedProperty, deprecatedFrom=1.0.0}",
+                        "* deprecatedFrom {elementProperty, stringRange}",
                         "'''Properties'''",
                         "* deprecatedProperty {deprecatedFrom=1.0.0}",
+                        "* elementProperty",
+                        "* stringRange",
                         "'''Epilogue'''",
                         "!# end hed"
                     ]

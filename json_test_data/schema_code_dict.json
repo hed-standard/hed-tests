@@ -42,8 +42,8 @@
         "schema-deprecated-unit-class",
         "schema-deprecated-value-class",
         "schema-deprecated-invalid-suggested-related-tag",
-        "schema-deprecated-deprecated-attribute",
-        "schema-deprecated-deprecated-property"
+        "schema-deprecated-attribute-used-by-element",
+        "schema-deprecated-property-used-by-attribute"
     ],
     "SCHEMA_DUPLICATE_NODE": [
         "attribute-duplicate-node",
