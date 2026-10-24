@@ -383,6 +383,10 @@
     "tag-extension-invalid-reserved-tag": [
         "TAG_EXTENSION_INVALID"
     ],
+    "tag-extension-invalid-reserved-tag-placeholder": [
+        "TAG_EXTENSION_INVALID",
+        "PLACEHOLDER_INVALID"
+    ],
     "tag-extension-invalid-no-letter": [
         "TAG_EXTENSION_INVALID"
     ],

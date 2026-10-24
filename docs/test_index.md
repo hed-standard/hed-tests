@@ -1,6 +1,6 @@
 # HED test suite index
 
-Complete index of 234 test cases in the HED test suite.
+Complete index of 235 test cases in the HED test suite.
 
 ## Quick navigation
 
@@ -31,7 +31,7 @@ Complete index of 234 test cases in the HED test suite.
 - [TAG_EMPTY](#tag-empty) (3 tests)
 - [TAG_EXPRESSION_REPEATED](#tag-expression-repeated) (3 tests)
 - [TAG_EXTENDED](#tag-extended) (1 test)
-- [TAG_EXTENSION_INVALID](#tag-extension-invalid) (5 tests)
+- [TAG_EXTENSION_INVALID](#tag-extension-invalid) (6 tests)
 - [TAG_GROUP_ERROR](#tag-group-error) (6 tests)
 - [TAG_INVALID](#tag-invalid) (3 tests)
 - [TAG_NAMESPACE_PREFIX_INVALID](#tag-namespace-prefix-invalid) (3 tests)
@@ -2026,7 +2026,20 @@ Complete index of 234 test cases in the HED test suite.
 
 ### tag-extension-invalid-reserved-tag (correction guidance) (examples)
 
-**Description**: A structural reserved tag is extended, with a term (Onset/Blah, Event-context/Blah) or with a placeholder (Onset/# in a sidecar value column). Reserved tags must not be extended although they inherit extensionAllowed from Property.
+**Description**: A structural reserved tag is extended with a term (Onset/Blah, Event-context/Blah). Reserved tags must not be extended although they inherit extensionAllowed from Property. A # after a reserved tag (Onset/#) is tested in tag-extension-invalid-reserved-tag-placeholder, since it may be reported under either of two codes.
+
+**Schema**: 8.4.0 **Category**: semantic
+
+**Tests**:
+
+- `string_tests`: 1 fail, 1 pass
+- `sidecar_tests`: 1 fail, 1 pass
+- `event_tests`: 1 fail, 1 pass
+- `combo_tests`: 1 fail, 1 pass
+
+### tag-extension-invalid-reserved-tag-placeholder (correction guidance) (examples)
+
+**Description**: A # follows a reserved tag that takes no value. It is an error in every context: a HED string ((Event-context/#, (Red)), since string tests use no temporal tag), an events file, a sidecar value column, and a combo ((Onset/#, Def/MyColor)). A validator may report it as TAG_EXTENSION_INVALID (the # extends a reserved tag) or as PLACEHOLDER_INVALID (the # has no placeholder child to stand for, or is not allowed there at all), depending on which check finds it first.
 
 **Schema**: 8.4.0 **Category**: semantic
 
