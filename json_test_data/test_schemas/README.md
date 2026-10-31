@@ -74,9 +74,11 @@ from the predecessor.
 
 ## Vendored standard schemas
 
-`hedxml/HED8.5.0.xml` and `hedxml/HED8.4.0.xml` (both released) are vendored
+`hedxml/HED8.0.0.xml` through `hedxml/HED8.5.0.xml` (all released) are vendored
 copies from hed-standard/hed-schemas so schema loading is fully hermetic; their
-source commits are recorded in `manifest.json`. Until the 8.5.0 release
+source commits are recorded in `manifest.json`. Every standard version a test
+case names has a copy here, so a runner never needs a validator's bundled
+schemas or the network. Until the 8.5.0 release
 (2026-10) the 8.5.0 copy was a prerelease snapshot; the released file differs
 from it only in the 44 `hedId` values assigned at release.
 
@@ -104,8 +106,8 @@ What `--refresh` does, and what to check before running it:
 - `--hed-schemas` is the path of a local clone of hed-standard/hed-schemas.
   Nothing is fetched from the network.
 - For each entry in `VENDORED_STANDARDS` at the top of the script (today
-  `standard_schema/hedxml/HED8.5.0.xml` and
-  `standard_schema/hedxml/HED8.4.0.xml`) it copies the **XML** file from that
+  `standard_schema/hedxml/HED8.5.0.xml` down to
+  `standard_schema/hedxml/HED8.0.0.xml`) it copies the **XML** file from that
   clone over `hedxml/<file>`. It does not read the mediawiki, so hed-schemas
   must have regenerated its XML from the mediawiki first.
 - It records, in `manifest.json`, the last commit in that clone that touched

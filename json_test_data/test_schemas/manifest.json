@@ -119,6 +119,34 @@
             "source_path": "standard_schema/hedxml/HED8.4.0.xml",
             "source_commit": "edb78ea775db25802b6784c5da91f2ef052e0676",
             "released": true
+        },
+        {
+            "file": "hedxml/HED8.3.0.xml",
+            "source_repository": "https://github.com/hed-standard/hed-schemas",
+            "source_path": "standard_schema/hedxml/HED8.3.0.xml",
+            "source_commit": "ff074d3c47293bce044b5603e5d4b31a0b281934",
+            "released": true
+        },
+        {
+            "file": "hedxml/HED8.2.0.xml",
+            "source_repository": "https://github.com/hed-standard/hed-schemas",
+            "source_path": "standard_schema/hedxml/HED8.2.0.xml",
+            "source_commit": "188e0156dcb84a0e2caee36029081dceb22d0775",
+            "released": true
+        },
+        {
+            "file": "hedxml/HED8.1.0.xml",
+            "source_repository": "https://github.com/hed-standard/hed-schemas",
+            "source_path": "standard_schema/hedxml/HED8.1.0.xml",
+            "source_commit": "188e0156dcb84a0e2caee36029081dceb22d0775",
+            "released": true
+        },
+        {
+            "file": "hedxml/HED8.0.0.xml",
+            "source_repository": "https://github.com/hed-standard/hed-schemas",
+            "source_path": "standard_schema/hedxml/HED8.0.0.xml",
+            "source_commit": "188e0156dcb84a0e2caee36029081dceb22d0775",
+            "released": true
         }
     ]
 }
