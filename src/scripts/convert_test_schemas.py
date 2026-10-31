@@ -55,6 +55,26 @@ VENDORED_STANDARDS = [
         "source_path": "standard_schema/hedxml/HED8.4.0.xml",
         "released": True,
     },
+    {
+        "file": "HED8.3.0.xml",
+        "source_path": "standard_schema/hedxml/HED8.3.0.xml",
+        "released": True,
+    },
+    {
+        "file": "HED8.2.0.xml",
+        "source_path": "standard_schema/hedxml/HED8.2.0.xml",
+        "released": True,
+    },
+    {
+        "file": "HED8.1.0.xml",
+        "source_path": "standard_schema/hedxml/HED8.1.0.xml",
+        "released": True,
+    },
+    {
+        "file": "HED8.0.0.xml",
+        "source_path": "standard_schema/hedxml/HED8.0.0.xml",
+        "released": True,
+    },
 ]
 
 WIKI_HEADER_RE = re.compile(r'^HED\b[^\n]*?version="(?P<version>[^"]+)"')

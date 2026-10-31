@@ -120,7 +120,7 @@ python src/scripts/generate_test_index.py --format json --output test_index.json
 
 ### convert_test_schemas.py
 
-Builds the test-only schema libraries under `json_test_data/test_schemas/` from their hand-edited `.mediawiki` sources, writes the merged, load-ready XML that runners resolve version strings against, and maintains `manifest.json`. With `--refresh --hed-schemas <path-to-hed-schemas>` it first re-copies the vendored standard schema snapshots (the 8.5.0 prerelease and 8.4.0) from a local hed-schemas clone. Details, including what to check before a refresh, are in [json_test_data/test_schemas/README.md](json_test_data/test_schemas/README.md).
+Builds the test-only schema libraries under `json_test_data/test_schemas/` from their hand-edited `.mediawiki` sources, writes the merged, load-ready XML that runners resolve version strings against, and maintains `manifest.json`. With `--refresh --hed-schemas <path-to-hed-schemas>` it first re-copies the vendored standard schemas (8.0.0 through 8.5.0) from a local hed-schemas clone. Details, including what to check before a refresh, are in [json_test_data/test_schemas/README.md](json_test_data/test_schemas/README.md).
 
 ### regenerate.py
 
