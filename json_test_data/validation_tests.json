@@ -12813,7 +12813,7 @@
         "error_code": "TABULAR_INVALID",
         "alt_codes": [],
         "name": "tabular-invalid-blank-column-name",
-        "description": "A column name in the first line of a tabular file is blank, the empty string (reason c). A first line that ends with a tab has a blank last name, a first line that is only a tab has two blank names, a blank name between two others fails, and two blank names are reported under (c) for each blank name, not as a repeated name under (a). A header naming trial for a sidecar entry trial fails when the header also has a blank column. The same tables without the blank column pass.",
+        "description": "A column name in the first line of a tabular file is blank, the empty string (reason c). A first line that ends with a tab has a blank last name, a first line that is only a tab has two blank names, a blank name between two others fails, and two blank names are reported under (c) for each blank name, not as a repeated name under (a). A header naming trial for a sidecar entry trial fails when the header also has a blank column. The same tables without the blank column pass. An empty first line is a single blank column name, so a file whose first line is empty fails under this reason (its later lines also have two cells against one, reason f); either way the error is TABULAR_INVALID.",
         "warning": false,
         "schema": "8.4.0",
         "error_category": "structure",
@@ -12903,6 +12903,17 @@
                             4.5,
                             "n/a",
                             "n/a",
+                            "Red"
+                        ]
+                    ],
+                    [
+                        [],
+                        [
+                            "response",
+                            "HED"
+                        ],
+                        [
+                            "a",
                             "Red"
                         ]
                     ]
@@ -13011,7 +13022,7 @@
         "error_code": "TABULAR_INVALID",
         "alt_codes": [],
         "name": "tabular-invalid-value-whitespace",
-        "description": "A value in a column with categorical or value HED annotations begins or ends with whitespace (reason d). In a categorical column, go with a trailing or leading blank, a value made only of a blank, and n/a with a trailing blank fail; in a value column, 30 with a trailing or leading blank fails. The same tables pass with go, 30, n/a, and an empty cell, and also with a HED column cell that has blanks around its tag, a categorical value ending with a no-break space (U+00A0, not whitespace for the rule; it only lacks an annotation, a warning), and a padded value in a column with no HED annotation.",
+        "description": "A value in a column with categorical or value HED annotations begins or ends with whitespace (reason d). In a categorical column, go with a trailing or leading blank, a value made only of a blank, and n/a with a trailing blank fail; in a value column, 30 with a trailing or leading blank fails. The same tables pass with go, 30, n/a, and an empty cell, and also with a HED column cell that has blanks around its tag, a categorical value ending with a no-break space (U+00A0, not whitespace for the rule; it only lacks an annotation, a warning), and a padded value in a column with no HED annotation. In a table with one annotated column, a line of only a blank is such a value (reason d), not a wrong cell count (reason f).",
         "warning": false,
         "schema": "8.4.0",
         "error_category": "structure",
@@ -13252,6 +13263,27 @@
                                 "Red"
                             ]
                         ]
+                    },
+                    {
+                        "sidecar": {
+                            "trial": {
+                                "HED": {
+                                    "go": "Experimental-trial",
+                                    "stop": "Agent-action"
+                                }
+                            }
+                        },
+                        "events": [
+                            [
+                                "trial"
+                            ],
+                            [
+                                "go"
+                            ],
+                            [
+                                " "
+                            ]
+                        ]
                     }
                 ],
                 "passes": [
@@ -13375,6 +13407,393 @@
                                 "go",
                                 "x ",
                                 "Blue"
+                            ]
+                        ]
+                    }
+                ]
+            }
+        }
+    },
+    {
+        "error_code": "TABULAR_INVALID",
+        "alt_codes": [],
+        "name": "tabular-invalid-empty-line",
+        "description": "A line other than the first of a tabular file is empty, with no characters before its line terminator (reason e). An empty line between two rows fails, and so does an empty last line, which two line endings at the end of the file make; a single line ending at the end of the file is not an empty line. An empty line is reported as an empty line only, not also as a wrong cell count (reason f), and an empty first line is a blank column name (reason c), not this error. The same tables without the empty line pass.",
+        "warning": false,
+        "schema": "8.4.0",
+        "error_category": "structure",
+        "common_causes": [
+            "A blank line left between rows when the file was edited by hand",
+            "An extra line ending at the end of the file, such as one added by an editor or by a script that writes a line ending after every row and then another",
+            "Rows from two files pasted together with a blank line between them",
+            "A script that writes an empty row for a record it has no data for"
+        ],
+        "explanation": "Every line after the first is a row of the table, so an empty line is a row with no cells at all, not a row of missing values. The specification therefore makes an empty line an error, TABULAR_INVALID, reported for every offending line by its line number (the column-name line is line 1) before any row annotation is assembled, and the rows of the file are then not validated. A file may end with a single line ending; two line endings at the end make an empty last line.",
+        "correction_strategy": "Delete each empty line. If the line was meant to be a row of missing values, write n/a in each cell. End the file with one line ending, not two.",
+        "correction_examples": [
+            {
+                "wrong": "Lines: header, 'a<TAB>Red', '' (empty), 'b<TAB>Blue'",
+                "correct": "Lines: header, 'a<TAB>Red', 'b<TAB>Blue'",
+                "explanation": "Deleted the empty line between the rows"
+            },
+            {
+                "wrong": "File ends 'b<TAB>Blue' followed by two line endings",
+                "correct": "File ends 'b<TAB>Blue' followed by one line ending",
+                "explanation": "Removed the extra line ending so there is no empty last line"
+            },
+            {
+                "wrong": "Empty line meant as a row with no values in a two-column table",
+                "correct": "Line 'n/a<TAB>n/a'",
+                "explanation": "Wrote the missing values explicitly so the row has as many cells as the header"
+            }
+        ],
+        "correction_patterns": [
+            "Delete empty lines between rows",
+            "End the file with exactly one line ending",
+            "Write a row of missing values with n/a in each cell"
+        ],
+        "fix_instructions": [
+            "1. Open the tabular file in a plain-text editor that shows line endings",
+            "2. Find lines with nothing on them, including a second empty line at the end of the file",
+            "3. Delete them, or replace one that stands for a row with n/a in each cell",
+            "4. Validate the file again"
+        ],
+        "validation_hints": [
+            "Check every line after the first for zero characters before the line terminator",
+            "One line ending at the end of the file is allowed; two make an empty last line",
+            "An empty first line is a blank column name (reason c), not an empty line",
+            "A line of only tabs with the right number of cells, or of only blanks, is not empty",
+            "The reported line number counts the column-name line as line 1"
+        ],
+        "specification_reference": "3.2.10. Tabular files",
+        "related_errors": [],
+        "definitions": [],
+        "tests": {
+            "string_tests": {
+                "fails": [],
+                "passes": []
+            },
+            "sidecar_tests": {
+                "fails": [],
+                "passes": []
+            },
+            "event_tests": {
+                "fails": [
+                    [
+                        [
+                            "response",
+                            "HED"
+                        ],
+                        [
+                            "a",
+                            "Red"
+                        ],
+                        [],
+                        [
+                            "b",
+                            "Blue"
+                        ]
+                    ],
+                    [
+                        [
+                            "response",
+                            "HED"
+                        ],
+                        [
+                            "a",
+                            "Red"
+                        ],
+                        [],
+                        []
+                    ]
+                ],
+                "passes": [
+                    [
+                        [
+                            "response",
+                            "HED"
+                        ],
+                        [
+                            "a",
+                            "Red"
+                        ],
+                        [
+                            "b",
+                            "Blue"
+                        ]
+                    ]
+                ]
+            },
+            "combo_tests": {
+                "fails": [
+                    {
+                        "sidecar": {
+                            "trial": {
+                                "HED": {
+                                    "go": "Experimental-trial",
+                                    "stop": "Agent-action"
+                                }
+                            }
+                        },
+                        "events": [
+                            [
+                                "trial",
+                                "response"
+                            ],
+                            [
+                                "go",
+                                "a"
+                            ],
+                            [],
+                            [
+                                "stop",
+                                "b"
+                            ]
+                        ]
+                    }
+                ],
+                "passes": [
+                    {
+                        "sidecar": {
+                            "trial": {
+                                "HED": {
+                                    "go": "Experimental-trial",
+                                    "stop": "Agent-action"
+                                }
+                            }
+                        },
+                        "events": [
+                            [
+                                "trial",
+                                "response"
+                            ],
+                            [
+                                "go",
+                                "a"
+                            ],
+                            [
+                                "stop",
+                                "b"
+                            ]
+                        ]
+                    }
+                ]
+            }
+        }
+    },
+    {
+        "error_code": "TABULAR_INVALID",
+        "alt_codes": [],
+        "name": "tabular-invalid-cell-count",
+        "description": "A line other than the first of a tabular file has a different number of tab-separated cells than the first line (reason f). In a two-column table, a row one cell short, a first data row one cell long, a later row one cell long, a line of only a blank (one cell), and a line of only tabs with three cells fail; in a combined sidecar and table test a short row fails. A line of only tabs with as many cells as the first line is a row of missing values and passes, and so does a blank-only line in a table with one column and no HED annotations (a whitespace value that is not annotated). An empty line is reported as an empty line (reason e) only, not under this error.",
+        "warning": false,
+        "schema": "8.4.0",
+        "error_category": "structure",
+        "common_causes": [
+            "A cell dropped from a row when the file was edited by hand, so that the row has too few tabs",
+            "A value that contains a tab, which splits it into two cells",
+            "A row written by a script that omits trailing empty cells",
+            "Spaces typed in place of tabs between values, which merges two cells into one"
+        ],
+        "explanation": "The cells of a row are matched to the column names by position, so a row with a different number of cells than the header cannot be assigned to its columns reliably: a missing cell shifts or loses a value, and an extra cell has no column. Tools that read such a file may pad the short row or drop the extra cell without saying so, which hides the problem. The specification therefore makes it an error, TABULAR_INVALID, reported for every offending line by its line number (the column-name line is line 1), with the number of cells in the line and the number expected, before any row annotation is assembled; the rows of the file are then not validated.",
+        "correction_strategy": "Give every row as many tab-separated cells as the header line. Write an empty cell as n/a or as nothing between two tabs; never drop it. Remove an extra cell, or add a column name for it, and replace a tab inside a value.",
+        "correction_examples": [
+            {
+                "wrong": "Header response<TAB>HED; row 'b' (one cell)",
+                "correct": "Row 'b<TAB>Blue', or 'b<TAB>n/a' when there is no HED value",
+                "explanation": "Added the missing cell so the row has two cells like the header"
+            },
+            {
+                "wrong": "Header response<TAB>HED; row 'b<TAB>Blue<TAB>x' (three cells)",
+                "correct": "Row 'b<TAB>Blue', or add a third column name to the header and a cell to every row",
+                "explanation": "Removed the extra cell, or gave it a column so all rows match"
+            },
+            {
+                "wrong": "Header response<TAB>HED; a line holding only a blank",
+                "correct": "Line 'n/a<TAB>n/a', or delete the line",
+                "explanation": "A line of only a blank has one cell; a row of missing values needs a cell for each column"
+            }
+        ],
+        "correction_patterns": [
+            "Count the tabs in each row against the header",
+            "Write empty cells as n/a or as nothing between tabs, never omit them",
+            "Remove or name extra cells"
+        ],
+        "fix_instructions": [
+            "1. Open the tabular file in a plain-text editor that shows tabs",
+            "2. Count the cells in the header line, then in each following line",
+            "3. Add the missing cells (n/a if there is no value) or remove the extra ones",
+            "4. Validate the file again"
+        ],
+        "validation_hints": [
+            "Compare the number of tab-separated cells of every line after the first with the first line",
+            "A line of only tabs with as many cells as the header is a row of missing values",
+            "A line of only blanks has one cell: wrong count unless the table has one column",
+            "An empty line is reported as an empty line (reason e), not as a wrong count",
+            "The error gives the line number, the cells found, and the cells expected"
+        ],
+        "specification_reference": "3.2.10. Tabular files",
+        "related_errors": [],
+        "definitions": [],
+        "tests": {
+            "string_tests": {
+                "fails": [],
+                "passes": []
+            },
+            "sidecar_tests": {
+                "fails": [],
+                "passes": []
+            },
+            "event_tests": {
+                "fails": [
+                    [
+                        [
+                            "response",
+                            "HED"
+                        ],
+                        [
+                            "a",
+                            "Red"
+                        ],
+                        [
+                            "b"
+                        ]
+                    ],
+                    [
+                        [
+                            "response",
+                            "HED"
+                        ],
+                        [
+                            "a",
+                            "Red",
+                            "x"
+                        ],
+                        [
+                            "b",
+                            "Blue"
+                        ]
+                    ],
+                    [
+                        [
+                            "response",
+                            "HED"
+                        ],
+                        [
+                            "a",
+                            "Red"
+                        ],
+                        [
+                            "b",
+                            "Blue",
+                            "x"
+                        ]
+                    ],
+                    [
+                        [
+                            "response",
+                            "HED"
+                        ],
+                        [
+                            "a",
+                            "Red"
+                        ],
+                        [
+                            " "
+                        ]
+                    ],
+                    [
+                        [
+                            "response",
+                            "HED"
+                        ],
+                        [
+                            "a",
+                            "Red"
+                        ],
+                        [
+                            "",
+                            "",
+                            ""
+                        ]
+                    ]
+                ],
+                "passes": [
+                    [
+                        [
+                            "response",
+                            "HED"
+                        ],
+                        [
+                            "a",
+                            "Red"
+                        ],
+                        [
+                            "",
+                            ""
+                        ]
+                    ],
+                    [
+                        [
+                            "response"
+                        ],
+                        [
+                            "a"
+                        ],
+                        [
+                            " "
+                        ]
+                    ]
+                ]
+            },
+            "combo_tests": {
+                "fails": [
+                    {
+                        "sidecar": {
+                            "trial": {
+                                "HED": {
+                                    "go": "Experimental-trial",
+                                    "stop": "Agent-action"
+                                }
+                            }
+                        },
+                        "events": [
+                            [
+                                "trial",
+                                "response"
+                            ],
+                            [
+                                "go",
+                                "a"
+                            ],
+                            [
+                                "stop"
+                            ]
+                        ]
+                    }
+                ],
+                "passes": [
+                    {
+                        "sidecar": {
+                            "trial": {
+                                "HED": {
+                                    "go": "Experimental-trial",
+                                    "stop": "Agent-action"
+                                }
+                            }
+                        },
+                        "events": [
+                            [
+                                "trial",
+                                "response"
+                            ],
+                            [
+                                "go",
+                                "a"
+                            ],
+                            [
+                                "stop",
+                                "b"
                             ]
                         ]
                     }

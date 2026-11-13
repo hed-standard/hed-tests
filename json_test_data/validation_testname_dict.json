@@ -385,6 +385,12 @@
     "tabular-invalid-value-whitespace": [
         "TABULAR_INVALID"
     ],
+    "tabular-invalid-empty-line": [
+        "TABULAR_INVALID"
+    ],
+    "tabular-invalid-cell-count": [
+        "TABULAR_INVALID"
+    ],
     "tag-empty-extra-commas-or-parentheses": [
         "TAG_EMPTY"
     ],

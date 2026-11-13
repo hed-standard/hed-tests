@@ -1,6 +1,6 @@
 # HED test suite index
 
-Complete index of 249 test cases in the HED test suite.
+Complete index of 251 test cases in the HED test suite.
 
 ## Quick navigation
 
@@ -27,7 +27,7 @@ Complete index of 249 test cases in the HED test suite.
 - [SIDECAR_BRACES_INVALID](#sidecar-braces-invalid) (6 tests)
 - [SIDECAR_INVALID](#sidecar-invalid) (5 tests)
 - [SIDECAR_KEY_MISSING](#sidecar-key-missing) (2 tests)
-- [TABULAR_INVALID](#tabular-invalid) (4 tests)
+- [TABULAR_INVALID](#tabular-invalid) (6 tests)
 - [TAG_EMPTY](#tag-empty) (3 tests)
 - [TAG_EXPRESSION_REPEATED](#tag-expression-repeated) (5 tests)
 - [TAG_EXTENDED](#tag-extended) (1 test)
@@ -1922,14 +1922,25 @@ Complete index of 249 test cases in the HED test suite.
 
 ### tabular-invalid-blank-column-name (correction guidance) (examples)
 
-**Description**: A column name in the first line of a tabular file is blank, the empty string (reason c). A first line that ends with a tab has a blank last name, a first line that is only a tab has two blank names, a blank name between two others fails, and two blank names are reported under (c) for each blank name, not as a repeated name under (a). A header naming trial for a sidecar entry trial fails when the header also has a blank column. The same tables without the blank column pass.
+**Description**: A column name in the first line of a tabular file is blank, the empty string (reason c). A first line that ends with a tab has a blank last name, a first line that is only a tab has two blank names, a blank name between two others fails, and two blank names are reported under (c) for each blank name, not as a repeated name under (a). A header naming trial for a sidecar entry trial fails when the header also has a blank column. The same tables without the blank column pass. An empty first line is a single blank column name, so a file whose first line is empty fails under this reason (its later lines also have two cells against one, reason f); either way the error is TABULAR_INVALID.
 
 **Schema**: 8.4.0 **Category**: structure
 
 **Tests**:
 
-- `event_tests`: 3 fail, 1 pass
+- `event_tests`: 4 fail, 1 pass
 - `combo_tests`: 2 fail, 1 pass
+
+### tabular-invalid-cell-count (correction guidance) (examples)
+
+**Description**: A line other than the first of a tabular file has a different number of tab-separated cells than the first line (reason f). In a two-column table, a row one cell short, a first data row one cell long, a later row one cell long, a line of only a blank (one cell), and a line of only tabs with three cells fail; in a combined sidecar and table test a short row fails. A line of only tabs with as many cells as the first line is a row of missing values and passes, and so does a blank-only line in a table with one column and no HED annotations (a whitespace value that is not annotated). An empty line is reported as an empty line (reason e) only, not under this error.
+
+**Schema**: 8.4.0 **Category**: structure
+
+**Tests**:
+
+- `event_tests`: 5 fail, 2 pass
+- `combo_tests`: 1 fail, 1 pass
 
 ### tabular-invalid-column-name-whitespace (correction guidance) (examples)
 
@@ -1953,15 +1964,26 @@ Complete index of 249 test cases in the HED test suite.
 - `event_tests`: 3 fail, 4 pass
 - `combo_tests`: 1 fail, 1 pass
 
-### tabular-invalid-value-whitespace (correction guidance) (examples)
+### tabular-invalid-empty-line (correction guidance) (examples)
 
-**Description**: A value in a column with categorical or value HED annotations begins or ends with whitespace (reason d). In a categorical column, go with a trailing or leading blank, a value made only of a blank, and n/a with a trailing blank fail; in a value column, 30 with a trailing or leading blank fails. The same tables pass with go, 30, n/a, and an empty cell, and also with a HED column cell that has blanks around its tag, a categorical value ending with a no-break space (U+00A0, not whitespace for the rule; it only lacks an annotation, a warning), and a padded value in a column with no HED annotation.
+**Description**: A line other than the first of a tabular file is empty, with no characters before its line terminator (reason e). An empty line between two rows fails, and so does an empty last line, which two line endings at the end of the file make; a single line ending at the end of the file is not an empty line. An empty line is reported as an empty line only, not also as a wrong cell count (reason f), and an empty first line is a blank column name (reason c), not this error. The same tables without the empty line pass.
 
 **Schema**: 8.4.0 **Category**: structure
 
 **Tests**:
 
-- `combo_tests`: 6 fail, 4 pass
+- `event_tests`: 2 fail, 1 pass
+- `combo_tests`: 1 fail, 1 pass
+
+### tabular-invalid-value-whitespace (correction guidance) (examples)
+
+**Description**: A value in a column with categorical or value HED annotations begins or ends with whitespace (reason d). In a categorical column, go with a trailing or leading blank, a value made only of a blank, and n/a with a trailing blank fail; in a value column, 30 with a trailing or leading blank fails. The same tables pass with go, 30, n/a, and an empty cell, and also with a HED column cell that has blanks around its tag, a categorical value ending with a no-break space (U+00A0, not whitespace for the rule; it only lacks an annotation, a warning), and a padded value in a column with no HED annotation. In a table with one annotated column, a line of only a blank is such a value (reason d), not a wrong cell count (reason f).
+
+**Schema**: 8.4.0 **Category**: structure
+
+**Tests**:
+
+- `combo_tests`: 7 fail, 4 pass
 
 ## TAG_EMPTY
 
