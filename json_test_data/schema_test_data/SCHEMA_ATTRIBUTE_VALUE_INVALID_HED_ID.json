@@ -45,7 +45,7 @@
       "schema_tests": {
         "fails": [
           [
-            "HED version=\"8.4.0\"",
+            "HED version=\"8.5.0\"",
             "'''Prologue'''",
             "!# start schema",
             "'''Event'''{hedId=HED_0015001}",
@@ -89,12 +89,15 @@
             "* tagDomain",
             "* boolRange",
             "'''Epilogue'''",
+            "'''Sources'''",
+            "'''Prefixes'''",
+            "'''External annotations'''",
             "!# end hed"
           ]
         ],
         "passes": [
           [
-            "HED version=\"8.4.0\"",
+            "HED version=\"8.5.0\"",
             "'''Prologue'''",
             "!# start schema",
             "'''Event'''{hedId=HED_0012001}",
@@ -138,6 +141,9 @@
             "* tagDomain",
             "* boolRange",
             "'''Epilogue'''",
+            "'''Sources'''",
+            "'''Prefixes'''",
+            "'''External annotations'''",
             "!# end hed"
           ]
         ]
@@ -189,7 +195,7 @@
       "schema_tests": {
         "fails": [
           [
-            "HED version=\"8.4.0\"",
+            "HED version=\"8.5.0\"",
             "'''Prologue'''",
             "!# start schema",
             "'''NewTagWithNewID'''{hedId=HED_0055000}",
@@ -233,12 +239,15 @@
             "* tagDomain",
             "* boolRange",
             "'''Epilogue'''",
+            "'''Sources'''",
+            "'''Prefixes'''",
+            "'''External annotations'''",
             "!# end hed"
           ]
         ],
         "passes": [
           [
-            "HED version=\"8.4.0\"",
+            "HED version=\"8.5.0\"",
             "'''Prologue'''",
             "!# start schema",
             "'''NewTagWithNewID'''{hedId=HED_0015001}",
@@ -282,6 +291,9 @@
             "* tagDomain",
             "* boolRange",
             "'''Epilogue'''",
+            "'''Sources'''",
+            "'''Prefixes'''",
+            "'''External annotations'''",
             "!# end hed"
           ]
         ]
@@ -338,7 +350,7 @@
       "schema_tests": {
         "fails": [
           [
-            "HED version=\"8.4.0\"",
+            "HED version=\"8.5.0\"",
             "'''Prologue'''",
             "!# start schema",
             "'''NewTagWithNewID'''{hedId=HED_XXXXXXX}",
@@ -382,12 +394,15 @@
             "* tagDomain",
             "* boolRange",
             "'''Epilogue'''",
+            "'''Sources'''",
+            "'''Prefixes'''",
+            "'''External annotations'''",
             "!# end hed"
           ]
         ],
         "passes": [
           [
-            "HED version=\"8.4.0\"",
+            "HED version=\"8.5.0\"",
             "'''Prologue'''",
             "!# start schema",
             "'''NewTagWithNewID'''{hedId=HED_0015001}",
@@ -431,6 +446,9 @@
             "* tagDomain",
             "* boolRange",
             "'''Epilogue'''",
+            "'''Sources'''",
+            "'''Prefixes'''",
+            "'''External annotations'''",
             "!# end hed"
           ]
         ]

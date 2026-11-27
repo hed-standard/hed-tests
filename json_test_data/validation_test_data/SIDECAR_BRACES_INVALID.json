@@ -7,7 +7,7 @@
         "name": "sidecar-braces-contents-invalid",
         "description": "The item in curly braces is not the word HED or a column name with HED annotations in the sidecar.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "structure",
         "common_causes": [
             "Referencing non-existent columns in curly braces",
@@ -193,7 +193,7 @@
         "name": "sidecar-braces-invalid-spot",
         "description": "A curly brace reference must only appear where a tag could.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "syntax",
         "common_causes": [
             "Curly braces embedded within tag values",
@@ -297,7 +297,7 @@
         "name": "sidecar-braces-circular-reference",
         "description": "The item in curly braces has a HED annotation that contains curly braces.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "reference",
         "common_causes": [
             "Column A references column B which references column A",
@@ -484,7 +484,7 @@
         "name": "sidecar-braces-self-reference",
         "description": "The item in curly braces has a HED annotation that contains itself.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "reference",
         "common_causes": [
             "Column referencing itself directly in HED annotation",
@@ -747,7 +747,7 @@
         "name": "sidecar-braces-appear-as-value-rather-than-tag",
         "description": "The curly braces are in a value rather than as a separate tag substitute.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "syntax",
         "common_causes": [
             "Embedding column references within tag values",
@@ -964,7 +964,7 @@
         "name": "sidecar-braces-column-name-with-period",
         "description": "A name in curly braces contains a period and is not the name of a HED-annotated column.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "structure",
         "common_causes": [
             "Referring to a column that has no HED annotation in the sidecar",

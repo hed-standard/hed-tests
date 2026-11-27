@@ -75,7 +75,7 @@
             "!# end hed"
           ],
           [
-            "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.4.0\" unmerged=\"True\"",
+            "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.5.0\" unmerged=\"True\"",
             "'''Prologue'''",
             "!# start schema",
             "'''New-item''' {suggestedTag=Not-a-real-tag}",
@@ -86,12 +86,15 @@
             "'''Schema attributes'''",
             "'''Properties'''",
             "'''Epilogue'''",
+            "'''Sources'''",
+            "'''Prefixes'''",
+            "'''External annotations'''",
             "!# end hed"
           ]
         ],
         "passes": [
           [
-            "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.4.0\" unmerged=\"True\"",
+            "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.5.0\" unmerged=\"True\"",
             "'''Prologue'''",
             "!# start schema",
             "'''Tag-with-unknown''' {suggestedTag=Event}",
@@ -102,10 +105,13 @@
             "'''Schema attributes'''",
             "'''Properties'''",
             "'''Epilogue'''",
+            "'''Sources'''",
+            "'''Prefixes'''",
+            "'''External annotations'''",
             "!# end hed"
           ],
           [
-            "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.4.0\" unmerged=\"True\"",
+            "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.5.0\" unmerged=\"True\"",
             "'''Prologue'''",
             "!# start schema",
             "'''Tag-with-unknown''' {suggestedTag=Event}",
@@ -117,6 +123,9 @@
             "'''Schema attributes'''",
             "'''Properties'''",
             "'''Epilogue'''",
+            "'''Sources'''",
+            "'''Prefixes'''",
+            "'''External annotations'''",
             "!# end hed"
           ]
         ]

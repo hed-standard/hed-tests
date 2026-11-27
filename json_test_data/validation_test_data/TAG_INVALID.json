@@ -5,7 +5,7 @@
         "name": "tag-invalid-in-schema",
         "description": "The tag is not valid in the schema it is associated with.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "semantic",
         "common_causes": [
             "Misspelling tag names",
@@ -148,18 +148,18 @@
         "error_code": "TAG_INVALID",
         "alt_codes": [],
         "name": "tag-has-extra-whitespace",
-        "description": "A HED tag has extra internal whitespace, including directly before or after slashes.",
+        "description": "A HED tag has extra internal whitespace, including directly before or after a slash of the tag path or the slash that begins a value. Blanks inside a value, such as the two in Description/This is  text, are judged by the value class and are not this error.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "syntax",
         "common_causes": [
             "Extra spaces within tag names",
-            "Spaces before or after forward slashes",
+            "Spaces next to a slash of the tag path or the slash that begins a value",
             "Copy-paste errors introducing whitespace",
             "Formatting inconsistencies in tag construction",
             "Manual typing errors with extra spaces"
         ],
-        "explanation": "HED tags must follow strict formatting rules without extra internal whitespace. Spaces before/after slashes or within tag names break tag parsing and schema validation.",
+        "explanation": "HED tags must follow strict formatting rules without extra internal whitespace. Spaces within tag names, or next to a slash of the tag path or the slash that begins a value, break tag parsing and schema validation. A slash inside a value is part of the value, and blanks next to it are judged by the value's class.",
         "correction_strategy": "Remove all extra whitespace from tag names",
         "correction_examples": [
             {
@@ -180,29 +180,29 @@
             {
                 "wrong": "Label/ abc",
                 "correct": "Label/abc",
-                "explanation": "A blank may not appear directly before or after a slash, including the slash before a value."
+                "explanation": "A blank may not appear directly before or after a slash of the tag path, including the slash that begins a value."
             }
         ],
         "correction_patterns": [
             "Remove spaces within tag names",
-            "Remove spaces before forward slashes",
-            "Remove spaces after forward slashes",
+            "Remove spaces before a slash of the tag path or the slash that begins a value",
+            "Remove spaces after a slash of the tag path or the slash that begins a value",
             "Maintain proper hyphenation without spaces"
         ],
         "fix_instructions": [
             "1. Identify tags with internal whitespace",
-            "2. Remove spaces before/after slashes",
+            "2. Remove spaces before/after a slash of the tag path or the slash that begins a value",
             "3. Remove extra spaces within tag names",
             "4. Verify proper tag formatting",
             "5. Test tag validation with schema"
         ],
         "validation_hints": [
             "Tags should have no internal spaces",
-            "No spaces around forward slashes",
+            "No spaces next to a slash of the tag path or the slash that begins a value; a slash inside a value is part of the value",
             "Check for trailing/leading spaces in tag names",
             "Verify proper hyphenation formatting"
         ],
-        "specification_reference": "3.2.7.1. Tag formatting requirements",
+        "specification_reference": "3.2.2. Tag forms",
         "related_errors": [
             "CHARACTER_INVALID",
             "TAG_INVALID",
@@ -223,7 +223,8 @@
                     "(Duration/ 3 s, (Red))"
                 ],
                 "passes": [
-                    "Sensory-event, Green"
+                    "Sensory-event, Green",
+                    "Description/This is  text"
                 ]
             },
             "sidecar_tests": {
@@ -385,10 +386,169 @@
     {
         "error_code": "TAG_INVALID",
         "alt_codes": [],
+        "name": "tag-blank-next-to-slash-in-value",
+        "description": "A blank next to the slash that begins a value is invalid; a blank next to a slash inside a value is not.",
+        "warning": false,
+        "schema": "8.5.0",
+        "error_category": "syntax",
+        "common_causes": [
+            "Typing a blank after the slash that separates a tag from its value",
+            "Typing a blank after the slash that separates a definition name from its value in Def/Name/value",
+            "Assuming that every slash in a tag must be free of blanks, including slashes inside a text value"
+        ],
+        "explanation": "A blank may not appear directly before or after a slash of the tag path or the slash that begins a value (for Definition, Def and Def-expand, also the slash before the second part of the value). A slash inside a value is part of the value, and the blanks next to it are judged by the rules for the value's class, so Description/left / right is valid.",
+        "correction_strategy": "Remove a blank that is next to the slash that begins a value. Leave blanks next to a slash inside the value; they are part of the value.",
+        "correction_examples": [
+            {
+                "wrong": "Description/ left / right",
+                "correct": "Description/left / right",
+                "explanation": "Only a blank next to a slash of the tag path or the slash that begins a value is an error; a slash inside a value is part of the value."
+            },
+            {
+                "wrong": "Def/Note/ left",
+                "correct": "Def/Note/left",
+                "explanation": "The slash before the value of a definition begins that value, so a blank may not follow it."
+            }
+        ],
+        "specification_reference": "3.2.2. Tag forms",
+        "related_errors": [
+            "VALUE_INVALID",
+            "CHARACTER_INVALID"
+        ],
+        "definitions": [
+            "(Definition/Note/#, (Description/#))"
+        ],
+        "tests": {
+            "string_tests": {
+                "fails": [
+                    "Description/ left / right",
+                    "Def/Note/ left"
+                ],
+                "passes": [
+                    "Description/left / right",
+                    "Description/left /right",
+                    "Description/left/ right",
+                    "Description/a / b / c",
+                    "Description/left/right",
+                    "Def/Note/left / right"
+                ]
+            },
+            "sidecar_tests": {
+                "fails": [
+                    {
+                        "event_code": {
+                            "HED": {
+                                "face": "Description/ left / right"
+                            }
+                        }
+                    }
+                ],
+                "passes": [
+                    {
+                        "event_code": {
+                            "HED": {
+                                "face": "Description/left / right"
+                            }
+                        }
+                    },
+                    {
+                        "note": {
+                            "HED": "Description/#"
+                        }
+                    }
+                ]
+            },
+            "event_tests": {
+                "fails": [
+                    [
+                        [
+                            "onset",
+                            "duration",
+                            "HED"
+                        ],
+                        [
+                            4.5,
+                            0,
+                            "Description/ left / right"
+                        ]
+                    ]
+                ],
+                "passes": [
+                    [
+                        [
+                            "onset",
+                            "duration",
+                            "HED"
+                        ],
+                        [
+                            4.5,
+                            0,
+                            "Description/left / right"
+                        ]
+                    ]
+                ]
+            },
+            "combo_tests": {
+                "fails": [
+                    {
+                        "sidecar": {
+                            "event_code": {
+                                "HED": {
+                                    "face": "Description/ left / right",
+                                    "ball": "Red"
+                                }
+                            }
+                        },
+                        "events": [
+                            [
+                                "onset",
+                                "duration",
+                                "event_code"
+                            ],
+                            [
+                                4.5,
+                                0,
+                                "face"
+                            ],
+                            [
+                                5.0,
+                                0,
+                                "ball"
+                            ]
+                        ]
+                    }
+                ],
+                "passes": [
+                    {
+                        "sidecar": {
+                            "note": {
+                                "HED": "Description/#"
+                            }
+                        },
+                        "events": [
+                            [
+                                "onset",
+                                "duration",
+                                "note"
+                            ],
+                            [
+                                4.5,
+                                0,
+                                "left / right"
+                            ]
+                        ]
+                    }
+                ]
+            }
+        }
+    },
+    {
+        "error_code": "TAG_INVALID",
+        "alt_codes": [],
         "name": "tag-has-leading-trailing-or-consecutive-slashes",
         "description": "A HED tag has leading, trailing or consecutive slashes.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "syntax",
         "common_causes": [
             "Leading slashes at beginning of tags",

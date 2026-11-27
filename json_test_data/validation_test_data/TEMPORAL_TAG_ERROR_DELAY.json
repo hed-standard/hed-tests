@@ -7,7 +7,7 @@
         "name": "temporal-tag-error-not-tag-group-delay",
         "description": "A Delay is not in the tag group.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "structure",
         "common_causes": [
             "Delay tag not in required tag group structure",
@@ -266,7 +266,7 @@
         ],
         "name": "temporal-tag-error-nested-group-delay",
         "description": "A delay appears in a group not in the top level.",
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "structure",
         "common_causes": [
             "Delay tags incorrectly nested within other groups",
@@ -441,7 +441,7 @@
         ],
         "name": "temporal-tag-error-wrong-number-of-defs-delay",
         "description": "An Onset or Offset tag is not grouped with exactly one Def-expand tag group or a Def tag.",
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "temporal",
         "common_causes": [
             "Onset/Offset tag missing required definition association",
@@ -646,7 +646,7 @@
         ],
         "name": "temporal-tag-error-onset-has-more-groups-delay",
         "description": "An Onset group has more than one additional tag group.",
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "temporal",
         "common_causes": [
             "Multiple tag groups associated with single Onset",
@@ -892,7 +892,7 @@
         ],
         "name": "temporal-tag-error-offset-has-groups-delay",
         "description": "An Offset appears with one or more tags or additional tag groups.",
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "temporal",
         "common_causes": [
             "Offset tag paired with additional content",
@@ -1183,7 +1183,7 @@
         ],
         "name": "temporal-tag-error-mismatch-delay",
         "description": "An Offset tag associated with a given definition appears after a previous Offset tag without the appearance of an intervening Onset of the same name.",
-        "schema": "8.3.0",
+        "schema": "8.5.0",
         "error_category": "temporal_logic",
         "common_causes": [
             "Multiple Offset tags without intervening Onset in delayed context",
@@ -1369,7 +1369,7 @@
         ],
         "name": "temporal-tag-error-extra tags-delay",
         "description": "An Onset tag group with has tags besides the anchor Def or Def-expand that are not in a tag group.",
-        "schema": "8.3.0",
+        "schema": "8.5.0",
         "error_category": "temporal",
         "common_causes": [
             "Loose tags outside group structure in delayed Onset",
@@ -1563,7 +1563,7 @@
         ],
         "name": "temporal-tag-error-duplicated-onset-or-offset-delay",
         "description": "An Onset or an Offset with a given Def or Def-expand anchor occurs at the same time (the time of its row plus any Delay) as another Onset or Offset that uses the same anchor.",
-        "schema": "8.3.0",
+        "schema": "8.5.0",
         "error_category": "temporal_logic",
         "common_causes": [
             "Multiple Onset/Offset tags with same definition in single event",
@@ -1859,7 +1859,7 @@
         ],
         "name": "temporal-tag-error-inset-outside-its-event-delay",
         "description": "An Inset tag is not grouped with a Def or Def-expand of an ongoing Onset.",
-        "schema": "8.3.0",
+        "schema": "8.5.0",
         "error_category": "temporal_logic",
         "common_causes": [
             "Inset tag used without corresponding active Onset",
@@ -2059,7 +2059,7 @@
         ],
         "name": "temporal-tag-error-inset-group-has-extras-delay",
         "description": "An Inset group has tags, other than its anchor and an optional Delay, that are not in a tag group.",
-        "schema": "8.3.0",
+        "schema": "8.5.0",
         "error_category": "temporal",
         "common_causes": [
             "Content tags placed directly in the Inset group instead of in its inner group",
@@ -2266,7 +2266,7 @@
         ],
         "name": "temporal-tag-error-tag-appears-where-not-allowed-delay",
         "description": "An Inset, Offset, or Onset tag appears in a tsv with no onset column",
-        "schema": "8.3.0",
+        "schema": "8.5.0",
         "error_category": "context",
         "common_causes": [
             "Temporal tags used in inappropriate file formats",
@@ -2475,7 +2475,7 @@
         "name": "temporal-tag-error-delay-missing-group",
         "description": "A Delay that is the only reserved tag of its group must have exactly one inner group, so (Delay/3 s) fails. Beside Onset, Offset, Inset, or Duration, Delay is secondary and that tag's row gives the group rules: (Onset, Def/MyColor, Delay/3 s) passes with no inner group, while (Delay/3 s, Duration/2 s) fails because Duration needs one.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "temporal",
         "common_causes": [
             "Writing a Delay group with no inner group to say what is delayed",

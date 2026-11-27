@@ -167,7 +167,7 @@
         ],
         "passes": [
           [
-            "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.4.0\" unmerged=\"True\"",
+            "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.5.0\" unmerged=\"True\"",
             "'''Prologue'''",
             "!# start schema",
             "'''Tag-with-unknown''' {suggestedTag=Event}",
@@ -178,6 +178,9 @@
             "'''Schema attributes'''",
             "'''Properties'''",
             "'''Epilogue'''",
+            "'''Sources'''",
+            "'''Prefixes'''",
+            "'''External annotations'''",
             "!# end hed"
           ]
         ]
@@ -234,6 +237,9 @@
             "'''Properties''' <nowiki></nowiki>",
             "* unitProperty <nowiki></nowiki>",
             "'''Epilogue'''",
+            "'''Sources'''",
+            "'''Prefixes'''",
+            "'''External annotations'''",
             "!# end hed"
           ]
         ]
@@ -344,6 +350,9 @@
             "* unitClassProperty",
             "* unitModifierProperty",
             "'''Epilogue'''",
+            "'''Sources'''",
+            "'''Prefixes'''",
+            "'''External annotations'''",
             "!# end hed"
           ]
         ]

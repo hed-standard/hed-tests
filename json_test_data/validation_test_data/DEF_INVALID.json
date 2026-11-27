@@ -5,7 +5,7 @@
         "name": "def-invalid-name",
         "description": "A `Def` tag's name does not correspond to a definition.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "semantic",
         "common_causes": [
             "Using a Def tag name that doesn't match any available definition",
@@ -148,7 +148,7 @@
         "name": "def-invalid-missing-placeholder",
         "description": "A `Def` tag is missing an expected placeholder value or has an unexpected placeholder value.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "placeholder",
         "common_causes": [
             "Using Def with value but definition lacks placeholder",
@@ -291,7 +291,7 @@
         "name": "def-invalid-bad-placeholder-value",
         "description": "A `Def` has a placeholder value of incorrect format or units for definition.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "value",
         "common_causes": [
             "Invalid data type for placeholder value",
@@ -444,7 +444,7 @@
         "name": "def-invalid-bad-value-from-value-column",
         "description": "A value column annotated with `Def/Name/#` has a value that is invalid for the definition's placeholder.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "value",
         "common_causes": [
             "Invalid data type for placeholder value",

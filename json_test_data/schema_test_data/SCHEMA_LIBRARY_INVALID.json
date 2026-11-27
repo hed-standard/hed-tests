@@ -29,7 +29,7 @@
             },
             {
                 "wrong": "library=\"testconflict\"",
-                "correct": "library=\"testconflict\" withStandard=\"8.4.0\"",
+                "correct": "library=\"testconflict\" withStandard=\"8.5.0\"",
                 "explanation": "Added required withStandard attribute"
             }
         ],
@@ -63,7 +63,7 @@
             "schema_tests": {
                 "fails": [
                     [
-                        "HED version=\"1.0.0\" library=\"testconflict_invalidchar\" withStandard=\"8.4.0\" unmerged=\"True\"",
+                        "HED version=\"1.0.0\" library=\"testconflict_invalidchar\" withStandard=\"8.5.0\" unmerged=\"True\"",
                         "'''Prologue'''",
                         "!# start schema",
                         "!# end schema",
@@ -73,10 +73,13 @@
                         "'''Schema attributes'''",
                         "'''Properties'''",
                         "'''Epilogue'''",
+                        "'''Sources'''",
+                        "'''Prefixes'''",
+                        "'''External annotations'''",
                         "!# end hed"
                     ],
                     [
-                        "HED version=\"1.0.0\" library=\"testconflict1\" withStandard=\"8.4.0\" unmerged=\"True\"",
+                        "HED version=\"1.0.0\" library=\"testconflict1\" withStandard=\"8.5.0\" unmerged=\"True\"",
                         "'''Prologue'''",
                         "!# start schema",
                         "!# end schema",
@@ -86,10 +89,13 @@
                         "'''Schema attributes'''",
                         "'''Properties'''",
                         "'''Epilogue'''",
+                        "'''Sources'''",
+                        "'''Prefixes'''",
+                        "'''External annotations'''",
                         "!# end hed"
                     ],
                     [
-                        "HED version=\"1.0.0\" library=\"Testconflict\" withStandard=\"8.4.0\" unmerged=\"True\"",
+                        "HED version=\"1.0.0\" library=\"Testconflict\" withStandard=\"8.5.0\" unmerged=\"True\"",
                         "'''Prologue'''",
                         "!# start schema",
                         "!# end schema",
@@ -99,12 +105,15 @@
                         "'''Schema attributes'''",
                         "'''Properties'''",
                         "'''Epilogue'''",
+                        "'''Sources'''",
+                        "'''Prefixes'''",
+                        "'''External annotations'''",
                         "!# end hed"
                     ]
                 ],
                 "passes": [
                     [
-                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.4.0\" unmerged=\"True\"",
+                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.5.0\" unmerged=\"True\"",
                         "'''Prologue'''",
                         "!# start schema",
                         "!# end schema",
@@ -114,6 +123,9 @@
                         "'''Schema attributes'''",
                         "'''Properties'''",
                         "'''Epilogue'''",
+                        "'''Sources'''",
+                        "'''Prefixes'''",
+                        "'''External annotations'''",
                         "!# end hed"
                     ]
                 ]
@@ -132,7 +144,7 @@
             "schema_tests": {
                 "fails": [
                     [
-                        "HED version=\"1.0.0\" withStandard=\"8.4.0\" unmerged=\"True\"",
+                        "HED version=\"1.0.0\" withStandard=\"8.5.0\" unmerged=\"True\"",
                         "'''Prologue'''",
                         "!# start schema",
                         "!# end schema",
@@ -142,10 +154,13 @@
                         "'''Schema attributes'''",
                         "'''Properties'''",
                         "'''Epilogue'''",
+                        "'''Sources'''",
+                        "'''Prefixes'''",
+                        "'''External annotations'''",
                         "!# end hed"
                     ],
                     [
-                        "HED version=\"1.0.0\" withStandard=\"8.4.0\"",
+                        "HED version=\"1.0.0\" withStandard=\"8.5.0\"",
                         "'''Prologue'''",
                         "!# start schema",
                         "!# end schema",
@@ -155,12 +170,15 @@
                         "'''Schema attributes'''",
                         "'''Properties'''",
                         "'''Epilogue'''",
+                        "'''Sources'''",
+                        "'''Prefixes'''",
+                        "'''External annotations'''",
                         "!# end hed"
                     ]
                 ],
                 "passes": [
                     [
-                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.4.0\" unmerged=\"True\"",
+                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.5.0\" unmerged=\"True\"",
                         "'''Prologue'''",
                         "!# start schema",
                         "!# end schema",
@@ -170,6 +188,9 @@
                         "'''Schema attributes'''",
                         "'''Properties'''",
                         "'''Epilogue'''",
+                        "'''Sources'''",
+                        "'''Prefixes'''",
+                        "'''External annotations'''",
                         "!# end hed"
                     ]
                 ]
@@ -216,7 +237,7 @@
                 ],
                 "passes": [
                     [
-                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.4.0\" unmerged=\"True\"",
+                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.5.0\" unmerged=\"True\"",
                         "'''Prologue'''",
                         "!# start schema",
                         "!# end schema",
@@ -226,6 +247,9 @@
                         "'''Schema attributes'''",
                         "'''Properties'''",
                         "'''Epilogue'''",
+                        "'''Sources'''",
+                        "'''Prefixes'''",
+                        "'''External annotations'''",
                         "!# end hed"
                     ]
                 ]
@@ -244,7 +268,7 @@
             "schema_tests": {
                 "fails": [
                     [
-                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.4.0\"",
+                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.5.0\"",
                         "'''Prologue'''",
                         "!# start schema",
                         "'''Event''' {rooted=Event}",
@@ -255,6 +279,9 @@
                         "'''Schema attributes'''",
                         "'''Properties'''",
                         "'''Epilogue'''",
+                        "'''Sources'''",
+                        "'''Prefixes'''",
+                        "'''External annotations'''",
                         "!# end hed"
                     ],
                     [
@@ -276,7 +303,7 @@
                 ],
                 "passes": [
                     [
-                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.4.0\" unmerged=\"True\"",
+                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.5.0\" unmerged=\"True\"",
                         "'''Prologue'''",
                         "!# start schema",
                         "'''NewThing''' {rooted=Event}",
@@ -287,6 +314,9 @@
                         "'''Schema attributes'''",
                         "'''Properties'''",
                         "'''Epilogue'''",
+                        "'''Sources'''",
+                        "'''Prefixes'''",
+                        "'''External annotations'''",
                         "!# end hed"
                     ]
                 ]
@@ -305,7 +335,7 @@
             "schema_tests": {
                 "fails": [
                     [
-                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.4.0\" unmerged=\"True\"",
+                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.5.0\" unmerged=\"True\"",
                         "'''Prologue'''",
                         "!# start schema",
                         "'''NewNode'''",
@@ -317,12 +347,15 @@
                         "'''Schema attributes'''",
                         "'''Properties'''",
                         "'''Epilogue'''",
+                        "'''Sources'''",
+                        "'''Prefixes'''",
+                        "'''External annotations'''",
                         "!# end hed"
                     ]
                 ],
                 "passes": [
                     [
-                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.4.0\" unmerged=\"True\"",
+                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.5.0\" unmerged=\"True\"",
                         "'''Prologue'''",
                         "!# start schema",
                         "'''NewNode''' {rooted=Event}",
@@ -333,6 +366,9 @@
                         "'''Schema attributes'''",
                         "'''Properties'''",
                         "'''Epilogue'''",
+                        "'''Sources'''",
+                        "'''Prefixes'''",
+                        "'''External annotations'''",
                         "!# end hed"
                     ]
                 ]
@@ -351,7 +387,7 @@
             "schema_tests": {
                 "fails": [
                     [
-                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.4.0\" unmerged=\"True\"",
+                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.5.0\" unmerged=\"True\"",
                         "'''Prologue'''",
                         "!# start schema",
                         "'''DummyTag'''",
@@ -363,10 +399,13 @@
                         "'''Schema attributes'''",
                         "'''Properties'''",
                         "'''Epilogue'''",
+                        "'''Sources'''",
+                        "'''Prefixes'''",
+                        "'''External annotations'''",
                         "!# end hed"
                     ],
                     [
-                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.4.0\" unmerged=\"True\"",
+                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.5.0\" unmerged=\"True\"",
                         "'''Prologue'''",
                         "!# start schema",
                         "'''DummyTag'''{rooted=NotRealTag}",
@@ -377,12 +416,15 @@
                         "'''Schema attributes'''",
                         "'''Properties'''",
                         "'''Epilogue'''",
+                        "'''Sources'''",
+                        "'''Prefixes'''",
+                        "'''External annotations'''",
                         "!# end hed"
                     ]
                 ],
                 "passes": [
                     [
-                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.4.0\" unmerged=\"True\"",
+                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.5.0\" unmerged=\"True\"",
                         "'''Prologue'''",
                         "!# start schema",
                         "'''NewTag''' {rooted=Event}",
@@ -393,6 +435,9 @@
                         "'''Schema attributes'''",
                         "'''Properties'''",
                         "'''Epilogue'''",
+                        "'''Sources'''",
+                        "'''Prefixes'''",
+                        "'''External annotations'''",
                         "!# end hed"
                     ]
                 ]
@@ -411,7 +456,7 @@
             "schema_tests": {
                 "fails": [
                     [
-                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.4.0\" unmerged=\"True\"",
+                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.5.0\" unmerged=\"True\"",
                         "'''Prologue'''",
                         "!# start schema",
                         "'''NewTag''' {rooted=Event}",
@@ -423,12 +468,15 @@
                         "'''Schema attributes'''",
                         "'''Properties'''",
                         "'''Epilogue'''",
+                        "'''Sources'''",
+                        "'''Prefixes'''",
+                        "'''External annotations'''",
                         "!# end hed"
                     ]
                 ],
                 "passes": [
                     [
-                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.4.0\" unmerged=\"True\"",
+                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.5.0\" unmerged=\"True\"",
                         "'''Prologue'''",
                         "!# start schema",
                         "'''NewTag''' {rooted=Event}",
@@ -440,6 +488,9 @@
                         "'''Schema attributes'''",
                         "'''Properties'''",
                         "'''Epilogue'''",
+                        "'''Sources'''",
+                        "'''Prefixes'''",
+                        "'''External annotations'''",
                         "!# end hed"
                     ]
                 ]
@@ -458,7 +509,7 @@
             "schema_tests": {
                 "fails": [
                     [
-                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.4.0\" unmerged=\"True\"",
+                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.5.0\" unmerged=\"True\"",
                         "'''Prologue'''",
                         "!# start schema",
                         "'''NewTag''' {rooted=Event}",
@@ -472,12 +523,15 @@
                         "'''Schema attributes'''",
                         "'''Properties'''",
                         "'''Epilogue'''",
+                        "'''Sources'''",
+                        "'''Prefixes'''",
+                        "'''External annotations'''",
                         "!# end hed"
                     ]
                 ],
                 "passes": [
                     [
-                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.4.0\" unmerged=\"True\"",
+                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.5.0\" unmerged=\"True\"",
                         "'''Prologue'''",
                         "!# start schema",
                         "'''NewTag''' {rooted=Event}",
@@ -491,6 +545,9 @@
                         "'''Schema attributes'''",
                         "'''Properties'''",
                         "'''Epilogue'''",
+                        "'''Sources'''",
+                        "'''Prefixes'''",
+                        "'''External annotations'''",
                         "!# end hed"
                     ]
                 ]
@@ -531,7 +588,7 @@
             "schema_tests": {
                 "fails": [
                     [
-                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.4.0\" unmerged=\"True\"",
+                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.5.0\" unmerged=\"True\"",
                         "'''Prologue'''",
                         "!# start schema",
                         "'''NewTag''' {rooted=Event}",
@@ -544,10 +601,13 @@
                         "'''Schema attributes'''",
                         "'''Properties'''",
                         "'''Epilogue'''",
+                        "'''Sources'''",
+                        "'''Prefixes'''",
+                        "'''External annotations'''",
                         "!# end hed"
                     ],
                     [
-                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.4.0\" unmerged=\"True\"",
+                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.5.0\" unmerged=\"True\"",
                         "'''Prologue'''",
                         "!# start schema",
                         "'''NewTag''' {rooted=Event}",
@@ -560,12 +620,15 @@
                         "'''Schema attributes'''",
                         "'''Properties'''",
                         "'''Epilogue'''",
+                        "'''Sources'''",
+                        "'''Prefixes'''",
+                        "'''External annotations'''",
                         "!# end hed"
                     ]
                 ],
                 "passes": [
                     [
-                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.4.0\" unmerged=\"True\"",
+                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.5.0\" unmerged=\"True\"",
                         "'''Prologue'''",
                         "!# start schema",
                         "'''NewTag''' {rooted=Event}",
@@ -578,6 +641,9 @@
                         "'''Schema attributes'''",
                         "'''Properties'''",
                         "'''Epilogue'''",
+                        "'''Sources'''",
+                        "'''Prefixes'''",
+                        "'''External annotations'''",
                         "!# end hed"
                     ]
                 ]
@@ -596,7 +662,7 @@
             "schema_tests": {
                 "fails": [
                     [
-                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.4.0\" unmerged=\"True\"",
+                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.5.0\" unmerged=\"True\"",
                         "'''Prologue'''",
                         "!# start schema",
                         "'''Sensory-event'''",
@@ -607,10 +673,13 @@
                         "'''Schema attributes'''",
                         "'''Properties'''",
                         "'''Epilogue'''",
+                        "'''Sources'''",
+                        "'''Prefixes'''",
+                        "'''External annotations'''",
                         "!# end hed"
                     ],
                     [
-                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.4.0\" unmerged=\"True\"",
+                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.5.0\" unmerged=\"True\"",
                         "'''Prologue'''",
                         "!# start schema",
                         "'''NewTag''' {rooted=Event}",
@@ -622,12 +691,15 @@
                         "'''Schema attributes'''",
                         "'''Properties'''",
                         "'''Epilogue'''",
+                        "'''Sources'''",
+                        "'''Prefixes'''",
+                        "'''External annotations'''",
                         "!# end hed"
                     ]
                 ],
                 "passes": [
                     [
-                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.4.0\" unmerged=\"True\"",
+                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.5.0\" unmerged=\"True\"",
                         "'''Prologue'''",
                         "!# start schema",
                         "'''NewTag''' {rooted=Event}",
@@ -639,6 +711,9 @@
                         "'''Schema attributes'''",
                         "'''Properties'''",
                         "'''Epilogue'''",
+                        "'''Sources'''",
+                        "'''Prefixes'''",
+                        "'''External annotations'''",
                         "!# end hed"
                     ]
                 ]
@@ -672,7 +747,7 @@
             "schema_tests": {
                 "fails": [
                     [
-                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.4.0\" unmerged=\"True\"",
+                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.5.0\" unmerged=\"True\"",
                         "'''Prologue'''",
                         "!# start schema",
                         "'''NewTag''' {rooted=Event}",
@@ -684,12 +759,15 @@
                         "'''Schema attributes'''",
                         "'''Properties'''",
                         "'''Epilogue'''",
+                        "'''Sources'''",
+                        "'''Prefixes'''",
+                        "'''External annotations'''",
                         "!# end hed"
                     ]
                 ],
                 "passes": [
                     [
-                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.4.0\" unmerged=\"True\"",
+                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.5.0\" unmerged=\"True\"",
                         "'''Prologue'''",
                         "!# start schema",
                         "'''NewTag''' {rooted=Event}",
@@ -701,6 +779,9 @@
                         "'''Schema attributes'''",
                         "'''Properties'''",
                         "'''Epilogue'''",
+                        "'''Sources'''",
+                        "'''Prefixes'''",
+                        "'''External annotations'''",
                         "!# end hed"
                     ]
                 ]
@@ -734,7 +815,7 @@
             "schema_tests": {
                 "fails": [
                     [
-                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.4.0\" unmerged=\"True\"",
+                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.5.0\" unmerged=\"True\"",
                         "'''Prologue'''",
                         "!# start schema",
                         "'''NewTag''' {rooted=Event}",
@@ -746,12 +827,15 @@
                         "* suggestedTag",
                         "'''Properties'''",
                         "'''Epilogue'''",
+                        "'''Sources'''",
+                        "'''Prefixes'''",
+                        "'''External annotations'''",
                         "!# end hed"
                     ]
                 ],
                 "passes": [
                     [
-                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.4.0\" unmerged=\"True\"",
+                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.5.0\" unmerged=\"True\"",
                         "'''Prologue'''",
                         "!# start schema",
                         "'''NewTag''' {rooted=Event}",
@@ -763,6 +847,9 @@
                         "* auxAttribute <nowiki>{boolRange}</nowiki>",
                         "'''Properties'''",
                         "'''Epilogue'''",
+                        "'''Sources'''",
+                        "'''Prefixes'''",
+                        "'''External annotations'''",
                         "!# end hed"
                     ]
                 ]
@@ -796,7 +883,7 @@
             "schema_tests": {
                 "fails": [
                     [
-                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.4.0\" unmerged=\"True\"",
+                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.5.0\" unmerged=\"True\"",
                         "'''Prologue'''",
                         "!# start schema",
                         "'''NewTag''' {rooted=Event}",
@@ -808,12 +895,15 @@
                         "'''Schema attributes'''",
                         "'''Properties'''",
                         "'''Epilogue'''",
+                        "'''Sources'''",
+                        "'''Prefixes'''",
+                        "'''External annotations'''",
                         "!# end hed"
                     ]
                 ],
                 "passes": [
                     [
-                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.4.0\" unmerged=\"True\"",
+                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.5.0\" unmerged=\"True\"",
                         "'''Prologue'''",
                         "!# start schema",
                         "'''NewTag''' {rooted=Event}",
@@ -825,6 +915,9 @@
                         "'''Schema attributes'''",
                         "'''Properties'''",
                         "'''Epilogue'''",
+                        "'''Sources'''",
+                        "'''Prefixes'''",
+                        "'''External annotations'''",
                         "!# end hed"
                     ]
                 ]
@@ -847,7 +940,7 @@
         "correction_examples": [
             {
                 "wrong": "HED version=\"1.0.0\" library=\"testconflict\" with '''NewTag''' {rooted=Event}",
-                "correct": "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.4.0\" unmerged=\"True\" with '''NewTag''' {rooted=Event}",
+                "correct": "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.5.0\" unmerged=\"True\" with '''NewTag''' {rooted=Event}",
                 "explanation": "With a withStandard partner in the header the rooted attribute has a standard schema to anchor into."
             }
         ],
@@ -874,7 +967,7 @@
                 ],
                 "passes": [
                     [
-                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.4.0\" unmerged=\"True\"",
+                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.5.0\" unmerged=\"True\"",
                         "'''Prologue'''",
                         "!# start schema",
                         "'''NewTag''' {rooted=Event}",
@@ -885,6 +978,9 @@
                         "'''Schema attributes'''",
                         "'''Properties'''",
                         "'''Epilogue'''",
+                        "'''Sources'''",
+                        "'''Prefixes'''",
+                        "'''External annotations'''",
                         "!# end hed"
                     ]
                 ]
@@ -933,6 +1029,9 @@
                         "'''Properties'''",
                         "* boolProperty",
                         "'''Epilogue'''",
+                        "'''Sources'''",
+                        "'''Prefixes'''",
+                        "'''External annotations'''",
                         "!# end hed"
                     ]
                 ]
@@ -966,7 +1065,7 @@
             "schema_tests": {
                 "fails": [
                     [
-                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.4.0\" unmerged=\"True\"",
+                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.5.0\" unmerged=\"True\"",
                         "'''Prologue'''",
                         "!# start schema",
                         "'''NewTag''' {rooted=Event}",
@@ -978,12 +1077,15 @@
                         "'''Properties'''",
                         "* boolRange",
                         "'''Epilogue'''",
+                        "'''Sources'''",
+                        "'''Prefixes'''",
+                        "'''External annotations'''",
                         "!# end hed"
                     ]
                 ],
                 "passes": [
                     [
-                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.4.0\" unmerged=\"True\"",
+                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.5.0\" unmerged=\"True\"",
                         "'''Prologue'''",
                         "!# start schema",
                         "'''NewTag''' {rooted=Event}",
@@ -994,6 +1096,9 @@
                         "'''Schema attributes'''",
                         "'''Properties'''",
                         "'''Epilogue'''",
+                        "'''Sources'''",
+                        "'''Prefixes'''",
+                        "'''External annotations'''",
                         "!# end hed"
                     ]
                 ]
@@ -1011,7 +1116,7 @@
             "Editing a merged schema by hand and moving a rooted subtree to the top level",
             "Saving a schema with a merged header (no unmerged attribute) without applying the rooted anchoring"
         ],
-        "explanation": "The rooted attribute records where a library subtree is anchored in the standard schema. In unmerged form the rooted node must be at the top level; in merged form the anchoring has been applied, so a node with rooted=Event must appear as a direct child of Event. Here Rooted-tag carries rooted=Event but sits at the top level of a merged schema, so its placement contradicts the attribute. The passing schema places the same node directly under Event. (A merged schema carries its partner's Properties section verbatim and must define every attribute its elements use, so these fixtures include the 8.4.0 properties and the rooted and inLibrary attribute definitions.)",
+        "explanation": "The rooted attribute records where a library subtree is anchored in the standard schema. In unmerged form the rooted node must be at the top level; in merged form the anchoring has been applied, so a node with rooted=Event must appear as a direct child of Event. Here Rooted-tag carries rooted=Event but sits at the top level of a merged schema, so its placement contradicts the attribute. The passing schema places the same node directly under Event. (A merged schema carries its partner's Properties section verbatim and must define every attribute its elements use, so these fixtures include the 8.5.0 properties and the rooted and inLibrary attribute definitions.)",
         "correction_strategy": "Place the rooted node directly under its anchor node in the merged form, or save the schema in unmerged form (unmerged=\"True\") with the rooted node at the top level.",
         "correction_examples": [
             {
@@ -1027,7 +1132,7 @@
             "schema_tests": {
                 "fails": [
                     [
-                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.4.0\"",
+                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.5.0\"",
                         "'''Prologue'''",
                         "!# start schema",
                         "'''Rooted-tag''' <nowiki>{rooted=Event, inLibrary=testconflict}[A library subtree rooted under Event.]</nowiki>",
@@ -1054,12 +1159,15 @@
                         "* valueClassDomain <nowiki>[This schema attribute can apply to value classes. This property was formerly named valueClassProperty.]</nowiki>",
                         "* valueClassRange <nowiki>[This schema attribute's value can be a value class.]</nowiki>",
                         "'''Epilogue'''",
+                        "'''Sources'''",
+                        "'''Prefixes'''",
+                        "'''External annotations'''",
                         "!# end hed"
                     ]
                 ],
                 "passes": [
                     [
-                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.4.0\"",
+                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.5.0\"",
                         "'''Prologue'''",
                         "!# start schema",
                         "'''Event''' <nowiki>[Something that happens at a given place and time.]</nowiki>",
@@ -1087,6 +1195,9 @@
                         "* valueClassDomain <nowiki>[This schema attribute can apply to value classes. This property was formerly named valueClassProperty.]</nowiki>",
                         "* valueClassRange <nowiki>[This schema attribute's value can be a value class.]</nowiki>",
                         "'''Epilogue'''",
+                        "'''Sources'''",
+                        "'''Prefixes'''",
+                        "'''External annotations'''",
                         "!# end hed"
                     ]
                 ]
@@ -1104,7 +1215,7 @@
             "Editing a property description by hand in the merged file",
             "Merging against a different standard schema version than the withStandard partner"
         ],
-        "explanation": "Library schemas never define schema properties, so the Properties section of a merged partnered library schema is exactly the Properties section of its standard schema partner. Here the description of the boolRange property differs from the 8.4.0 partner's text (the sentence about its former name is missing), so the Properties section differs from the partner and the schema is invalid. The passing schema carries the partner's Properties verbatim.",
+        "explanation": "Library schemas never define schema properties, so the Properties section of a merged partnered library schema is exactly the Properties section of its standard schema partner. Here the description of the boolRange property differs from the 8.5.0 partner's text (the sentence about its former name is missing), so the Properties section differs from the partner and the schema is invalid. The passing schema carries the partner's Properties verbatim.",
         "correction_strategy": "Regenerate the merged form from the unmerged source with schema tools instead of editing it by hand; the Properties section must be the partner's, unchanged.",
         "correction_examples": [
             {
@@ -1120,7 +1231,7 @@
             "schema_tests": {
                 "fails": [
                     [
-                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.4.0\"",
+                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.5.0\"",
                         "'''Prologue'''",
                         "!# start schema",
                         "'''Event''' <nowiki>[Something that happens at a given place and time.]</nowiki>",
@@ -1148,12 +1259,15 @@
                         "* valueClassDomain <nowiki>[This schema attribute can apply to value classes. This property was formerly named valueClassProperty.]</nowiki>",
                         "* valueClassRange <nowiki>[This schema attribute's value can be a value class.]</nowiki>",
                         "'''Epilogue'''",
+                        "'''Sources'''",
+                        "'''Prefixes'''",
+                        "'''External annotations'''",
                         "!# end hed"
                     ]
                 ],
                 "passes": [
                     [
-                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.4.0\"",
+                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.5.0\"",
                         "'''Prologue'''",
                         "!# start schema",
                         "'''Event''' <nowiki>[Something that happens at a given place and time.]</nowiki>",
@@ -1181,6 +1295,9 @@
                         "* valueClassDomain <nowiki>[This schema attribute can apply to value classes. This property was formerly named valueClassProperty.]</nowiki>",
                         "* valueClassRange <nowiki>[This schema attribute's value can be a value class.]</nowiki>",
                         "'''Epilogue'''",
+                        "'''Sources'''",
+                        "'''Prefixes'''",
+                        "'''External annotations'''",
                         "!# end hed"
                     ]
                 ]
@@ -1214,7 +1331,7 @@
             "schema_tests": {
                 "fails": [
                     [
-                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.4.0\" unmerged=\"True\"",
+                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.5.0\" unmerged=\"True\"",
                         "'''Prologue'''",
                         "!# start schema",
                         "'''NewTag''' <nowiki>{reserved}</nowiki>",
@@ -1225,12 +1342,15 @@
                         "'''Schema attributes'''",
                         "'''Properties'''",
                         "'''Epilogue'''",
+                        "'''Sources'''",
+                        "'''Prefixes'''",
+                        "'''External annotations'''",
                         "!# end hed"
                     ]
                 ],
                 "passes": [
                     [
-                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.4.0\" unmerged=\"True\"",
+                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.5.0\" unmerged=\"True\"",
                         "'''Prologue'''",
                         "!# start schema",
                         "'''NewTag'''",
@@ -1241,6 +1361,9 @@
                         "'''Schema attributes'''",
                         "'''Properties'''",
                         "'''Epilogue'''",
+                        "'''Sources'''",
+                        "'''Prefixes'''",
+                        "'''External annotations'''",
                         "!# end hed"
                     ]
                 ]
@@ -1307,6 +1430,9 @@
                         "'''Properties'''",
                         "* boolProperty",
                         "'''Epilogue'''",
+                        "'''Sources'''",
+                        "'''Prefixes'''",
+                        "'''External annotations'''",
                         "!# end hed"
                     ]
                 ]
@@ -1342,7 +1468,7 @@
             "schema_tests": {
                 "fails": [
                     [
-                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.4.0\"",
+                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.5.0\"",
                         "'''Prologue'''",
                         "!# start schema",
                         "'''Event''' <nowiki>[Something that happens at a given place and time.]</nowiki>",
@@ -1371,12 +1497,15 @@
                         "* valueClassDomain <nowiki>[This schema attribute can apply to value classes. This property was formerly named valueClassProperty.]</nowiki>",
                         "* valueClassRange <nowiki>[This schema attribute's value can be a value class.]</nowiki>",
                         "'''Epilogue'''",
+                        "'''Sources'''",
+                        "'''Prefixes'''",
+                        "'''External annotations'''",
                         "!# end hed"
                     ]
                 ],
                 "passes": [
                     [
-                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.4.0\"",
+                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.5.0\"",
                         "'''Prologue'''",
                         "!# start schema",
                         "'''Event''' <nowiki>[Something that happens at a given place and time.]</nowiki>",
@@ -1405,6 +1534,9 @@
                         "* valueClassDomain <nowiki>[This schema attribute can apply to value classes. This property was formerly named valueClassProperty.]</nowiki>",
                         "* valueClassRange <nowiki>[This schema attribute's value can be a value class.]</nowiki>",
                         "'''Epilogue'''",
+                        "'''Sources'''",
+                        "'''Prefixes'''",
+                        "'''External annotations'''",
                         "!# end hed"
                     ]
                 ]
@@ -1487,6 +1619,9 @@
                         "'''Schema attributes'''",
                         "'''Properties'''",
                         "'''Epilogue'''",
+                        "'''Sources'''",
+                        "'''Prefixes'''",
+                        "'''External annotations'''",
                         "!# end hed"
                     ],
                     [
@@ -1502,6 +1637,9 @@
                         "'''Schema attributes'''",
                         "'''Properties'''",
                         "'''Epilogue'''",
+                        "'''Sources'''",
+                        "'''Prefixes'''",
+                        "'''External annotations'''",
                         "!# end hed"
                     ]
                 ]
@@ -1542,7 +1680,7 @@
             "schema_tests": {
                 "fails": [
                     [
-                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.4.0\" unmerged=\"True\"",
+                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.5.0\" unmerged=\"True\"",
                         "'''Prologue'''",
                         "!# start schema",
                         "'''NewTag''' {rooted=Onset}",
@@ -1553,10 +1691,13 @@
                         "'''Schema attributes'''",
                         "'''Properties'''",
                         "'''Epilogue'''",
+                        "'''Sources'''",
+                        "'''Prefixes'''",
+                        "'''External annotations'''",
                         "!# end hed"
                     ],
                     [
-                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.4.0\" unmerged=\"True\"",
+                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.5.0\" unmerged=\"True\"",
                         "'''Prologue'''",
                         "!# start schema",
                         "'''NewTag''' {rooted=Event-context}",
@@ -1567,12 +1708,15 @@
                         "'''Schema attributes'''",
                         "'''Properties'''",
                         "'''Epilogue'''",
+                        "'''Sources'''",
+                        "'''Prefixes'''",
+                        "'''External annotations'''",
                         "!# end hed"
                     ]
                 ],
                 "passes": [
                     [
-                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.4.0\" unmerged=\"True\"",
+                        "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.5.0\" unmerged=\"True\"",
                         "'''Prologue'''",
                         "!# start schema",
                         "'''NewTag''' {rooted=Temporal-marker}",
@@ -1583,6 +1727,9 @@
                         "'''Schema attributes'''",
                         "'''Properties'''",
                         "'''Epilogue'''",
+                        "'''Sources'''",
+                        "'''Prefixes'''",
+                        "'''External annotations'''",
                         "!# end hed"
                     ]
                 ]

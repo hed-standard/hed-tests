@@ -9,7 +9,7 @@
         "name": "tag-group-error-missing",
         "description": "A tag has tagGroup or topLevelTagGroup attribute, but is not enclosed in parentheses.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "structure",
         "common_causes": [
             "Tags requiring groups not enclosed in parentheses",
@@ -234,7 +234,7 @@
         "name": "tag-group-error-not-top-level",
         "description": "A tag with the topLevelTagGroup does not appear at a HED tag group at the top level in an assembled HED annotation.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "structure",
         "common_causes": [
             "Top-level tags nested too deeply in groups",
@@ -417,7 +417,7 @@
         "name": "tag-group-error-deferred-in-splice",
         "description": "A tag with the topLevelTagGroup does not appear at a HED tag group at the top level in an assembled HED annotation.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "structure",
         "common_causes": [
             "Top-level tags nested in column splice operations",
@@ -775,7 +775,7 @@
         "name": "multiple-top-level-tags-in-same-group",
         "description": "Multiple tags with the topLevelTagGroup attribute appear in the same top-level tag group. (Delay and Duration are allowed to be in the same topLevelTagGroup).",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "cardinality",
         "common_causes": [
             "Multiple context tags in single group",
@@ -1030,7 +1030,7 @@
         "name": "tag-group-error-event-context-contents",
         "description": "An `Event-context` group contains, besides the `Event-context` tag, only tag groups, one per ongoing event process.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "cardinality",
         "common_causes": [
             "Placing the tags of an ongoing event directly in the Event-context group instead of in their own group",
@@ -1230,7 +1230,7 @@
         "name": "tag-group-error-event-context-braces",
         "description": "An Event-context group contains a sidecar column reference ({column}). Column references may not appear in an Event-context group; they may appear beside it.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "structure",
         "common_causes": [
             "Assembling the ongoing-event contents of an Event-context group from another column with curly braces",

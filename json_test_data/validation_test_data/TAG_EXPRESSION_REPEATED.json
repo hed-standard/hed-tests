@@ -5,7 +5,7 @@
         "name": "tag-expression-repeated-same-level",
         "description": "A tag is repeated in the same tag group or level.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "semantic",
         "common_causes": [
             "Copy-paste errors creating duplicates",
@@ -266,7 +266,7 @@
         "name": "tags-duplicated-across-multiple-rows",
         "description": "Tags are repeated because two rows have the same onset value.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "duplication",
         "common_causes": [
             "Same tag appearing in multiple columns for single event",
@@ -461,7 +461,7 @@
         "name": "tags-with-duplicated-onsets-across-multiple-rows",
         "description": "Tags are repeated because two rows have the same onset value.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "temporal_logic",
         "common_causes": [
             "Multiple Onset tags for same definition across events",
@@ -656,7 +656,7 @@
         "name": "tag-expression-repeated-na-onset-row",
         "description": "A tag is repeated in the assembled annotation of a row whose onset is n/a.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "semantic",
         "common_causes": [
             "Repeating in the HED column a tag that the row's sidecar annotation already supplies",
@@ -955,7 +955,7 @@
         "name": "tag-expression-repeated-column-name-with-period",
         "description": "A curly-brace reference to a column whose name has a period is substituted, and the result repeats a tag.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "semantic",
         "common_causes": [
             "Repeating a tag in a group and in the annotation substituted into it"
@@ -1365,7 +1365,7 @@
         "name": "tag-expression-repeated-hed-column-reference",
         "description": "A sidecar annotation repeats a tag once its {HED} reference is removed. Under rule 10 of the sidecar curly-brace rules, a {HED} reference is always removed when the sidecar is checked, as it is in a row whose HED cell is n/a or blank, so (Red, {HED}), (Red) is invalid as a sidecar on its own: removing the reference leaves (Red), (Red). The combo item fails on a row whose HED cell is n/a. (Red, {HED}), (Blue) passes.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "semantic",
         "common_causes": [
             "Writing a sidecar annotation that is only valid when the HED column is filled",
@@ -1490,7 +1490,7 @@
         "name": "tag-expression-repeated-reference-removed",
         "description": "A sidecar annotation repeats a tag once a curly-brace reference to another column is removed. Under rule 10 of the sidecar curly-brace rules, the annotation is also checked with all its references removed, as in a row whose referenced cell is n/a or blank (rule 3), so (Red, {color}), (Red) is invalid as a sidecar on its own even though no annotation of color is Red, and so is (Red, {rt}), (Red) for a value column rt. The combo items fail on rows whose color cell is n/a or blank (the empty string) and whose rt cell is n/a.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "semantic",
         "common_causes": [
             "Writing a sidecar annotation that is only valid when a referenced column is filled",
@@ -1661,7 +1661,7 @@
         "name": "tag-expression-repeated-curly-brace-substitution",
         "description": "A sidecar annotation repeats a tag when the annotation of a column it references is substituted. Under rule 10 of the sidecar curly-brace rules, each annotation of each referenced column is substituted, one referenced column at a time with every other reference removed, whether or not a table uses that value. So (Red, {color}) is invalid if an annotation of color is Red, and (Red, {color}), (Blue, {shade}) is invalid for the same color with shade removed. A repeat that needs two referenced columns filled at once, such as ({color}, {shade}) when both give Red, is required only when a row is assembled; the combo fails item pins it, and no sidecar item depends on whether a validator reports it in the sidecar.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "semantic",
         "common_causes": [
             "Annotating a referenced column with a tag the referencing annotation already has",

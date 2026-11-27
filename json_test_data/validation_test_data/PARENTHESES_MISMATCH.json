@@ -5,7 +5,7 @@
         "name": "parentheses-mismatch-unmatched-parentheses",
         "description": "A HED string does not have the same number of open and closed parentheses.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "syntax",
         "common_causes": [
             "Missing opening or closing parentheses",
@@ -208,7 +208,7 @@
         "name": "parentheses-mismatch-incorrect-nesting",
         "description": "The open and closed parentheses are not correctly nested in the HED string.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "syntax",
         "common_causes": [
             "Incorrect interleaving of tag groups",
@@ -409,7 +409,7 @@
         "name": "parentheses-mismatch-in-value-column",
         "description": "A value in a sidecar-annotated value column contains an unmatched parenthesis, so the HED string obtained by substituting the value for the # is unbalanced.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "syntax",
         "common_causes": [
             "Free text in a value column that includes a parenthesis without its partner",
@@ -532,7 +532,7 @@
         "name": "parentheses-mismatch-equal-count-wrong-order",
         "description": "A HED string has as many open as closed parentheses, but a closing parenthesis comes before its opening one.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "syntax",
         "common_causes": [
             "Moving a parenthesis to the wrong side of a tag when editing",

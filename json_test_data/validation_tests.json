@@ -9,7 +9,7 @@
         "name": "character-invalid-non-printing-appears",
         "description": "The HED string contains a UTF-8 character.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "validation",
         "common_causes": [
             "Copy-pasting text from documents with invisible control characters",
@@ -217,7 +217,7 @@
         "name": "curly-braces-not-in-sidecar",
         "description": "The curly brace notation is used outside a sidecar.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "validation",
         "common_causes": [
             "Using curly braces {} in HED strings outside of sidecar column references",
@@ -334,7 +334,7 @@
         "name": "invalid-character-name-value-class",
         "description": "An invalid character was used in an 8.3.0 or greater style name value class.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "validation",
         "common_causes": [
             "Using special characters (*$%[]) in tags with restrictive name classes",
@@ -841,7 +841,7 @@
         "name": "character-invalid-double-quote",
         "description": "A HED string contains a double quote, which no HED string may contain whatever the value class. In a tabular file a double quote is an ordinary character, so a HED cell written wholly in quotes (\"Red\") keeps its quotes and fails.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "validation",
         "common_causes": [
             "Quoting a word or a title inside a Description value",
@@ -1350,12 +1350,59 @@
         }
     },
     {
+        "error_code": "CHARACTER_INVALID",
+        "alt_codes": [
+            "VALUE_INVALID"
+        ],
+        "name": "character-invalid-blank-in-name-value",
+        "description": "A value of a nameClass placeholder, such as the value of Label, contains a blank. The name character set has no blank, so one blank or several are invalid. Blanks inside a value are judged by the value class, not by TAG_INVALID.",
+        "warning": false,
+        "schema": "8.5.0",
+        "error_category": "validation",
+        "common_causes": [
+            "Writing a label as several words, such as Label/my label",
+            "Copying a multi-word name from a spreadsheet into a Label value"
+        ],
+        "explanation": "A nameClass value may contain only name characters: letters, digits, hyphen, underscore, and non-ASCII characters. The blank is not one of them, so Label/my label and Label/my  label are invalid. A text value such as a Description may contain blanks, including two in a row.",
+        "correction_strategy": "Join the words of the name with an underscore or a hyphen, or use a tag that takes a text value if the value is a phrase.",
+        "correction_examples": [
+            {
+                "wrong": "Label/my label",
+                "correct": "Label/my_label",
+                "explanation": "Joined the words with an underscore, which is a name character"
+            },
+            {
+                "wrong": "Label/my  label",
+                "correct": "Label/my-label",
+                "explanation": "Replaced the two blanks with a hyphen, which is a name character"
+            }
+        ],
+        "specification_reference": "2.2. Character sets and restrictions; A.1.3. Value classes; Appendix B CHARACTER_INVALID",
+        "related_errors": [
+            "VALUE_INVALID",
+            "TAG_INVALID"
+        ],
+        "definitions": [],
+        "tests": {
+            "string_tests": {
+                "fails": [
+                    "Label/my label",
+                    "Label/my  label"
+                ],
+                "passes": [
+                    "Label/my_label",
+                    "Label/my-label"
+                ]
+            }
+        }
+    },
+    {
         "error_code": "COMMA_MISSING",
         "alt_codes": [],
         "name": "comma-missing-tag-groups",
         "description": "Two tag groups are not separated by commas: (A, B)(C, D).",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "syntax",
         "common_causes": [
             "Forgetting to add comma between tag groups",
@@ -1549,7 +1596,7 @@
         "name": "comma-missing-tag-and-group",
         "description": "A tag and a tag group are not separated by commas: A(B,D).",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "syntax",
         "common_causes": [
             "Forgetting to add comma between a tag and a tag group",
@@ -1749,7 +1796,7 @@
         "name": "definition-invalid-tag-group",
         "description": "A Definition tag does not appear in a tag group at the top level in an annotation.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "structure",
         "common_causes": [
             "Definition tag not enclosed in parentheses",
@@ -1900,7 +1947,7 @@
         "name": "definition-invalid-multiple-definition-tags",
         "description": "A definition's enclosing tag group contains more than a `Definition` tag and an inner group.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "structure",
         "common_causes": [
             "Adding extra Definition tags in the same group",
@@ -2040,7 +2087,7 @@
         "name": "definition-invalid-inner-group-defs",
         "description": "A definition's inner tag group contains `Definition`, `Def` or `Def-expand` tags.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "structure",
         "common_causes": [
             "Nested Definition tags within definition content",
@@ -2180,7 +2227,7 @@
         "name": "definition-invalid-bad-number-of-placeholders",
         "description": "A definition that includes a placeholder (`#`) does not have exactly two `#` characters.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "placeholder",
         "common_causes": [
             "Unequal number of placeholders in definition and content",
@@ -2324,7 +2371,7 @@
         "name": "definition-invalid-placeholder-incorrect-of-positions",
         "description": "A definition has placeholders (`#`) in incorrect positions.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "placeholder",
         "common_causes": [
             "Placeholder in content without corresponding definition placeholder",
@@ -2468,7 +2515,7 @@
         "name": "definition-invalid-placeholder-conflict",
         "description": "Definitions of the same name appear with and without a `#`.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "consistency",
         "common_causes": [
             "Mixing placeholder and non-placeholder versions of same definition",
@@ -2609,7 +2656,7 @@
         "name": "definition-invalid-multiple-definitions",
         "description": "Definitions with the same name have different contents.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "uniqueness",
         "common_causes": [
             "Copying a definition into several definition entries and editing one copy",
@@ -2758,7 +2805,7 @@
         "name": "definition-invalid-content-has-top-level-tag",
         "description": "A definition's contents contain, at any level, a structural reserved tag (Definition, Def, Def-expand, Onset, Offset, Inset, Delay, Duration, Event-context; reason d) or a tag with the required or unique attribute (reason j).",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "content",
         "common_causes": [
             "Using top-level or unique tags within definition content",
@@ -2955,7 +3002,7 @@
         "name": "definition-not-allowed-here",
         "description": "A definition appears in an unexpected place such as an events file or sidecar.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "context",
         "common_causes": [
             "Placing definitions in event annotations instead of definition section",
@@ -3126,7 +3173,7 @@
         "name": "definition-invalid-duplicate-definitions-differ",
         "description": "A definition name may be defined more than once only when every definition of it is identical; the same name with different contents is an error.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "uniqueness",
         "common_causes": [
             "Copying a definition into several sidecar entries and editing one copy",
@@ -3256,7 +3303,7 @@
         "name": "definition-invalid-second-part-not-placeholder",
         "description": "The value of a Definition tag has a part after the name other than a single # (reason l): Definition/NewDef/3 and Definition/NewDef/Extra fail. Definition/NewDef/#/# fails too, as reason f (three # in the definition) or l.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "syntax",
         "common_causes": [
             "Writing an example value instead of # after the definition name",
@@ -3464,7 +3511,7 @@
         "name": "definition-invalid-in-value-entry",
         "description": "A sidecar value entry contains a definition.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "context",
         "common_causes": [
             "Putting a definition in the HED string of a value column"
@@ -3587,7 +3634,7 @@
         "name": "definition-invalid-beside-other-tags",
         "description": "A sidecar categorical annotation contains a definition and a tag that is not a definition.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "context",
         "common_causes": [
             "Adding an ordinary tag to an annotation that holds definitions"
@@ -3709,7 +3756,7 @@
         "name": "definition-invalid-identical-in-one-string",
         "description": "Identical definitions of one name in the same HED string are one definition, not a repeated expression; the same name with different contents in one string is an error.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "uniqueness",
         "common_causes": [
             "Pasting the same definition twice into one sidecar entry",
@@ -3979,7 +4026,7 @@
         "name": "definition-invalid-name-case",
         "description": "Definition names are matched without regard to case, so names that differ only in case name the same definition and must have identical contents.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "uniqueness",
         "common_causes": [
             "Capitalizing a definition name differently in two sidecar columns",
@@ -4121,7 +4168,7 @@
         "name": "definition-invalid-value-case",
         "description": "Tags in definition contents are compared without regard to case but values with case, so definitions of one name that differ in the case of a value are different definitions.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "uniqueness",
         "common_causes": [
             "Typing a value in different case in two copies of a definition",
@@ -4263,7 +4310,7 @@
         "name": "def-expand-invalid-name-not-definition",
         "description": "A `Def-expand` tag's name does not correspond to a definition.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "semantic",
         "common_causes": [
             "Referencing undefined definition names",
@@ -4466,7 +4513,7 @@
         "name": "def-expand-invalid-missing-placeholder",
         "description": "A `Def-expand` is missing an expected placeholder value or has an unexpected placeholder value.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "content",
         "common_causes": [
             "Missing required placeholder values in Def-expand",
@@ -4659,7 +4706,7 @@
         "name": "def-expand-invalid-bad-placeholder-value-or-units",
         "description": "A `Def-expand` has an incorrect type of placeholder value.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "value",
         "common_causes": [
             "Placeholder values with incorrect data types",
@@ -4877,7 +4924,7 @@
         "name": "def-expand-invalid-tags-not-in-definition",
         "description": "The tags within a Def-expand do not match the corresponding definition.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "content",
         "common_causes": [
             "Expanded content doesn't match definition template",
@@ -5089,7 +5136,7 @@
         "name": "def-expand-missing-inner-group",
         "description": "A Def-expand is missing its inner group containing the definition.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "structure",
         "common_causes": [
             "Incomplete Def-expand structure missing content group",
@@ -5284,7 +5331,7 @@
         "name": "def-expand-has-extras",
         "description": "A Def-expand has extra tags or groups.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "structure",
         "common_causes": [
             "Adding extra tags beyond definition expansion",
@@ -5483,7 +5530,7 @@
         "name": "def-expand-tags-in-any-order",
         "description": "The tags and groups within a Def-expand may appear in any order; only their content and nesting must match the definition.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "content",
         "common_causes": [
             "Validator comparing expansion and definition as ordered lists",
@@ -5676,7 +5723,7 @@
         "name": "def-invalid-name",
         "description": "A `Def` tag's name does not correspond to a definition.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "semantic",
         "common_causes": [
             "Using a Def tag name that doesn't match any available definition",
@@ -5874,7 +5921,7 @@
         "name": "def-invalid-missing-placeholder",
         "description": "A `Def` tag is missing an expected placeholder value or has an unexpected placeholder value.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "placeholder",
         "common_causes": [
             "Using Def with value but definition lacks placeholder",
@@ -6076,7 +6123,7 @@
         "name": "def-invalid-bad-placeholder-value",
         "description": "A `Def` has a placeholder value of incorrect format or units for definition.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "value",
         "common_causes": [
             "Invalid data type for placeholder value",
@@ -6300,7 +6347,7 @@
         "name": "def-invalid-bad-value-from-value-column",
         "description": "A value column annotated with `Def/Name/#` has a value that is invalid for the definition's placeholder.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "value",
         "common_causes": [
             "Invalid data type for placeholder value",
@@ -6533,7 +6580,7 @@
         "name": "tag-deprecated",
         "description": "A tag is deprecated",
         "warning": true,
-        "schema": "8.2.0",
+        "schema": "8.5.0",
         "error_category": "semantic",
         "common_causes": [
             "Using tags from older schema versions",
@@ -6975,7 +7022,7 @@
         "name": "parentheses-mismatch-unmatched-parentheses",
         "description": "A HED string does not have the same number of open and closed parentheses.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "syntax",
         "common_causes": [
             "Missing opening or closing parentheses",
@@ -7178,7 +7225,7 @@
         "name": "parentheses-mismatch-incorrect-nesting",
         "description": "The open and closed parentheses are not correctly nested in the HED string.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "syntax",
         "common_causes": [
             "Incorrect interleaving of tag groups",
@@ -7379,7 +7426,7 @@
         "name": "parentheses-mismatch-in-value-column",
         "description": "A value in a sidecar-annotated value column contains an unmatched parenthesis, so the HED string obtained by substituting the value for the # is unbalanced.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "syntax",
         "common_causes": [
             "Free text in a value column that includes a parenthesis without its partner",
@@ -7502,7 +7549,7 @@
         "name": "parentheses-mismatch-equal-count-wrong-order",
         "description": "A HED string has as many open as closed parentheses, but a closing parenthesis comes before its opening one.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "syntax",
         "common_causes": [
             "Moving a parenthesis to the wrong side of a tag when editing",
@@ -7715,7 +7762,7 @@
         "name": "placeholder-invalid-misplaced",
         "description": "A `#` appears in a place that it should not (such as in the `HED` column of an event file outside a definition).",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "structure",
         "common_causes": [
             "Using # in event files instead of actual values",
@@ -7910,7 +7957,7 @@
         "name": "placeholder-invalid-#-in-categorical-column",
         "description": "A JSON sidecar has a placeholder (`#`) in the HED dictionary for a categorical column.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "context",
         "common_causes": [
             "Using placeholders in categorical (non-value) columns",
@@ -8067,7 +8114,7 @@
         "name": "placeholder-invalid-json-value-column",
         "description": "A JSON sidecar does not have exactly one placeholder (`#`) in each HED string representing a value column.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "count",
         "common_causes": [
             "Multiple placeholders in single value column HED string",
@@ -8245,7 +8292,7 @@
         "name": "placeholder-invalid-json-#-misplaced",
         "description": "A placeholder (`#`) is used in JSON sidecar or definition, but its parent in the schema does not have a placeholder child.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "schema",
         "common_causes": [
             "Using placeholders on tags that don't support them",
@@ -8407,7 +8454,7 @@
         "name": "placeholder-invalid-in-value-column",
         "description": "A value in a sidecar-annotated value column contains a # character, so the HED string obtained by substituting the value for the # of the annotation still holds a placeholder.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "syntax",
         "common_causes": [
             "Free text in a value column that uses # as a number sign or a marker",
@@ -8529,7 +8576,7 @@
         "name": "placeholder-invalid-after-extension",
         "description": "A placeholder (`#`) follows a user extension term (Item/Blech/#) or stands in for one (Item/#). The # cannot be an extension, so this is PLACEHOLDER_INVALID in every context, events file or sidecar. A validator that checks extensionAllowed or the term itself first may report TAG_EXTENSION_INVALID instead.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "semantic",
         "common_causes": [
             "Extending a tag with a new term and then putting the value column's # after the new term",
@@ -8699,7 +8746,7 @@
         "name": "placeholder-invalid-units-after-extension",
         "description": "A placeholder with units (`# g`) follows a user extension term (Item/Blech/# g) or stands in for one (Item/# g). Units do not give an extension a value, so this is the same error as a bare # after an extension. A validator that reads `# g` as one extension term may report TAG_EXTENSION_INVALID instead.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "semantic",
         "common_causes": [
             "Putting a value column's # and its units after a new extension term",
@@ -8852,7 +8899,7 @@
         "name": "placeholder-invalid-not-whole-value",
         "description": "In a sidecar value entry the placeholder (#) is not the whole value directly after a slash.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "count",
         "common_causes": [
             "Writing a prefix or suffix next to the # (Label/x#, Label/#x)",
@@ -10892,7 +10939,7 @@
         "name": "sidecar-braces-contents-invalid",
         "description": "The item in curly braces is not the word HED or a column name with HED annotations in the sidecar.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "structure",
         "common_causes": [
             "Referencing non-existent columns in curly braces",
@@ -11078,7 +11125,7 @@
         "name": "sidecar-braces-invalid-spot",
         "description": "A curly brace reference must only appear where a tag could.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "syntax",
         "common_causes": [
             "Curly braces embedded within tag values",
@@ -11182,7 +11229,7 @@
         "name": "sidecar-braces-circular-reference",
         "description": "The item in curly braces has a HED annotation that contains curly braces.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "reference",
         "common_causes": [
             "Column A references column B which references column A",
@@ -11369,7 +11416,7 @@
         "name": "sidecar-braces-self-reference",
         "description": "The item in curly braces has a HED annotation that contains itself.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "reference",
         "common_causes": [
             "Column referencing itself directly in HED annotation",
@@ -11632,7 +11679,7 @@
         "name": "sidecar-braces-appear-as-value-rather-than-tag",
         "description": "The curly braces are in a value rather than as a separate tag substitute.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "syntax",
         "common_causes": [
             "Embedding column references within tag values",
@@ -11849,7 +11896,7 @@
         "name": "sidecar-braces-column-name-with-period",
         "description": "A name in curly braces contains a period and is not the name of a HED-annotated column.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "structure",
         "common_causes": [
             "Referring to a column that has no HED annotation in the sidecar",
@@ -11980,7 +12027,7 @@
         "name": "sidecar-invalid-key-at-wrong-level",
         "description": "The HED key is not a second-level dictionary key.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "structure",
         "common_causes": [
             "HED key at wrong nesting level in sidecar",
@@ -12172,7 +12219,7 @@
         "name": "sidecar-invalid-na-annotated",
         "description": "An annotation entry is provided for `n/a`.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "structure",
         "common_causes": [
             "Providing HED annotations for n/a values",
@@ -12324,7 +12371,7 @@
         "name": "sidecar-invalid-key-whitespace",
         "description": "A top-level sidecar key begins or ends with whitespace (reason d). A trailing blank, a leading blank, and a trailing tab fail, on categorical and value entries, on a padded key beside its unpadded twin, and on a padded key whose entry has no HED. A sidecar key trial with a padded entry for a header column trial fails. Unpadded keys pass, including a key with an internal blank and a key that ends with a no-break space (U+00A0), which is not whitespace for this rule.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "structure",
         "common_causes": [
             "A blank typed after a key when the sidecar was edited by hand",
@@ -12527,7 +12574,7 @@
         "name": "sidecar-invalid-value-key-whitespace",
         "description": "In a categorical entry, a column value listed as a key under HED begins or ends with whitespace (reason e). A trailing blank, a leading blank, and a trailing tab on a key under HED fail, and a combo whose sidecar has the padded key go fails even though the table holds go. Unpadded keys pass, including a key with an internal blank, a key ending with a no-break space (U+00A0, not whitespace for the rule), and a padded key in a BIDS Levels dictionary of the same entry, which is not checked.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "structure",
         "common_causes": [
             "A blank typed after a value when the sidecar was edited by hand",
@@ -12707,7 +12754,7 @@
         "name": "sidecar-invalid-hed-key-nested-beside-valid",
         "description": "A sidecar entry has a valid second-level HED key and also a HED key at a deeper level.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "structure",
         "common_causes": [
             "Putting HED inside a Levels dictionary",
@@ -12847,7 +12894,7 @@
         "name": "sidecar-invalid-annotation-empty",
         "description": "An annotation in a categorical entry of a sidecar is empty or consists only of blanks.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "structure",
         "common_causes": [
             "Leaving a placeholder empty string for a value that has not been annotated yet",
@@ -13015,7 +13062,7 @@
         "name": "sidecar-key-missing",
         "description": "A value in a categorical column does not have an expected entry in a sidecar.",
         "warning": true,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "validation",
         "common_causes": [
             "New categorical values not added to sidecar",
@@ -13181,7 +13228,7 @@
         "name": "sidecar-refers-to-missing-tsv-hed-column",
         "description": "(Warning) A sidecar uses a {HED} column which does not appear in the corresponding tsv file.",
         "warning": true,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "reference",
         "common_causes": [
             "Sidecar references HED column not present in TSV",
@@ -13327,7 +13374,7 @@
         "name": "tabular-invalid-duplicate-column-name",
         "description": "A column name appears more than once in the first line (the column names) of a tabular file (reason a). The error does not depend on whether the repeated column is annotated: a repeated HED column, a repeated column with no annotation, a name repeated three times, and a repeated column that a sidecar annotates all fail. Distinct names pass, including a name that is a prefix of another (trial and trial_type). Names are compared exactly as written: a double quote is an ordinary character, so trial and \"trial\" are two names, and 1 and 1.0 are two names, not one number.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "structure",
         "common_causes": [
             "A column copied when the table was exported or merged, keeping its name",
@@ -13561,7 +13608,7 @@
         "name": "tabular-invalid-column-name-whitespace",
         "description": "A column name in the first line of a tabular file begins or ends with whitespace (reason b). A trailing or leading blank fails, on the HED column or on any other column, a padded name that is also repeated is reported under (b), trial beside a padded trial is one padded name rather than a repeat, and a name made only of a blank is padded and fails under (b), not as a blank name (c). A header naming trial for a sidecar entry trial fails when the header cell is padded. The same tables with unpadded names pass, including a name with an internal blank and a name that ends with a no-break space (U+00A0), which is not whitespace for this rule.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "structure",
         "common_causes": [
             "A blank typed after a column name when the header line was edited by hand",
@@ -13824,7 +13871,7 @@
         "name": "tabular-invalid-blank-column-name",
         "description": "A column name in the first line of a tabular file is blank, the empty string (reason c). A first line that ends with a tab has a blank last name, a first line that is only a tab has two blank names, a blank name between two others fails, and two blank names are reported under (c) for each blank name, not as a repeated name under (a). A header naming trial for a sidecar entry trial fails when the header also has a blank column. The same tables without the blank column pass. An empty first line is a single blank column name, so a file whose first line is empty fails under this reason (its later lines also have two cells against one, reason f); two empty first lines put the HED header on line 3 (and three put it on line 4), where a validator that looks only at line 1 or 2 does not see it and may skip the file as having no HED; the items check the error code only, so a validator that reports the empty lines under reason e without looking for HED also passes them; the one-column items break only reasons c and e, not the cell count (f); one combo item has an empty first line and no HED column, so only its sidecar makes it a table that carries HED and must be validated; either way the error is TABULAR_INVALID.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "structure",
         "common_causes": [
             "A tab typed after the last column name when the header line was edited by hand",
@@ -14084,7 +14131,7 @@
         "name": "tabular-invalid-value-whitespace",
         "description": "A value in a column with categorical or value HED annotations begins or ends with whitespace (reason d). In a categorical column, go with a trailing or leading blank, a value made only of a blank, and n/a with a trailing blank fail; in a value column, 30 with a trailing or leading blank fails. The same tables pass with go, 30, n/a, and an empty cell, and also with a HED column cell that has blanks around its tag, a categorical value ending with a no-break space (U+00A0, not whitespace for the rule; it only lacks an annotation, a warning), and a padded value in a column with no HED annotation. In a table with one annotated column, a line of only a blank is such a value (reason d), not a wrong cell count (reason f).",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "structure",
         "common_causes": [
             "A blank typed after a value when the table was edited by hand",
@@ -14480,7 +14527,7 @@
         "name": "tabular-invalid-empty-line",
         "description": "A line other than the first of a tabular file is empty, with no characters before its line terminator (reason e). An empty line between two rows fails, and so does an empty last line, which two line endings at the end of the file make; a single line ending at the end of the file is not an empty line. An empty line is reported as an empty line only, not also as a wrong cell count (reason f), and an empty first line is a blank column name (reason c), not this error. The same tables without the empty line pass.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "structure",
         "common_causes": [
             "A blank line left between rows when the file was edited by hand",
@@ -14647,7 +14694,7 @@
         "name": "tabular-invalid-cell-count",
         "description": "A line other than the first of a tabular file has a different number of tab-separated cells than the first line (reason f). In a two-column table, a row one cell short, a first data row one cell long, a later row one cell long, a line of only a blank (one cell), and a line of only tabs with three cells fail; in a combined sidecar and table test a short row fails. A line of only tabs with as many cells as the first line is a row of missing values and passes, and so does a blank-only line in a table with one column and no HED annotations (a whitespace value that is not annotated). An empty line is reported as an empty line (reason e) only, not under this error.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "structure",
         "common_causes": [
             "A cell dropped from a row when the file was edited by hand, so that the row has too few tabs",
@@ -14867,7 +14914,7 @@
         "name": "tag-empty-extra-commas-or-parentheses",
         "description": "A HED string has extra commas or parentheses separated by only white space.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "syntax",
         "common_causes": [
             "Extra commas at beginning or end of strings",
@@ -15081,7 +15128,7 @@
         "name": "tag-empty-begin-end-comma",
         "description": "A HED string begins or ends with a comma (ignoring white space).",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "syntax",
         "common_causes": [
             "Extra comma at beginning or end of HED string",
@@ -15282,7 +15329,7 @@
         "name": "tag-empty-empty-parentheses",
         "description": "A tag group is empty (i.e., empty parentheses are not allowed).",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "syntax",
         "common_causes": [
             "Empty parentheses () in HED strings",
@@ -15514,7 +15561,7 @@
         "name": "tag-expression-repeated-same-level",
         "description": "A tag is repeated in the same tag group or level.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "semantic",
         "common_causes": [
             "Copy-paste errors creating duplicates",
@@ -15775,7 +15822,7 @@
         "name": "tags-duplicated-across-multiple-rows",
         "description": "Tags are repeated because two rows have the same onset value.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "duplication",
         "common_causes": [
             "Same tag appearing in multiple columns for single event",
@@ -15970,7 +16017,7 @@
         "name": "tags-with-duplicated-onsets-across-multiple-rows",
         "description": "Tags are repeated because two rows have the same onset value.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "temporal_logic",
         "common_causes": [
             "Multiple Onset tags for same definition across events",
@@ -16165,7 +16212,7 @@
         "name": "tag-expression-repeated-na-onset-row",
         "description": "A tag is repeated in the assembled annotation of a row whose onset is n/a.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "semantic",
         "common_causes": [
             "Repeating in the HED column a tag that the row's sidecar annotation already supplies",
@@ -16464,7 +16511,7 @@
         "name": "tag-expression-repeated-column-name-with-period",
         "description": "A curly-brace reference to a column whose name has a period is substituted, and the result repeats a tag.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "semantic",
         "common_causes": [
             "Repeating a tag in a group and in the annotation substituted into it"
@@ -16876,7 +16923,7 @@
         "name": "tag-expression-repeated-hed-column-reference",
         "description": "A sidecar annotation repeats a tag once its {HED} reference is removed. Under rule 10 of the sidecar curly-brace rules, a {HED} reference is always removed when the sidecar is checked, as it is in a row whose HED cell is n/a or blank, so (Red, {HED}), (Red) is invalid as a sidecar on its own: removing the reference leaves (Red), (Red). The combo item fails on a row whose HED cell is n/a. (Red, {HED}), (Blue) passes.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "semantic",
         "common_causes": [
             "Writing a sidecar annotation that is only valid when the HED column is filled",
@@ -17001,7 +17048,7 @@
         "name": "tag-expression-repeated-reference-removed",
         "description": "A sidecar annotation repeats a tag once a curly-brace reference to another column is removed. Under rule 10 of the sidecar curly-brace rules, the annotation is also checked with all its references removed, as in a row whose referenced cell is n/a or blank (rule 3), so (Red, {color}), (Red) is invalid as a sidecar on its own even though no annotation of color is Red, and so is (Red, {rt}), (Red) for a value column rt. The combo items fail on rows whose color cell is n/a or blank (the empty string) and whose rt cell is n/a.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "semantic",
         "common_causes": [
             "Writing a sidecar annotation that is only valid when a referenced column is filled",
@@ -17172,7 +17219,7 @@
         "name": "tag-expression-repeated-curly-brace-substitution",
         "description": "A sidecar annotation repeats a tag when the annotation of a column it references is substituted. Under rule 10 of the sidecar curly-brace rules, each annotation of each referenced column is substituted, one referenced column at a time with every other reference removed, whether or not a table uses that value. So (Red, {color}) is invalid if an annotation of color is Red, and (Red, {color}), (Blue, {shade}) is invalid for the same color with shade removed. A repeat that needs two referenced columns filled at once, such as ({color}, {shade}) when both give Red, is required only when a row is assembled; the combo fails item pins it, and no sidecar item depends on whether a validator reports it in the sidecar.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "semantic",
         "common_causes": [
             "Annotating a referenced column with a tag the referencing annotation already has",
@@ -17372,7 +17419,7 @@
         "name": "tag-extended-extension",
         "description": "A tag represents an extension from the schema.",
         "warning": true,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "semantic",
         "common_causes": [
             "Creating new tags not in schema",
@@ -17573,7 +17620,7 @@
         "name": "tag-extension-invalid-duplicate",
         "description": "A tag extension term is already in the schema.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "semantic",
         "common_causes": [
             "The extending tag already exists in schema",
@@ -17772,7 +17819,7 @@
         "name": "tag-extension-invalid-schema-term-after-extension",
         "description": "A term that is already a node in the schema follows a user extension term (Item/Blech/Red). Every level after an extension term is also an extension, and an extension term must not already be in the schema.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "semantic",
         "common_causes": [
             "Writing a schema tag as a further level of an extension instead of as a separate tag",
@@ -17925,7 +17972,7 @@
         "name": "tag-extension-invalid-bad-node-name",
         "description": "A tag extension term does not comply with rules for schema nodes.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "semantic",
         "common_causes": [
             "Creating extensions that violate naming rules",
@@ -18244,7 +18291,7 @@
         "name": "tag-extension-invalid-not-allowed",
         "description": "A tag is extended although neither it nor any of its ancestors has the extensionAllowed attribute (Sensory-event/Baloney, Agent/Blech). The Event and Agent subtrees of the standard schema do not allow extensions, so a term below them that is not in the schema is TAG_EXTENSION_INVALID, in short or long form and at any depth.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "semantic",
         "common_causes": [
             "Adding a more specific kind of event under Sensory-event or another Event tag",
@@ -18532,7 +18579,7 @@
         "name": "tag-extension-invalid-reserved-tag",
         "description": "A structural reserved tag is extended with a term (Onset/Blah, Event-context/Blah). Reserved tags must not be extended although they inherit extensionAllowed from Property. A # after a reserved tag (Onset/#) is tested in tag-extension-invalid-reserved-tag-placeholder, since it may be reported under either of two codes.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "semantic",
         "common_causes": [
             "Adding a descriptive word after Onset or Event-context as if it were a label",
@@ -18682,7 +18729,7 @@
         "name": "tag-extension-invalid-reserved-tag-placeholder",
         "description": "A # follows a reserved tag that takes no value. It is an error in every context: a HED string ((Event-context/#, (Red)), since string tests use no temporal tag), an events file, a sidecar value column, and a combo ((Onset/#, Def/MyColor)). A validator may report it as TAG_EXTENSION_INVALID (the # extends a reserved tag) or as PLACEHOLDER_INVALID (the # has no placeholder child to stand for, or is not allowed there at all), depending on which check finds it first.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "semantic",
         "common_causes": [
             "Treating Onset as a tag that takes a value and putting the value column's # on it",
@@ -18822,7 +18869,7 @@
         "name": "tag-extension-invalid-no-letter",
         "description": "A tag extension term contains no letter (Item/Blech/3, Item/1-2, Item/_). An extension term must contain at least one letter: A-Z or a-z, or any Unicode letter in schema versions whose nameClass allows non-ASCII characters (8.3.0 and later), so a non-ASCII term with no letter (a degree sign, an Arabic-Indic digit) also fails.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "semantic",
         "common_causes": [
             "Writing a number after a tag that does not take a value, as if it did (Item/3)",
@@ -19043,7 +19090,7 @@
         "name": "tag-group-error-missing",
         "description": "A tag has tagGroup or topLevelTagGroup attribute, but is not enclosed in parentheses.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "structure",
         "common_causes": [
             "Tags requiring groups not enclosed in parentheses",
@@ -19268,7 +19315,7 @@
         "name": "tag-group-error-not-top-level",
         "description": "A tag with the topLevelTagGroup does not appear at a HED tag group at the top level in an assembled HED annotation.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "structure",
         "common_causes": [
             "Top-level tags nested too deeply in groups",
@@ -19451,7 +19498,7 @@
         "name": "tag-group-error-deferred-in-splice",
         "description": "A tag with the topLevelTagGroup does not appear at a HED tag group at the top level in an assembled HED annotation.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "structure",
         "common_causes": [
             "Top-level tags nested in column splice operations",
@@ -19809,7 +19856,7 @@
         "name": "multiple-top-level-tags-in-same-group",
         "description": "Multiple tags with the topLevelTagGroup attribute appear in the same top-level tag group. (Delay and Duration are allowed to be in the same topLevelTagGroup).",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "cardinality",
         "common_causes": [
             "Multiple context tags in single group",
@@ -20064,7 +20111,7 @@
         "name": "tag-group-error-event-context-contents",
         "description": "An `Event-context` group contains, besides the `Event-context` tag, only tag groups, one per ongoing event process.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "cardinality",
         "common_causes": [
             "Placing the tags of an ongoing event directly in the Event-context group instead of in their own group",
@@ -20264,7 +20311,7 @@
         "name": "tag-group-error-event-context-braces",
         "description": "An Event-context group contains a sidecar column reference ({column}). Column references may not appear in an Event-context group; they may appear beside it.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "structure",
         "common_causes": [
             "Assembling the ongoing-event contents of an Event-context group from another column with curly braces",
@@ -20408,7 +20455,7 @@
         "name": "tag-invalid-in-schema",
         "description": "The tag is not valid in the schema it is associated with.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "semantic",
         "common_causes": [
             "Misspelling tag names",
@@ -20606,18 +20653,18 @@
         "error_code": "TAG_INVALID",
         "alt_codes": [],
         "name": "tag-has-extra-whitespace",
-        "description": "A HED tag has extra internal whitespace, including directly before or after slashes.",
+        "description": "A HED tag has extra internal whitespace, including directly before or after a slash of the tag path or the slash that begins a value. Blanks inside a value, such as the two in Description/This is  text, are judged by the value class and are not this error.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "syntax",
         "common_causes": [
             "Extra spaces within tag names",
-            "Spaces before or after forward slashes",
+            "Spaces next to a slash of the tag path or the slash that begins a value",
             "Copy-paste errors introducing whitespace",
             "Formatting inconsistencies in tag construction",
             "Manual typing errors with extra spaces"
         ],
-        "explanation": "HED tags must follow strict formatting rules without extra internal whitespace. Spaces before/after slashes or within tag names break tag parsing and schema validation.",
+        "explanation": "HED tags must follow strict formatting rules without extra internal whitespace. Spaces within tag names, or next to a slash of the tag path or the slash that begins a value, break tag parsing and schema validation. A slash inside a value is part of the value, and blanks next to it are judged by the value's class.",
         "correction_strategy": "Remove all extra whitespace from tag names",
         "correction_examples": [
             {
@@ -20638,29 +20685,29 @@
             {
                 "wrong": "Label/ abc",
                 "correct": "Label/abc",
-                "explanation": "A blank may not appear directly before or after a slash, including the slash before a value."
+                "explanation": "A blank may not appear directly before or after a slash of the tag path, including the slash that begins a value."
             }
         ],
         "correction_patterns": [
             "Remove spaces within tag names",
-            "Remove spaces before forward slashes",
-            "Remove spaces after forward slashes",
+            "Remove spaces before a slash of the tag path or the slash that begins a value",
+            "Remove spaces after a slash of the tag path or the slash that begins a value",
             "Maintain proper hyphenation without spaces"
         ],
         "fix_instructions": [
             "1. Identify tags with internal whitespace",
-            "2. Remove spaces before/after slashes",
+            "2. Remove spaces before/after a slash of the tag path or the slash that begins a value",
             "3. Remove extra spaces within tag names",
             "4. Verify proper tag formatting",
             "5. Test tag validation with schema"
         ],
         "validation_hints": [
             "Tags should have no internal spaces",
-            "No spaces around forward slashes",
+            "No spaces next to a slash of the tag path or the slash that begins a value; a slash inside a value is part of the value",
             "Check for trailing/leading spaces in tag names",
             "Verify proper hyphenation formatting"
         ],
-        "specification_reference": "3.2.7.1. Tag formatting requirements",
+        "specification_reference": "3.2.2. Tag forms",
         "related_errors": [
             "CHARACTER_INVALID",
             "TAG_INVALID",
@@ -20681,7 +20728,8 @@
                     "(Duration/ 3 s, (Red))"
                 ],
                 "passes": [
-                    "Sensory-event, Green"
+                    "Sensory-event, Green",
+                    "Description/This is  text"
                 ]
             },
             "sidecar_tests": {
@@ -20843,10 +20891,169 @@
     {
         "error_code": "TAG_INVALID",
         "alt_codes": [],
+        "name": "tag-blank-next-to-slash-in-value",
+        "description": "A blank next to the slash that begins a value is invalid; a blank next to a slash inside a value is not.",
+        "warning": false,
+        "schema": "8.5.0",
+        "error_category": "syntax",
+        "common_causes": [
+            "Typing a blank after the slash that separates a tag from its value",
+            "Typing a blank after the slash that separates a definition name from its value in Def/Name/value",
+            "Assuming that every slash in a tag must be free of blanks, including slashes inside a text value"
+        ],
+        "explanation": "A blank may not appear directly before or after a slash of the tag path or the slash that begins a value (for Definition, Def and Def-expand, also the slash before the second part of the value). A slash inside a value is part of the value, and the blanks next to it are judged by the rules for the value's class, so Description/left / right is valid.",
+        "correction_strategy": "Remove a blank that is next to the slash that begins a value. Leave blanks next to a slash inside the value; they are part of the value.",
+        "correction_examples": [
+            {
+                "wrong": "Description/ left / right",
+                "correct": "Description/left / right",
+                "explanation": "Only a blank next to a slash of the tag path or the slash that begins a value is an error; a slash inside a value is part of the value."
+            },
+            {
+                "wrong": "Def/Note/ left",
+                "correct": "Def/Note/left",
+                "explanation": "The slash before the value of a definition begins that value, so a blank may not follow it."
+            }
+        ],
+        "specification_reference": "3.2.2. Tag forms",
+        "related_errors": [
+            "VALUE_INVALID",
+            "CHARACTER_INVALID"
+        ],
+        "definitions": [
+            "(Definition/Note/#, (Description/#))"
+        ],
+        "tests": {
+            "string_tests": {
+                "fails": [
+                    "Description/ left / right",
+                    "Def/Note/ left"
+                ],
+                "passes": [
+                    "Description/left / right",
+                    "Description/left /right",
+                    "Description/left/ right",
+                    "Description/a / b / c",
+                    "Description/left/right",
+                    "Def/Note/left / right"
+                ]
+            },
+            "sidecar_tests": {
+                "fails": [
+                    {
+                        "event_code": {
+                            "HED": {
+                                "face": "Description/ left / right"
+                            }
+                        }
+                    }
+                ],
+                "passes": [
+                    {
+                        "event_code": {
+                            "HED": {
+                                "face": "Description/left / right"
+                            }
+                        }
+                    },
+                    {
+                        "note": {
+                            "HED": "Description/#"
+                        }
+                    }
+                ]
+            },
+            "event_tests": {
+                "fails": [
+                    [
+                        [
+                            "onset",
+                            "duration",
+                            "HED"
+                        ],
+                        [
+                            4.5,
+                            0,
+                            "Description/ left / right"
+                        ]
+                    ]
+                ],
+                "passes": [
+                    [
+                        [
+                            "onset",
+                            "duration",
+                            "HED"
+                        ],
+                        [
+                            4.5,
+                            0,
+                            "Description/left / right"
+                        ]
+                    ]
+                ]
+            },
+            "combo_tests": {
+                "fails": [
+                    {
+                        "sidecar": {
+                            "event_code": {
+                                "HED": {
+                                    "face": "Description/ left / right",
+                                    "ball": "Red"
+                                }
+                            }
+                        },
+                        "events": [
+                            [
+                                "onset",
+                                "duration",
+                                "event_code"
+                            ],
+                            [
+                                4.5,
+                                0,
+                                "face"
+                            ],
+                            [
+                                5.0,
+                                0,
+                                "ball"
+                            ]
+                        ]
+                    }
+                ],
+                "passes": [
+                    {
+                        "sidecar": {
+                            "note": {
+                                "HED": "Description/#"
+                            }
+                        },
+                        "events": [
+                            [
+                                "onset",
+                                "duration",
+                                "note"
+                            ],
+                            [
+                                4.5,
+                                0,
+                                "left / right"
+                            ]
+                        ]
+                    }
+                ]
+            }
+        }
+    },
+    {
+        "error_code": "TAG_INVALID",
+        "alt_codes": [],
         "name": "tag-has-leading-trailing-or-consecutive-slashes",
         "description": "A HED tag has leading, trailing or consecutive slashes.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "syntax",
         "common_causes": [
             "Leading slashes at beginning of tags",
@@ -21706,7 +21913,7 @@
         "name": "tag-not-unique",
         "description": "A tag with unique attribute appears more than once in an event-level HED string.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "semantic",
         "common_causes": [
             "Using unique tags multiple times in same event",
@@ -21890,7 +22097,7 @@
         "name": "tag-requires-child-missing",
         "description": "A tag has the requireChild schema attribute but does not have a child.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "structure",
         "common_causes": [
             "Using parent tags without required children",
@@ -22204,7 +22411,7 @@
         "name": "temporal-tag-error-not-tag-group",
         "description": "An Onset or Offset tag does not appear in a tag group.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "structure",
         "common_causes": [
             "Onset/Offset tags not enclosed in parentheses",
@@ -22422,7 +22629,7 @@
         "name": "temporal-tag-error-nested-group",
         "description": "An Onset or Offset tag appears in a nested tag group (not a top-level tag group).",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "structure",
         "common_causes": [
             "Temporal tags incorrectly nested within other groups",
@@ -22598,7 +22805,7 @@
         "name": "temporal-tag-error-wrong-number-of-defs",
         "description": "An Onset or Offset tag is not grouped with exactly one Def-expand tag group or a Def tag.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "content",
         "common_causes": [
             "Multiple Def tags in a single temporal group",
@@ -22799,7 +23006,7 @@
         "name": "temporal-tag-error-onset-has-more-groups",
         "description": "An Onset group has more than one additional tag group.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "structure",
         "common_causes": [
             "Extra groups added to Onset beyond required definition",
@@ -22995,7 +23202,7 @@
         "name": "temporal-tag-error-offset-has-groups",
         "description": "An Offset appears with one or more tags or additional tag groups.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "structure",
         "common_causes": [
             "Adding extra content to Offset groups",
@@ -23235,7 +23442,7 @@
         "name": "temporal-tag-error-offset-with-no-onset",
         "description": "An Offset tag associated with a given definition appears after a previous Offset tag without the appearance of an intervening Onset of the same name.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "temporal_logic",
         "common_causes": [
             "Using Offset without corresponding Onset in temporal sequence",
@@ -23423,7 +23630,7 @@
         "name": "temporal-tag-error-extra tags",
         "description": "An Onset tag group with has tags besides the anchor Def or Def-expand that are not in a tag group.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "structure",
         "common_causes": [
             "Adding loose tags to temporal groups without proper grouping",
@@ -23609,9 +23816,9 @@
         "error_code": "TEMPORAL_TAG_ERROR",
         "alt_codes": [],
         "name": "temporal-tag-error-duplicated-onset-or-offset",
-        "description": "An Onset or an Offset with a given Def or Def-expand anchor appears in the same event marker with another Onset or Offset that uses the same anchor.",
+        "description": "An Onset, Offset or Inset with a given Def or Def-expand anchor occurs at the same time as another Onset, Offset or Inset that uses the same anchor, in one row or in two rows with the same onset.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "temporal_logic",
         "common_causes": [
             "Duplicate Onset or Offset tags for the same definition",
@@ -23619,7 +23826,7 @@
             "Copy-paste errors creating duplicate temporal tags",
             "Misunderstanding that each definition should have unique temporal markers"
         ],
-        "explanation": "Each definition should have at most one Onset and one Offset per event. Duplicate temporal tags for the same definition create ambiguous temporal sequences.",
+        "explanation": "Each definition anchor may have at most one Onset, Offset or Inset at any one time. Duplicate temporal tags for the same definition create ambiguous temporal sequences.",
         "correction_strategy": "Remove duplicate temporal tags or use different definitions",
         "correction_examples": [
             {
@@ -23668,8 +23875,81 @@
                 "passes": []
             },
             "event_tests": {
-                "fails": [],
-                "passes": []
+                "fails": [
+                    [
+                        [
+                            "onset",
+                            "duration",
+                            "HED"
+                        ],
+                        [
+                            0,
+                            "n/a",
+                            "(Def/MyColor, Onset)"
+                        ],
+                        [
+                            1,
+                            "n/a",
+                            "(Def/MyColor, Inset, (Blue)), (Def/MyColor, Inset, (Green))"
+                        ],
+                        [
+                            2,
+                            "n/a",
+                            "(Def/MyColor, Offset)"
+                        ]
+                    ],
+                    [
+                        [
+                            "onset",
+                            "duration",
+                            "HED"
+                        ],
+                        [
+                            0,
+                            "n/a",
+                            "(Def/MyColor, Onset)"
+                        ],
+                        [
+                            1,
+                            "n/a",
+                            "(Def/MyColor, Inset, (Blue))"
+                        ],
+                        [
+                            1,
+                            "n/a",
+                            "(Def/MyColor, Inset, (Green))"
+                        ],
+                        [
+                            2,
+                            "n/a",
+                            "(Def/MyColor, Offset)"
+                        ]
+                    ]
+                ],
+                "passes": [
+                    [
+                        [
+                            "onset",
+                            "duration",
+                            "HED"
+                        ],
+                        [
+                            0,
+                            "n/a",
+                            "(Def/MyColor, Onset)"
+                        ],
+                        [
+                            1,
+                            "n/a",
+                            "(Def/MyColor, Inset, (Blue))"
+                        ],
+                        [
+                            2,
+                            "n/a",
+                            "(Def/MyColor, Offset)"
+                        ]
+                    ]
+                ]
             },
             "combo_tests": {
                 "fails": [
@@ -23805,7 +24085,7 @@
         "name": "temporal-tag-error-inset-outside-its-event",
         "description": "An Inset tag is not grouped with a Def or Def-expand of an ongoing Onset.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "temporal_logic",
         "common_causes": [
             "Inset tag appearing without corresponding Onset event",
@@ -24001,7 +24281,7 @@
         "name": "temporal-tag-error-inset-group-has-extras",
         "description": "An Inset group has more than one inner group, or tags other than its anchor and an optional Delay that are not in a tag group.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "temporal",
         "common_causes": [
             "Content tags placed directly in the Inset group instead of in its inner group",
@@ -24262,7 +24542,7 @@
         "name": "temporal-tag-error-duration-group",
         "description": "A Duration or Delay has extra tags or groups, or a Duration is missing its required group. The group rules are checked on the assembled row (rule 9 of the sidecar curly-brace rules): the value template (Duration/# s, {stim_desc}) is valid when the annotations of stim_desc supply the group, and a row whose stim_desc is n/a fails; (Duration/# s, {HED}) is valid in the sidecar, and a row whose HED cell is Red (no group) fails.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "structure",
         "common_causes": [
             "Adding extra content to Duration or Delay groups",
@@ -24550,9 +24830,9 @@
         "error_code": "TEMPORAL_TAG_ERROR",
         "alt_codes": [],
         "name": "temporal-tag-error-delay-not-convertible",
-        "description": "In a timeline table (a table with an onset column), a Delay tag has a value that cannot be converted to the default units of its unit class because the unit has no conversionFactor (month and year in HED 8.4.0), so the delayed onset cannot be placed on the timeline. Delay is never allowed in a descriptor table (cause k), so it can never carry a non-convertible unit. Appendix B TEMPORAL_TAG_ERROR cause n. Implemented in hed-python PR #1399; hed-javascript issue #860.",
+        "description": "In a timeline table (a table with an onset column), a Delay tag has a value that cannot be converted to the default units of its unit class because the unit has no conversionFactor (month and year in HED 8.5.0), so the delayed onset cannot be placed on the timeline. Delay is never allowed in a descriptor table (cause k), so it can never carry a non-convertible unit. Appendix B TEMPORAL_TAG_ERROR cause n. Implemented in hed-python PR #1399; hed-javascript issue #860.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "temporal",
         "common_causes": [
             "Using a calendar unit such as month or year for a Delay",
@@ -24758,9 +25038,9 @@
         "error_code": "TEMPORAL_TAG_ERROR",
         "alt_codes": [],
         "name": "temporal-tag-error-duration-not-convertible",
-        "description": "In a timeline table (a table with an onset column), a Duration tag has a value that cannot be converted to the default units of its unit class because the unit has no conversionFactor (month and year in HED 8.4.0), so the end time cannot be placed on the timeline. The same Duration is valid in a descriptor table such as participants.tsv, where there is no timeline to map it onto. Appendix B TEMPORAL_TAG_ERROR cause n.",
+        "description": "In a timeline table (a table with an onset column), a Duration tag has a value that cannot be converted to the default units of its unit class because the unit has no conversionFactor (month and year in HED 8.5.0), so the end time cannot be placed on the timeline. The same Duration is valid in a descriptor table such as participants.tsv, where there is no timeline to map it onto. Appendix B TEMPORAL_TAG_ERROR cause n.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "temporal",
         "common_causes": [
             "Using a calendar unit such as month or year for a Duration in an events file",
@@ -25014,7 +25294,7 @@
         "name": "temporal-tag-error-tag-appears-where-not-allowed",
         "description": "A temporal tag appears appears in a tsv with no onset column",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "context",
         "common_causes": [
             "Temporal tags used in inappropriate file formats",
@@ -25231,7 +25511,7 @@
         "name": "na-in-onset column",
         "description": "n/a is in the onset column.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "data_format",
         "common_causes": [
             "Using n/a in onset column where temporal value expected",
@@ -25427,7 +25707,7 @@
         "name": "temporal-tag-error-delay-with-anchored-marker",
         "description": "A `Delay` tag may appear in an `Onset`, `Offset`, or `Inset` group, delaying that marker; the marker tag must stay at the top level of the group, not inside the delayed inner group.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "structure",
         "common_causes": [
             "Nesting the Onset, Offset, or Inset inside the Delay's inner group",
@@ -25661,7 +25941,7 @@
         "name": "temporal-tag-error-duration-with-top-level-def",
         "description": "A Duration group may not have a Def tag or a Def-expand group at its top level (rule 2: Duration has no anchor); one may appear inside the inner group. A Def-expand group stands where its Def tag would and is never counted as the inner group.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "temporal",
         "common_causes": [
             "Writing a Duration group like an Onset group, with the definition as an anchor beside it",
@@ -26034,7 +26314,7 @@
         "name": "temporal-tag-error-not-tag-group-delay",
         "description": "A Delay is not in the tag group.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "structure",
         "common_causes": [
             "Delay tag not in required tag group structure",
@@ -26293,7 +26573,7 @@
         ],
         "name": "temporal-tag-error-nested-group-delay",
         "description": "A delay appears in a group not in the top level.",
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "structure",
         "common_causes": [
             "Delay tags incorrectly nested within other groups",
@@ -26468,7 +26748,7 @@
         ],
         "name": "temporal-tag-error-wrong-number-of-defs-delay",
         "description": "An Onset or Offset tag is not grouped with exactly one Def-expand tag group or a Def tag.",
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "temporal",
         "common_causes": [
             "Onset/Offset tag missing required definition association",
@@ -26673,7 +26953,7 @@
         ],
         "name": "temporal-tag-error-onset-has-more-groups-delay",
         "description": "An Onset group has more than one additional tag group.",
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "temporal",
         "common_causes": [
             "Multiple tag groups associated with single Onset",
@@ -26919,7 +27199,7 @@
         ],
         "name": "temporal-tag-error-offset-has-groups-delay",
         "description": "An Offset appears with one or more tags or additional tag groups.",
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "temporal",
         "common_causes": [
             "Offset tag paired with additional content",
@@ -27210,7 +27490,7 @@
         ],
         "name": "temporal-tag-error-mismatch-delay",
         "description": "An Offset tag associated with a given definition appears after a previous Offset tag without the appearance of an intervening Onset of the same name.",
-        "schema": "8.3.0",
+        "schema": "8.5.0",
         "error_category": "temporal_logic",
         "common_causes": [
             "Multiple Offset tags without intervening Onset in delayed context",
@@ -27396,7 +27676,7 @@
         ],
         "name": "temporal-tag-error-extra tags-delay",
         "description": "An Onset tag group with has tags besides the anchor Def or Def-expand that are not in a tag group.",
-        "schema": "8.3.0",
+        "schema": "8.5.0",
         "error_category": "temporal",
         "common_causes": [
             "Loose tags outside group structure in delayed Onset",
@@ -27590,7 +27870,7 @@
         ],
         "name": "temporal-tag-error-duplicated-onset-or-offset-delay",
         "description": "An Onset or an Offset with a given Def or Def-expand anchor occurs at the same time (the time of its row plus any Delay) as another Onset or Offset that uses the same anchor.",
-        "schema": "8.3.0",
+        "schema": "8.5.0",
         "error_category": "temporal_logic",
         "common_causes": [
             "Multiple Onset/Offset tags with same definition in single event",
@@ -27886,7 +28166,7 @@
         ],
         "name": "temporal-tag-error-inset-outside-its-event-delay",
         "description": "An Inset tag is not grouped with a Def or Def-expand of an ongoing Onset.",
-        "schema": "8.3.0",
+        "schema": "8.5.0",
         "error_category": "temporal_logic",
         "common_causes": [
             "Inset tag used without corresponding active Onset",
@@ -28086,7 +28366,7 @@
         ],
         "name": "temporal-tag-error-inset-group-has-extras-delay",
         "description": "An Inset group has tags, other than its anchor and an optional Delay, that are not in a tag group.",
-        "schema": "8.3.0",
+        "schema": "8.5.0",
         "error_category": "temporal",
         "common_causes": [
             "Content tags placed directly in the Inset group instead of in its inner group",
@@ -28293,7 +28573,7 @@
         ],
         "name": "temporal-tag-error-tag-appears-where-not-allowed-delay",
         "description": "An Inset, Offset, or Onset tag appears in a tsv with no onset column",
-        "schema": "8.3.0",
+        "schema": "8.5.0",
         "error_category": "context",
         "common_causes": [
             "Temporal tags used in inappropriate file formats",
@@ -28502,7 +28782,7 @@
         "name": "temporal-tag-error-delay-missing-group",
         "description": "A Delay that is the only reserved tag of its group must have exactly one inner group, so (Delay/3 s) fails. Beside Onset, Offset, Inset, or Duration, Delay is secondary and that tag's row gives the group rules: (Onset, Def/MyColor, Delay/3 s) passes with no inner group, while (Delay/3 s, Duration/2 s) fails because Duration needs one.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "temporal",
         "common_causes": [
             "Writing a Delay group with no inner group to say what is delayed",
@@ -28710,7 +28990,7 @@
         "name": "units-invalid-for-unit-class",
         "description": "A tag has a value with units that are invalid or not of the correct unit class for the tag.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "validation",
         "common_causes": [
             "Using units not defined in schema",
@@ -28913,7 +29193,7 @@
         "name": "units-invalid-si-units",
         "description": "A unit modifier is applied to units that are not SI units.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "validation",
         "common_causes": [
             "Applying SI prefixes (k, m, etc.) to non-SI units",
@@ -29105,7 +29385,7 @@
         "name": "units-invalid-case",
         "description": "Units are case-sensitive: a unit name, unit symbol, or SI modifier written in a case other than the one listed in the schema is invalid.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "validation",
         "common_causes": [
             "Capitalizing a unit name at the start of a value (Seconds, Feet)",
@@ -29308,7 +29588,7 @@
         "name": "units-invalid-symbol-plural",
         "description": "A unit symbol cannot be pluralized, and a unit name accepts only the plural that the specification lists for it.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "validation",
         "common_causes": [
             "Adding s to a unit symbol (mss, Hzs)",
@@ -29593,7 +29873,7 @@
         "name": "units-invalid-compound-units",
         "description": "A compound unit such as m-per-s takes an SI modifier on each of its components; a modifier applied to the whole string, or a misspelled or wrongly cased component, is invalid.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "validation",
         "common_causes": [
             "Stacking a modifier in front of an already modified component (kmm-per-s)",
@@ -29912,7 +30192,7 @@
         "name": "units-invalid-def-value-units",
         "description": "A Def value carries units although the definition's placeholder already has them.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "validation",
         "common_causes": [
             "Giving units in the Def value when the definition supplies them"
@@ -30063,7 +30343,7 @@
         "name": "value-invalid-#-substitution",
         "description": "The value substituted for a placeholder (`#`) is not valid.",
         "warning": false,
-        "schema": "8.3.0",
+        "schema": "8.5.0",
         "error_category": "validation",
         "common_causes": [
             "Using incorrect data types for tag values (e.g., text where numbers expected)",
@@ -30223,7 +30503,7 @@
         "name": "value-invalid-incompatible-value-class",
         "description": "A tag placeholder value is incompatible with the specified value class.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "validation",
         "common_causes": [
             "Using characters invalid for specific value classes (e.g., letters in numeric values)",
@@ -30410,7 +30690,7 @@
         "name": "value-invalid-blank-missing-before-units",
         "description": "The units are not separated from the value by a single blank.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "validation",
         "common_causes": [
             "Missing space between numeric value and units",
@@ -30592,10 +30872,50 @@
         "alt_codes": [
             "UNITS_INVALID"
         ],
+        "name": "value-invalid-multiple-blanks-before-units",
+        "description": "More than one blank separates a value from its units. This is VALUE_INVALID (d), which a validator MAY report as UNITS_INVALID; it is not TAG_INVALID.",
+        "warning": false,
+        "schema": "8.5.0",
+        "error_category": "validation",
+        "common_causes": [
+            "Typing two spaces between the number and the unit",
+            "Aligning values in a spreadsheet with extra spaces before the unit"
+        ],
+        "explanation": "A value with units is the number, exactly one blank, and the unit. HED parsers assume that the units are separated from the value by a single blank, so Duration/3  ms (two blanks) is an error.",
+        "correction_strategy": "Leave exactly one blank between the value and its units.",
+        "correction_examples": [
+            {
+                "wrong": "(Duration/3  ms, (Red))",
+                "correct": "(Duration/3 ms, (Red))",
+                "explanation": "Removed the second blank between the value and the unit"
+            }
+        ],
+        "specification_reference": "3.2.4. Tags that take values; Appendix B VALUE_INVALID d",
+        "related_errors": [
+            "UNITS_INVALID",
+            "TAG_INVALID"
+        ],
+        "definitions": [],
+        "tests": {
+            "string_tests": {
+                "fails": [
+                    "(Duration/3  ms, (Red))"
+                ],
+                "passes": [
+                    "(Duration/3 ms, (Red))"
+                ]
+            }
+        }
+    },
+    {
+        "error_code": "VALUE_INVALID",
+        "alt_codes": [
+            "UNITS_INVALID"
+        ],
         "name": "invalid-character-numeric-class",
         "description": "An invalid character was used in an 8.3.0 or greater style numeric value class.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "validation",
         "common_causes": [
             "Including non-numeric characters in numeric values (letters, symbols)",
@@ -30709,7 +31029,7 @@
         "name": "bad-value-in-curly-column",
         "description": "A column referenced in curly braces has an invalid value in a row whose selected template does not substitute it.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "validation",
         "common_causes": [
             "Assuming a value column is only checked in the rows whose template substitutes it",
@@ -30886,7 +31206,7 @@
         "name": "value-invalid-date-time-format",
         "description": "A dateTimeClass value does not have the BIDS Datetime format (RFC 3339 with an optional offset), or its date does not exist in the Gregorian calendar.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "validation",
         "common_causes": [
             "Giving a date without a time, or a time without seconds",

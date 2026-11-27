@@ -5,7 +5,7 @@
         "name": "def-expand-invalid-name-not-definition",
         "description": "A `Def-expand` tag's name does not correspond to a definition.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "semantic",
         "common_causes": [
             "Referencing undefined definition names",
@@ -208,7 +208,7 @@
         "name": "def-expand-invalid-missing-placeholder",
         "description": "A `Def-expand` is missing an expected placeholder value or has an unexpected placeholder value.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "content",
         "common_causes": [
             "Missing required placeholder values in Def-expand",
@@ -401,7 +401,7 @@
         "name": "def-expand-invalid-bad-placeholder-value-or-units",
         "description": "A `Def-expand` has an incorrect type of placeholder value.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "value",
         "common_causes": [
             "Placeholder values with incorrect data types",
@@ -619,7 +619,7 @@
         "name": "def-expand-invalid-tags-not-in-definition",
         "description": "The tags within a Def-expand do not match the corresponding definition.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "content",
         "common_causes": [
             "Expanded content doesn't match definition template",
@@ -831,7 +831,7 @@
         "name": "def-expand-missing-inner-group",
         "description": "A Def-expand is missing its inner group containing the definition.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "structure",
         "common_causes": [
             "Incomplete Def-expand structure missing content group",
@@ -1026,7 +1026,7 @@
         "name": "def-expand-has-extras",
         "description": "A Def-expand has extra tags or groups.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "structure",
         "common_causes": [
             "Adding extra tags beyond definition expansion",
@@ -1225,7 +1225,7 @@
         "name": "def-expand-tags-in-any-order",
         "description": "The tags and groups within a Def-expand may appear in any order; only their content and nesting must match the definition.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "content",
         "common_causes": [
             "Validator comparing expansion and definition as ordered lists",

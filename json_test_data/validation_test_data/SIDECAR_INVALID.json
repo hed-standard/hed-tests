@@ -5,7 +5,7 @@
         "name": "sidecar-invalid-key-at-wrong-level",
         "description": "The HED key is not a second-level dictionary key.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "structure",
         "common_causes": [
             "HED key at wrong nesting level in sidecar",
@@ -197,7 +197,7 @@
         "name": "sidecar-invalid-na-annotated",
         "description": "An annotation entry is provided for `n/a`.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "structure",
         "common_causes": [
             "Providing HED annotations for n/a values",
@@ -346,7 +346,7 @@
         "name": "sidecar-invalid-key-whitespace",
         "description": "A top-level sidecar key begins or ends with whitespace (reason d). A trailing blank, a leading blank, and a trailing tab fail, on categorical and value entries, on a padded key beside its unpadded twin, and on a padded key whose entry has no HED. A sidecar key trial with a padded entry for a header column trial fails. Unpadded keys pass, including a key with an internal blank and a key that ends with a no-break space (U+00A0), which is not whitespace for this rule.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "structure",
         "common_causes": [
             "A blank typed after a key when the sidecar was edited by hand",
@@ -549,7 +549,7 @@
         "name": "sidecar-invalid-value-key-whitespace",
         "description": "In a categorical entry, a column value listed as a key under HED begins or ends with whitespace (reason e). A trailing blank, a leading blank, and a trailing tab on a key under HED fail, and a combo whose sidecar has the padded key go fails even though the table holds go. Unpadded keys pass, including a key with an internal blank, a key ending with a no-break space (U+00A0, not whitespace for the rule), and a padded key in a BIDS Levels dictionary of the same entry, which is not checked.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "structure",
         "common_causes": [
             "A blank typed after a value when the sidecar was edited by hand",
@@ -729,7 +729,7 @@
         "name": "sidecar-invalid-hed-key-nested-beside-valid",
         "description": "A sidecar entry has a valid second-level HED key and also a HED key at a deeper level.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "structure",
         "common_causes": [
             "Putting HED inside a Levels dictionary",
@@ -869,7 +869,7 @@
         "name": "sidecar-invalid-annotation-empty",
         "description": "An annotation in a categorical entry of a sidecar is empty or consists only of blanks.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "structure",
         "common_causes": [
             "Leaving a placeholder empty string for a value that has not been annotated yet",

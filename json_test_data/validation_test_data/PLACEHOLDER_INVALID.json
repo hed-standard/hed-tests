@@ -7,7 +7,7 @@
         "name": "placeholder-invalid-misplaced",
         "description": "A `#` appears in a place that it should not (such as in the `HED` column of an event file outside a definition).",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "structure",
         "common_causes": [
             "Using # in event files instead of actual values",
@@ -202,7 +202,7 @@
         "name": "placeholder-invalid-#-in-categorical-column",
         "description": "A JSON sidecar has a placeholder (`#`) in the HED dictionary for a categorical column.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "context",
         "common_causes": [
             "Using placeholders in categorical (non-value) columns",
@@ -359,7 +359,7 @@
         "name": "placeholder-invalid-json-value-column",
         "description": "A JSON sidecar does not have exactly one placeholder (`#`) in each HED string representing a value column.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "count",
         "common_causes": [
             "Multiple placeholders in single value column HED string",
@@ -537,7 +537,7 @@
         "name": "placeholder-invalid-json-#-misplaced",
         "description": "A placeholder (`#`) is used in JSON sidecar or definition, but its parent in the schema does not have a placeholder child.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "schema",
         "common_causes": [
             "Using placeholders on tags that don't support them",
@@ -699,7 +699,7 @@
         "name": "placeholder-invalid-in-value-column",
         "description": "A value in a sidecar-annotated value column contains a # character, so the HED string obtained by substituting the value for the # of the annotation still holds a placeholder.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "syntax",
         "common_causes": [
             "Free text in a value column that uses # as a number sign or a marker",
@@ -821,7 +821,7 @@
         "name": "placeholder-invalid-after-extension",
         "description": "A placeholder (`#`) follows a user extension term (Item/Blech/#) or stands in for one (Item/#). The # cannot be an extension, so this is PLACEHOLDER_INVALID in every context, events file or sidecar. A validator that checks extensionAllowed or the term itself first may report TAG_EXTENSION_INVALID instead.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "semantic",
         "common_causes": [
             "Extending a tag with a new term and then putting the value column's # after the new term",
@@ -991,7 +991,7 @@
         "name": "placeholder-invalid-units-after-extension",
         "description": "A placeholder with units (`# g`) follows a user extension term (Item/Blech/# g) or stands in for one (Item/# g). Units do not give an extension a value, so this is the same error as a bare # after an extension. A validator that reads `# g` as one extension term may report TAG_EXTENSION_INVALID instead.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "semantic",
         "common_causes": [
             "Putting a value column's # and its units after a new extension term",
@@ -1144,7 +1144,7 @@
         "name": "placeholder-invalid-not-whole-value",
         "description": "In a sidecar value entry the placeholder (#) is not the whole value directly after a slash.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "count",
         "common_causes": [
             "Writing a prefix or suffix next to the # (Label/x#, Label/#x)",

@@ -7,6 +7,8 @@ conform to the official test structure schema. It checks:
 - Required fields presence
 - Field type correctness
 - Proper test structure
+- Validation cases use the default standard schema (DEFAULT_STANDARD_SCHEMA)
+  unless the case is about an earlier version and its name says so
 
 Usage:
     python src/scripts/validate_test_structure.py
@@ -17,6 +19,7 @@ Usage:
 
 import argparse
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -26,6 +29,48 @@ except ImportError:
     print("ERROR: jsonschema package not installed")
     print("Install with: pip install jsonschema")
     sys.exit(1)
+
+# The standard schema every validation case uses unless the case is about a difference between versions.
+DEFAULT_STANDARD_SCHEMA = "8.5.0"
+
+# A case on an earlier standard schema must say so at the end of its name: the version (-8-0-0, -in-8-1-0,
+# -before-8-5-0) or -early-schema.
+EARLIER_SCHEMA_NAME = re.compile(r"-(\d+-\d+-\d+|early-schema)$")
+
+# Cases on an earlier standard schema whose names do not end in the version. Keep this list short.
+EARLIER_SCHEMA_CASES: frozenset[str] = frozenset()
+
+STANDARD_VERSION = re.compile(r"^\d+\.\d+\.\d+$")
+
+
+def check_default_schema(cases: list) -> list[str]:
+    """
+    Report validation cases that name a single standard schema other than the default without saying why.
+
+    Parameters:
+        cases (list): The parsed contents of one validation test data file.
+
+    Returns:
+        list[str]: One message per offending case; empty when every case conforms.
+    """
+    errors = []
+    for index, case in enumerate(cases):
+        if not isinstance(case, dict):
+            continue
+        schema = case.get("schema")
+        name = case.get("name", "")
+        if not isinstance(schema, str) or not STANDARD_VERSION.match(schema) or schema == DEFAULT_STANDARD_SCHEMA:
+            continue
+        if not isinstance(name, str):
+            continue  # a malformed name is reported by the JSON Schema validation
+
+        if EARLIER_SCHEMA_NAME.search(name) or name in EARLIER_SCHEMA_CASES:
+            continue
+        errors.append(
+            f"  [{index} -> schema] case '{name}' uses standard schema {schema}; use {DEFAULT_STANDARD_SCHEMA}, "
+            f"or, if the case is about an earlier version, end its name with the version (for example -{schema.replace('.', '-')})"
+        )
+    return errors
 
 
 class TestValidator:
@@ -83,6 +128,10 @@ class TestValidator:
                 # Format error message with path
                 path = " -> ".join(str(p) for p in error.path) if error.path else "root"
                 errors.append(f"  [{path}] {error.message}")
+
+        # Validation cases use the default standard schema
+        if test_file.parent.name == "validation_test_data" and isinstance(data, list):
+            errors.extend(check_default_schema(data))
 
         return len(errors) == 0, errors
 

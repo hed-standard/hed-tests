@@ -22,8 +22,8 @@
         "explanation": "Removed unknown attribute from header"
       },
       {
-        "wrong": "HED version=\"1.0.0\" library=\"test\" missingStandard=\"8.4.0\"",
-        "correct": "HED version=\"1.0.0\" library=\"test\" withStandard=\"8.4.0\"",
+        "wrong": "HED version=\"1.0.0\" library=\"test\" missingStandard=\"8.5.0\"",
+        "correct": "HED version=\"1.0.0\" library=\"test\" withStandard=\"8.5.0\"",
         "explanation": "Fixed attribute name from 'missingStandard' to 'withStandard'"
       }
     ],
@@ -70,7 +70,7 @@
         ],
         "passes": [
           [
-            "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.4.0\" unmerged=\"True\"",
+            "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.5.0\" unmerged=\"True\"",
             "'''Prologue'''",
             "!# start schema",
             "'''Tag-with-unknown''' {suggestedTag=Event}",
@@ -81,6 +81,9 @@
             "'''Schema attributes'''",
             "'''Properties'''",
             "'''Epilogue'''",
+            "'''Sources'''",
+            "'''Prefixes'''",
+            "'''External annotations'''",
             "!# end hed"
           ]
         ]
@@ -114,7 +117,7 @@
         ],
         "passes": [
           [
-            "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.4.0\" unmerged=\"True\"",
+            "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.5.0\" unmerged=\"True\"",
             "'''Prologue'''",
             "!# start schema",
             "'''Tag-with-unknown''' {suggestedTag=Event}",
@@ -125,6 +128,9 @@
             "'''Schema attributes'''",
             "'''Properties'''",
             "'''Epilogue'''",
+            "'''Sources'''",
+            "'''Prefixes'''",
+            "'''External annotations'''",
             "!# end hed"
           ]
         ]
@@ -146,7 +152,7 @@
     "correction_strategy": "Treat the unmerged value case-insensitively and treat false as merged",
     "correction_examples": [
       {
-        "wrong": "Rejecting HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.4.0\" unmerged=\"TRUE\"",
+        "wrong": "Rejecting HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.5.0\" unmerged=\"TRUE\"",
         "correct": "Accept it; the value is case-insensitive",
         "explanation": "true, True, and TRUE are equivalent values"
       },
@@ -178,7 +184,7 @@
         "fails": [],
         "passes": [
           [
-            "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.4.0\" unmerged=\"True\"",
+            "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.5.0\" unmerged=\"True\"",
             "'''Prologue'''",
             "!# start schema",
             "'''NewTag''' {rooted=Event}",
@@ -189,10 +195,13 @@
             "'''Schema attributes'''",
             "'''Properties'''",
             "'''Epilogue'''",
+            "'''Sources'''",
+            "'''Prefixes'''",
+            "'''External annotations'''",
             "!# end hed"
           ],
           [
-            "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.4.0\" unmerged=\"TRUE\"",
+            "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.5.0\" unmerged=\"TRUE\"",
             "'''Prologue'''",
             "!# start schema",
             "'''NewTag''' {rooted=Event}",
@@ -203,10 +212,13 @@
             "'''Schema attributes'''",
             "'''Properties'''",
             "'''Epilogue'''",
+            "'''Sources'''",
+            "'''Prefixes'''",
+            "'''External annotations'''",
             "!# end hed"
           ],
           [
-            "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.4.0\" unmerged=\"false\"",
+            "HED version=\"1.0.0\" library=\"testconflict\" withStandard=\"8.5.0\" unmerged=\"false\"",
             "'''Prologue'''",
             "!# start schema",
             "!# end schema",
@@ -216,6 +228,9 @@
             "'''Schema attributes'''",
             "'''Properties'''",
             "'''Epilogue'''",
+            "'''Sources'''",
+            "'''Prefixes'''",
+            "'''External annotations'''",
             "!# end hed"
           ]
         ]

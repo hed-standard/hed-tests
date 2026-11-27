@@ -7,7 +7,7 @@
         "name": "temporal-tag-error-not-tag-group",
         "description": "An Onset or Offset tag does not appear in a tag group.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "structure",
         "common_causes": [
             "Onset/Offset tags not enclosed in parentheses",
@@ -225,7 +225,7 @@
         "name": "temporal-tag-error-nested-group",
         "description": "An Onset or Offset tag appears in a nested tag group (not a top-level tag group).",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "structure",
         "common_causes": [
             "Temporal tags incorrectly nested within other groups",
@@ -401,7 +401,7 @@
         "name": "temporal-tag-error-wrong-number-of-defs",
         "description": "An Onset or Offset tag is not grouped with exactly one Def-expand tag group or a Def tag.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "content",
         "common_causes": [
             "Multiple Def tags in a single temporal group",
@@ -602,7 +602,7 @@
         "name": "temporal-tag-error-onset-has-more-groups",
         "description": "An Onset group has more than one additional tag group.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "structure",
         "common_causes": [
             "Extra groups added to Onset beyond required definition",
@@ -798,7 +798,7 @@
         "name": "temporal-tag-error-offset-has-groups",
         "description": "An Offset appears with one or more tags or additional tag groups.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "structure",
         "common_causes": [
             "Adding extra content to Offset groups",
@@ -1038,7 +1038,7 @@
         "name": "temporal-tag-error-offset-with-no-onset",
         "description": "An Offset tag associated with a given definition appears after a previous Offset tag without the appearance of an intervening Onset of the same name.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "temporal_logic",
         "common_causes": [
             "Using Offset without corresponding Onset in temporal sequence",
@@ -1226,7 +1226,7 @@
         "name": "temporal-tag-error-extra tags",
         "description": "An Onset tag group with has tags besides the anchor Def or Def-expand that are not in a tag group.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "structure",
         "common_causes": [
             "Adding loose tags to temporal groups without proper grouping",
@@ -1412,9 +1412,9 @@
         "error_code": "TEMPORAL_TAG_ERROR",
         "alt_codes": [],
         "name": "temporal-tag-error-duplicated-onset-or-offset",
-        "description": "An Onset or an Offset with a given Def or Def-expand anchor appears in the same event marker with another Onset or Offset that uses the same anchor.",
+        "description": "An Onset, Offset or Inset with a given Def or Def-expand anchor occurs at the same time as another Onset, Offset or Inset that uses the same anchor, in one row or in two rows with the same onset.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "temporal_logic",
         "common_causes": [
             "Duplicate Onset or Offset tags for the same definition",
@@ -1422,7 +1422,7 @@
             "Copy-paste errors creating duplicate temporal tags",
             "Misunderstanding that each definition should have unique temporal markers"
         ],
-        "explanation": "Each definition should have at most one Onset and one Offset per event. Duplicate temporal tags for the same definition create ambiguous temporal sequences.",
+        "explanation": "Each definition anchor may have at most one Onset, Offset or Inset at any one time. Duplicate temporal tags for the same definition create ambiguous temporal sequences.",
         "correction_strategy": "Remove duplicate temporal tags or use different definitions",
         "correction_examples": [
             {
@@ -1471,8 +1471,81 @@
                 "passes": []
             },
             "event_tests": {
-                "fails": [],
-                "passes": []
+                "fails": [
+                    [
+                        [
+                            "onset",
+                            "duration",
+                            "HED"
+                        ],
+                        [
+                            0,
+                            "n/a",
+                            "(Def/MyColor, Onset)"
+                        ],
+                        [
+                            1,
+                            "n/a",
+                            "(Def/MyColor, Inset, (Blue)), (Def/MyColor, Inset, (Green))"
+                        ],
+                        [
+                            2,
+                            "n/a",
+                            "(Def/MyColor, Offset)"
+                        ]
+                    ],
+                    [
+                        [
+                            "onset",
+                            "duration",
+                            "HED"
+                        ],
+                        [
+                            0,
+                            "n/a",
+                            "(Def/MyColor, Onset)"
+                        ],
+                        [
+                            1,
+                            "n/a",
+                            "(Def/MyColor, Inset, (Blue))"
+                        ],
+                        [
+                            1,
+                            "n/a",
+                            "(Def/MyColor, Inset, (Green))"
+                        ],
+                        [
+                            2,
+                            "n/a",
+                            "(Def/MyColor, Offset)"
+                        ]
+                    ]
+                ],
+                "passes": [
+                    [
+                        [
+                            "onset",
+                            "duration",
+                            "HED"
+                        ],
+                        [
+                            0,
+                            "n/a",
+                            "(Def/MyColor, Onset)"
+                        ],
+                        [
+                            1,
+                            "n/a",
+                            "(Def/MyColor, Inset, (Blue))"
+                        ],
+                        [
+                            2,
+                            "n/a",
+                            "(Def/MyColor, Offset)"
+                        ]
+                    ]
+                ]
             },
             "combo_tests": {
                 "fails": [
@@ -1608,7 +1681,7 @@
         "name": "temporal-tag-error-inset-outside-its-event",
         "description": "An Inset tag is not grouped with a Def or Def-expand of an ongoing Onset.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "temporal_logic",
         "common_causes": [
             "Inset tag appearing without corresponding Onset event",
@@ -1804,7 +1877,7 @@
         "name": "temporal-tag-error-inset-group-has-extras",
         "description": "An Inset group has more than one inner group, or tags other than its anchor and an optional Delay that are not in a tag group.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "temporal",
         "common_causes": [
             "Content tags placed directly in the Inset group instead of in its inner group",
@@ -2065,7 +2138,7 @@
         "name": "temporal-tag-error-duration-group",
         "description": "A Duration or Delay has extra tags or groups, or a Duration is missing its required group. The group rules are checked on the assembled row (rule 9 of the sidecar curly-brace rules): the value template (Duration/# s, {stim_desc}) is valid when the annotations of stim_desc supply the group, and a row whose stim_desc is n/a fails; (Duration/# s, {HED}) is valid in the sidecar, and a row whose HED cell is Red (no group) fails.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "structure",
         "common_causes": [
             "Adding extra content to Duration or Delay groups",
@@ -2353,9 +2426,9 @@
         "error_code": "TEMPORAL_TAG_ERROR",
         "alt_codes": [],
         "name": "temporal-tag-error-delay-not-convertible",
-        "description": "In a timeline table (a table with an onset column), a Delay tag has a value that cannot be converted to the default units of its unit class because the unit has no conversionFactor (month and year in HED 8.4.0), so the delayed onset cannot be placed on the timeline. Delay is never allowed in a descriptor table (cause k), so it can never carry a non-convertible unit. Appendix B TEMPORAL_TAG_ERROR cause n. Implemented in hed-python PR #1399; hed-javascript issue #860.",
+        "description": "In a timeline table (a table with an onset column), a Delay tag has a value that cannot be converted to the default units of its unit class because the unit has no conversionFactor (month and year in HED 8.5.0), so the delayed onset cannot be placed on the timeline. Delay is never allowed in a descriptor table (cause k), so it can never carry a non-convertible unit. Appendix B TEMPORAL_TAG_ERROR cause n. Implemented in hed-python PR #1399; hed-javascript issue #860.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "temporal",
         "common_causes": [
             "Using a calendar unit such as month or year for a Delay",
@@ -2561,9 +2634,9 @@
         "error_code": "TEMPORAL_TAG_ERROR",
         "alt_codes": [],
         "name": "temporal-tag-error-duration-not-convertible",
-        "description": "In a timeline table (a table with an onset column), a Duration tag has a value that cannot be converted to the default units of its unit class because the unit has no conversionFactor (month and year in HED 8.4.0), so the end time cannot be placed on the timeline. The same Duration is valid in a descriptor table such as participants.tsv, where there is no timeline to map it onto. Appendix B TEMPORAL_TAG_ERROR cause n.",
+        "description": "In a timeline table (a table with an onset column), a Duration tag has a value that cannot be converted to the default units of its unit class because the unit has no conversionFactor (month and year in HED 8.5.0), so the end time cannot be placed on the timeline. The same Duration is valid in a descriptor table such as participants.tsv, where there is no timeline to map it onto. Appendix B TEMPORAL_TAG_ERROR cause n.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "temporal",
         "common_causes": [
             "Using a calendar unit such as month or year for a Duration in an events file",
@@ -2817,7 +2890,7 @@
         "name": "temporal-tag-error-tag-appears-where-not-allowed",
         "description": "A temporal tag appears appears in a tsv with no onset column",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "context",
         "common_causes": [
             "Temporal tags used in inappropriate file formats",
@@ -3034,7 +3107,7 @@
         "name": "na-in-onset column",
         "description": "n/a is in the onset column.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "data_format",
         "common_causes": [
             "Using n/a in onset column where temporal value expected",
@@ -3230,7 +3303,7 @@
         "name": "temporal-tag-error-delay-with-anchored-marker",
         "description": "A `Delay` tag may appear in an `Onset`, `Offset`, or `Inset` group, delaying that marker; the marker tag must stay at the top level of the group, not inside the delayed inner group.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "structure",
         "common_causes": [
             "Nesting the Onset, Offset, or Inset inside the Delay's inner group",
@@ -3464,7 +3537,7 @@
         "name": "temporal-tag-error-duration-with-top-level-def",
         "description": "A Duration group may not have a Def tag or a Def-expand group at its top level (rule 2: Duration has no anchor); one may appear inside the inner group. A Def-expand group stands where its Def tag would and is never counted as the inner group.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "temporal",
         "common_causes": [
             "Writing a Duration group like an Onset group, with the definition as an anchor beside it",

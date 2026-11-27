@@ -5,7 +5,7 @@
         "name": "units-invalid-for-unit-class",
         "description": "A tag has a value with units that are invalid or not of the correct unit class for the tag.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "validation",
         "common_causes": [
             "Using units not defined in schema",
@@ -208,7 +208,7 @@
         "name": "units-invalid-si-units",
         "description": "A unit modifier is applied to units that are not SI units.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "validation",
         "common_causes": [
             "Applying SI prefixes (k, m, etc.) to non-SI units",
@@ -400,7 +400,7 @@
         "name": "units-invalid-case",
         "description": "Units are case-sensitive: a unit name, unit symbol, or SI modifier written in a case other than the one listed in the schema is invalid.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "validation",
         "common_causes": [
             "Capitalizing a unit name at the start of a value (Seconds, Feet)",
@@ -603,7 +603,7 @@
         "name": "units-invalid-symbol-plural",
         "description": "A unit symbol cannot be pluralized, and a unit name accepts only the plural that the specification lists for it.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "validation",
         "common_causes": [
             "Adding s to a unit symbol (mss, Hzs)",
@@ -888,7 +888,7 @@
         "name": "units-invalid-compound-units",
         "description": "A compound unit such as m-per-s takes an SI modifier on each of its components; a modifier applied to the whole string, or a misspelled or wrongly cased component, is invalid.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "validation",
         "common_causes": [
             "Stacking a modifier in front of an already modified component (kmm-per-s)",
@@ -1207,7 +1207,7 @@
         "name": "units-invalid-def-value-units",
         "description": "A Def value carries units although the definition's placeholder already has them.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "validation",
         "common_causes": [
             "Giving units in the Def value when the definition supplies them"

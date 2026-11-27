@@ -5,7 +5,7 @@
         "name": "tag-deprecated",
         "description": "A tag is deprecated",
         "warning": true,
-        "schema": "8.2.0",
+        "schema": "8.5.0",
         "error_category": "semantic",
         "common_causes": [
             "Using tags from older schema versions",

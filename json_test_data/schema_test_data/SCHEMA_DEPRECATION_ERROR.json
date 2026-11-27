@@ -53,7 +53,7 @@
       "schema_tests": {
         "fails": [
           [
-            "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.4.0\" unmerged=\"True\"",
+            "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.5.0\" unmerged=\"True\"",
             "'''Prologue'''",
             "!# start schema",
             "'''BaseTag'''",
@@ -65,10 +65,13 @@
             "'''Schema attributes'''",
             "'''Properties'''",
             "'''Epilogue'''",
+            "'''Sources'''",
+            "'''Prefixes'''",
+            "'''External annotations'''",
             "!# end hed"
           ],
           [
-            "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.4.0\" unmerged=\"True\"",
+            "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.5.0\" unmerged=\"True\"",
             "'''Prologue'''",
             "!# start schema",
             "'''BaseTag'''",
@@ -80,12 +83,15 @@
             "'''Schema attributes'''",
             "'''Properties'''",
             "'''Epilogue'''",
+            "'''Sources'''",
+            "'''Prefixes'''",
+            "'''External annotations'''",
             "!# end hed"
           ]
         ],
         "passes": [
           [
-            "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.4.0\" unmerged=\"True\"",
+            "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.5.0\" unmerged=\"True\"",
             "'''Prologue'''",
             "!# start schema",
             "'''BaseTag'''",
@@ -97,6 +103,9 @@
             "'''Schema attributes'''",
             "'''Properties'''",
             "'''Epilogue'''",
+            "'''Sources'''",
+            "'''Prefixes'''",
+            "'''External annotations'''",
             "!# end hed"
           ]
         ]
@@ -114,7 +123,7 @@
       "schema_tests": {
         "fails": [
           [
-            "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.4.0\" unmerged=\"True\"",
+            "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.5.0\" unmerged=\"True\"",
             "'''Prologue'''",
             "!# start schema",
             "'''BaseTag''' {deprecatedFrom=1.0.0}",
@@ -126,10 +135,13 @@
             "'''Schema attributes'''",
             "'''Properties'''",
             "'''Epilogue'''",
+            "'''Sources'''",
+            "'''Prefixes'''",
+            "'''External annotations'''",
             "!# end hed"
           ],
           [
-            "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.4.0\" unmerged=\"True\"",
+            "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.5.0\" unmerged=\"True\"",
             "'''Prologue'''",
             "!# start schema",
             "'''BaseTag'''",
@@ -143,12 +155,15 @@
             "'''Schema attributes'''",
             "'''Properties'''",
             "'''Epilogue'''",
+            "'''Sources'''",
+            "'''Prefixes'''",
+            "'''External annotations'''",
             "!# end hed"
           ]
         ],
         "passes": [
           [
-            "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.4.0\" unmerged=\"True\"",
+            "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.5.0\" unmerged=\"True\"",
             "'''Prologue'''",
             "!# start schema",
             "'''BaseTag''' {deprecatedFrom=1.0.0}",
@@ -160,6 +175,9 @@
             "'''Schema attributes'''",
             "'''Properties'''",
             "'''Epilogue'''",
+            "'''Sources'''",
+            "'''Prefixes'''",
+            "'''External annotations'''",
             "!# end hed"
           ]
         ]
@@ -177,7 +195,7 @@
       "schema_tests": {
         "fails": [
           [
-            "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.4.0\" unmerged=\"True\"",
+            "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.5.0\" unmerged=\"True\"",
             "'''Prologue'''",
             "!# start schema",
             "'''BaseTag'''",
@@ -192,12 +210,15 @@
             "'''Schema attributes'''",
             "'''Properties'''",
             "'''Epilogue'''",
+            "'''Sources'''",
+            "'''Prefixes'''",
+            "'''External annotations'''",
             "!# end hed"
           ]
         ],
         "passes": [
           [
-            "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.4.0\" unmerged=\"True\"",
+            "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.5.0\" unmerged=\"True\"",
             "'''Prologue'''",
             "!# start schema",
             "'''BaseTag'''",
@@ -212,10 +233,13 @@
             "'''Schema attributes'''",
             "'''Properties'''",
             "'''Epilogue'''",
+            "'''Sources'''",
+            "'''Prefixes'''",
+            "'''External annotations'''",
             "!# end hed"
           ],
           [
-            "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.4.0\" unmerged=\"True\"",
+            "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.5.0\" unmerged=\"True\"",
             "'''Prologue'''",
             "!# start schema",
             "'''BaseTag'''",
@@ -229,6 +253,9 @@
             "'''Schema attributes'''",
             "'''Properties'''",
             "'''Epilogue'''",
+            "'''Sources'''",
+            "'''Prefixes'''",
+            "'''External annotations'''",
             "!# end hed"
           ]
         ]
@@ -246,12 +273,12 @@
       "schema_tests": {
         "fails": [
           [
-            "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.4.0\" unmerged=\"True\"",
+            "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.5.0\" unmerged=\"True\"",
             "'''Prologue'''",
             "!# start schema",
             "'''BaseTag'''",
             "* Extension",
-            "** #{takesValue, unitClass=testUnitClass}",
+            "** #{takesValue, unitClass=testUnitClass, valueClass=numericClass}",
             "!# end schema",
             "'''Unit classes'''",
             "* testUnitClass{deprecatedFrom=1.0.0}",
@@ -261,17 +288,20 @@
             "'''Schema attributes'''",
             "'''Properties'''",
             "'''Epilogue'''",
+            "'''Sources'''",
+            "'''Prefixes'''",
+            "'''External annotations'''",
             "!# end hed"
           ]
         ],
         "passes": [
           [
-            "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.4.0\" unmerged=\"True\"",
+            "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.5.0\" unmerged=\"True\"",
             "'''Prologue'''",
             "!# start schema",
             "'''BaseTag'''",
             "* Extension",
-            "** #{takesValue, unitClass=testUnitClass, deprecatedFrom=1.0.0}",
+            "** #{takesValue, unitClass=testUnitClass, deprecatedFrom=1.0.0, valueClass=numericClass}",
             "!# end schema",
             "'''Unit classes'''",
             "* testUnitClass{deprecatedFrom=1.0.0}",
@@ -281,6 +311,9 @@
             "'''Schema attributes'''",
             "'''Properties'''",
             "'''Epilogue'''",
+            "'''Sources'''",
+            "'''Prefixes'''",
+            "'''External annotations'''",
             "!# end hed"
           ]
         ]
@@ -298,7 +331,7 @@
       "schema_tests": {
         "fails": [
           [
-            "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.4.0\" unmerged=\"True\"",
+            "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.5.0\" unmerged=\"True\"",
             "'''Prologue'''",
             "!# start schema",
             "'''BaseTag'''",
@@ -312,12 +345,15 @@
             "'''Schema attributes'''",
             "'''Properties'''",
             "'''Epilogue'''",
+            "'''Sources'''",
+            "'''Prefixes'''",
+            "'''External annotations'''",
             "!# end hed"
           ]
         ],
         "passes": [
           [
-            "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.4.0\" unmerged=\"True\"",
+            "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.5.0\" unmerged=\"True\"",
             "'''Prologue'''",
             "!# start schema",
             "'''BaseTag'''",
@@ -331,6 +367,9 @@
             "'''Schema attributes'''",
             "'''Properties'''",
             "'''Epilogue'''",
+            "'''Sources'''",
+            "'''Prefixes'''",
+            "'''External annotations'''",
             "!# end hed"
           ]
         ]
@@ -348,7 +387,7 @@
       "schema_tests": {
         "fails": [
           [
-            "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.4.0\" unmerged=\"True\"",
+            "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.5.0\" unmerged=\"True\"",
             "'''Prologue'''",
             "!# start schema",
             "'''BaseTag'''",
@@ -362,10 +401,13 @@
             "'''Schema attributes'''",
             "'''Properties'''",
             "'''Epilogue'''",
+            "'''Sources'''",
+            "'''Prefixes'''",
+            "'''External annotations'''",
             "!# end hed"
           ],
           [
-            "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.4.0\" unmerged=\"True\"",
+            "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.5.0\" unmerged=\"True\"",
             "'''Prologue'''",
             "!# start schema",
             "'''BaseTag'''",
@@ -379,12 +421,15 @@
             "'''Schema attributes'''",
             "'''Properties'''",
             "'''Epilogue'''",
+            "'''Sources'''",
+            "'''Prefixes'''",
+            "'''External annotations'''",
             "!# end hed"
           ]
         ],
         "passes": [
           [
-            "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.4.0\" unmerged=\"True\"",
+            "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.5.0\" unmerged=\"True\"",
             "'''Prologue'''",
             "!# start schema",
             "'''BaseTag'''",
@@ -398,10 +443,13 @@
             "'''Schema attributes'''",
             "'''Properties'''",
             "'''Epilogue'''",
+            "'''Sources'''",
+            "'''Prefixes'''",
+            "'''External annotations'''",
             "!# end hed"
           ],
           [
-            "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.4.0\" unmerged=\"True\"",
+            "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.5.0\" unmerged=\"True\"",
             "'''Prologue'''",
             "!# start schema",
             "'''BaseTag'''",
@@ -415,10 +463,13 @@
             "'''Schema attributes'''",
             "'''Properties'''",
             "'''Epilogue'''",
+            "'''Sources'''",
+            "'''Prefixes'''",
+            "'''External annotations'''",
             "!# end hed"
           ],
           [
-            "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.4.0\" unmerged=\"True\"",
+            "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.5.0\" unmerged=\"True\"",
             "'''Prologue'''",
             "!# start schema",
             "'''BaseTag'''",
@@ -432,10 +483,13 @@
             "'''Schema attributes'''",
             "'''Properties'''",
             "'''Epilogue'''",
+            "'''Sources'''",
+            "'''Prefixes'''",
+            "'''External annotations'''",
             "!# end hed"
           ],
           [
-            "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.4.0\" unmerged=\"True\"",
+            "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.5.0\" unmerged=\"True\"",
             "'''Prologue'''",
             "!# start schema",
             "'''BaseTag'''",
@@ -449,6 +503,9 @@
             "'''Schema attributes'''",
             "'''Properties'''",
             "'''Epilogue'''",
+            "'''Sources'''",
+            "'''Prefixes'''",
+            "'''External annotations'''",
             "!# end hed"
           ]
         ]
@@ -466,7 +523,7 @@
       "schema_tests": {
         "fails": [
           [
-            "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.4.0\" unmerged=\"True\"",
+            "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.5.0\" unmerged=\"True\"",
             "'''Prologue'''",
             "!# start schema",
             "'''BaseTag'''",
@@ -479,10 +536,13 @@
             "* deprecatedAttribute {deprecatedFrom=1.0.0, elementDomain}",
             "'''Properties'''",
             "'''Epilogue'''",
+            "'''Sources'''",
+            "'''Prefixes'''",
+            "'''External annotations'''",
             "!# end hed"
           ],
           [
-            "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.4.0\" unmerged=\"True\"",
+            "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.5.0\" unmerged=\"True\"",
             "'''Prologue'''",
             "!# start schema",
             "'''BaseTag'''",
@@ -495,10 +555,13 @@
             "* deprecatedAttribute {deprecatedFrom=1.0.0, elementDomain}",
             "'''Properties'''",
             "'''Epilogue'''",
+            "'''Sources'''",
+            "'''Prefixes'''",
+            "'''External annotations'''",
             "!# end hed"
           ],
           [
-            "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.4.0\" unmerged=\"True\"",
+            "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.5.0\" unmerged=\"True\"",
             "'''Prologue'''",
             "!# start schema",
             "'''BaseTag'''",
@@ -512,10 +575,13 @@
             "* deprecatedAttribute {deprecatedFrom=1.0.0, elementDomain}",
             "'''Properties'''",
             "'''Epilogue'''",
+            "'''Sources'''",
+            "'''Prefixes'''",
+            "'''External annotations'''",
             "!# end hed"
           ],
           [
-            "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.4.0\" unmerged=\"True\"",
+            "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.5.0\" unmerged=\"True\"",
             "'''Prologue'''",
             "!# start schema",
             "'''BaseTag'''",
@@ -528,10 +594,13 @@
             "* deprecatedAttribute {deprecatedFrom=1.0.0, elementDomain}",
             "'''Properties'''",
             "'''Epilogue'''",
+            "'''Sources'''",
+            "'''Prefixes'''",
+            "'''External annotations'''",
             "!# end hed"
           ],
           [
-            "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.4.0\" unmerged=\"True\"",
+            "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.5.0\" unmerged=\"True\"",
             "'''Prologue'''",
             "!# start schema",
             "'''BaseTag'''",
@@ -544,12 +613,15 @@
             "* deprecatedAttribute {deprecatedFrom=1.0.0, elementDomain}",
             "'''Properties'''",
             "'''Epilogue'''",
+            "'''Sources'''",
+            "'''Prefixes'''",
+            "'''External annotations'''",
             "!# end hed"
           ]
         ],
         "passes": [
           [
-            "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.4.0\" unmerged=\"True\"",
+            "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.5.0\" unmerged=\"True\"",
             "'''Prologue'''",
             "!# start schema",
             "'''BaseTag'''",
@@ -562,10 +634,13 @@
             "* deprecatedAttribute {deprecatedFrom=1.0.0, elementDomain}",
             "'''Properties'''",
             "'''Epilogue'''",
+            "'''Sources'''",
+            "'''Prefixes'''",
+            "'''External annotations'''",
             "!# end hed"
           ],
           [
-            "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.4.0\" unmerged=\"True\"",
+            "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.5.0\" unmerged=\"True\"",
             "'''Prologue'''",
             "!# start schema",
             "'''BaseTag'''",
@@ -578,10 +653,13 @@
             "* deprecatedAttribute {deprecatedFrom=1.0.0, elementDomain}",
             "'''Properties'''",
             "'''Epilogue'''",
+            "'''Sources'''",
+            "'''Prefixes'''",
+            "'''External annotations'''",
             "!# end hed"
           ],
           [
-            "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.4.0\" unmerged=\"True\"",
+            "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.5.0\" unmerged=\"True\"",
             "'''Prologue'''",
             "!# start schema",
             "'''BaseTag'''",
@@ -595,10 +673,13 @@
             "* deprecatedAttribute {deprecatedFrom=1.0.0, elementDomain}",
             "'''Properties'''",
             "'''Epilogue'''",
+            "'''Sources'''",
+            "'''Prefixes'''",
+            "'''External annotations'''",
             "!# end hed"
           ],
           [
-            "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.4.0\" unmerged=\"True\"",
+            "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.5.0\" unmerged=\"True\"",
             "'''Prologue'''",
             "!# start schema",
             "'''BaseTag'''",
@@ -611,10 +692,13 @@
             "* deprecatedAttribute {deprecatedFrom=1.0.0, elementDomain}",
             "'''Properties'''",
             "'''Epilogue'''",
+            "'''Sources'''",
+            "'''Prefixes'''",
+            "'''External annotations'''",
             "!# end hed"
           ],
           [
-            "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.4.0\" unmerged=\"True\"",
+            "HED version=\"1.1.0\" library=\"score\" withStandard=\"8.5.0\" unmerged=\"True\"",
             "'''Prologue'''",
             "!# start schema",
             "'''BaseTag'''",
@@ -627,6 +711,9 @@
             "* deprecatedAttribute {deprecatedFrom=1.0.0, elementDomain}",
             "'''Properties'''",
             "'''Epilogue'''",
+            "'''Sources'''",
+            "'''Prefixes'''",
+            "'''External annotations'''",
             "!# end hed"
           ]
         ]

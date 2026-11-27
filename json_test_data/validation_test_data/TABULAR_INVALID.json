@@ -5,7 +5,7 @@
         "name": "tabular-invalid-duplicate-column-name",
         "description": "A column name appears more than once in the first line (the column names) of a tabular file (reason a). The error does not depend on whether the repeated column is annotated: a repeated HED column, a repeated column with no annotation, a name repeated three times, and a repeated column that a sidecar annotates all fail. Distinct names pass, including a name that is a prefix of another (trial and trial_type). Names are compared exactly as written: a double quote is an ordinary character, so trial and \"trial\" are two names, and 1 and 1.0 are two names, not one number.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "structure",
         "common_causes": [
             "A column copied when the table was exported or merged, keeping its name",
@@ -239,7 +239,7 @@
         "name": "tabular-invalid-column-name-whitespace",
         "description": "A column name in the first line of a tabular file begins or ends with whitespace (reason b). A trailing or leading blank fails, on the HED column or on any other column, a padded name that is also repeated is reported under (b), trial beside a padded trial is one padded name rather than a repeat, and a name made only of a blank is padded and fails under (b), not as a blank name (c). A header naming trial for a sidecar entry trial fails when the header cell is padded. The same tables with unpadded names pass, including a name with an internal blank and a name that ends with a no-break space (U+00A0), which is not whitespace for this rule.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "structure",
         "common_causes": [
             "A blank typed after a column name when the header line was edited by hand",
@@ -502,7 +502,7 @@
         "name": "tabular-invalid-blank-column-name",
         "description": "A column name in the first line of a tabular file is blank, the empty string (reason c). A first line that ends with a tab has a blank last name, a first line that is only a tab has two blank names, a blank name between two others fails, and two blank names are reported under (c) for each blank name, not as a repeated name under (a). A header naming trial for a sidecar entry trial fails when the header also has a blank column. The same tables without the blank column pass. An empty first line is a single blank column name, so a file whose first line is empty fails under this reason (its later lines also have two cells against one, reason f); two empty first lines put the HED header on line 3 (and three put it on line 4), where a validator that looks only at line 1 or 2 does not see it and may skip the file as having no HED; the items check the error code only, so a validator that reports the empty lines under reason e without looking for HED also passes them; the one-column items break only reasons c and e, not the cell count (f); one combo item has an empty first line and no HED column, so only its sidecar makes it a table that carries HED and must be validated; either way the error is TABULAR_INVALID.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "structure",
         "common_causes": [
             "A tab typed after the last column name when the header line was edited by hand",
@@ -762,7 +762,7 @@
         "name": "tabular-invalid-value-whitespace",
         "description": "A value in a column with categorical or value HED annotations begins or ends with whitespace (reason d). In a categorical column, go with a trailing or leading blank, a value made only of a blank, and n/a with a trailing blank fail; in a value column, 30 with a trailing or leading blank fails. The same tables pass with go, 30, n/a, and an empty cell, and also with a HED column cell that has blanks around its tag, a categorical value ending with a no-break space (U+00A0, not whitespace for the rule; it only lacks an annotation, a warning), and a padded value in a column with no HED annotation. In a table with one annotated column, a line of only a blank is such a value (reason d), not a wrong cell count (reason f).",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "structure",
         "common_causes": [
             "A blank typed after a value when the table was edited by hand",
@@ -1158,7 +1158,7 @@
         "name": "tabular-invalid-empty-line",
         "description": "A line other than the first of a tabular file is empty, with no characters before its line terminator (reason e). An empty line between two rows fails, and so does an empty last line, which two line endings at the end of the file make; a single line ending at the end of the file is not an empty line. An empty line is reported as an empty line only, not also as a wrong cell count (reason f), and an empty first line is a blank column name (reason c), not this error. The same tables without the empty line pass.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "structure",
         "common_causes": [
             "A blank line left between rows when the file was edited by hand",
@@ -1325,7 +1325,7 @@
         "name": "tabular-invalid-cell-count",
         "description": "A line other than the first of a tabular file has a different number of tab-separated cells than the first line (reason f). In a two-column table, a row one cell short, a first data row one cell long, a later row one cell long, a line of only a blank (one cell), and a line of only tabs with three cells fail; in a combined sidecar and table test a short row fails. A line of only tabs with as many cells as the first line is a row of missing values and passes, and so does a blank-only line in a table with one column and no HED annotations (a whitespace value that is not annotated). An empty line is reported as an empty line (reason e) only, not under this error.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "structure",
         "common_causes": [
             "A cell dropped from a row when the file was edited by hand, so that the row has too few tabs",

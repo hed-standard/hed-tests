@@ -45,7 +45,7 @@
       "schema_tests": {
         "fails": [
           [
-            "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.4.0\" unmerged=\"True\"",
+            "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.5.0\" unmerged=\"True\"",
             "'''Prologue'''",
             "!# start schema",
             "!# end schema",
@@ -56,12 +56,15 @@
             "'''Schema attributes'''",
             "'''Properties'''",
             "'''Epilogue'''",
+            "'''Sources'''",
+            "'''Prefixes'''",
+            "'''External annotations'''",
             "!# end hed"
           ]
         ],
         "passes": [
           [
-            "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.4.0\" unmerged=\"True\"",
+            "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.5.0\" unmerged=\"True\"",
             "'''Prologue'''",
             "!# start schema",
             "!# end schema",
@@ -72,10 +75,13 @@
             "'''Schema attributes'''",
             "'''Properties'''",
             "'''Epilogue'''",
+            "'''Sources'''",
+            "'''Prefixes'''",
+            "'''External annotations'''",
             "!# end hed"
           ],
           [
-            "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.4.0\" unmerged=\"True\"",
+            "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.5.0\" unmerged=\"True\"",
             "'''Prologue'''",
             "!# start schema",
             "!# end schema",
@@ -86,6 +92,9 @@
             "'''Schema attributes'''",
             "'''Properties'''",
             "'''Epilogue'''",
+            "'''Sources'''",
+            "'''Prefixes'''",
+            "'''External annotations'''",
             "!# end hed"
           ]
         ]

@@ -8,7 +8,7 @@
         "name": "definition-invalid-tag-group",
         "description": "A Definition tag does not appear in a tag group at the top level in an annotation.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "structure",
         "common_causes": [
             "Definition tag not enclosed in parentheses",
@@ -159,7 +159,7 @@
         "name": "definition-invalid-multiple-definition-tags",
         "description": "A definition's enclosing tag group contains more than a `Definition` tag and an inner group.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "structure",
         "common_causes": [
             "Adding extra Definition tags in the same group",
@@ -299,7 +299,7 @@
         "name": "definition-invalid-inner-group-defs",
         "description": "A definition's inner tag group contains `Definition`, `Def` or `Def-expand` tags.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "structure",
         "common_causes": [
             "Nested Definition tags within definition content",
@@ -439,7 +439,7 @@
         "name": "definition-invalid-bad-number-of-placeholders",
         "description": "A definition that includes a placeholder (`#`) does not have exactly two `#` characters.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "placeholder",
         "common_causes": [
             "Unequal number of placeholders in definition and content",
@@ -583,7 +583,7 @@
         "name": "definition-invalid-placeholder-incorrect-of-positions",
         "description": "A definition has placeholders (`#`) in incorrect positions.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "placeholder",
         "common_causes": [
             "Placeholder in content without corresponding definition placeholder",
@@ -727,7 +727,7 @@
         "name": "definition-invalid-placeholder-conflict",
         "description": "Definitions of the same name appear with and without a `#`.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "consistency",
         "common_causes": [
             "Mixing placeholder and non-placeholder versions of same definition",
@@ -868,7 +868,7 @@
         "name": "definition-invalid-multiple-definitions",
         "description": "Definitions with the same name have different contents.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "uniqueness",
         "common_causes": [
             "Copying a definition into several definition entries and editing one copy",
@@ -1017,7 +1017,7 @@
         "name": "definition-invalid-content-has-top-level-tag",
         "description": "A definition's contents contain, at any level, a structural reserved tag (Definition, Def, Def-expand, Onset, Offset, Inset, Delay, Duration, Event-context; reason d) or a tag with the required or unique attribute (reason j).",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "content",
         "common_causes": [
             "Using top-level or unique tags within definition content",
@@ -1214,7 +1214,7 @@
         "name": "definition-not-allowed-here",
         "description": "A definition appears in an unexpected place such as an events file or sidecar.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "context",
         "common_causes": [
             "Placing definitions in event annotations instead of definition section",
@@ -1385,7 +1385,7 @@
         "name": "definition-invalid-duplicate-definitions-differ",
         "description": "A definition name may be defined more than once only when every definition of it is identical; the same name with different contents is an error.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "uniqueness",
         "common_causes": [
             "Copying a definition into several sidecar entries and editing one copy",
@@ -1515,7 +1515,7 @@
         "name": "definition-invalid-second-part-not-placeholder",
         "description": "The value of a Definition tag has a part after the name other than a single # (reason l): Definition/NewDef/3 and Definition/NewDef/Extra fail. Definition/NewDef/#/# fails too, as reason f (three # in the definition) or l.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "syntax",
         "common_causes": [
             "Writing an example value instead of # after the definition name",
@@ -1720,7 +1720,7 @@
         "name": "definition-invalid-in-value-entry",
         "description": "A sidecar value entry contains a definition.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "context",
         "common_causes": [
             "Putting a definition in the HED string of a value column"
@@ -1843,7 +1843,7 @@
         "name": "definition-invalid-beside-other-tags",
         "description": "A sidecar categorical annotation contains a definition and a tag that is not a definition.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "context",
         "common_causes": [
             "Adding an ordinary tag to an annotation that holds definitions"
@@ -1965,7 +1965,7 @@
         "name": "definition-invalid-identical-in-one-string",
         "description": "Identical definitions of one name in the same HED string are one definition, not a repeated expression; the same name with different contents in one string is an error.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "uniqueness",
         "common_causes": [
             "Pasting the same definition twice into one sidecar entry",
@@ -2235,7 +2235,7 @@
         "name": "definition-invalid-name-case",
         "description": "Definition names are matched without regard to case, so names that differ only in case name the same definition and must have identical contents.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "uniqueness",
         "common_causes": [
             "Capitalizing a definition name differently in two sidecar columns",
@@ -2377,7 +2377,7 @@
         "name": "definition-invalid-value-case",
         "description": "Tags in definition contents are compared without regard to case but values with case, so definitions of one name that differ in the case of a value are different definitions.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "uniqueness",
         "common_causes": [
             "Typing a value in different case in two copies of a definition",

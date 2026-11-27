@@ -5,7 +5,7 @@
         "name": "character-invalid-non-printing-appears",
         "description": "The HED string contains a UTF-8 character.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "validation",
         "common_causes": [
             "Copy-pasting text from documents with invisible control characters",
@@ -155,7 +155,7 @@
         "name": "curly-braces-not-in-sidecar",
         "description": "The curly brace notation is used outside a sidecar.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "validation",
         "common_causes": [
             "Using curly braces {} in HED strings outside of sidecar column references",
@@ -242,7 +242,7 @@
         "name": "invalid-character-name-value-class",
         "description": "An invalid character was used in an 8.3.0 or greater style name value class.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "validation",
         "common_causes": [
             "Using special characters (*$%[]) in tags with restrictive name classes",
@@ -661,7 +661,7 @@
         "name": "character-invalid-double-quote",
         "description": "A HED string contains a double quote, which no HED string may contain whatever the value class. In a tabular file a double quote is an ordinary character, so a HED cell written wholly in quotes (\"Red\") keeps its quotes and fails.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "validation",
         "common_causes": [
             "Quoting a word or a title inside a Description value",
@@ -1165,6 +1165,50 @@
                             ]
                         ]
                     }
+                ]
+            }
+        }
+    },
+    {
+        "error_code": "CHARACTER_INVALID",
+        "alt_codes": [
+            "VALUE_INVALID"
+        ],
+        "name": "character-invalid-blank-in-name-value",
+        "description": "A value of a nameClass placeholder, such as the value of Label, contains a blank. The name character set has no blank, so one blank or several are invalid. Blanks inside a value are judged by the value class, not by TAG_INVALID.",
+        "warning": false,
+        "schema": "8.5.0",
+        "error_category": "validation",
+        "common_causes": [
+            "Writing a label as several words, such as Label/my label",
+            "Copying a multi-word name from a spreadsheet into a Label value"
+        ],
+        "explanation": "A nameClass value may contain only name characters: letters, digits, hyphen, underscore, and non-ASCII characters. The blank is not one of them, so Label/my label and Label/my  label are invalid. A text value such as a Description may contain blanks, including two in a row.",
+        "correction_strategy": "Join the words of the name with an underscore or a hyphen, or use a tag that takes a text value if the value is a phrase.",
+        "correction_examples": [
+            {
+                "wrong": "Label/my label",
+                "correct": "Label/my_label",
+                "explanation": "Joined the words with an underscore, which is a name character"
+            },
+            {
+                "wrong": "Label/my  label",
+                "correct": "Label/my-label",
+                "explanation": "Replaced the two blanks with a hyphen, which is a name character"
+            }
+        ],
+        "specification_reference": "2.2. Character sets and restrictions; A.1.3. Value classes; Appendix B CHARACTER_INVALID",
+        "related_errors": ["VALUE_INVALID", "TAG_INVALID"],
+        "definitions": [],
+        "tests": {
+            "string_tests": {
+                "fails": [
+                    "Label/my label",
+                    "Label/my  label"
+                ],
+                "passes": [
+                    "Label/my_label",
+                    "Label/my-label"
                 ]
             }
         }

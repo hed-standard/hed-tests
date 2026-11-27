@@ -49,11 +49,11 @@
       "schema_tests": {
         "fails": [
           [
-            "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.4.0\" unmerged=\"True\"",
+            "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.5.0\" unmerged=\"True\"",
             "'''Prologue'''",
             "!# start schema",
             "'''Tag-with-unknown'''",
-            "* # {unitClass=unknown}",
+            "* # {unitClass=unknown, valueClass=numericClass}",
             "!# end schema",
             "'''Unit classes'''",
             "'''Unit modifiers'''",
@@ -61,16 +61,19 @@
             "'''Schema attributes'''",
             "'''Properties'''",
             "'''Epilogue'''",
+            "'''Sources'''",
+            "'''Prefixes'''",
+            "'''External annotations'''",
             "!# end hed"
           ]
         ],
         "passes": [
           [
-            "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.4.0\" unmerged=\"True\"",
+            "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.5.0\" unmerged=\"True\"",
             "'''Prologue'''",
             "!# start schema",
             "'''Tag-with-unknown'''",
-            "* # {unitClass=timeUnits}",
+            "* # {unitClass=timeUnits, valueClass=numericClass}",
             "!# end schema",
             "'''Unit classes'''",
             "'''Unit modifiers'''",
@@ -78,6 +81,9 @@
             "'''Schema attributes'''",
             "'''Properties'''",
             "'''Epilogue'''",
+            "'''Sources'''",
+            "'''Prefixes'''",
+            "'''External annotations'''",
             "!# end hed"
           ]
         ]
@@ -127,11 +133,11 @@
       "schema_tests": {
         "fails": [
           [
-            "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.4.0\" unmerged=\"True\"",
+            "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.5.0\" unmerged=\"True\"",
             "'''Prologue'''",
             "!# start schema",
             "'''Tag-with-units'''",
-            "* # {unitClass=timeUnits, unitClass=physicalLengthUnits}",
+            "* # {unitClass=timeUnits, unitClass=physicalLengthUnits, valueClass=numericClass}",
             "!# end schema",
             "'''Unit classes'''",
             "'''Unit modifiers'''",
@@ -139,16 +145,19 @@
             "'''Schema attributes'''",
             "'''Properties'''",
             "'''Epilogue'''",
+            "'''Sources'''",
+            "'''Prefixes'''",
+            "'''External annotations'''",
             "!# end hed"
           ]
         ],
         "passes": [
           [
-            "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.4.0\" unmerged=\"True\"",
+            "HED version=\"1.0.0\" library=\"score\" withStandard=\"8.5.0\" unmerged=\"True\"",
             "'''Prologue'''",
             "!# start schema",
             "'''Tag-with-units'''",
-            "* # {unitClass=physicalLengthUnits}",
+            "* # {unitClass=physicalLengthUnits, valueClass=numericClass}",
             "!# end schema",
             "'''Unit classes'''",
             "'''Unit modifiers'''",
@@ -156,6 +165,9 @@
             "'''Schema attributes'''",
             "'''Properties'''",
             "'''Epilogue'''",
+            "'''Sources'''",
+            "'''Prefixes'''",
+            "'''External annotations'''",
             "!# end hed"
           ]
         ]
@@ -222,6 +234,9 @@
             "'''Schema attributes'''",
             "'''Properties'''",
             "'''Epilogue'''",
+            "'''Sources'''",
+            "'''Prefixes'''",
+            "'''External annotations'''",
             "!# end hed"
           ],
           [
@@ -237,6 +252,9 @@
             "'''Schema attributes'''",
             "'''Properties'''",
             "'''Epilogue'''",
+            "'''Sources'''",
+            "'''Prefixes'''",
+            "'''External annotations'''",
             "!# end hed"
           ]
         ],
@@ -254,6 +272,9 @@
             "'''Schema attributes'''",
             "'''Properties'''",
             "'''Epilogue'''",
+            "'''Sources'''",
+            "'''Prefixes'''",
+            "'''External annotations'''",
             "!# end hed"
           ]
         ]

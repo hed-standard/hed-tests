@@ -8,7 +8,7 @@
         "name": "value-invalid-#-substitution",
         "description": "The value substituted for a placeholder (`#`) is not valid.",
         "warning": false,
-        "schema": "8.3.0",
+        "schema": "8.5.0",
         "error_category": "validation",
         "common_causes": [
             "Using incorrect data types for tag values (e.g., text where numbers expected)",
@@ -168,7 +168,7 @@
         "name": "value-invalid-incompatible-value-class",
         "description": "A tag placeholder value is incompatible with the specified value class.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "validation",
         "common_causes": [
             "Using characters invalid for specific value classes (e.g., letters in numeric values)",
@@ -351,7 +351,7 @@
         "name": "value-invalid-blank-missing-before-units",
         "description": "The units are not separated from the value by a single blank.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "validation",
         "common_causes": [
             "Missing space between numeric value and units",
@@ -529,10 +529,47 @@
         "alt_codes": [
             "UNITS_INVALID"
         ],
+        "name": "value-invalid-multiple-blanks-before-units",
+        "description": "More than one blank separates a value from its units. This is VALUE_INVALID (d), which a validator MAY report as UNITS_INVALID; it is not TAG_INVALID.",
+        "warning": false,
+        "schema": "8.5.0",
+        "error_category": "validation",
+        "common_causes": [
+            "Typing two spaces between the number and the unit",
+            "Aligning values in a spreadsheet with extra spaces before the unit"
+        ],
+        "explanation": "A value with units is the number, exactly one blank, and the unit. HED parsers assume that the units are separated from the value by a single blank, so Duration/3  ms (two blanks) is an error.",
+        "correction_strategy": "Leave exactly one blank between the value and its units.",
+        "correction_examples": [
+            {
+                "wrong": "(Duration/3  ms, (Red))",
+                "correct": "(Duration/3 ms, (Red))",
+                "explanation": "Removed the second blank between the value and the unit"
+            }
+        ],
+        "specification_reference": "3.2.4. Tags that take values; Appendix B VALUE_INVALID d",
+        "related_errors": ["UNITS_INVALID", "TAG_INVALID"],
+        "definitions": [],
+        "tests": {
+            "string_tests": {
+                "fails": [
+                    "(Duration/3  ms, (Red))"
+                ],
+                "passes": [
+                    "(Duration/3 ms, (Red))"
+                ]
+            }
+        }
+    },
+    {
+        "error_code": "VALUE_INVALID",
+        "alt_codes": [
+            "UNITS_INVALID"
+        ],
         "name": "invalid-character-numeric-class",
         "description": "An invalid character was used in an 8.3.0 or greater style numeric value class.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "validation",
         "common_causes": [
             "Including non-numeric characters in numeric values (letters, symbols)",
@@ -643,7 +680,7 @@
         "name": "bad-value-in-curly-column",
         "description": "A column referenced in curly braces has an invalid value in a row whose selected template does not substitute it.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "validation",
         "common_causes": [
             "Assuming a value column is only checked in the rows whose template substitutes it",
@@ -820,7 +857,7 @@
         "name": "value-invalid-date-time-format",
         "description": "A dateTimeClass value does not have the BIDS Datetime format (RFC 3339 with an optional offset), or its date does not exist in the Gregorian calendar.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "validation",
         "common_causes": [
             "Giving a date without a time, or a time without seconds",

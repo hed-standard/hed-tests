@@ -1,10 +1,10 @@
 # HED test suite index
 
-Complete index of 265 test cases in the HED test suite.
+Complete index of 268 test cases in the HED test suite.
 
 ## Quick navigation
 
-- [CHARACTER_INVALID](#character-invalid) (8 tests)
+- [CHARACTER_INVALID](#character-invalid) (9 tests)
 - [COMMA_MISSING](#comma-missing) (2 tests)
 - [DEFINITION_INVALID](#definition-invalid) (17 tests)
 - [DEF_EXPAND_INVALID](#def-expand-invalid) (7 tests)
@@ -33,24 +33,34 @@ Complete index of 265 test cases in the HED test suite.
 - [TAG_EXTENDED](#tag-extended) (1 test)
 - [TAG_EXTENSION_INVALID](#tag-extension-invalid) (9 tests)
 - [TAG_GROUP_ERROR](#tag-group-error) (6 tests)
-- [TAG_INVALID](#tag-invalid) (3 tests)
+- [TAG_INVALID](#tag-invalid) (4 tests)
 - [TAG_NAMESPACE_PREFIX_INVALID](#tag-namespace-prefix-invalid) (4 tests)
 - [TAG_NOT_UNIQUE](#tag-not-unique) (1 test)
 - [TAG_REQUIRES_CHILD](#tag-requires-child) (2 tests)
 - [TEMPORAL_TAG_ERROR](#temporal-tag-error) (31 tests)
 - [UNITS_INVALID](#units-invalid) (8 tests)
-- [VALUE_INVALID](#value-invalid) (6 tests)
+- [VALUE_INVALID](#value-invalid) (7 tests)
 - [WIKI_DELIMITERS_INVALID](#wiki-delimiters-invalid) (1 test)
 
 ## CHARACTER_INVALID
 
 **File**: `json_test_data/validation_test_data/CHARACTER_INVALID.json`
 
+### character-invalid-blank-in-name-value (correction guidance) (examples)
+
+**Description**: A value of a nameClass placeholder, such as the value of Label, contains a blank. The name character set has no blank, so one blank or several are invalid. Blanks inside a value are judged by the value class, not by TAG_INVALID.
+
+**Schema**: 8.5.0 **Category**: validation
+
+**Tests**:
+
+- `string_tests`: 2 fail, 2 pass
+
 ### character-invalid-double-quote (correction guidance) (examples)
 
 **Description**: A HED string contains a double quote, which no HED string may contain whatever the value class. In a tabular file a double quote is an ordinary character, so a HED cell written wholly in quotes ("Red") keeps its quotes and fails.
 
-**Schema**: 8.4.0 **Category**: validation
+**Schema**: 8.5.0 **Category**: validation
 
 **Tests**:
 
@@ -63,7 +73,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: The HED string contains a UTF-8 character.
 
-**Schema**: 8.4.0 **Category**: validation
+**Schema**: 8.5.0 **Category**: validation
 
 **Tests**:
 
@@ -115,7 +125,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: The curly brace notation is used outside a sidecar.
 
-**Schema**: 8.4.0 **Category**: validation
+**Schema**: 8.5.0 **Category**: validation
 
 **Tests**:
 
@@ -127,7 +137,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: An invalid character was used in an 8.3.0 or greater style name value class.
 
-**Schema**: 8.4.0 **Category**: validation
+**Schema**: 8.5.0 **Category**: validation
 
 **Tests**:
 
@@ -156,7 +166,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A tag and a tag group are not separated by commas: A(B,D).
 
-**Schema**: 8.4.0 **Category**: syntax
+**Schema**: 8.5.0 **Category**: syntax
 
 **Tests**:
 
@@ -169,7 +179,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: Two tag groups are not separated by commas: (A, B)(C, D).
 
-**Schema**: 8.4.0 **Category**: syntax
+**Schema**: 8.5.0 **Category**: syntax
 
 **Tests**:
 
@@ -186,7 +196,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A definition that includes a placeholder (`#`) does not have exactly two `#` characters.
 
-**Schema**: 8.4.0 **Category**: placeholder
+**Schema**: 8.5.0 **Category**: placeholder
 
 **Tests**:
 
@@ -197,7 +207,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A sidecar categorical annotation contains a definition and a tag that is not a definition.
 
-**Schema**: 8.4.0 **Category**: context
+**Schema**: 8.5.0 **Category**: context
 
 **Tests**:
 
@@ -218,7 +228,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A definition's contents contain, at any level, a structural reserved tag (Definition, Def, Def-expand, Onset, Offset, Inset, Delay, Duration, Event-context; reason d) or a tag with the required or unique attribute (reason j).
 
-**Schema**: 8.4.0 **Category**: content
+**Schema**: 8.5.0 **Category**: content
 
 **Tests**:
 
@@ -229,7 +239,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A definition name may be defined more than once only when every definition of it is identical; the same name with different contents is an error.
 
-**Schema**: 8.4.0 **Category**: uniqueness
+**Schema**: 8.5.0 **Category**: uniqueness
 
 **Tests**:
 
@@ -240,7 +250,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: Identical definitions of one name in the same HED string are one definition, not a repeated expression; the same name with different contents in one string is an error.
 
-**Schema**: 8.4.0 **Category**: uniqueness
+**Schema**: 8.5.0 **Category**: uniqueness
 
 **Tests**:
 
@@ -251,7 +261,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A sidecar value entry contains a definition.
 
-**Schema**: 8.4.0 **Category**: context
+**Schema**: 8.5.0 **Category**: context
 
 **Tests**:
 
@@ -262,7 +272,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A definition's inner tag group contains `Definition`, `Def` or `Def-expand` tags.
 
-**Schema**: 8.4.0 **Category**: structure
+**Schema**: 8.5.0 **Category**: structure
 
 **Tests**:
 
@@ -274,7 +284,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A definition's enclosing tag group contains more than a `Definition` tag and an inner group.
 
-**Schema**: 8.4.0 **Category**: structure
+**Schema**: 8.5.0 **Category**: structure
 
 **Tests**:
 
@@ -285,7 +295,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: Definitions with the same name have different contents.
 
-**Schema**: 8.4.0 **Category**: uniqueness
+**Schema**: 8.5.0 **Category**: uniqueness
 
 **Tests**:
 
@@ -296,7 +306,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: Definition names are matched without regard to case, so names that differ only in case name the same definition and must have identical contents.
 
-**Schema**: 8.4.0 **Category**: uniqueness
+**Schema**: 8.5.0 **Category**: uniqueness
 
 **Tests**:
 
@@ -307,7 +317,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: Definitions of the same name appear with and without a `#`.
 
-**Schema**: 8.4.0 **Category**: consistency
+**Schema**: 8.5.0 **Category**: consistency
 
 **Tests**:
 
@@ -318,7 +328,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A definition has placeholders (`#`) in incorrect positions.
 
-**Schema**: 8.4.0 **Category**: placeholder
+**Schema**: 8.5.0 **Category**: placeholder
 
 **Tests**:
 
@@ -329,7 +339,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: The value of a Definition tag has a part after the name other than a single # (reason l): Definition/NewDef/3 and Definition/NewDef/Extra fail. Definition/NewDef/#/# fails too, as reason f (three # in the definition) or l.
 
-**Schema**: 8.4.0 **Category**: syntax
+**Schema**: 8.5.0 **Category**: syntax
 
 **Tests**:
 
@@ -340,7 +350,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A Definition tag does not appear in a tag group at the top level in an annotation.
 
-**Schema**: 8.4.0 **Category**: structure
+**Schema**: 8.5.0 **Category**: structure
 
 **Tests**:
 
@@ -352,7 +362,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: Tags in definition contents are compared without regard to case but values with case, so definitions of one name that differ in the case of a value are different definitions.
 
-**Schema**: 8.4.0 **Category**: uniqueness
+**Schema**: 8.5.0 **Category**: uniqueness
 
 **Tests**:
 
@@ -363,7 +373,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A definition appears in an unexpected place such as an events file or sidecar.
 
-**Schema**: 8.4.0 **Category**: context
+**Schema**: 8.5.0 **Category**: context
 
 **Tests**:
 
@@ -380,7 +390,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A Def-expand has extra tags or groups.
 
-**Schema**: 8.4.0 **Category**: structure
+**Schema**: 8.5.0 **Category**: structure
 
 **Tests**:
 
@@ -393,7 +403,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A `Def-expand` has an incorrect type of placeholder value.
 
-**Schema**: 8.4.0 **Category**: value
+**Schema**: 8.5.0 **Category**: value
 
 **Tests**:
 
@@ -406,7 +416,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A `Def-expand` is missing an expected placeholder value or has an unexpected placeholder value.
 
-**Schema**: 8.4.0 **Category**: content
+**Schema**: 8.5.0 **Category**: content
 
 **Tests**:
 
@@ -419,7 +429,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A `Def-expand` tag's name does not correspond to a definition.
 
-**Schema**: 8.4.0 **Category**: semantic
+**Schema**: 8.5.0 **Category**: semantic
 
 **Tests**:
 
@@ -432,7 +442,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: The tags within a Def-expand do not match the corresponding definition.
 
-**Schema**: 8.4.0 **Category**: content
+**Schema**: 8.5.0 **Category**: content
 
 **Tests**:
 
@@ -445,7 +455,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A Def-expand is missing its inner group containing the definition.
 
-**Schema**: 8.4.0 **Category**: structure
+**Schema**: 8.5.0 **Category**: structure
 
 **Tests**:
 
@@ -458,7 +468,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: The tags and groups within a Def-expand may appear in any order; only their content and nesting must match the definition.
 
-**Schema**: 8.4.0 **Category**: content
+**Schema**: 8.5.0 **Category**: content
 
 **Tests**:
 
@@ -475,7 +485,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A `Def` has a placeholder value of incorrect format or units for definition.
 
-**Schema**: 8.4.0 **Category**: value
+**Schema**: 8.5.0 **Category**: value
 
 **Tests**:
 
@@ -488,7 +498,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A value column annotated with `Def/Name/#` has a value that is invalid for the definition's placeholder.
 
-**Schema**: 8.4.0 **Category**: value
+**Schema**: 8.5.0 **Category**: value
 
 **Tests**:
 
@@ -498,7 +508,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A `Def` tag is missing an expected placeholder value or has an unexpected placeholder value.
 
-**Schema**: 8.4.0 **Category**: placeholder
+**Schema**: 8.5.0 **Category**: placeholder
 
 **Tests**:
 
@@ -511,7 +521,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A `Def` tag's name does not correspond to a definition.
 
-**Schema**: 8.4.0 **Category**: semantic
+**Schema**: 8.5.0 **Category**: semantic
 
 **Tests**:
 
@@ -541,7 +551,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A tag is deprecated
 
-**Schema**: 8.2.0 **Category**: semantic
+**Schema**: 8.5.0 **Category**: semantic
 
 **Tests**:
 
@@ -558,7 +568,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A HED string has as many open as closed parentheses, but a closing parenthesis comes before its opening one.
 
-**Schema**: 8.4.0 **Category**: syntax
+**Schema**: 8.5.0 **Category**: syntax
 
 **Tests**:
 
@@ -571,7 +581,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A value in a sidecar-annotated value column contains an unmatched parenthesis, so the HED string obtained by substituting the value for the # is unbalanced.
 
-**Schema**: 8.4.0 **Category**: syntax
+**Schema**: 8.5.0 **Category**: syntax
 
 **Tests**:
 
@@ -581,7 +591,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: The open and closed parentheses are not correctly nested in the HED string.
 
-**Schema**: 8.4.0 **Category**: syntax
+**Schema**: 8.5.0 **Category**: syntax
 
 **Tests**:
 
@@ -594,7 +604,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A HED string does not have the same number of open and closed parentheses.
 
-**Schema**: 8.4.0 **Category**: syntax
+**Schema**: 8.5.0 **Category**: syntax
 
 **Tests**:
 
@@ -611,7 +621,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A JSON sidecar has a placeholder (`#`) in the HED dictionary for a categorical column.
 
-**Schema**: 8.4.0 **Category**: context
+**Schema**: 8.5.0 **Category**: context
 
 **Tests**:
 
@@ -622,7 +632,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A placeholder (`#`) follows a user extension term (Item/Blech/#) or stands in for one (Item/#). The # cannot be an extension, so this is PLACEHOLDER_INVALID in every context, events file or sidecar. A validator that checks extensionAllowed or the term itself first may report TAG_EXTENSION_INVALID instead.
 
-**Schema**: 8.4.0 **Category**: semantic
+**Schema**: 8.5.0 **Category**: semantic
 
 **Tests**:
 
@@ -635,7 +645,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A value in a sidecar-annotated value column contains a # character, so the HED string obtained by substituting the value for the # of the annotation still holds a placeholder.
 
-**Schema**: 8.4.0 **Category**: syntax
+**Schema**: 8.5.0 **Category**: syntax
 
 **Tests**:
 
@@ -645,7 +655,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A placeholder (`#`) is used in JSON sidecar or definition, but its parent in the schema does not have a placeholder child.
 
-**Schema**: 8.4.0 **Category**: schema
+**Schema**: 8.5.0 **Category**: schema
 
 **Tests**:
 
@@ -656,7 +666,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A JSON sidecar does not have exactly one placeholder (`#`) in each HED string representing a value column.
 
-**Schema**: 8.4.0 **Category**: count
+**Schema**: 8.5.0 **Category**: count
 
 **Tests**:
 
@@ -667,7 +677,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A `#` appears in a place that it should not (such as in the `HED` column of an event file outside a definition).
 
-**Schema**: 8.4.0 **Category**: structure
+**Schema**: 8.5.0 **Category**: structure
 
 **Tests**:
 
@@ -680,7 +690,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: In a sidecar value entry the placeholder (#) is not the whole value directly after a slash.
 
-**Schema**: 8.4.0 **Category**: count
+**Schema**: 8.5.0 **Category**: count
 
 **Tests**:
 
@@ -691,7 +701,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A placeholder with units (`# g`) follows a user extension term (Item/Blech/# g) or stands in for one (Item/# g). Units do not give an extension a value, so this is the same error as a bare # after an extension. A validator that reads `# g` as one extension term may report TAG_EXTENSION_INVALID instead.
 
-**Schema**: 8.4.0 **Category**: semantic
+**Schema**: 8.5.0 **Category**: semantic
 
 **Tests**:
 
@@ -1836,7 +1846,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: The curly braces are in a value rather than as a separate tag substitute.
 
-**Schema**: 8.4.0 **Category**: syntax
+**Schema**: 8.5.0 **Category**: syntax
 
 **Tests**:
 
@@ -1847,7 +1857,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: The item in curly braces has a HED annotation that contains curly braces.
 
-**Schema**: 8.4.0 **Category**: reference
+**Schema**: 8.5.0 **Category**: reference
 
 **Tests**:
 
@@ -1858,7 +1868,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A name in curly braces contains a period and is not the name of a HED-annotated column.
 
-**Schema**: 8.4.0 **Category**: structure
+**Schema**: 8.5.0 **Category**: structure
 
 **Tests**:
 
@@ -1869,7 +1879,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: The item in curly braces is not the word HED or a column name with HED annotations in the sidecar.
 
-**Schema**: 8.4.0 **Category**: structure
+**Schema**: 8.5.0 **Category**: structure
 
 **Tests**:
 
@@ -1880,7 +1890,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A curly brace reference must only appear where a tag could.
 
-**Schema**: 8.4.0 **Category**: syntax
+**Schema**: 8.5.0 **Category**: syntax
 
 **Tests**:
 
@@ -1890,7 +1900,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: The item in curly braces has a HED annotation that contains itself.
 
-**Schema**: 8.4.0 **Category**: reference
+**Schema**: 8.5.0 **Category**: reference
 
 **Tests**:
 
@@ -1905,7 +1915,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: An annotation in a categorical entry of a sidecar is empty or consists only of blanks.
 
-**Schema**: 8.4.0 **Category**: structure
+**Schema**: 8.5.0 **Category**: structure
 
 **Tests**:
 
@@ -1916,7 +1926,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A sidecar entry has a valid second-level HED key and also a HED key at a deeper level.
 
-**Schema**: 8.4.0 **Category**: structure
+**Schema**: 8.5.0 **Category**: structure
 
 **Tests**:
 
@@ -1927,7 +1937,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: The HED key is not a second-level dictionary key.
 
-**Schema**: 8.4.0 **Category**: structure
+**Schema**: 8.5.0 **Category**: structure
 
 **Tests**:
 
@@ -1938,7 +1948,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A top-level sidecar key begins or ends with whitespace (reason d). A trailing blank, a leading blank, and a trailing tab fail, on categorical and value entries, on a padded key beside its unpadded twin, and on a padded key whose entry has no HED. A sidecar key trial with a padded entry for a header column trial fails. Unpadded keys pass, including a key with an internal blank and a key that ends with a no-break space (U+00A0), which is not whitespace for this rule.
 
-**Schema**: 8.4.0 **Category**: structure
+**Schema**: 8.5.0 **Category**: structure
 
 **Tests**:
 
@@ -1949,7 +1959,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: An annotation entry is provided for `n/a`.
 
-**Schema**: 8.4.0 **Category**: structure
+**Schema**: 8.5.0 **Category**: structure
 
 **Tests**:
 
@@ -1960,7 +1970,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: In a categorical entry, a column value listed as a key under HED begins or ends with whitespace (reason e). A trailing blank, a leading blank, and a trailing tab on a key under HED fail, and a combo whose sidecar has the padded key go fails even though the table holds go. Unpadded keys pass, including a key with an internal blank, a key ending with a no-break space (U+00A0, not whitespace for the rule), and a padded key in a BIDS Levels dictionary of the same entry, which is not checked.
 
-**Schema**: 8.4.0 **Category**: structure
+**Schema**: 8.5.0 **Category**: structure
 
 **Tests**:
 
@@ -1975,7 +1985,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A value in a categorical column does not have an expected entry in a sidecar.
 
-**Schema**: 8.4.0 **Category**: validation
+**Schema**: 8.5.0 **Category**: validation
 
 **Tests**:
 
@@ -1985,7 +1995,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: (Warning) A sidecar uses a \{HED} column which does not appear in the corresponding tsv file.
 
-**Schema**: 8.4.0 **Category**: reference
+**Schema**: 8.5.0 **Category**: reference
 
 **Tests**:
 
@@ -2000,7 +2010,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A column name in the first line of a tabular file is blank, the empty string (reason c). A first line that ends with a tab has a blank last name, a first line that is only a tab has two blank names, a blank name between two others fails, and two blank names are reported under (c) for each blank name, not as a repeated name under (a). A header naming trial for a sidecar entry trial fails when the header also has a blank column. The same tables without the blank column pass. An empty first line is a single blank column name, so a file whose first line is empty fails under this reason (its later lines also have two cells against one, reason f); two empty first lines put the HED header on line 3 (and three put it on line 4), where a validator that looks only at line 1 or 2 does not see it and may skip the file as having no HED; the items check the error code only, so a validator that reports the empty lines under reason e without looking for HED also passes them; the one-column items break only reasons c and e, not the cell count (f); one combo item has an empty first line and no HED column, so only its sidecar makes it a table that carries HED and must be validated; either way the error is TABULAR_INVALID.
 
-**Schema**: 8.4.0 **Category**: structure
+**Schema**: 8.5.0 **Category**: structure
 
 **Tests**:
 
@@ -2011,7 +2021,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A line other than the first of a tabular file has a different number of tab-separated cells than the first line (reason f). In a two-column table, a row one cell short, a first data row one cell long, a later row one cell long, a line of only a blank (one cell), and a line of only tabs with three cells fail; in a combined sidecar and table test a short row fails. A line of only tabs with as many cells as the first line is a row of missing values and passes, and so does a blank-only line in a table with one column and no HED annotations (a whitespace value that is not annotated). An empty line is reported as an empty line (reason e) only, not under this error.
 
-**Schema**: 8.4.0 **Category**: structure
+**Schema**: 8.5.0 **Category**: structure
 
 **Tests**:
 
@@ -2022,7 +2032,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A column name in the first line of a tabular file begins or ends with whitespace (reason b). A trailing or leading blank fails, on the HED column or on any other column, a padded name that is also repeated is reported under (b), trial beside a padded trial is one padded name rather than a repeat, and a name made only of a blank is padded and fails under (b), not as a blank name (c). A header naming trial for a sidecar entry trial fails when the header cell is padded. The same tables with unpadded names pass, including a name with an internal blank and a name that ends with a no-break space (U+00A0), which is not whitespace for this rule.
 
-**Schema**: 8.4.0 **Category**: structure
+**Schema**: 8.5.0 **Category**: structure
 
 **Tests**:
 
@@ -2033,7 +2043,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A column name appears more than once in the first line (the column names) of a tabular file (reason a). The error does not depend on whether the repeated column is annotated: a repeated HED column, a repeated column with no annotation, a name repeated three times, and a repeated column that a sidecar annotates all fail. Distinct names pass, including a name that is a prefix of another (trial and trial_type). Names are compared exactly as written: a double quote is an ordinary character, so trial and "trial" are two names, and 1 and 1.0 are two names, not one number.
 
-**Schema**: 8.4.0 **Category**: structure
+**Schema**: 8.5.0 **Category**: structure
 
 **Tests**:
 
@@ -2044,7 +2054,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A line other than the first of a tabular file is empty, with no characters before its line terminator (reason e). An empty line between two rows fails, and so does an empty last line, which two line endings at the end of the file make; a single line ending at the end of the file is not an empty line. An empty line is reported as an empty line only, not also as a wrong cell count (reason f), and an empty first line is a blank column name (reason c), not this error. The same tables without the empty line pass.
 
-**Schema**: 8.4.0 **Category**: structure
+**Schema**: 8.5.0 **Category**: structure
 
 **Tests**:
 
@@ -2055,7 +2065,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A value in a column with categorical or value HED annotations begins or ends with whitespace (reason d). In a categorical column, go with a trailing or leading blank, a value made only of a blank, and n/a with a trailing blank fail; in a value column, 30 with a trailing or leading blank fails. The same tables pass with go, 30, n/a, and an empty cell, and also with a HED column cell that has blanks around its tag, a categorical value ending with a no-break space (U+00A0, not whitespace for the rule; it only lacks an annotation, a warning), and a padded value in a column with no HED annotation. In a table with one annotated column, a line of only a blank is such a value (reason d), not a wrong cell count (reason f).
 
-**Schema**: 8.4.0 **Category**: structure
+**Schema**: 8.5.0 **Category**: structure
 
 **Tests**:
 
@@ -2069,7 +2079,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A HED string begins or ends with a comma (ignoring white space).
 
-**Schema**: 8.4.0 **Category**: syntax
+**Schema**: 8.5.0 **Category**: syntax
 
 **Tests**:
 
@@ -2082,7 +2092,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A tag group is empty (i.e., empty parentheses are not allowed).
 
-**Schema**: 8.4.0 **Category**: syntax
+**Schema**: 8.5.0 **Category**: syntax
 
 **Tests**:
 
@@ -2095,7 +2105,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A HED string has extra commas or parentheses separated by only white space.
 
-**Schema**: 8.4.0 **Category**: syntax
+**Schema**: 8.5.0 **Category**: syntax
 
 **Tests**:
 
@@ -2112,7 +2122,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A curly-brace reference to a column whose name has a period is substituted, and the result repeats a tag.
 
-**Schema**: 8.4.0 **Category**: semantic
+**Schema**: 8.5.0 **Category**: semantic
 
 **Tests**:
 
@@ -2122,7 +2132,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A sidecar annotation repeats a tag when the annotation of a column it references is substituted. Under rule 10 of the sidecar curly-brace rules, each annotation of each referenced column is substituted, one referenced column at a time with every other reference removed, whether or not a table uses that value. So (Red, \{color}) is invalid if an annotation of color is Red, and (Red, \{color}), (Blue, \{shade}) is invalid for the same color with shade removed. A repeat that needs two referenced columns filled at once, such as (\{color}, \{shade}) when both give Red, is required only when a row is assembled; the combo fails item pins it, and no sidecar item depends on whether a validator reports it in the sidecar.
 
-**Schema**: 8.4.0 **Category**: semantic
+**Schema**: 8.5.0 **Category**: semantic
 
 **Tests**:
 
@@ -2133,7 +2143,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A sidecar annotation repeats a tag once its \{HED} reference is removed. Under rule 10 of the sidecar curly-brace rules, a \{HED} reference is always removed when the sidecar is checked, as it is in a row whose HED cell is n/a or blank, so (Red, \{HED}), (Red) is invalid as a sidecar on its own: removing the reference leaves (Red), (Red). The combo item fails on a row whose HED cell is n/a. (Red, \{HED}), (Blue) passes.
 
-**Schema**: 8.4.0 **Category**: semantic
+**Schema**: 8.5.0 **Category**: semantic
 
 **Tests**:
 
@@ -2144,7 +2154,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A tag is repeated in the assembled annotation of a row whose onset is n/a.
 
-**Schema**: 8.4.0 **Category**: semantic
+**Schema**: 8.5.0 **Category**: semantic
 
 **Tests**:
 
@@ -2166,7 +2176,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A sidecar annotation repeats a tag once a curly-brace reference to another column is removed. Under rule 10 of the sidecar curly-brace rules, the annotation is also checked with all its references removed, as in a row whose referenced cell is n/a or blank (rule 3), so (Red, \{color}), (Red) is invalid as a sidecar on its own even though no annotation of color is Red, and so is (Red, \{rt}), (Red) for a value column rt. The combo items fail on rows whose color cell is n/a or blank (the empty string) and whose rt cell is n/a.
 
-**Schema**: 8.4.0 **Category**: semantic
+**Schema**: 8.5.0 **Category**: semantic
 
 **Tests**:
 
@@ -2177,7 +2187,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A tag is repeated in the same tag group or level.
 
-**Schema**: 8.4.0 **Category**: semantic
+**Schema**: 8.5.0 **Category**: semantic
 
 **Tests**:
 
@@ -2203,7 +2213,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: Tags are repeated because two rows have the same onset value.
 
-**Schema**: 8.4.0 **Category**: duplication
+**Schema**: 8.5.0 **Category**: duplication
 
 **Tests**:
 
@@ -2214,7 +2224,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: Tags are repeated because two rows have the same onset value.
 
-**Schema**: 8.4.0 **Category**: temporal_logic
+**Schema**: 8.5.0 **Category**: temporal_logic
 
 **Tests**:
 
@@ -2229,7 +2239,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A tag represents an extension from the schema.
 
-**Schema**: 8.4.0 **Category**: semantic
+**Schema**: 8.5.0 **Category**: semantic
 
 **Tests**:
 
@@ -2246,7 +2256,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A tag extension term does not comply with rules for schema nodes.
 
-**Schema**: 8.4.0 **Category**: semantic
+**Schema**: 8.5.0 **Category**: semantic
 
 **Tests**:
 
@@ -2259,7 +2269,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A tag extension term is already in the schema.
 
-**Schema**: 8.4.0 **Category**: semantic
+**Schema**: 8.5.0 **Category**: semantic
 
 **Tests**:
 
@@ -2272,7 +2282,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A tag extension term contains no letter (Item/Blech/3, Item/1-2, Item/\_). An extension term must contain at least one letter: A-Z or a-z, or any Unicode letter in schema versions whose nameClass allows non-ASCII characters (8.3.0 and later), so a non-ASCII term with no letter (a degree sign, an Arabic-Indic digit) also fails.
 
-**Schema**: 8.4.0 **Category**: semantic
+**Schema**: 8.5.0 **Category**: semantic
 
 **Tests**:
 
@@ -2295,7 +2305,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A tag is extended although neither it nor any of its ancestors has the extensionAllowed attribute (Sensory-event/Baloney, Agent/Blech). The Event and Agent subtrees of the standard schema do not allow extensions, so a term below them that is not in the schema is TAG_EXTENSION_INVALID, in short or long form and at any depth.
 
-**Schema**: 8.4.0 **Category**: semantic
+**Schema**: 8.5.0 **Category**: semantic
 
 **Tests**:
 
@@ -2319,7 +2329,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A structural reserved tag is extended with a term (Onset/Blah, Event-context/Blah). Reserved tags must not be extended although they inherit extensionAllowed from Property. A # after a reserved tag (Onset/#) is tested in tag-extension-invalid-reserved-tag-placeholder, since it may be reported under either of two codes.
 
-**Schema**: 8.4.0 **Category**: semantic
+**Schema**: 8.5.0 **Category**: semantic
 
 **Tests**:
 
@@ -2332,7 +2342,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A # follows a reserved tag that takes no value. It is an error in every context: a HED string ((Event-context/#, (Red)), since string tests use no temporal tag), an events file, a sidecar value column, and a combo ((Onset/#, Def/MyColor)). A validator may report it as TAG_EXTENSION_INVALID (the # extends a reserved tag) or as PLACEHOLDER_INVALID (the # has no placeholder child to stand for, or is not allowed there at all), depending on which check finds it first.
 
-**Schema**: 8.4.0 **Category**: semantic
+**Schema**: 8.5.0 **Category**: semantic
 
 **Tests**:
 
@@ -2345,7 +2355,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A term that is already a node in the schema follows a user extension term (Item/Blech/Red). Every level after an extension term is also an extension, and an extension term must not already be in the schema.
 
-**Schema**: 8.4.0 **Category**: semantic
+**Schema**: 8.5.0 **Category**: semantic
 
 **Tests**:
 
@@ -2362,7 +2372,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: Multiple tags with the topLevelTagGroup attribute appear in the same top-level tag group. (Delay and Duration are allowed to be in the same topLevelTagGroup).
 
-**Schema**: 8.4.0 **Category**: cardinality
+**Schema**: 8.5.0 **Category**: cardinality
 
 **Tests**:
 
@@ -2374,7 +2384,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A tag with the topLevelTagGroup does not appear at a HED tag group at the top level in an assembled HED annotation.
 
-**Schema**: 8.4.0 **Category**: structure
+**Schema**: 8.5.0 **Category**: structure
 
 **Tests**:
 
@@ -2386,7 +2396,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: An Event-context group contains a sidecar column reference (\{column}). Column references may not appear in an Event-context group; they may appear beside it.
 
-**Schema**: 8.4.0 **Category**: structure
+**Schema**: 8.5.0 **Category**: structure
 
 **Tests**:
 
@@ -2397,7 +2407,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: An `Event-context` group contains, besides the `Event-context` tag, only tag groups, one per ongoing event process.
 
-**Schema**: 8.4.0 **Category**: cardinality
+**Schema**: 8.5.0 **Category**: cardinality
 
 **Tests**:
 
@@ -2410,7 +2420,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A tag has tagGroup or topLevelTagGroup attribute, but is not enclosed in parentheses.
 
-**Schema**: 8.4.0 **Category**: structure
+**Schema**: 8.5.0 **Category**: structure
 
 **Tests**:
 
@@ -2423,7 +2433,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A tag with the topLevelTagGroup does not appear at a HED tag group at the top level in an assembled HED annotation.
 
-**Schema**: 8.4.0 **Category**: structure
+**Schema**: 8.5.0 **Category**: structure
 
 **Tests**:
 
@@ -2434,15 +2444,28 @@ Complete index of 265 test cases in the HED test suite.
 
 **File**: `json_test_data/validation_test_data/TAG_INVALID.json`
 
-### tag-has-extra-whitespace (correction guidance) (examples)
+### tag-blank-next-to-slash-in-value (correction guidance) (examples)
 
-**Description**: A HED tag has extra internal whitespace, including directly before or after slashes.
+**Description**: A blank next to the slash that begins a value is invalid; a blank next to a slash inside a value is not.
 
-**Schema**: 8.4.0 **Category**: syntax
+**Schema**: 8.5.0 **Category**: syntax
 
 **Tests**:
 
-- `string_tests`: 6 fail, 1 pass
+- `string_tests`: 2 fail, 6 pass
+- `sidecar_tests`: 1 fail, 2 pass
+- `event_tests`: 1 fail, 1 pass
+- `combo_tests`: 1 fail, 1 pass
+
+### tag-has-extra-whitespace (correction guidance) (examples)
+
+**Description**: A HED tag has extra internal whitespace, including directly before or after a slash of the tag path or the slash that begins a value. Blanks inside a value, such as the two in Description/This is text, are judged by the value class and are not this error.
+
+**Schema**: 8.5.0 **Category**: syntax
+
+**Tests**:
+
+- `string_tests`: 6 fail, 2 pass
 - `sidecar_tests`: 2 fail, 1 pass
 - `event_tests`: 2 fail, 1 pass
 - `combo_tests`: 1 fail, 1 pass
@@ -2451,7 +2474,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A HED tag has leading, trailing or consecutive slashes.
 
-**Schema**: 8.4.0 **Category**: syntax
+**Schema**: 8.5.0 **Category**: syntax
 
 **Tests**:
 
@@ -2464,7 +2487,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: The tag is not valid in the schema it is associated with.
 
-**Schema**: 8.4.0 **Category**: semantic
+**Schema**: 8.5.0 **Category**: semantic
 
 **Tests**:
 
@@ -2536,7 +2559,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A tag with unique attribute appears more than once in an event-level HED string.
 
-**Schema**: 8.4.0 **Category**: semantic
+**Schema**: 8.5.0 **Category**: semantic
 
 **Tests**:
 
@@ -2553,7 +2576,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A tag has the requireChild schema attribute but does not have a child.
 
-**Schema**: 8.4.0 **Category**: structure
+**Schema**: 8.5.0 **Category**: structure
 
 **Tests**:
 
@@ -2582,7 +2605,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: n/a is in the onset column.
 
-**Schema**: 8.4.0 **Category**: data_format
+**Schema**: 8.5.0 **Category**: data_format
 
 **Tests**:
 
@@ -2592,7 +2615,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A Delay that is the only reserved tag of its group must have exactly one inner group, so (Delay/3 s) fails. Beside Onset, Offset, Inset, or Duration, Delay is secondary and that tag's row gives the group rules: (Onset, Def/MyColor, Delay/3 s) passes with no inner group, while (Delay/3 s, Duration/2 s) fails because Duration needs one.
 
-**Schema**: 8.4.0 **Category**: temporal
+**Schema**: 8.5.0 **Category**: temporal
 
 **Tests**:
 
@@ -2602,9 +2625,9 @@ Complete index of 265 test cases in the HED test suite.
 
 ### temporal-tag-error-delay-not-convertible (correction guidance) (examples)
 
-**Description**: In a timeline table (a table with an onset column), a Delay tag has a value that cannot be converted to the default units of its unit class because the unit has no conversionFactor (month and year in HED 8.4.0), so the delayed onset cannot be placed on the timeline. Delay is never allowed in a descriptor table (cause k), so it can never carry a non-convertible unit. Appendix B TEMPORAL_TAG_ERROR cause n. Implemented in hed-python PR #1399; hed-javascript issue #860.
+**Description**: In a timeline table (a table with an onset column), a Delay tag has a value that cannot be converted to the default units of its unit class because the unit has no conversionFactor (month and year in HED 8.5.0), so the delayed onset cannot be placed on the timeline. Delay is never allowed in a descriptor table (cause k), so it can never carry a non-convertible unit. Appendix B TEMPORAL_TAG_ERROR cause n. Implemented in hed-python PR #1399; hed-javascript issue #860.
 
-**Schema**: 8.4.0 **Category**: temporal
+**Schema**: 8.5.0 **Category**: temporal
 
 **Tests**:
 
@@ -2615,7 +2638,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A `Delay` tag may appear in an `Onset`, `Offset`, or `Inset` group, delaying that marker; the marker tag must stay at the top level of the group, not inside the delayed inner group.
 
-**Schema**: 8.4.0 **Category**: structure
+**Schema**: 8.5.0 **Category**: structure
 
 **Tests**:
 
@@ -2625,19 +2648,20 @@ Complete index of 265 test cases in the HED test suite.
 
 ### temporal-tag-error-duplicated-onset-or-offset (correction guidance) (examples)
 
-**Description**: An Onset or an Offset with a given Def or Def-expand anchor appears in the same event marker with another Onset or Offset that uses the same anchor.
+**Description**: An Onset, Offset or Inset with a given Def or Def-expand anchor occurs at the same time as another Onset, Offset or Inset that uses the same anchor, in one row or in two rows with the same onset.
 
-**Schema**: 8.4.0 **Category**: temporal_logic
+**Schema**: 8.5.0 **Category**: temporal_logic
 
 **Tests**:
 
+- `event_tests`: 2 fail, 1 pass
 - `combo_tests`: 3 fail, 1 pass
 
 ### temporal-tag-error-duplicated-onset-or-offset-delay (correction guidance) (examples)
 
 **Description**: An Onset or an Offset with a given Def or Def-expand anchor occurs at the same time (the time of its row plus any Delay) as another Onset or Offset that uses the same anchor.
 
-**Schema**: 8.3.0 **Category**: temporal_logic
+**Schema**: 8.5.0 **Category**: temporal_logic
 
 **Tests**:
 
@@ -2647,7 +2671,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A Duration or Delay has extra tags or groups, or a Duration is missing its required group. The group rules are checked on the assembled row (rule 9 of the sidecar curly-brace rules): the value template (Duration/# s, \{stim_desc}) is valid when the annotations of stim_desc supply the group, and a row whose stim_desc is n/a fails; (Duration/# s, \{HED}) is valid in the sidecar, and a row whose HED cell is Red (no group) fails.
 
-**Schema**: 8.4.0 **Category**: structure
+**Schema**: 8.5.0 **Category**: structure
 
 **Tests**:
 
@@ -2658,9 +2682,9 @@ Complete index of 265 test cases in the HED test suite.
 
 ### temporal-tag-error-duration-not-convertible (correction guidance) (examples)
 
-**Description**: In a timeline table (a table with an onset column), a Duration tag has a value that cannot be converted to the default units of its unit class because the unit has no conversionFactor (month and year in HED 8.4.0), so the end time cannot be placed on the timeline. The same Duration is valid in a descriptor table such as participants.tsv, where there is no timeline to map it onto. Appendix B TEMPORAL_TAG_ERROR cause n.
+**Description**: In a timeline table (a table with an onset column), a Duration tag has a value that cannot be converted to the default units of its unit class because the unit has no conversionFactor (month and year in HED 8.5.0), so the end time cannot be placed on the timeline. The same Duration is valid in a descriptor table such as participants.tsv, where there is no timeline to map it onto. Appendix B TEMPORAL_TAG_ERROR cause n.
 
-**Schema**: 8.4.0 **Category**: temporal
+**Schema**: 8.5.0 **Category**: temporal
 
 **Tests**:
 
@@ -2671,7 +2695,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A Duration group may not have a Def tag or a Def-expand group at its top level (rule 2: Duration has no anchor); one may appear inside the inner group. A Def-expand group stands where its Def tag would and is never counted as the inner group.
 
-**Schema**: 8.4.0 **Category**: temporal
+**Schema**: 8.5.0 **Category**: temporal
 
 **Tests**:
 
@@ -2682,7 +2706,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: An Onset tag group with has tags besides the anchor Def or Def-expand that are not in a tag group.
 
-**Schema**: 8.4.0 **Category**: structure
+**Schema**: 8.5.0 **Category**: structure
 
 **Tests**:
 
@@ -2694,7 +2718,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: An Onset tag group with has tags besides the anchor Def or Def-expand that are not in a tag group.
 
-**Schema**: 8.3.0 **Category**: temporal
+**Schema**: 8.5.0 **Category**: temporal
 
 **Tests**:
 
@@ -2706,7 +2730,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: An Inset group has more than one inner group, or tags other than its anchor and an optional Delay that are not in a tag group.
 
-**Schema**: 8.4.0 **Category**: temporal
+**Schema**: 8.5.0 **Category**: temporal
 
 **Tests**:
 
@@ -2717,7 +2741,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: An Inset group has tags, other than its anchor and an optional Delay, that are not in a tag group.
 
-**Schema**: 8.3.0 **Category**: temporal
+**Schema**: 8.5.0 **Category**: temporal
 
 **Tests**:
 
@@ -2728,7 +2752,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: An Inset tag is not grouped with a Def or Def-expand of an ongoing Onset.
 
-**Schema**: 8.4.0 **Category**: temporal_logic
+**Schema**: 8.5.0 **Category**: temporal_logic
 
 **Tests**:
 
@@ -2739,7 +2763,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: An Inset tag is not grouped with a Def or Def-expand of an ongoing Onset.
 
-**Schema**: 8.3.0 **Category**: temporal_logic
+**Schema**: 8.5.0 **Category**: temporal_logic
 
 **Tests**:
 
@@ -2750,7 +2774,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: An Offset tag associated with a given definition appears after a previous Offset tag without the appearance of an intervening Onset of the same name.
 
-**Schema**: 8.3.0 **Category**: temporal_logic
+**Schema**: 8.5.0 **Category**: temporal_logic
 
 **Tests**:
 
@@ -2761,7 +2785,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: An Onset or Offset tag appears in a nested tag group (not a top-level tag group).
 
-**Schema**: 8.4.0 **Category**: structure
+**Schema**: 8.5.0 **Category**: structure
 
 **Tests**:
 
@@ -2773,7 +2797,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A delay appears in a group not in the top level.
 
-**Schema**: 8.4.0 **Category**: structure
+**Schema**: 8.5.0 **Category**: structure
 
 **Tests**:
 
@@ -2795,7 +2819,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: An Onset or Offset tag does not appear in a tag group.
 
-**Schema**: 8.4.0 **Category**: structure
+**Schema**: 8.5.0 **Category**: structure
 
 **Tests**:
 
@@ -2807,7 +2831,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A Delay is not in the tag group.
 
-**Schema**: 8.4.0 **Category**: structure
+**Schema**: 8.5.0 **Category**: structure
 
 **Tests**:
 
@@ -2819,7 +2843,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: An Offset appears with one or more tags or additional tag groups.
 
-**Schema**: 8.4.0 **Category**: structure
+**Schema**: 8.5.0 **Category**: structure
 
 **Tests**:
 
@@ -2831,7 +2855,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: An Offset appears with one or more tags or additional tag groups.
 
-**Schema**: 8.4.0 **Category**: temporal
+**Schema**: 8.5.0 **Category**: temporal
 
 **Tests**:
 
@@ -2843,7 +2867,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: An Offset tag associated with a given definition appears after a previous Offset tag without the appearance of an intervening Onset of the same name.
 
-**Schema**: 8.4.0 **Category**: temporal_logic
+**Schema**: 8.5.0 **Category**: temporal_logic
 
 **Tests**:
 
@@ -2854,7 +2878,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: An Onset group has more than one additional tag group.
 
-**Schema**: 8.4.0 **Category**: structure
+**Schema**: 8.5.0 **Category**: structure
 
 **Tests**:
 
@@ -2866,7 +2890,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: An Onset group has more than one additional tag group.
 
-**Schema**: 8.4.0 **Category**: temporal
+**Schema**: 8.5.0 **Category**: temporal
 
 **Tests**:
 
@@ -2890,7 +2914,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A temporal tag appears appears in a tsv with no onset column
 
-**Schema**: 8.4.0 **Category**: context
+**Schema**: 8.5.0 **Category**: context
 
 **Tests**:
 
@@ -2901,7 +2925,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: An Inset, Offset, or Onset tag appears in a tsv with no onset column
 
-**Schema**: 8.3.0 **Category**: context
+**Schema**: 8.5.0 **Category**: context
 
 **Tests**:
 
@@ -2912,7 +2936,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: An Onset or Offset tag is not grouped with exactly one Def-expand tag group or a Def tag.
 
-**Schema**: 8.4.0 **Category**: content
+**Schema**: 8.5.0 **Category**: content
 
 **Tests**:
 
@@ -2924,7 +2948,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: An Onset or Offset tag is not grouped with exactly one Def-expand tag group or a Def tag.
 
-**Schema**: 8.4.0 **Category**: temporal
+**Schema**: 8.5.0 **Category**: temporal
 
 **Tests**:
 
@@ -2952,7 +2976,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: Units are case-sensitive: a unit name, unit symbol, or SI modifier written in a case other than the one listed in the schema is invalid.
 
-**Schema**: 8.4.0 **Category**: validation
+**Schema**: 8.5.0 **Category**: validation
 
 **Tests**:
 
@@ -2965,7 +2989,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A compound unit such as m-per-s takes an SI modifier on each of its components; a modifier applied to the whole string, or a misspelled or wrongly cased component, is invalid.
 
-**Schema**: 8.4.0 **Category**: validation
+**Schema**: 8.5.0 **Category**: validation
 
 **Tests**:
 
@@ -2978,7 +3002,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A Def value carries units although the definition's placeholder already has them.
 
-**Schema**: 8.4.0 **Category**: validation
+**Schema**: 8.5.0 **Category**: validation
 
 **Tests**:
 
@@ -2991,7 +3015,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A tag has a value with units that are invalid or not of the correct unit class for the tag.
 
-**Schema**: 8.4.0 **Category**: validation
+**Schema**: 8.5.0 **Category**: validation
 
 **Tests**:
 
@@ -3014,7 +3038,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A unit modifier is applied to units that are not SI units.
 
-**Schema**: 8.4.0 **Category**: validation
+**Schema**: 8.5.0 **Category**: validation
 
 **Tests**:
 
@@ -3027,7 +3051,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A unit symbol cannot be pluralized, and a unit name accepts only the plural that the specification lists for it.
 
-**Schema**: 8.4.0 **Category**: validation
+**Schema**: 8.5.0 **Category**: validation
 
 **Tests**:
 
@@ -3044,7 +3068,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A column referenced in curly braces has an invalid value in a row whose selected template does not substitute it.
 
-**Schema**: 8.4.0 **Category**: validation
+**Schema**: 8.5.0 **Category**: validation
 
 **Tests**:
 
@@ -3054,7 +3078,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: An invalid character was used in an 8.3.0 or greater style numeric value class.
 
-**Schema**: 8.4.0 **Category**: validation
+**Schema**: 8.5.0 **Category**: validation
 
 **Tests**:
 
@@ -3065,7 +3089,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: The value substituted for a placeholder (`#`) is not valid.
 
-**Schema**: 8.3.0 **Category**: validation
+**Schema**: 8.5.0 **Category**: validation
 
 **Tests**:
 
@@ -3076,7 +3100,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: The units are not separated from the value by a single blank.
 
-**Schema**: 8.4.0 **Category**: validation
+**Schema**: 8.5.0 **Category**: validation
 
 **Tests**:
 
@@ -3089,7 +3113,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A dateTimeClass value does not have the BIDS Datetime format (RFC 3339 with an optional offset), or its date does not exist in the Gregorian calendar.
 
-**Schema**: 8.4.0 **Category**: validation
+**Schema**: 8.5.0 **Category**: validation
 
 **Tests**:
 
@@ -3102,7 +3126,7 @@ Complete index of 265 test cases in the HED test suite.
 
 **Description**: A tag placeholder value is incompatible with the specified value class.
 
-**Schema**: 8.4.0 **Category**: validation
+**Schema**: 8.5.0 **Category**: validation
 
 **Tests**:
 
@@ -3110,6 +3134,16 @@ Complete index of 265 test cases in the HED test suite.
 - `sidecar_tests`: 1 fail, 1 pass
 - `event_tests`: 1 fail, 1 pass
 - `combo_tests`: 1 fail, 1 pass
+
+### value-invalid-multiple-blanks-before-units (correction guidance) (examples)
+
+**Description**: More than one blank separates a value from its units. This is VALUE_INVALID (d), which a validator MAY report as UNITS_INVALID; it is not TAG_INVALID.
+
+**Schema**: 8.5.0 **Category**: validation
+
+**Tests**:
+
+- `string_tests`: 1 fail, 1 pass
 
 ## WIKI_DELIMITERS_INVALID
 

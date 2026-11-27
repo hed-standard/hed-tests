@@ -5,7 +5,7 @@
         "name": "tag-extension-invalid-duplicate",
         "description": "A tag extension term is already in the schema.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "semantic",
         "common_causes": [
             "The extending tag already exists in schema",
@@ -204,7 +204,7 @@
         "name": "tag-extension-invalid-schema-term-after-extension",
         "description": "A term that is already a node in the schema follows a user extension term (Item/Blech/Red). Every level after an extension term is also an extension, and an extension term must not already be in the schema.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "semantic",
         "common_causes": [
             "Writing a schema tag as a further level of an extension instead of as a separate tag",
@@ -357,7 +357,7 @@
         "name": "tag-extension-invalid-bad-node-name",
         "description": "A tag extension term does not comply with rules for schema nodes.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "semantic",
         "common_causes": [
             "Creating extensions that violate naming rules",
@@ -676,7 +676,7 @@
         "name": "tag-extension-invalid-not-allowed",
         "description": "A tag is extended although neither it nor any of its ancestors has the extensionAllowed attribute (Sensory-event/Baloney, Agent/Blech). The Event and Agent subtrees of the standard schema do not allow extensions, so a term below them that is not in the schema is TAG_EXTENSION_INVALID, in short or long form and at any depth.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "semantic",
         "common_causes": [
             "Adding a more specific kind of event under Sensory-event or another Event tag",
@@ -964,7 +964,7 @@
         "name": "tag-extension-invalid-reserved-tag",
         "description": "A structural reserved tag is extended with a term (Onset/Blah, Event-context/Blah). Reserved tags must not be extended although they inherit extensionAllowed from Property. A # after a reserved tag (Onset/#) is tested in tag-extension-invalid-reserved-tag-placeholder, since it may be reported under either of two codes.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "semantic",
         "common_causes": [
             "Adding a descriptive word after Onset or Event-context as if it were a label",
@@ -1114,7 +1114,7 @@
         "name": "tag-extension-invalid-reserved-tag-placeholder",
         "description": "A # follows a reserved tag that takes no value. It is an error in every context: a HED string ((Event-context/#, (Red)), since string tests use no temporal tag), an events file, a sidecar value column, and a combo ((Onset/#, Def/MyColor)). A validator may report it as TAG_EXTENSION_INVALID (the # extends a reserved tag) or as PLACEHOLDER_INVALID (the # has no placeholder child to stand for, or is not allowed there at all), depending on which check finds it first.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "semantic",
         "common_causes": [
             "Treating Onset as a tag that takes a value and putting the value column's # on it",
@@ -1254,7 +1254,7 @@
         "name": "tag-extension-invalid-no-letter",
         "description": "A tag extension term contains no letter (Item/Blech/3, Item/1-2, Item/_). An extension term must contain at least one letter: A-Z or a-z, or any Unicode letter in schema versions whose nameClass allows non-ASCII characters (8.3.0 and later), so a non-ASCII term with no letter (a degree sign, an Arabic-Indic digit) also fails.",
         "warning": false,
-        "schema": "8.4.0",
+        "schema": "8.5.0",
         "error_category": "semantic",
         "common_causes": [
             "Writing a number after a tag that does not take a value, as if it did (Item/3)",
